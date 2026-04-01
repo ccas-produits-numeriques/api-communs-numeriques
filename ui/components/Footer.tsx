@@ -1,16 +1,12 @@
 "use client";
 import { Footer as DSFRFooter, FooterBottomItem } from "@codegouvfr/react-dsfr/Footer";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
 
-import type { WithLang } from "@/app/i18n/settings";
 // import { usePlausible } from "next-plausible";
 import { publicConfig } from "@/config.public";
 import { PAGES } from "@/utils/routes.utils";
 
-export default function Footer({ lang }: WithLang) {
-  const { t } = useTranslation("global", { lng: lang });
-
+export default function Footer() {
   return (
     <DSFRFooter
       accessibility="partially compliant"
@@ -29,27 +25,27 @@ export default function Footer({ lang }: WithLang) {
         href: "/sitemap.xml",
       }}
       termsLinkProps={{
-        href: PAGES.static.mentionsLegales.getPath(lang),
+        href: PAGES.static.mentionsLegales.getPath(),
       }}
       accessibilityLinkProps={{
-        href: PAGES.static.accessibilite.getPath(lang),
+        href: PAGES.static.accessibilite.getPath(),
       }}
       bottomItems={[
         <FooterBottomItem
           key="cgu"
           bottomItem={{
-            text: PAGES.static.cgu.getTitle(lang, t),
+            text: PAGES.static.cgu.getTitle(),
             linkProps: {
-              href: PAGES.static.cgu.getPath(lang),
+              href: PAGES.static.cgu.getPath(),
             },
           }}
         />,
         <FooterBottomItem
           key="politique-confidentialite"
           bottomItem={{
-            text: PAGES.static.politiqueConfidentialite.getTitle(lang, t),
+            text: PAGES.static.politiqueConfidentialite.getTitle(),
             linkProps: {
-              href: PAGES.static.politiqueConfidentialite.getPath(lang),
+              href: PAGES.static.politiqueConfidentialite.getPath(),
             },
           }}
         />,

@@ -10,12 +10,10 @@ import Link from "next/link";
 import { useState } from "react";
 import type { FieldError, SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import type { IBody, IPostRoutes } from "shared";
 import { zRoutes } from "shared";
 
 import { LoginEmailSentModal } from "./LoginEmailSent";
-import type { WithLang } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
 import { publicConfig } from "@/config.public";
 import { ApiError, apiPost } from "@/utils/api.utils";
@@ -34,7 +32,7 @@ function getInputState(error: FieldError | undefined | null): {
   return { state: "error", stateRelatedMessage: error.message ?? "Erreur de validation" };
 }
 
-export function LoginModal({ lang }: WithLang) {
+export function LoginModal() {
   const {
     register,
     handleSubmit,
@@ -44,7 +42,6 @@ export function LoginModal({ lang }: WithLang) {
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [sentTo, setSentTo] = useState<string | null>(null);
-  const { t } = useTranslation("inscription-connexion", { lng: lang });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -63,7 +60,7 @@ export function LoginModal({ lang }: WithLang) {
   };
 
   if (sentTo) {
-    return <LoginEmailSentModal email={sentTo} lang={lang} t={t} />;
+    return <LoginEmailSentModal email={sentTo} />;
   }
 
   return (
@@ -89,9 +86,9 @@ export function LoginModal({ lang }: WithLang) {
         }}
       >
         <Box sx={{ textAlign: "right", marginBottom: fr.spacing("2w") }}>
-          <Box component={Link} href={PAGES.static.home.getPath(lang)} sx={{ backgroundImage: "none" }}>
+          <Box component={Link} href={PAGES.static.home.getPath()} sx={{ backgroundImage: "none" }}>
             <Button priority="tertiary" iconId="fr-icon-close-line" iconPosition="right">
-              {t("modal.fermer", { lng: lang })}
+              Fermer
             </Button>
           </Box>
         </Box>
@@ -119,10 +116,10 @@ export function LoginModal({ lang }: WithLang) {
                 color: fr.colors.decisions.text.label.blueEcume.default,
               }}
             >
-              {t("modal.seConnecterInscrire", { lng: lang })}
+              Se connecter / S'inscrire
             </Typography>
             <Typography id="login-modal-description" className={fr.cx("fr-text--lead")}>
-              <strong> {t("modal.obtenirJetons", { lng: lang })}</strong> {t("modal.alApiApprentissage", { lng: lang })}
+              <strong> Obtenez et gérez vos jetons d’accès</strong> à API Communs numériques
             </Typography>
           </Box>
 
@@ -136,7 +133,7 @@ export function LoginModal({ lang }: WithLang) {
             }}
           >
             <Input
-              label={t("modal.saisirEmail", { lng: lang })}
+              label="Renseignez votre adresse email, en privilégiant une adresse professionnelle"
               {...getInputState(errors?.email)}
               nativeInputProps={register("email", { required: true })}
             />
@@ -150,7 +147,7 @@ export function LoginModal({ lang }: WithLang) {
                 iconId="fr-icon-arrow-right-line"
                 iconPosition="right"
               >
-                {t("modal.continuer", { lng: lang })}
+                Continuer
               </Button>
             </Box>
           </Box>
@@ -161,11 +158,12 @@ export function LoginModal({ lang }: WithLang) {
           )}
 
           <Typography textAlign="center" color={fr.colors.decisions.text.default.grey.default}>
-            {t("modal.envoiLienDescription", { lng: lang })}
+            Nous vous enverrons un lien qui vous permettra de vous connecter à votre compte ou de vous inscrire, sans
+            mot de passe
           </Typography>
         </Box>
         <Typography textAlign="center" color={fr.colors.decisions.text.default.grey.default}>
-          {t("modal.problemeConnexionContactezNous", { lng: lang })}{" "}
+          Vous rencontrez des problèmes pour vous identifier, contactez-nous :{" "}
           <Box
             component="a"
             href={`mailto:${publicConfig.contactEmail}`}

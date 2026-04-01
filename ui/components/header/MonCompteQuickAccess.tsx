@@ -7,12 +7,11 @@ import NextLink from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import type { WithLangAndT } from "@/app/i18n/settings";
 import { useAuth } from "@/context/AuthContext";
 import { apiGet } from "@/utils/api.utils";
 import { PAGES } from "@/utils/routes.utils";
 
-export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
+export function MonCompteQuickAccess() {
   const { session, setSession } = useAuth();
   const { push } = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -20,8 +19,8 @@ export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
   const handleLogout = useCallback(async () => {
     await apiGet("/_private/auth/logout", {});
     setSession(null);
-    push(PAGES.static.home.getPath(lang));
-  }, [push, setSession, lang]);
+    push(PAGES.static.home.getPath());
+  }, [push, setSession]);
 
   const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -40,9 +39,9 @@ export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
       <HeaderQuickAccessItem
         quickAccessItem={{
           iconId: "fr-icon-lock-line",
-          text: t("pages.seConnecterInscrireCompte", { lang, ns: "global" }),
+          text: "Se connecter / S'inscrire",
           linkProps: {
-            href: PAGES.static.compteProfil.getPath(lang),
+            href: PAGES.static.compteProfil.getPath(),
           },
         }}
       />
@@ -54,7 +53,7 @@ export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
       <HeaderQuickAccessItem
         quickAccessItem={{
           iconId: "fr-icon-account-circle-fill",
-          text: t("pages.compte", { lang, ns: "global" }),
+          text: "Mon compte",
           buttonProps: {
             onClick: handleOpenPopover,
             "aria-describedby": popoverId,
@@ -91,12 +90,12 @@ export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
               sx={{
                 textDecoration: "none",
                 color:
-                  pathname === PAGES.static.compteProfil.getPath(lang)
+                  pathname === PAGES.static.compteProfil.getPath()
                     ? fr.colors.decisions.text.active.blueFrance.default
                     : fr.colors.decisions.text.mention.grey.default,
               }}
               component={NextLink}
-              href={PAGES.static.compteProfil.getPath(lang)}
+              href={PAGES.static.compteProfil.getPath()}
             >
               Jetons d'accès
             </Link>
@@ -112,7 +111,7 @@ export function MonCompteQuickAccess({ lang, t }: WithLangAndT) {
                 color: fr.colors.decisions.text.mention.grey.default,
               }}
               onClick={handleLogout}
-              href={PAGES.static.home.getPath(lang)}
+              href={PAGES.static.home.getPath()}
             >
               <i className={fr.cx("fr-icon-logout-box-r-line")} />
               Déconnexion

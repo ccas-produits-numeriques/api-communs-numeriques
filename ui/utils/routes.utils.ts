@@ -13,16 +13,14 @@ import {
   recuperationMissionLocalePageSummaryDoc,
   recuperationOrganismesPageSummaryDoc,
 } from "api-communs-numerique-sdk/internal";
-import type { TFunction } from "i18next";
 import type { MetadataRoute } from "next";
 
-import type { Lang, Namespace } from "@/app/i18n/settings";
 import { publicConfig } from "@/config.public";
 
 export interface IPage {
-  getPath: (lang: Lang) => string;
+  getPath: () => string;
   index: boolean;
-  getTitle: (lang: Lang, t: TFunction<Namespace>) => string;
+  getTitle: () => string;
 }
 
 export interface INotionPage extends IPage {
@@ -39,188 +37,187 @@ export interface IPages {
 export const PAGES = {
   static: {
     home: {
-      getPath: (lang) => `/${lang}` as string,
+      getPath: () => `/` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.home", { lang, ns: "global" }),
+      getTitle: () => "Accueil",
     },
     documentationTechnique: {
-      getPath: (lang) => `/${lang}/documentation-technique` as string,
+      getPath: () => `/documentation-technique` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.documentationTechnique", { lang, ns: "global" }),
+      getTitle: () => "Documentation technique",
     },
     documentationTechniqueEssayer: {
-      getPath: (lang) => `/${lang}/documentation-technique/try` as string,
+      getPath: () => `/documentation-technique/try` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.documentationTechniqueEssayer", { lang, ns: "global" }),
+      getTitle: () => "Essayer l'API",
     },
     explorerApi: {
-      getPath: (lang) => `/${lang}/explorer` as string,
+      getPath: () => `/explorer` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.explorerApi", { lang, ns: "global" }),
+      getTitle: () => "Explorer les API",
     },
     catalogueDesDonneesCertification: {
-      getPath: (lang) => `/${lang}/explorer/certifications` as string,
+      getPath: () => `/explorer/certifications` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(certificationsPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(certificationsPageSummaryDoc.title, "fr"),
     },
     rechercheOffre: {
-      getPath: (lang) => `/${lang}/explorer/recherche-offre` as string,
+      getPath: () => `/explorer/recherche-offre` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(rechercheOffrePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(rechercheOffrePageSummaryDoc.title, "fr"),
     },
     recuperationDetailOffre: {
-      getPath: (lang) => `/${lang}/explorer/recuperation-detail-offre` as string,
+      getPath: () => `/explorer/recuperation-detail-offre` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(recuperationDetailOffrePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(recuperationDetailOffrePageSummaryDoc.title, "fr"),
     },
     rechercheCommune: {
-      getPath: (lang) => `/${lang}/explorer/recherche-commune` as string,
+      getPath: () => `/explorer/recherche-commune` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(rechercheCommunePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(rechercheCommunePageSummaryDoc.title, "fr"),
     },
     rechercheFormation: {
-      getPath: (lang) => `/${lang}/explorer/recherche-formation` as string,
+      getPath: () => `/explorer/recherche-formation` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(rechercheFormationPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(rechercheFormationPageSummaryDoc.title, "fr"),
     },
     recuperationFormation: {
-      getPath: (lang) => `/${lang}/explorer/recuperation-formation` as string,
+      getPath: () => `/explorer/recuperation-formation` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(recuperationFormationPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(recuperationFormationPageSummaryDoc.title, "fr"),
     },
     generationLienPriseRdvFormation: {
-      getPath: (lang) => `/${lang}/explorer/generation-lien-prise-rdv-formation` as string,
+      getPath: () => `/explorer/generation-lien-prise-rdv-formation` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(generationLienPriseRdvFormationPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(generationLienPriseRdvFormationPageSummaryDoc.title, "fr"),
     },
     recuperationDepartements: {
-      getPath: (lang) => `/${lang}/explorer/recuperation-departements` as string,
+      getPath: () => `/explorer/recuperation-departements` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(recuperationDepartementsPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(recuperationDepartementsPageSummaryDoc.title, "fr"),
     },
     recuperationMissionLocales: {
-      getPath: (lang) => `/${lang}/explorer/recuperation-mission-locales` as string,
+      getPath: () => `/explorer/recuperation-mission-locales` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(recuperationMissionLocalePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(recuperationMissionLocalePageSummaryDoc.title, "fr"),
     },
     recuperationOrganismes: {
-      getPath: (lang) => `/${lang}/explorer/recuperation-organismes` as string,
+      getPath: () => `/explorer/recuperation-organismes` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(recuperationOrganismesPageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(recuperationOrganismesPageSummaryDoc.title, "fr"),
     },
     depotOffre: {
-      getPath: (lang) => `/${lang}/explorer/depot-offre` as string,
+      getPath: () => `/explorer/depot-offre` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(depotOffrePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(depotOffrePageSummaryDoc.title, "fr"),
     },
     candidatureOffre: {
-      getPath: (lang) => `/${lang}/explorer/candidature-offre` as string,
+      getPath: () => `/explorer/candidature-offre` as string,
       index: true,
-      getTitle: (lang, _t) => getTextOpenAPI(candidatureOffrePageSummaryDoc.title, lang),
+      getTitle: () => getTextOpenAPI(candidatureOffrePageSummaryDoc.title, "fr"),
     },
     mentionsLegales: {
-      getPath: (lang) => `/${lang}/mentions-legales` as string,
+      getPath: () => `/mentions-legales` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.mentionsLegales", { lang, ns: "global" }),
+      getTitle: () => "Mentions Légales",
     },
     accessibilite: {
-      getPath: (lang) => `/${lang}/accessibilite` as string,
+      getPath: () => `/accessibilite` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.accessibilite", { lang, ns: "global" }),
+      getTitle: () => "Accessibilité",
     },
     cgu: {
-      getPath: (lang) => `/${lang}/cgu` as string,
+      getPath: () => `/cgu` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.cgu", { lang, ns: "global" }),
+      getTitle: () => "Conditions Générales d'Utilisation",
     },
     politiqueConfidentialite: {
-      getPath: (lang) => `/${lang}/politique-confidentialite` as string,
+      getPath: () => `/politique-confidentialite` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.politiqueConfidentialite", { lang, ns: "global" }),
+      getTitle: () => "Politique de Confidentialité",
     },
     compteProfil: {
-      getPath: (lang) => `/${lang}/compte/profil` as string,
+      getPath: () => `/compte/profil` as string,
       index: true,
-      getTitle: (lang, t) => t("pages.compteProfil", { lang, ns: "global" }),
+      getTitle: () => "Mon profil",
     },
     adminUsers: {
-      getPath: (lang) => `/${lang}/admin/utilisateurs` as string,
+      getPath: () => `/admin/utilisateurs` as string,
       index: false,
-      getTitle: (lang, t) => t("pages.adminUsers", { lang, ns: "global" }),
+      getTitle: () => "Gestion des utilisateurs",
     },
     adminOrganisations: {
-      getPath: (lang) => `/${lang}/admin/organisations` as string,
+      getPath: () => `/admin/organisations` as string,
       index: false,
-      getTitle: (lang, t) => t("pages.adminOrganisations", { lang, ns: "global" }),
+      getTitle: () => "Gestion des organisations",
     },
     adminProcessor: {
-      getPath: (lang) => `/${lang}/admin/processeur` as string,
+      getPath: () => `/admin/processeur` as string,
       index: false,
-      getTitle: (lang, t) => t("pages.adminProcessor", { lang, ns: "global" }),
+      getTitle: () => "Administration du processeur",
     },
     adminImporters: {
-      getPath: (lang) => `/${lang}/admin/importers` as string,
+      getPath: () => `/admin/importers` as string,
       index: false,
-      getTitle: (lang, t) => t("pages.adminImporters", { lang, ns: "global" }),
+      getTitle: () => "Importeurs",
     },
   },
   dynamic: {
     inscription: (token: string): IPage => ({
-      getPath: (lang) => `/${lang}/auth/inscription?token=${token}`,
+      getPath: () => `/auth/inscription?token=${token}`,
       index: false,
-      getTitle: (lang, t) => t("pages.inscription", { lang, ns: "global" }),
+      getTitle: () => "Inscription",
     }),
     refusInscription: (token: string): IPage => ({
-      getPath: (lang) => `/${lang}/auth/refus-inscription?token=${token}`,
+      getPath: () => `/auth/refus-inscription?token=${token}`,
       index: false,
-      getTitle: (lang, t) => t("pages.refusInscription", { lang, ns: "global" }),
+      getTitle: () => "Inscription",
     }),
     adminUserView: (id: string): IPage => ({
-      getPath: (lang) => `/${lang}/admin/utilisateurs/${id}`,
+      getPath: () => `/admin/utilisateurs/${id}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminUserView", { lang, ns: "global" }),
+      getTitle: () => "Fiche utilisateur",
     }),
     adminImporterView: (name: string): IPage => ({
-      getPath: (lang) => `/${lang}/admin/importers/${name}` as string,
+      getPath: () => `/admin/importers/${name}` as string,
       index: false,
       getTitle: () => name,
     }),
     adminOrganisationView: (id: string): IPage => ({
-      getPath: (lang) => `/${lang}/admin/organisations/${id}`,
+      getPath: () => `/admin/organisations/${id}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminOrganisationView", { lang, ns: "global" }),
+      getTitle: () => "Fiche Organisation",
     }),
     adminProcessorJob: (name: string): IPage => ({
-      getPath: (lang) => `/${lang}/admin/processeur/job/${name}`,
+      getPath: () => `/admin/processeur/job/${name}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminProcessorJob", { lang, name, ns: "global" }),
+      getTitle: () => `Job ${name}`,
     }),
     adminProcessorJobInstance: (params: { name: string; id: string }): IPage => ({
-      getPath: (lang) => `/${lang}/admin/processeur/job/${params.name}/${params.id}`,
+      getPath: () => `/admin/processeur/job/${params.name}/${params.id}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminProcessorJobInstance", { lang, id: params.id, ns: "global" }),
+      getTitle: () => `Tâche Job ${params.id}`,
     }),
     adminProcessorCron: (name: string): IPage => ({
-      getPath: (lang) => `/${lang}/admin/processeur/cron/${name}`,
+      getPath: () => `/admin/processeur/cron/${name}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminProcessorCron", { lang, name, ns: "global" }),
+      getTitle: () => `CRON ${name}`,
     }),
     adminProcessorCronTask: (params: { name: string; id: string }): IPage => ({
-      getPath: (lang) => `/${lang}/admin/processeur/cron/${params.name}/${params.id}`,
+      getPath: () => `/admin/processeur/cron/${params.name}/${params.id}`,
       index: false,
-      getTitle: (lang, t) => t("pages.adminProcessorCronTask", { lang, id: params.id, ns: "global" }),
+      getTitle: () => `Tâche CRON ${params.id}`,
     }),
   },
   notion: {},
 } as const satisfies IPages;
 
 function getRawPath(pathname: string): string {
-  const rawPath = pathname.replace(/^\/fr/, "").replace(/^\/en/, "");
-  return rawPath === "" ? "/" : rawPath;
+  return pathname === "" ? "/" : pathname;
 }
 
 export function isStaticPage(pathname: string): boolean {
-  return Object.values(PAGES.static).some((page) => getRawPath(page.getPath("fr")) === pathname);
+  return Object.values(PAGES.static).some((page) => getRawPath(page.getPath()) === pathname);
 }
 
 export function isDynamicPage(pathname: string): boolean {
@@ -261,13 +258,7 @@ export function isNotionPage(pathname: string): boolean {
 
 function getSitemapItem(page: IPage): MetadataRoute.Sitemap[number] {
   return {
-    url: `${publicConfig.baseUrl}${getRawPath(page.getPath("fr"))}`,
-    alternates: {
-      languages: {
-        fr: `${publicConfig.baseUrl}${page.getPath("fr")}`,
-        en: `${publicConfig.baseUrl}${page.getPath("en")}`,
-      },
-    },
+    url: `${publicConfig.baseUrl}${getRawPath(page.getPath())}`,
   };
 }
 

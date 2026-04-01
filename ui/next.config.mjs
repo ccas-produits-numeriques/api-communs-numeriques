@@ -14,7 +14,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:lang/documentation-technique/try",
+        source: "/documentation-technique/try",
         headers: [
           {
             key: "Access-Control-Allow-Origin",

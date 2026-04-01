@@ -1,20 +1,16 @@
 "use client";
 
 import { Header as DSFRHeader, HeaderQuickAccessItem } from "@codegouvfr/react-dsfr/Header";
-import { LanguageSelect } from "@codegouvfr/react-dsfr/LanguageSelect";
 import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 import { useNavigationItems } from "./header.utils";
 import { MonCompteQuickAccess } from "./MonCompteQuickAccess";
-import type { Lang, WithLang } from "@/app/i18n/settings";
-import { languages } from "@/app/i18n/settings";
 import { publicConfig } from "@/config.public";
 import { useAuth } from "@/context/AuthContext";
 
-export const Header = ({ lang }: WithLang) => {
+export const Header = () => {
   // Force light mode
   const { isDark, setIsDark } = useIsDark();
   useEffect(() => {
@@ -27,16 +23,7 @@ export const Header = ({ lang }: WithLang) => {
 
   const { session } = useAuth();
 
-  const { t } = useTranslation("global", { lng: lang });
-  const navigation = useNavigationItems({ user: session?.user ?? null, pathname, lang, t });
-
-  const setLang = useCallback(
-    async (locale: Lang) => {
-      const newPath = window.location.pathname.replace(new RegExp(`^/${lang}`), `/${locale}`);
-      window.location.assign(newPath);
-    },
-    [lang]
-  );
+  const navigation = useNavigationItems({ user: session?.user ?? null, pathname });
 
   return (
     <>
@@ -53,16 +40,6 @@ export const Header = ({ lang }: WithLang) => {
           title: `Accueil - ${publicConfig.productMeta.brandName}`,
         }}
         quickAccessItems={[
-          <LanguageSelect
-            key="language-switcher"
-            supportedLangs={languages}
-            lang={lang}
-            setLang={setLang}
-            fullNameByLang={{
-              en: "English",
-              fr: "Français",
-            }}
-          />,
           <HeaderQuickAccessItem
             key="status-page"
             quickAccessItem={{
@@ -75,7 +52,7 @@ export const Header = ({ lang }: WithLang) => {
               },
             }}
           />,
-          <MonCompteQuickAccess key="mon-compte-quick-access" lang={lang} t={t} />,
+          <MonCompteQuickAccess key="mon-compte-quick-access" />,
         ]}
         operatorLogo={{
           alt: "Retour à l'accueil",

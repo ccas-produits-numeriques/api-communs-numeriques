@@ -2,35 +2,34 @@ import type { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation"
 import { useMemo } from "react";
 import type { IUserPublic } from "shared/models/user.model";
 
-import type { WithLangAndT } from "@/app/i18n/settings";
 import { PAGES } from "@/utils/routes.utils";
 
-type GetNavigationItemsProps = WithLangAndT<{
+type GetNavigationItemsProps = {
   user: IUserPublic | null;
   pathname: string;
-}>;
+};
 
-const getNavigationItems = ({ user, pathname, lang, t }: GetNavigationItemsProps): MainNavigationProps.Item[] => {
+const getNavigationItems = ({ user, pathname }: GetNavigationItemsProps): MainNavigationProps.Item[] => {
   const navigation: MainNavigationProps.Item[] = [
     {
-      isActive: pathname === PAGES.static.home.getPath(lang),
-      text: PAGES.static.home.getTitle(lang, t),
+      isActive: pathname === PAGES.static.home.getPath(),
+      text: PAGES.static.home.getTitle(),
       linkProps: {
-        href: PAGES.static.home.getPath(lang),
+        href: PAGES.static.home.getPath(),
       },
     },
     {
-      isActive: pathname.startsWith(PAGES.static.explorerApi.getPath(lang)),
-      text: PAGES.static.explorerApi.getTitle(lang, t),
+      isActive: pathname.startsWith(PAGES.static.explorerApi.getPath()),
+      text: PAGES.static.explorerApi.getTitle(),
       linkProps: {
-        href: PAGES.static.explorerApi.getPath(lang),
+        href: PAGES.static.explorerApi.getPath(),
       },
     },
     {
-      isActive: pathname.startsWith(PAGES.static.documentationTechnique.getPath(lang)),
-      text: PAGES.static.documentationTechnique.getTitle(lang, t),
+      isActive: pathname.startsWith(PAGES.static.documentationTechnique.getPath()),
+      text: PAGES.static.documentationTechnique.getTitle(),
       linkProps: {
-        href: PAGES.static.documentationTechnique.getPath(lang),
+        href: PAGES.static.documentationTechnique.getPath(),
       },
     },
   ];
@@ -38,31 +37,31 @@ const getNavigationItems = ({ user, pathname, lang, t }: GetNavigationItemsProps
   if (user?.is_admin) {
     const adminMenuLinks = [
       {
-        text: PAGES.static.adminOrganisations.getTitle(lang, t),
-        isActive: pathname.startsWith(PAGES.static.adminOrganisations.getPath(lang)),
+        text: PAGES.static.adminOrganisations.getTitle(),
+        isActive: pathname.startsWith(PAGES.static.adminOrganisations.getPath()),
         linkProps: {
-          href: PAGES.static.adminOrganisations.getPath(lang),
+          href: PAGES.static.adminOrganisations.getPath(),
         },
       },
       {
-        text: PAGES.static.adminUsers.getTitle(lang, t),
-        isActive: pathname.startsWith(PAGES.static.adminUsers.getPath(lang)),
+        text: PAGES.static.adminUsers.getTitle(),
+        isActive: pathname.startsWith(PAGES.static.adminUsers.getPath()),
         linkProps: {
-          href: PAGES.static.adminUsers.getPath(lang),
+          href: PAGES.static.adminUsers.getPath(),
         },
       },
       {
-        text: PAGES.static.adminImporters.getTitle(lang, t),
-        isActive: pathname.startsWith(PAGES.static.adminImporters.getPath(lang)),
+        text: PAGES.static.adminImporters.getTitle(),
+        isActive: pathname.startsWith(PAGES.static.adminImporters.getPath()),
         linkProps: {
-          href: PAGES.static.adminImporters.getPath(lang),
+          href: PAGES.static.adminImporters.getPath(),
         },
       },
       {
-        text: PAGES.static.adminProcessor.getTitle(lang, t),
-        isActive: pathname.startsWith(PAGES.static.adminProcessor.getPath(lang)),
+        text: PAGES.static.adminProcessor.getTitle(),
+        isActive: pathname.startsWith(PAGES.static.adminProcessor.getPath()),
         linkProps: {
-          href: PAGES.static.adminProcessor.getPath(lang),
+          href: PAGES.static.adminProcessor.getPath(),
         },
       },
     ];
@@ -84,5 +83,5 @@ const getNavigationItems = ({ user, pathname, lang, t }: GetNavigationItemsProps
   }) as MainNavigationProps.Item[];
 };
 
-export const useNavigationItems = ({ user, pathname, lang, t }: GetNavigationItemsProps): MainNavigationProps.Item[] =>
-  useMemo(() => getNavigationItems({ user, pathname, lang, t }), [user, pathname, t, lang]);
+export const useNavigationItems = ({ user, pathname }: GetNavigationItemsProps): MainNavigationProps.Item[] =>
+  useMemo(() => getNavigationItems({ user, pathname }), [user, pathname]);
