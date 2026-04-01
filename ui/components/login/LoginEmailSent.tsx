@@ -4,12 +4,11 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Box, Dialog, DialogContent, Typography } from "@mui/material";
 import Link from "next/link";
 
-import type { WithLangAndT } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
 import { publicConfig } from "@/config.public";
 import { PAGES } from "@/utils/routes.utils";
 
-export function LoginEmailSentModal({ email, lang, t }: WithLangAndT<{ email: string }>) {
+export function LoginEmailSentModal({ email }: { email: string }) {
   return (
     <Dialog
       open
@@ -34,8 +33,8 @@ export function LoginEmailSentModal({ email, lang, t }: WithLangAndT<{ email: st
       >
         <Box sx={{ textAlign: "right", marginBottom: fr.spacing("2w") }}>
           <Button priority="tertiary">
-            <Box component={Link} href={PAGES.static.home.getPath(lang)} sx={{ backgroundImage: "none" }}>
-              {t("modal.fermer", { lng: lang })}
+            <Box component={Link} href={PAGES.static.home.getPath()} sx={{ backgroundImage: "none" }}>
+              Fermer
             </Box>
           </Button>
         </Box>
@@ -62,18 +61,17 @@ export function LoginEmailSentModal({ email, lang, t }: WithLangAndT<{ email: st
                 color: fr.colors.decisions.text.label.blueEcume.default,
               }}
             >
-              {t("loginEmailSent.verifierEmail", { lng: lang })}
+              Vérifier votre adresse électronique
             </Typography>
             <Typography id="login-sent-modal-description">
-              {t("loginEmailSent.lienEnvoye", { lng: lang })} <strong>{email}</strong>{" "}
-              {t("loginEmailSent.vousPermettre", { lng: lang })}{" "}
-              <strong>{t("loginEmailSent.vousConnecter", { lng: lang })}</strong> (
-              {t("loginEmailSent.verifierSpams", { lng: lang })})
+              Nous avons envoyé un lien à l’adresse <strong>{email}</strong> qui va vous permettre de{" "}
+              <strong>vous connecter à votre compte ou de vous inscrire, sans mot de passe</strong> (n’oubliez pas de
+              vérifier vos indésirables)
             </Typography>
           </Box>
           <Artwork name="mail-sent" />
           <Typography textAlign="center" color={fr.colors.decisions.text.default.grey.default}>
-            {t("loginEmailSent.problemeReceptionLien", { lng: lang })}{" "}
+            Si vous n’avez pas reçu le lien d’ici 10 min, contactez-nous :{" "}
             <Box
               component="a"
               href={`mailto:${publicConfig.contactEmail}`}

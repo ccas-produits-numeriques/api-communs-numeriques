@@ -6,12 +6,12 @@ import { describe, expect, it } from "vitest";
 import { isNotionPage, isPage, PAGES } from "./routes.utils";
 
 describe("PAGES", () => {
-  const langDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../app/[lang]");
-  const pages = readdirSync(langDir, { recursive: true, withFileTypes: true })
+  const appDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../app");
+  const pages = readdirSync(appDir, { recursive: true, withFileTypes: true })
     .map((file) => {
       if (file.isDirectory()) return null;
       if (file.name !== "page.tsx") return null;
-      const name = path.relative(langDir, file.parentPath);
+      const name = path.relative(appDir, file.parentPath);
       const normalizedPath = name.split(path.sep).join("/");
 
       // 404 page

@@ -1,17 +1,41 @@
-"use client";
+import { Box, Container, Typography } from "@mui/material";
+import type { Metadata } from "next";
 
-import Error from "next/error";
+import { DsfrLink } from "@/components/link/DsfrLink";
+import { NotFound } from "@/icons/NotFound";
 
-// Render the default Next.js 404 page when a route
-// is requested that doesn't match the middleware and
-// therefore doesn't have a locale associated with it.
+export const metadata: Metadata = {
+  title: "404",
+};
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
-    <html lang="en">
-      <body>
-        <Error statusCode={404} />
-      </body>
-    </html>
+    <Container maxWidth="xl">
+      <Box>
+        <Box
+          padding={8}
+          display="flex"
+          justifyContent="center"
+          flexDirection="column"
+          margin="auto"
+          maxWidth="600px"
+          textAlign="center"
+        >
+          <NotFound />
+
+          <Box mt={4}>
+            <Typography variant="h1" gutterBottom>
+              Page non trouvée
+            </Typography>
+
+            <Typography>La page que vous recherchez n'existe pas ou a été déplacée</Typography>
+
+            <Box mt={2}>
+              <DsfrLink href="/">Retourner à la page d'accueil</DsfrLink>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Container>
   );
 }

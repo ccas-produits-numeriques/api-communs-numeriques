@@ -173,7 +173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.22.5, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.8, @babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.27.4, @babel/runtime@npm:^7.27.6, @babel/runtime@npm:^7.28.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.22.5, @babel/runtime@npm:^7.23.8, @babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.27.4, @babel/runtime@npm:^7.28.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
   version: 7.28.2
   resolution: "@babel/runtime@npm:7.28.2"
   checksum: 8673eb2311752929f5b0167f42cff4cc1d5fadddd0394baca27d06c1618680ffcf95e9f01061f5c4dc3f6a32b6bbf500e7762c02dc22bcd273c2947b9774ddad
@@ -4320,15 +4320,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accept-language@npm:^3.0.20":
-  version: 3.0.20
-  resolution: "accept-language@npm:3.0.20"
-  dependencies:
-    bcp47: ^1.1.2
-  checksum: 5237092055cedac83486b586f5ceb81060383c11ce11a79b2968d3d6457752c29cf2cf30de9cd73d0cb884c3de148b711d4afbccabad55caa2b0f708b3c81fc0
-  languageName: node
-  linkType: hard
-
 "acorn-import-attributes@npm:^1.9.5":
   version: 1.9.5
   resolution: "acorn-import-attributes@npm:1.9.5"
@@ -4882,13 +4873,6 @@ __metadata:
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
-  languageName: node
-  linkType: hard
-
-"bcp47@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "bcp47@npm:1.1.2"
-  checksum: 4e67daddfacf846e28895d682972f7de0c22669e99b2ed4561615f13c9a8fecc100ebe76f4b8496f535945db84ce04a32f7bce6ef26329a3cf49242cf0d36a0a
   languageName: node
   linkType: hard
 
@@ -7942,15 +7926,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-parse-stringify@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "html-parse-stringify@npm:3.0.1"
-  dependencies:
-    void-elements: 3.1.0
-  checksum: 334fdebd4b5c355dba8e95284cead6f62bf865a2359da2759b039db58c805646350016d2017875718bc3c4b9bf81a0d11be5ee0cf4774a3a5a7b97cde21cfd67
-  languageName: node
-  linkType: hard
-
 "html-to-text@npm:7.1.1":
   version: 7.1.1
   resolution: "html-to-text@npm:7.1.1"
@@ -8109,29 +8084,6 @@ __metadata:
   bin:
     husky: bin.js
   checksum: c2412753f15695db369634ba70f50f5c0b7e5cb13b673d0826c411ec1bd9ddef08c1dad89ea154f57da2521d2605bd64308af748749b27d08c5f563bcd89975f
-  languageName: node
-  linkType: hard
-
-"i18next-resources-to-backend@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "i18next-resources-to-backend@npm:1.2.1"
-  dependencies:
-    "@babel/runtime": ^7.23.2
-  checksum: a2f338c4eec8d5ba09846ae1abdd23afb72086f6395d6160c748d010c82f5c28c30133f6487f0fd3a65e710231d7750b324785f15cac4baf6d24b33227840341
-  languageName: node
-  linkType: hard
-
-"i18next@npm:^25.3.5":
-  version: 25.3.5
-  resolution: "i18next@npm:25.3.5"
-  dependencies:
-    "@babel/runtime": ^7.27.6
-  peerDependencies:
-    typescript: ^5
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 88b43c26a4a02af4827ae3dd152c3f5cbc21c1430eee67be511c9869554817b6d0d651a465ff1638617b332ac12b07d8d19df89fa127b7bb34d01bb92a395a82
   languageName: node
   linkType: hard
 
@@ -12481,27 +12433,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^15.6.1":
-  version: 15.6.1
-  resolution: "react-i18next@npm:15.6.1"
-  dependencies:
-    "@babel/runtime": ^7.27.6
-    html-parse-stringify: ^3.0.1
-  peerDependencies:
-    i18next: ">= 23.2.3"
-    react: ">= 16.8.0"
-    typescript: ^5
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
-      optional: true
-    typescript:
-      optional: true
-  checksum: f4342cc8ad6c4f2b5e4e8ac663da8848ad6402c3713ca542f4ad3a84b21ca10678c443ff9ca8250fa512e6e5c0000fc83b68797ae734d7d15b7ff09d5c5e9004
-  languageName: node
-  linkType: hard
-
 "react-image@npm:^4.0.3":
   version: 4.1.0
   resolution: "react-image@npm:4.1.0"
@@ -15182,14 +15113,11 @@ __metadata:
     "@types/react": ^19.1.10
     "@types/react-dom": ^19.1.7
     "@types/swagger-ui-react": ^5.18.0
-    accept-language: ^3.0.20
     api-communs-numerique-sdk: "workspace:^"
     autosuggest-highlight: ^3.3.4
     core-js: ^3.45.0
     date-fns: ^4.1.0
     dotenv: ^17.2.1
-    i18next: ^25.3.5
-    i18next-resources-to-backend: ^1.2.1
     job-processor: ^2.0.0-next.3
     jwt-decode: ^4.0.0
     match-sorter: ^8.1.0
@@ -15201,7 +15129,6 @@ __metadata:
     react: ^19.2.3
     react-dom: ^19.2.3
     react-hook-form: ^7.62.0
-    react-i18next: ^15.6.1
     react-markdown: ^10.1.0
     react-notion-x: ^7.4.3
     redoc: ^2.5.0
@@ -15730,13 +15657,6 @@ __metadata:
   bin:
     vitest: vitest.mjs
   checksum: e9aa14a2c4471c2e0364d1d7032303db8754fac9e5e9ada92fca8ebf61ee78d2c5d4386bff25913940a22ea7d78ab435c8dd85785d681b23e2c489d6c17dd382
-  languageName: node
-  linkType: hard
-
-"void-elements@npm:3.1.0":
-  version: 3.1.0
-  resolution: "void-elements@npm:3.1.0"
-  checksum: 0390f818107fa8fce55bb0a5c3f661056001c1d5a2a48c28d582d4d847347c2ab5b7f8272314cac58acf62345126b6b09bea623a185935f6b1c3bbce0dfd7f7f
   languageName: node
   linkType: hard
 
