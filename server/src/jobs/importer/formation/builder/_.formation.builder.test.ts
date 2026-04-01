@@ -1,5 +1,5 @@
-import type { IFormation } from "api-alternance-sdk";
-import { zCertification, zOrganisme } from "api-alternance-sdk";
+import type { IFormation } from "api-communs-numerique-sdk";
+import { zCertification, zOrganisme } from "api-communs-numerique-sdk";
 import { ObjectId } from "mongodb";
 import type { ICommuneInternal } from "shared/models/commune.model";
 import { generateCertificationInternalFixture } from "shared/models/fixtures/certification.model.fixture";

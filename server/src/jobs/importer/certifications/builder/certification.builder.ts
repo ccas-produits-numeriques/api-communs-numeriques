@@ -1,5 +1,5 @@
-import type { ICertification } from "api-alternance-sdk";
-import { zCertification } from "api-alternance-sdk";
+import type { ICertification } from "api-communs-numerique-sdk";
+import { zCertification } from "api-communs-numerique-sdk";
 import type { IBcn_N_FormationDiplome } from "shared/models/source/bcn/bcn.n_formation_diplome.model";
 import type { IBcn_N51_FormationDiplome } from "shared/models/source/bcn/bcn.n51_formation_diplome.model";
 import type { ISourceFranceCompetence } from "shared/models/source/france_competence/source.france_competence.model";

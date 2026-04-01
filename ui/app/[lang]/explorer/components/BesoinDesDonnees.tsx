@@ -1,14 +1,15 @@
 "use client";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Box, Typography } from "@mui/material";
-import type { DocPage, OpenapiSpec } from "api-alternance-sdk/internal";
-import { getTextOpenAPI, openapiSpec } from "api-alternance-sdk/internal";
+import type { DocPage, OpenapiSpec } from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI, openapiSpec } from "api-communs-numerique-sdk/internal";
 import { useTranslation } from "react-i18next";
 
 import { SwaggerLink } from "./SwaggerLink";
 import type { WithLang } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
 import { DsfrLink } from "@/components/link/DsfrLink";
+import { publicConfig } from "@/config.public";
 import { useAuth } from "@/context/AuthContext";
 import { PAGES } from "@/utils/routes.utils";
 
@@ -50,7 +51,7 @@ export function BesoinDesDonnes({
           {habilitationRequest && (
             <Typography>
               <DsfrLink
-                href={`mailto:support_api@apprentissage.beta.gouv.fr?subject=${encodeURIComponent(getTextOpenAPI(habilitationRequest.subject, lang))}&body=${getTextOpenAPI(habilitationRequest.body, lang)}`}
+                href={`mailto:${publicConfig.contactEmail}?subject=${encodeURIComponent(getTextOpenAPI(habilitationRequest.subject, lang))}&body=${getTextOpenAPI(habilitationRequest.body, lang)}`}
                 size="lg"
               >
                 {t("besoinDonnees.demandeHabilitation", { lng: lang })}

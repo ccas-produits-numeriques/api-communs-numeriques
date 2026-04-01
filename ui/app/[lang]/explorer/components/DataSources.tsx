@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { Box, Link, Typography } from "@mui/material";
-import type { DataSource } from "api-alternance-sdk/internal";
+import type { DataSource } from "api-communs-numerique-sdk/internal";
 import Image from "next/image";
 import NextLink from "next/link";
 

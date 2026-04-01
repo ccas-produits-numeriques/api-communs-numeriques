@@ -12,8 +12,8 @@ function getToday(): Date {
   return now;
 }
 
-async function updateKitApprentissageIndicateurSourceCfd() {
-  const indicateurs = await getDbCollection("source.kit_apprentissage")
+async function updateKitCommunsNumeriquesIndicateurSourceCfd() {
+  const indicateurs = await getDbCollection("source.kit_communs_numeriques")
     .aggregate<{ count: number }>([
       {
         $match: { cfd: { $ne: null } },
@@ -52,7 +52,7 @@ async function updateKitApprentissageIndicateurSourceCfd() {
 
   await Promise.all(
     indicateurs.map(({ count }) => {
-      return getDbCollection("indicateurs.source_kit_apprentissage").updateOne(
+      return getDbCollection("indicateurs.source_kit_communs_numeriques").updateOne(
         {
           date: today,
         },
@@ -66,8 +66,8 @@ async function updateKitApprentissageIndicateurSourceCfd() {
   );
 }
 
-async function updateKitApprentissageIndicateurSourceRncp() {
-  const indicateurs = await getDbCollection("source.kit_apprentissage")
+async function updateKitCommunsNumeriquesIndicateurSourceRncp() {
+  const indicateurs = await getDbCollection("source.kit_communs_numeriques")
     .aggregate<{ count: number }>([
       {
         $match: { rncp: { $ne: null } },
@@ -106,7 +106,7 @@ async function updateKitApprentissageIndicateurSourceRncp() {
 
   await Promise.all(
     indicateurs.map(({ count }) => {
-      return getDbCollection("indicateurs.source_kit_apprentissage").updateOne(
+      return getDbCollection("indicateurs.source_kit_communs_numeriques").updateOne(
         {
           date: today,
         },
@@ -120,6 +120,9 @@ async function updateKitApprentissageIndicateurSourceRncp() {
   );
 }
 
-export async function updateKitApprentissageIndicateurSource(): Promise<void> {
-  await Promise.all([updateKitApprentissageIndicateurSourceCfd(), updateKitApprentissageIndicateurSourceRncp()]);
+export async function updateKitCommunsNumeriquesIndicateurSource(): Promise<void> {
+  await Promise.all([
+    updateKitCommunsNumeriquesIndicateurSourceCfd(),
+    updateKitCommunsNumeriquesIndicateurSourceRncp(),
+  ]);
 }

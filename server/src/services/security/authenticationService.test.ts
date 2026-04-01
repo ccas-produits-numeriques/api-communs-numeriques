@@ -1,4 +1,4 @@
-import type { ISecuredRouteSchema } from "api-alternance-sdk";
+import type { ISecuredRouteSchema } from "api-communs-numerique-sdk";
 import { generateOrganisationFixture, generateUserFixture } from "shared/models/fixtures/index";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod/v4-mini";

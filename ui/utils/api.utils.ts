@@ -1,6 +1,6 @@
-import type { IApiRouteSchema, IApiRouteSchemaWrite } from "api-alternance-sdk";
-import type { PathParam, QueryString, WithQueryStringAndPathParam } from "api-alternance-sdk/internal";
-import { generateUri } from "api-alternance-sdk/internal";
+import type { IApiRouteSchema, IApiRouteSchemaWrite } from "api-communs-numerique-sdk";
+import type { PathParam, QueryString, WithQueryStringAndPathParam } from "api-communs-numerique-sdk/internal";
+import { generateUri } from "api-communs-numerique-sdk/internal";
 import type { IDeleteRoutes, IGetRoutes, IPostRoutes, IPutRoutes, IRequest, IResponse } from "shared";
 import type { IResErrorJson } from "shared/routes/common.routes";
 import type { EmptyObject } from "type-fest";

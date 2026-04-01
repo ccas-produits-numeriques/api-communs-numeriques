@@ -87,7 +87,7 @@ describe("rechercheCommune", () => {
   ];
 
   it("should call the API with the correct querystring", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/commune/search")
@@ -105,7 +105,7 @@ describe("rechercheCommune", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/commune/search")
@@ -133,7 +133,7 @@ describe("rechercheCommune", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/commune/search")
@@ -158,7 +158,7 @@ describe("rechercheCommune", () => {
   });
 
   it("should accepts future schema ehancements", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/commune/search")
@@ -265,7 +265,7 @@ describe("listDepartements", () => {
   ];
 
   it("should call the API", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/departement")
@@ -282,7 +282,7 @@ describe("listDepartements", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/departement")
@@ -309,7 +309,7 @@ describe("listDepartements", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/departement")
@@ -333,7 +333,7 @@ describe("listDepartements", () => {
   });
 
   it("should accepts future schema ehancements", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/departement")
@@ -404,7 +404,7 @@ describe("listMissionLocale", () => {
   ];
 
   it("should call the API", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/mission-locale")
@@ -426,7 +426,7 @@ describe("listMissionLocale", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/mission-locale")
@@ -458,7 +458,7 @@ describe("listMissionLocale", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/mission-locale")
@@ -487,7 +487,7 @@ describe("listMissionLocale", () => {
   });
 
   it("should accepts future schema ehancements", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/geographie/v1/mission-locale")

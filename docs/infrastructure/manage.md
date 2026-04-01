@@ -39,8 +39,8 @@ dans ce fichier en renseignant les informations suivantes :
 [<nom de l'environnement>]
 <IP>
 [<nom de l'environnement>:vars]
-dns_name=bal-<nom de l'environnement>.apprentissage.beta.gouv.fr
-host_name=bal-<nom de l'environnement>
+dns_name=api-<nom de l'environnement>.courdecassation.beta.gouv.fr
+host_name=api-<nom de l'environnement>
 env_type=recette
 ```
 

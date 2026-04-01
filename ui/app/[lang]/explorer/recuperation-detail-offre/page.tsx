@@ -1,4 +1,4 @@
-import { recuperationDetailOffrePageDoc } from "api-alternance-sdk/internal";
+import { recuperationDetailOffrePageDoc } from "api-communs-numerique-sdk/internal";
 
 import { CataloguePage } from "@/app/[lang]/explorer/components/CataloguePage";
 import { getServerTranslation } from "@/app/i18n";

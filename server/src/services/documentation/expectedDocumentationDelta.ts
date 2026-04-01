@@ -1,8 +1,8 @@
-import type { StructureDiff } from "api-alternance-sdk/internal";
+import type { StructureDiff } from "api-communs-numerique-sdk/internal";
 
-export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "api">> = {
+export const expectedDocumentationDelta: Record<string, StructureDiff<"sij_api", "api">> = {
   "get:/job/v1/search": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "parameters.query:departements.schema.anyOf": {
@@ -65,7 +65,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
               "recruteurs_lba",
               "Hellowork",
               "France Travail",
-              "RH Alternance",
+              "RH Cour de cassation",
               "PASS",
               "Monster",
               "Meteojob",
@@ -86,7 +86,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
                 "recruteurs_lba",
                 "Hellowork",
                 "France Travail",
-                "RH Alternance",
+                "RH Cour de cassation",
                 "PASS",
                 "Monster",
                 "Meteojob",
@@ -117,7 +117,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
             "recruteurs_lba",
             "Hellowork",
             "France Travail",
-            "RH Alternance",
+            "RH Cour de cassation",
             "PASS",
             "Monster",
             "Meteojob",
@@ -212,7 +212,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
     },
   },
   "post:/job/v1/offer": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "requestBody.content.application/json.schema.properties.contract.default": {
@@ -236,7 +236,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
     },
   },
   "put:/job/v1/offer/{id}": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "parameters.path:id.schema": {
@@ -270,7 +270,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
     },
   },
   "post:/job/v1/apply": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "requestBody.content.application/json.schema.properties.applicant_attachment_content.format": {
@@ -280,7 +280,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
     },
   },
   "get:/job/v1/offer/{id}/publishing-informations": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "parameters.path:id.schema": {
@@ -297,7 +297,7 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"lba", "ap
     },
   },
   "get:/job/v1/export": {
-    source: "lba",
+    source: "sij_api",
     result: "api",
     diff: {
       "responses.200.content.application/json.schema.properties.lastUpdate.format": {

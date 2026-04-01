@@ -35,7 +35,7 @@ jobs:
         run: yarn install
 
       - name: Transpile markdown
-        run: yarn workspace api-alternance-sdk markdown:transpile
+        run: yarn workspace api-communs-numerique-sdk markdown:transpile
 
       - name: Run Prettier
         run: yarn prettier:fix

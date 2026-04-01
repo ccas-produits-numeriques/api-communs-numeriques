@@ -1,7 +1,7 @@
 import { internal, unauthorized } from "@hapi/boom";
 import { captureException } from "@sentry/node";
-import type { ISecuredRouteSchema, WithSecurityScheme } from "api-alternance-sdk";
-import type { PathParam, QueryString, UserWithType } from "api-alternance-sdk/internal";
+import type { ISecuredRouteSchema, WithSecurityScheme } from "api-communs-numerique-sdk";
+import type { PathParam, QueryString, UserWithType } from "api-communs-numerique-sdk/internal";
 import type { FastifyRequest } from "fastify";
 import { ObjectId } from "mongodb";
 import type { IOrganisationInternal } from "shared/models/organisation.model";

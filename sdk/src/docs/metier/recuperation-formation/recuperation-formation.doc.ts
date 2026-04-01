@@ -28,8 +28,8 @@ export const recuperationFormationPageDoc = {
       en: "The returned training courses are those collected by [the apprenticeship training catalog](https://catalogue-apprentissage.intercariforef.org/recherche/formations)",
     },
     {
-      fr: "**💡 Cette API est utilisée en complément de la [route d'API de recherche de formations en apprentissage](https://api.apprentissage.beta.gouv.fr/fr/explorer/recherche-formation). Elle permet de récupérer une formation à partir de son identifiant (fourni par la route d'API de recherche).**",
-      en: "**💡 This API is used in conjunction with the [apprenticeship training search API route](https://api.apprentissage.beta.gouv.fr/fr/explorer/recherche-formation). It allows you to retrieve detailed information about a training program using its identifier (provided by the search API route).**",
+      fr: "**💡 Cette API est utilisée en complément de la [route d'API de recherche de formations en apprentissage](https://api.courdecassation.beta.gouv.fr/fr/explorer/recherche-formation). Elle permet de récupérer une formation à partir de son identifiant (fourni par la route d'API de recherche).**",
+      en: "**💡 This API is used in conjunction with the [apprenticeship training search API route](https://api.courdecassation.beta.gouv.fr/fr/explorer/recherche-formation). It allows you to retrieve detailed information about a training program using its identifier (provided by the search API route).**",
     },
   ],
   frequenceMiseAJour: "daily",
@@ -124,8 +124,8 @@ export const recuperationFormationPageDoc = {
             connue: {
               description: [
                 {
-                  fr: "Indique si la certification est connue de l'API Liste des Certifications Professionnelles [https://api.apprentissage.beta.gouv.fr/fr/explorer/certifications].",
-                  en: "Indicates whether the certification is recognized by the API List of Professional Certifications [https://api.apprentissage.beta.gouv.fr/fr/explorer/certifications]",
+                  fr: "Indique si la certification est connue de l'API Liste des Certifications Professionnelles [https://api.courdecassation.beta.gouv.fr/fr/explorer/certifications].",
+                  en: "Indicates whether the certification is recognized by the API List of Professional Certifications [https://api.courdecassation.beta.gouv.fr/fr/explorer/certifications]",
                 },
                 {
                   fr: "Dans le cas contraire, la certification est construite à partir des informations issues du RNCP et du CFD indépendamment.",

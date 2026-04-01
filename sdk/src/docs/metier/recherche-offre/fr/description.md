@@ -1,10 +1,10 @@
-**Accédez gratuitement et en temps réel à l'ensemble des opportunités d'emploi en alternance disponibles sur le territoire français.** Les opportunités d’emploi retournées sont celles collectées par [La bonne alternance](https://labonnealternance.apprentissage.beta.gouv.fr/) ainsi que [ses sites partenaires](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-alternance-3e9aadb0170e41339bac486399ec4ac1?pvs=74).
+**Accédez gratuitement et en temps réel à l'ensemble des opportunités d'emploi disponibles sur le territoire français.** Les opportunités d’emploi retournées sont celles collectées par [Cour de cassation](https://labonnealternance.courdecassation.beta.gouv.fr/) ainsi que [ses sites partenaires](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-cour-de-cassation-3e9aadb0170e41339bac486399ec4ac1?pvs=74).
 
 **Trois types d’opportunités d’emploi** sont disponibles :
 
 1. **offres_emploi_lba** : offres déposées directement via notre dépôt d’offres (25 000 offres en 2025).
 
-1. **offres_emploi_partenaires** : offres issues de nos partenaires (France Travail, Météojobs), de flux directs avec des groupes comme Enedis ou Engie, ainsi que de multidiffuseurs tels que Talentplug, Veritone, et d’ATS comme Kelio ou Wink ([liste de nos partenaires](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-alternance-3e9aadb0170e41339bac486399ec4ac1?pvs=74)). Environ 200 000 offres diffusées en 2025.
+1. **offres_emploi_partenaires** : offres issues de nos partenaires (France Travail, Météojobs), de flux directs avec des groupes comme Enedis ou Engie, ainsi que de multidiffuseurs tels que Talentplug, Veritone, et d’ATS comme Kelio ou Wink ([liste de nos partenaires](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-cour-de-cassation-3e9aadb0170e41339bac486399ec4ac1?pvs=74)). Environ 200 000 offres diffusées en 2025.
 
 1. **recruteurs_lba** : entreprises identifiées comme ayant un fort potentiel d’embauche mais n’ayant pas déposé d’offres ; nous suggérons aux candidats d’envoyer des candidatures spontanées
 
@@ -16,7 +16,7 @@
 
 - Pour les offres_emploi_partenaires : le champ « Partner Label » permet d’identifier les offres à sélectionner ou à exclure selon vos enjeux.
 
-Les résultats sont retournés par priorité de source (La bonne alternance puis ses partenaires), par distance croissante au lieu de recherche si ce dernier a été fourni en paramètre et par date de création décroissante.
+Les résultats sont retournés par priorité de source (Cour de cassation puis ses partenaires), par distance croissante au lieu de recherche si ce dernier a été fourni en paramètre et par date de création décroissante.
 
 Vous pouvez télécharger l’ensemble de ces offres au format JSON en utilisant [cette route](/fr/documentation-technique#tag/Offre-Emploi/operation/jobsExport).
 

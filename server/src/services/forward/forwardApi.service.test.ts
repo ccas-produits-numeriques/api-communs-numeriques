@@ -1,5 +1,5 @@
 import { gzipSync } from "zlib";
-import { parseApiAlternanceToken } from "api-alternance-sdk";
+import { parseApiCommunsNumeriqueToken } from "api-communs-numerique-sdk";
 import type { FastifyInstance } from "fastify";
 import { fastify } from "fastify";
 import nock, { cleanAll, disableNetConnect, enableNetConnect } from "nock";
@@ -44,7 +44,7 @@ describe("forwardApi.service", () => {
       },
       expectAuth: async () => {
         return expect
-          .soft(parseApiAlternanceToken({ token, publicKey: config.api.alternance.public_cert }))
+          .soft(parseApiCommunsNumeriqueToken({ token, publicKey: config.api.cour_de_cassation.public_cert }))
           .resolves.toEqual({
             data: {
               email: "basic@exemple.fr",
@@ -67,7 +67,7 @@ describe("forwardApi.service", () => {
       },
       expectAuth: async () => {
         return expect
-          .soft(parseApiAlternanceToken({ token, publicKey: config.api.alternance.public_cert }))
+          .soft(parseApiCommunsNumeriqueToken({ token, publicKey: config.api.cour_de_cassation.public_cert }))
           .resolves.toEqual({
             data: {
               email: "user@exemple.fr",

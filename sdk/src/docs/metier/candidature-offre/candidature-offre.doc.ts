@@ -2,7 +2,7 @@ import type { DocPage, OpenApiText } from "../../types.js";
 
 export const candidatureOffrePageSummaryDoc = {
   title: {
-    fr: "Envoi d’une candidature à une opportunité d’emploi en alternance",
+    fr: "Envoi d’une candidature à une opportunité d’emploi",
     en: "Send an application to a job opportunity in apprenticeship",
   },
   headline: {
@@ -25,18 +25,18 @@ export const candidatureOffrePageDoc = {
       fr: "Pour cela, elle requiert uniquement la transmission des coordonnées et du CV du candidat. Un message de motivation, à destination du recruteur, peut également être transmis de manière facultative. La candidature est ensuite envoyée au recruteur par email.",
     },
     {
-      fr: "Pour utiliser cette API, vous devez d’abord consulter l’API de [recherche d’opportunités d’emploi en alternance](./recherche-offre). Cette dernière vous permettra d’accéder gratuitement en temps réel à l'ensemble des opportunités d'emploi en alternance sur le territoire français. Ensuite, pour chaque opportunité contenant un `apply.recipient_id`, vous pouvez utiliser la présente route d’envoi d’une candidature à cette opportunité d’emploi, en spécifiant `apply.recipient_id` comme destinataire dans les paramètres d’appel.",
-      en: "To use this API, you must first query the [alternance job opportunities search API](./recherche-offre). This API allows you to access all the job opportunities in alternance in real time throughout France. Then, for each opportunity with a `apply.recipient_id`, you can use this route to send an application to this job opportunity, specifying `apply.recipient_id` as the recipient in the call parameters.",
+      fr: "Pour utiliser cette API, vous devez d’abord consulter l’API de [recherche d’opportunités d’emploi](./recherche-offre). Cette dernière vous permettra d’accéder gratuitement en temps réel à l'ensemble des opportunités d'emploi sur le territoire français. Ensuite, pour chaque opportunité contenant un `apply.recipient_id`, vous pouvez utiliser la présente route d’envoi d’une candidature à cette opportunité d’emploi, en spécifiant `apply.recipient_id` comme destinataire dans les paramètres d’appel.",
+      en: "To use this API, you must first query the [job opportunities search API](./recherche-offre). This API allows you to access all the job opportunities in cour-de-cassation in real time throughout France. Then, for each opportunity with a `apply.recipient_id`, you can use this route to send an application to this job opportunity, specifying `apply.recipient_id` as the recipient in the call parameters.",
     },
   ],
   frequenceMiseAJour: null,
   type: "data",
   sources: [
     {
-      name: "La bonne alternance",
+      name: "Cour de cassation",
       logo: { href: "/asset/logo/la_bonne_alternance.png" },
-      providers: ["La bonne alternance"],
-      href: "https://labonnealternance.apprentissage.beta.gouv.fr/",
+      providers: ["Cour de cassation"],
+      href: "https://labonnealternance.courdecassation.beta.gouv.fr/",
     },
   ],
   data: [
@@ -87,8 +87,8 @@ export const candidatureOffrePageDoc = {
           rows: {
             recipient_id: {
               description: {
-                en: "Recipient identifier retrieved from `apply.recipient_id` from search route results of the [alternance job opportunities search route](./recherche-offre).",
-                fr: "Identifiant du destinataire récupéré de `apply.recipient_id` depuis les résultats de la route de la [route de recherche d’opportunités d’emploi en alternance](./recherche-offre).",
+                en: "Recipient identifier retrieved from `apply.recipient_id` from search route results of the [job opportunities search route](./recherche-offre).",
+                fr: "Identifiant du destinataire récupéré de `apply.recipient_id` depuis les résultats de la route de la [route de recherche d’opportunités d’emploi](./recherche-offre).",
               },
             },
           },

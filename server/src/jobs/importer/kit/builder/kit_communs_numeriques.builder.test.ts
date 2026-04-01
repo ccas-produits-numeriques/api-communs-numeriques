@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { buildKitApprentissageEntry } from "./kit_apprentissage.builder.js";
+import { buildKitCommunsNumeriquesEntry } from "./kit_communs_numeriques.builder.js";
 
-const kitApprentissageSourceMap = {
+const kitCommunsNumeriquesSourceMap = {
   v1_0: "Kit apprentissage et RNCP v1.0.csv",
   v1_1: "Kit apprentissage et RNCP v1.1.csv",
   v1_2: "Kit apprentissage et RNCP v1.2.csv",
@@ -29,7 +29,7 @@ const kitApprentissageSourceMap = {
   20240329: "Kit_apprentissage_20240329.csv",
 };
 
-describe("Kit Apprentissage Builder", () => {
+describe("Kit Communs numeriques Builder", () => {
   it.each([
     ["RNCP12803?"],
     ["RNCP187485"],
@@ -44,7 +44,7 @@ describe("Kit Apprentissage Builder", () => {
     ["RNCP432"],
     ["RNCP813"],
   ])("should keep RNCP writting errors", async (inputValue) => {
-    for (const _source of Object.values(kitApprentissageSourceMap)) {
+    for (const _source of Object.values(kitCommunsNumeriquesSourceMap)) {
       const record = {
         FicheRNCP: inputValue,
         "Code Diplôme": "00000000",
@@ -52,7 +52,7 @@ describe("Kit Apprentissage Builder", () => {
         "Niveau fiche RNCP": "",
         "Abrégé de diplôme (RNCP)": "",
       };
-      const getResult = () => buildKitApprentissageEntry(record);
+      const getResult = () => buildKitCommunsNumeriquesEntry(record);
       expect.soft(getResult()).toEqual({ cfd: "00000000", rncp: inputValue });
     }
   });
@@ -65,12 +65,12 @@ describe("Kit Apprentissage Builder", () => {
       "Niveau fiche RNCP": "",
       "Abrégé de diplôme (RNCP)": "",
     };
-    const result = buildKitApprentissageEntry(record);
+    const result = buildKitCommunsNumeriquesEntry(record);
     expect(result).toEqual({ cfd: "01025409", rncp: "RNCP12803" });
   });
 
   it('should fix SQWQ speeling errors in "Code Diplôme" field', async () => {
-    for (const _source of Object.values(kitApprentissageSourceMap)) {
+    for (const _source of Object.values(kitCommunsNumeriquesSourceMap)) {
       const record = {
         FicheRNCP: "RNCP00000",
         "Code Diplôme": "SQWQ",
@@ -78,7 +78,7 @@ describe("Kit Apprentissage Builder", () => {
         "Niveau fiche RNCP": "",
         "Abrégé de diplôme (RNCP)": "",
       };
-      const getResult = () => buildKitApprentissageEntry(record);
+      const getResult = () => buildKitCommunsNumeriquesEntry(record);
 
       expect(getResult()).toEqual({ cfd: null, rncp: "RNCP00000" });
     }
@@ -89,7 +89,7 @@ describe("Kit Apprentissage Builder", () => {
       "Niveau fiche RNCP": "",
       "Abrégé de diplôme (RNCP)": "",
     };
-    const result = buildKitApprentissageEntry(record);
+    const result = buildKitCommunsNumeriquesEntry(record);
 
     expect(result).toEqual({ cfd: "01025409", rncp: "RNCP12803" });
   });

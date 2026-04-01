@@ -1,4 +1,4 @@
-import { candidatureOffrePageDoc } from "api-alternance-sdk/internal";
+import { candidatureOffrePageDoc } from "api-communs-numerique-sdk/internal";
 
 import { CataloguePage } from "@/app/[lang]/explorer/components/CataloguePage";
 import { getServerTranslation } from "@/app/i18n";

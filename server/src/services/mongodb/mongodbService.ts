@@ -6,7 +6,7 @@ import type { CollectionName, IDocument, IModelDescriptor } from "shared/models/
 import { modelDescriptors } from "shared/models/models";
 import { zodToMongoSchema } from "zod-mongodb-schema";
 
-import { zParisLocalDate } from "api-alternance-sdk/internal";
+import { zParisLocalDate } from "api-communs-numerique-sdk/internal";
 import type { $ZodType, JSONSchema } from "zod/v4/core";
 import config from "@/config.js";
 import logger from "@/services/logger.js";

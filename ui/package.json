@@ -2,7 +2,7 @@
   "name": "ui",
   "version": "0.0.0",
   "license": "MIT",
-  "author": "Mission apprentissage",
+  "author": "Cour de cassation",
   "engines": {
     "node": ">=24",
     "npm": "please-use-yarn"
@@ -33,7 +33,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "accept-language": "^3.0.20",
-    "api-alternance-sdk": "workspace:^",
+    "api-communs-numerique-sdk": "workspace:^",
     "autosuggest-highlight": "^3.3.4",
     "core-js": "^3.45.0",
     "date-fns": "^4.1.0",

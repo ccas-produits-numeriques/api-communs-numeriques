@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Tag as TagDsfr } from "@codegouvfr/react-dsfr/Tag";
 import { Box, Typography } from "@mui/material";
-import type { DocPage } from "api-alternance-sdk/internal";
-import { getTextOpenAPI } from "api-alternance-sdk/internal";
+import type { DocPage } from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI } from "api-communs-numerique-sdk/internal";
 
 import { BesoinDesDonnes } from "./BesoinDesDonnees";
 import { HabilitationRequise } from "./HabilitationRequise";

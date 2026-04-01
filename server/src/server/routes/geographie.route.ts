@@ -1,4 +1,4 @@
-import type { ICommune } from "api-alternance-sdk";
+import type { ICommune } from "api-communs-numerique-sdk";
 import { zRoutes } from "shared";
 
 import type { Server } from "@/server/server.js";

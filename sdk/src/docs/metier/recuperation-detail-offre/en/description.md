@@ -1,4 +1,4 @@
-**Access all apprenticeship job opportunities available in France for free and in real-time.** The returned job opportunities are those collected by [La bonne alternance](https://labonnealternance.apprentissage.beta.gouv.fr/) and [its partner sites](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-alternance-3e9aadb0170e41339bac486399ec4ac1?pvs=74).
+**Access all apprenticeship job opportunities available in France for free and in real-time.** The returned job opportunities are those collected by [Cour de cassation](https://labonnealternance.courdecassation.beta.gouv.fr/) and [its partner sites](https://mission-apprentissage.notion.site/Liste-des-partenaires-de-La-bonne-cour-de-cassation-3e9aadb0170e41339bac486399ec4ac1?pvs=74).
 
 Two types of job opportunities are available :
 
@@ -7,7 +7,7 @@ Two types of job opportunities are available :
 
 **💡 You can search for all job opportunities according to the following criteria: ROME code(s), RNCP, geolocation, diploma level, and search radius.**
 
-The results are returned by source priority (La bonne alternance then its partners), by increasing distance to the search location if it has been provided as a parameter, and by decreasing creation date.
+The results are returned by source priority (Cour de cassation then its partners), by increasing distance to the search location if it has been provided as a parameter, and by decreasing creation date.
 
 The results are limited to 150 for each of the three sources i.e. 450 maximum results.
 

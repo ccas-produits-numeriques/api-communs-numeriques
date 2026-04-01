@@ -11,11 +11,11 @@ import type { ImportStatus } from "shared";
 
 import logger from "../../../services/logger.js";
 import {
-  buildKitApprentissageEntry,
-  buildKitApprentissageOp,
+  buildKitCommunsNumeriquesEntry,
+  buildKitCommunsNumeriquesOp,
   getVersionNumber,
-} from "./builder/kit_apprentissage.builder.js";
-import { getKitApprentissageData } from "@/services/apis/kit_apprentissage/kit_apprentissage.api.js";
+} from "./builder/kit_communs_numeriques.builder.js";
+import { getKitCommunsNumeriquesData } from "@/services/apis/kit_communs_numeriques/kit_communs_numeriques.api.js";
 import { withCause } from "@/services/errors/withCause.js";
 import type { ExcelParsedRow, ExcelParseSpec } from "@/services/excel/excel.parser.js";
 import { parseExcelFileStream } from "@/services/excel/excel.parser.js";
@@ -36,14 +36,14 @@ function createBuildBulkOpAndWriteStreams(): [Transform, Transform, Writable] {
         callback
       ) {
         try {
-          const op = buildKitApprentissageOp(row);
+          const op = buildKitCommunsNumeriquesOp(row);
           if (op === null) {
             callback();
             return;
           }
           callback(null, op);
         } catch (error) {
-          callback(withCause(internal("import.kit_apprentissage: error when building operation", { row }), error));
+          callback(withCause(internal("import.kit_communs_numeriques: error when building operation", { row }), error));
         }
       },
     }),
@@ -54,21 +54,21 @@ function createBuildBulkOpAndWriteStreams(): [Transform, Transform, Writable] {
         try {
           const ops = chunk.filter((op: unknown) => op !== null);
           if (ops.length > 0) {
-            await getDbCollection("source.kit_apprentissage").bulkWrite(ops);
+            await getDbCollection("source.kit_communs_numeriques").bulkWrite(ops);
           }
           callback();
         } catch (error) {
-          callback(withCause(internal("import.kit_apprentissage: error when updating"), error));
+          callback(withCause(internal("import.kit_communs_numeriques: error when updating"), error));
         }
       },
     }),
   ];
 }
 
-async function importKitApprentissageSourceCsv(filename: string): Promise<void> {
+async function importKitCommunsNumeriquesSourceCsv(filename: string): Promise<void> {
   try {
     await pipeline(
-      createReadStream(getStaticFilePath(`kit_apprentissage/${filename}`)),
+      createReadStream(getStaticFilePath(`kit_communs_numeriques/${filename}`)),
       parse({
         bom: true,
         columns: true,
@@ -76,13 +76,13 @@ async function importKitApprentissageSourceCsv(filename: string): Promise<void> 
         delimiter: ";",
         trim: true,
         quote: true,
-        onRecord: buildKitApprentissageEntry,
+        onRecord: buildKitCommunsNumeriquesEntry,
       }),
       ...createBuildBulkOpAndWriteStreams()
     );
   } catch (error) {
     throw withCause(
-      internal("import.kit_apprentissage: unable to importKitApprentissageSourceCsv", { filename }),
+      internal("import.kit_communs_numeriques: unable to importKitCommunsNumeriquesSourceCsv", { filename }),
       error
     );
   }
@@ -111,22 +111,28 @@ function getExcelParserSpec(): ExcelParseSpec {
   ];
 }
 
-async function importKitApprentissageSourceXlsx(filename: string): Promise<void> {
+async function importKitCommunsNumeriquesSourceXlsx(filename: string): Promise<void> {
   try {
     const version = getVersionNumber(filename);
 
     await pipeline(
       Duplex.from(
-        parseExcelFileStream(createReadStream(getStaticFilePath(`kit_apprentissage/${filename}`)), getExcelParserSpec())
+        parseExcelFileStream(
+          createReadStream(getStaticFilePath(`kit_communs_numeriques/${filename}`)),
+          getExcelParserSpec()
+        )
       ),
       new Transform({
         objectMode: true,
         async transform(row: ExcelParsedRow, _encoding, callback) {
           try {
-            callback(null, buildKitApprentissageEntry(row.data));
+            callback(null, buildKitCommunsNumeriquesEntry(row.data));
           } catch (error) {
             callback(
-              withCause(internal("import.kit_apprentissage: error when parsing row", { row, filename, version }), error)
+              withCause(
+                internal("import.kit_communs_numeriques: error when parsing row", { row, filename, version }),
+                error
+              )
             );
           }
         },
@@ -135,25 +141,28 @@ async function importKitApprentissageSourceXlsx(filename: string): Promise<void>
     );
   } catch (error) {
     throw withCause(
-      internal("import.kit_apprentissage: unable to importKitApprentissageSourceXlsx", { filename }),
+      internal("import.kit_communs_numeriques: unable to importKitCommunsNumeriquesSourceXlsx", { filename }),
       error
     );
   }
 }
 
-async function importKitApprentissageSourceApi(): Promise<void> {
+async function importKitCommunsNumeriquesSourceApi(): Promise<void> {
   try {
-    await pipeline(getKitApprentissageData(), ...createBuildBulkOpAndWriteStreams());
+    await pipeline(getKitCommunsNumeriquesData(), ...createBuildBulkOpAndWriteStreams());
   } catch (error) {
-    throw withCause(internal("import.kit_apprentissage: unable to importKitApprentissageSourceApi", {}), error);
+    throw withCause(
+      internal("import.kit_communs_numeriques: unable to importKitCommunsNumeriquesSourceApi", {}),
+      error
+    );
   }
 }
 
-async function listKitApprentissageFiles(): Promise<string[]> {
-  return await readdir(getStaticFilePath("kit_apprentissage"));
+async function listKitCommunsNumeriquesFiles(): Promise<string[]> {
+  return await readdir(getStaticFilePath("kit_communs_numeriques"));
 }
 
-export async function runKitApprentissageImporter(): Promise<number> {
+export async function runKitCommunsNumeriquesImporter(): Promise<number> {
   const importDate = new Date();
   const importId = new ObjectId();
 
@@ -161,45 +170,49 @@ export async function runKitApprentissageImporter(): Promise<number> {
     await getDbCollection("import.meta").insertOne({
       _id: importId,
       import_date: importDate,
-      type: "kit_apprentissage",
+      type: "kit_communs_numeriques",
       status: "pending",
     });
 
-    // Kit apprentissage data prior to 2024-06-30 is stored in files
-    const files = await listKitApprentissageFiles();
+    // Kit communs numeriques data prior to 2024-06-30 is stored in files
+    const files = await listKitCommunsNumeriquesFiles();
 
-    logger.info(`import.kit_apprentissage: starting import at ${importDate.toISOString()}`);
-    logger.info(`import.kit_apprentissage: found ${files.length} source files to import`);
+    logger.info(`import.kit_communs_numeriques: starting import at ${importDate.toISOString()}`);
+    logger.info(`import.kit_communs_numeriques: found ${files.length} source files to import`);
 
     for (const file of files) {
-      logger.info(`import.kit_apprentissage: importing source file ${file}`);
+      logger.info(`import.kit_communs_numeriques: importing source file ${file}`);
       if (file.endsWith(".csv")) {
-        await importKitApprentissageSourceCsv(file);
+        await importKitCommunsNumeriquesSourceCsv(file);
       } else if (file.endsWith(".xlsx")) {
-        await importKitApprentissageSourceXlsx(file);
+        await importKitCommunsNumeriquesSourceXlsx(file);
       } else if (file !== ".gitkeep") {
-        throw internal("import.kit_apprentissage: unsupported source file format", { file });
+        throw internal("import.kit_communs_numeriques: unsupported source file format", { file });
       }
     }
 
-    await importKitApprentissageSourceApi();
+    await importKitCommunsNumeriquesSourceApi();
 
     await getDbCollection("import.meta").updateOne({ _id: importId }, { $set: { status: "done" } });
 
-    await addJob({ name: "indicateurs:source_kit_apprentissage:update" });
+    await addJob({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
-    return await getDbCollection("source.kit_apprentissage").countDocuments();
+    return await getDbCollection("source.kit_communs_numeriques").countDocuments();
   } catch (error) {
     await getDbCollection("import.meta").updateOne({ _id: importId }, { $set: { status: "failed" } });
-    throw withCause(internal("import.kit_apprentissage: unable to runKitApprentissageImporter"), error, "fatal");
+    throw withCause(
+      internal("import.kit_communs_numeriques: unable to runKitCommunsNumeriquesImporter"),
+      error,
+      "fatal"
+    );
   }
 }
 
-export async function getKitApprentissageImporterStatus(): Promise<ImportStatus> {
+export async function getKitCommunsNumeriquesImporterStatus(): Promise<ImportStatus> {
   const [lastImport, lastSuccess] = await Promise.all([
-    await getDbCollection("import.meta").findOne({ type: "kit_apprentissage" }, { sort: { import_date: -1 } }),
+    await getDbCollection("import.meta").findOne({ type: "kit_communs_numeriques" }, { sort: { import_date: -1 } }),
     await getDbCollection("import.meta").findOne(
-      { type: "kit_apprentissage", status: "done" },
+      { type: "kit_communs_numeriques", status: "done" },
       { sort: { import_date: -1 } }
     ),
   ]);

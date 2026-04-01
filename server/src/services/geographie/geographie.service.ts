@@ -1,4 +1,4 @@
-import type { IMissionLocale, IMissionLocaleSearchApiQuery } from "api-alternance-sdk";
+import type { IMissionLocale, IMissionLocaleSearchApiQuery } from "api-communs-numerique-sdk";
 
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 

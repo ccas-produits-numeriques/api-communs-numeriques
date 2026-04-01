@@ -3,8 +3,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { captureException } from "@sentry/node";
-import { parseApiAlternanceToken } from "api-alternance-sdk";
-import { initModelTechnicalDocFromSource, initRouteTechnicalDocFromSource } from "api-alternance-sdk/internal";
+import { parseApiCommunsNumeriqueToken } from "api-communs-numerique-sdk";
+import { initModelTechnicalDocFromSource, initRouteTechnicalDocFromSource } from "api-communs-numerique-sdk/internal";
 import { program } from "commander";
 import { addJob, startJobProcessor } from "job-processor";
 import HttpTerminator from "lil-http-terminator";
@@ -199,9 +199,13 @@ program
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("indexes:recreate"));
 program
-  .command("import:kit_apprentissage")
+  .command("import:kit_communs_numeriques")
   .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:kit_apprentissage"));
+  .action(createJobAction("import:kit_communs_numeriques"));
+program
+  .command("import:kit_communs_numeriques")
+  .option("-q, --queued", "Run job asynchronously", false)
+  .action(createJobAction("import:kit_communs_numeriques"));
 program
   .command("import:formation")
   .option("-q, --queued", "Run job asynchronously", false)
@@ -252,7 +256,7 @@ program.command("document:sync:check").action(checkDocumentationSync);
 
 program
   .command("debug:auth:token")
-  .description("Create a LBA API token")
+  .description("Create a SIJ-API token")
   .requiredOption("-e, --email <string>", "User email to create the token for")
   .option("-t, --ttl <string>", "Expiration time", "1y")
   .action(async ({ email, expiresIn }) => {
@@ -268,7 +272,7 @@ program
     const token = await createAuthToken({ user, organisation }, expiresIn);
     logger.info({ token });
 
-    logger.info(parseApiAlternanceToken({ token, publicKey: config.api.alternance.public_cert }));
+    logger.info(parseApiCommunsNumeriqueToken({ token, publicKey: config.api.cour_de_cassation.public_cert }));
   });
 
 program

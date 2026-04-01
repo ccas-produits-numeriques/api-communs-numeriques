@@ -110,7 +110,7 @@ export default function RegisterFeedbackPage({ params }: PropsWithLangParams) {
         <Box sx={{ textAlign: "right", marginBottom: fr.spacing("2w") }}>
           <Button priority="tertiary">
             <Box component={NextLink} href={PAGES.static.home.getPath(lang)} sx={{ backgroundImage: "none" }}>
-              Retourner sur l'espace développeurs La bonne alternance
+              Retourner sur API Communs numériques
             </Box>
           </Button>
         </Box>
@@ -140,11 +140,11 @@ export default function RegisterFeedbackPage({ params }: PropsWithLangParams) {
                 color: fr.colors.decisions.text.label.blueEcume.default,
               }}
             >
-              Aider nous à améliorer nos services
+              Aidez-nous à améliorer nos services
             </Typography>
             <Typography align="center" id="register-feedback-modal-description">
-              Vous avez souhaité <strong>ne pas créer de compte</strong> pour vous connecter au service API
-              Apprentissage. <strong>Dites-nous en plus !</strong>
+              Vous avez souhaité <strong>ne pas créer de compte</strong> pour vous connecter au service API Communs
+              numériques. <strong>Dites-nous en plus.</strong>
             </Typography>
           </Box>
 

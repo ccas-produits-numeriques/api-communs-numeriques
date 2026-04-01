@@ -20,12 +20,12 @@ import {
 } from "./importer/france_competence/france_competence.importer.js";
 import { importers } from "./importer/importers.js";
 import { runKaliConventionCollectivesImporter } from "./importer/kali/kali.ccn.importer.js";
-import { runKitApprentissageImporter } from "./importer/kit/kitApprentissage.importer.js";
+import { runKitCommunsNumeriquesImporter } from "./importer/kit/kitCommunsNumeriques.importer.js";
 import { runMissionLocaleImporter } from "./importer/mission_locale/mission_locale.importer.js";
 import { importNpecResource, onImportNpecResourceFailure, runNpecImporter } from "./importer/npec/npec.importer.js";
 import { importOrganismes } from "./importer/organisme/organisme.importer.js";
 import { runReferentielImporter } from "./importer/referentiel/referentiel.js";
-import { updateKitApprentissageIndicateurSource } from "./indicateurs/source/kitApprentissage.source.indicateur.js";
+import { updateKitCommunsNumeriquesIndicateurSource } from "./indicateurs/source/kitCommunsNumeriques.source.indicateur.js";
 import { create as createMigration, status as statusMigration, up as upMigration } from "./migrations/migrations.js";
 import { createIndexes, getDatabase } from "@/services/mongodb/mongodbService.js";
 import logger, { createJobProcessorLogger } from "@/services/logger.js";
@@ -94,8 +94,8 @@ export async function setupJobProcessor() {
       "import:bcn": {
         handler: runBcnImporter,
       },
-      "import:kit_apprentissage": {
-        handler: runKitApprentissageImporter,
+      "import:kit_communs_numeriques": {
+        handler: runKitCommunsNumeriquesImporter,
       },
       "import:referentiel": {
         handler: runReferentielImporter,
@@ -169,8 +169,8 @@ export async function setupJobProcessor() {
         },
         resumable: true,
       },
-      "indicateurs:source_kit_apprentissage:update": {
-        handler: updateKitApprentissageIndicateurSource,
+      "indicateurs:source_kit_communs_numeriques:update": {
+        handler: updateKitCommunsNumeriquesIndicateurSource,
         resumable: true,
       },
       "doc:check_sync": {

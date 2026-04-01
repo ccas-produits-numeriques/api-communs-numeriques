@@ -7,7 +7,10 @@ import { getDaresCcnImporterStatus, runDaresConventionCollectivesImporter } from
 import { getFormationsImporterStatus, importFormations } from "./formation/formation.importer.js";
 import { getFranceCompetencesImporterStatus, runRncpImporter } from "./france_competence/france_competence.importer.js";
 import { getKaliImporterStatus, runKaliConventionCollectivesImporter } from "./kali/kali.ccn.importer.js";
-import { getKitApprentissageImporterStatus, runKitApprentissageImporter } from "./kit/kitApprentissage.importer.js";
+import {
+  getKitCommunsNumeriquesImporterStatus,
+  runKitCommunsNumeriquesImporter,
+} from "./kit/kitCommunsNumeriques.importer.js";
 import { getMissionLocaleImporterStatus, runMissionLocaleImporter } from "./mission_locale/mission_locale.importer.js";
 import { getOrganismesImporterStatus, importOrganismes } from "./organisme/organisme.importer.js";
 import { getReferentielImporterStatus, runReferentielImporter } from "./referentiel/referentiel.js";
@@ -37,11 +40,11 @@ export const importers: Record<string, Importer> = {
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
-  "Import des données Kit Apprentissage": {
+  "Import des données Kit Communs numériques": {
     cron_string: timings.import_source_main,
-    handler: runKitApprentissageImporter,
+    handler: runKitCommunsNumeriquesImporter,
     resumable: true,
-    getStatus: getKitApprentissageImporterStatus,
+    getStatus: getKitCommunsNumeriquesImporterStatus,
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },

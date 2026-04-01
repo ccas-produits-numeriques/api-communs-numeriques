@@ -1,5 +1,5 @@
-import type { IFormation, IOrganisme } from "api-alternance-sdk";
-import { zSiret, zUai } from "api-alternance-sdk";
+import type { IFormation, IOrganisme } from "api-communs-numerique-sdk";
+import { zSiret, zUai } from "api-communs-numerique-sdk";
 import { LRUCache } from "lru-cache";
 import { stringify } from "safe-stable-stringify";
 

@@ -131,8 +131,8 @@ export const rechercheFormationPageDoc = {
             connue: {
               description: [
                 {
-                  fr: "Indique si la certification est connue de l'API Liste des Certifications Professionnelles [ici](https://api.apprentissage.beta.gouv.fr/fr/explorer/certifications).",
-                  en: "Indicates whether the certification is recognized by the API List of Professional Certifications [here](https://api.apprentissage.beta.gouv.fr/fr/explorer/certifications).",
+                  fr: "Indique si la certification est connue de l'API Liste des Certifications Professionnelles [ici](https://api.courdecassation.beta.gouv.fr/fr/explorer/certifications).",
+                  en: "Indicates whether the certification is recognized by the API List of Professional Certifications [here](https://api.courdecassation.beta.gouv.fr/fr/explorer/certifications).",
                 },
                 {
                   fr: "Dans le cas contraire, la certification est construite à partir des informations issues du RNCP et du CFD indépendamment.",

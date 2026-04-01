@@ -4492,9 +4492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"api-alternance-sdk@workspace:^, api-alternance-sdk@workspace:sdk":
+"api-communs-numerique-sdk@workspace:^, api-communs-numerique-sdk@workspace:sdk":
   version: 0.0.0-use.local
-  resolution: "api-alternance-sdk@workspace:sdk"
+  resolution: "api-communs-numerique-sdk@workspace:sdk"
   dependencies:
     "@tsconfig/node22": ^22.0.2
     "@types/node": ^24.2.1
@@ -13508,7 +13508,7 @@ __metadata:
     "@types/sax": ^1.2.7
     "@types/stream-json": ^1.7.8
     "@types/unzipper": ^0.10.11
-    api-alternance-sdk: "workspace:^"
+    api-communs-numerique-sdk: "workspace:^"
     archiver: ^7.0.1
     axios: ^1.12.2
     axios-retry: ^4.5.0
@@ -13639,7 +13639,7 @@ __metadata:
     "@tsconfig/node24": ^24.0.1
     "@types/luxon": ^3.7.1
     "@types/node": ^24.2.1
-    api-alternance-sdk: "workspace:^"
+    api-communs-numerique-sdk: "workspace:^"
     bson: ^6.10.4
     job-processor: ^2.0.0-next.3
     luxon: ^3.7.1
@@ -15183,7 +15183,7 @@ __metadata:
     "@types/react-dom": ^19.1.7
     "@types/swagger-ui-react": ^5.18.0
     accept-language: ^3.0.20
-    api-alternance-sdk: "workspace:^"
+    api-communs-numerique-sdk: "workspace:^"
     autosuggest-highlight: ^3.3.4
     core-js: ^3.45.0
     date-fns: ^4.1.0

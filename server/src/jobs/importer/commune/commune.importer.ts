@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import type { ICommune } from "api-alternance-sdk";
+import type { ICommune } from "api-communs-numerique-sdk";
 import type { AnyBulkWriteOperation } from "mongodb";
 import { ObjectId } from "mongodb";
 import type { ImportStatus, ISourceGeoCommune, ISourceGeoRegion } from "shared";

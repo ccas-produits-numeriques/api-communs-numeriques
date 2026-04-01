@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import type { ICertification, IFormation } from "api-alternance-sdk";
+import type { ICertification, IFormation } from "api-communs-numerique-sdk";
 import { LRUCache } from "lru-cache";
 import { stringify } from "safe-stable-stringify";
 import type { IFormationCatalogue } from "shared/models/source/catalogue/source.catalogue.model";

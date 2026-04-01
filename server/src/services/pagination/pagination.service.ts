@@ -1,4 +1,4 @@
-import type { IPaginationInfo, IPaginationQuery } from "api-alternance-sdk";
+import type { IPaginationInfo, IPaginationQuery } from "api-communs-numerique-sdk";
 import type { Collection, Document, Filter, WithId } from "mongodb";
 
 type Result<T> = {

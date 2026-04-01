@@ -7,7 +7,7 @@ import { fastifySwagger } from "@fastify/swagger";
 import type { FastifySwaggerUiOptions } from "@fastify/swagger-ui";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import { notFound } from "@hapi/boom";
-import type { IApiRouteSchema, WithSecurityScheme } from "api-alternance-sdk";
+import type { IApiRouteSchema, WithSecurityScheme } from "api-communs-numerique-sdk";
 import type {
   FastifyBaseLogger,
   FastifyInstance,

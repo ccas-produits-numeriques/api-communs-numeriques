@@ -1,4 +1,4 @@
-import { parseApiAlternanceToken } from "api-alternance-sdk";
+import { parseApiCommunsNumeriqueToken } from "api-communs-numerique-sdk";
 import nock, { cleanAll, disableNetConnect, enableNetConnect } from "nock";
 import { generateOrganisationFixture, generateUserFixture } from "shared/models/fixtures/index";
 import type { IUser } from "shared/models/user.model";
@@ -101,9 +101,9 @@ const nockMatchUserAuthorization = (u: IUser, habilitations: string[]) => {
     expectAuth: async () => {
       return expect
         .soft(
-          parseApiAlternanceToken({
+          parseApiCommunsNumeriqueToken({
             token,
-            publicKey: config.api.alternance.public_cert,
+            publicKey: config.api.cour_de_cassation.public_cert,
           })
         )
         .resolves.toEqual({
@@ -164,13 +164,13 @@ describe("GET /job/v1/search", () => {
     });
   });
 
-  it("should return result from lba search", async () => {
+  it("should return result from SIJ-API search", async () => {
     const data = {
       jobs: [
         {
           identifier: {
             id: "1",
-            partner_label: "La bonne alternance",
+            partner_label: "SIJ-API",
             partner_job_id: null,
           },
         },
@@ -192,7 +192,7 @@ describe("GET /job/v1/search", () => {
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.basic, []);
 
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .get("/v3/jobs/search")
       .query({
         longitude: -4.6,
@@ -303,7 +303,7 @@ describe("POST /job/v1/offer", () => {
 
   it("should support valid request", async () => {
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.jobWrite, ["jobs:write"]);
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .post("/v3/jobs", (b) => {
         expect.soft(b).toEqual(body);
         return true;
@@ -412,7 +412,7 @@ describe("POST /job/v1/apply", () => {
   it("should support valid request", async () => {
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.applicationWrite, ["applications:write"]);
 
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .post("/v2/application", (b) => {
         expect.soft(b).toEqual(body);
         return true;
@@ -520,7 +520,7 @@ describe("PUT /job/v1/offer/:id", () => {
   it("should support valid request", async () => {
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.jobWrite, ["jobs:write"]);
 
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .put("/v3/jobs/42", (b) => {
         expect.soft(b).toEqual(body);
         return true;
@@ -574,13 +574,13 @@ describe("GET /job/v1/offer/:id", () => {
     });
   });
 
-  it("should return result from lba get job", async () => {
+  it("should return result from SIJ-API get job", async () => {
     const data = {
       jobs: [
         {
           identifier: {
             id: "1",
-            partner_label: "La bonne alternance",
+            partner_label: "SIJ-API",
             partner_job_id: null,
           },
         },
@@ -591,7 +591,7 @@ describe("GET /job/v1/offer/:id", () => {
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.basic, []);
 
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .get("/v3/jobs/44")
       .matchHeader("authorization", matchHeader)
       .reply(200, data);

@@ -5,15 +5,15 @@ import {
   generateSourceBcn_V_FormationDiplomeFixture,
 } from "shared/models/fixtures/source.bcn.model.fixture";
 import { generateSourceFranceCompetenceFixture } from "shared/models/fixtures/source.france_competence.model.fixture";
-import { generateKitApprentissageFixture } from "shared/models/fixtures/source.kit_apprentissage.model.fixture";
+import { generateKitCommunsNumeriquesFixture } from "shared/models/fixtures/source.kit_communs_numeriques.model.fixture";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { updateKitApprentissageIndicateurSource } from "./kitApprentissage.source.indicateur.js";
+import { updateKitCommunsNumeriquesIndicateurSource } from "./kitCommunsNumeriques.source.indicateur.js";
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 
 import { useMongo } from "@tests/mongo.test.utils.js";
 
-describe("updateKitApprentissageIndicateurSource", () => {
+describe("updateKitCommunsNumeriquesIndicateurSource", () => {
   useMongo();
 
   const now = new Date("2024-03-07T10:00:00Z");
@@ -27,38 +27,38 @@ describe("updateKitApprentissageIndicateurSource", () => {
     };
   });
 
-  const kitApprentissageData = [
-    generateKitApprentissageFixture({
+  const kitCommunsNumeriquesData = [
+    generateKitCommunsNumeriquesFixture({
       cfd: "10000001",
       rncp: "RNCP00100",
     }),
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "10000001",
       rncp: "RNCP00000", // missing RNCP
     }),
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "20000001",
       rncp: "RNCP00000", // missing RNCP
     }),
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "20000001",
       rncp: "RNCP00001", // missing RNCP
     }),
 
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "00000000", // Missing CFD
       rncp: "RNCP00100",
     }),
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "20000001",
       rncp: "RNCP00200",
     }),
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "00000000", // Missing CFD
       rncp: "RNCP00201",
     }),
 
-    generateKitApprentissageFixture({
+    generateKitCommunsNumeriquesFixture({
       cfd: "30000001",
       rncp: "RNCP00300",
     }),
@@ -103,14 +103,14 @@ describe("updateKitApprentissageIndicateurSource", () => {
     await Promise.all([
       getDbCollection("source.bcn").insertMany(bcnData),
       getDbCollection("source.france_competence").insertMany(franceCompetenceData),
-      getDbCollection("source.kit_apprentissage").insertMany(kitApprentissageData),
+      getDbCollection("source.kit_communs_numeriques").insertMany(kitCommunsNumeriquesData),
     ]);
   });
 
   it("should update indicateur", async () => {
-    await expect(updateKitApprentissageIndicateurSource()).resolves.toBeUndefined();
+    await expect(updateKitCommunsNumeriquesIndicateurSource()).resolves.toBeUndefined();
 
-    const indicateurs = await getDbCollection("indicateurs.source_kit_apprentissage")
+    const indicateurs = await getDbCollection("indicateurs.source_kit_communs_numeriques")
       .find(
         {},
         {
@@ -147,11 +147,11 @@ describe("updateKitApprentissageIndicateurSource", () => {
       },
     ];
 
-    await getDbCollection("indicateurs.source_kit_apprentissage").insertMany(previousIndicateurs);
+    await getDbCollection("indicateurs.source_kit_communs_numeriques").insertMany(previousIndicateurs);
 
-    await expect(updateKitApprentissageIndicateurSource()).resolves.toBeUndefined();
+    await expect(updateKitCommunsNumeriquesIndicateurSource()).resolves.toBeUndefined();
 
-    const indicateurs = await getDbCollection("indicateurs.source_kit_apprentissage")
+    const indicateurs = await getDbCollection("indicateurs.source_kit_communs_numeriques")
       .find(
         {},
         {

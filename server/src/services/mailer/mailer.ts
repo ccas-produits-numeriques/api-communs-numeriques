@@ -56,7 +56,7 @@ async function sendEmailMessage(template: ITemplate, emailEvent: IEmailEvent | n
   }
 
   const list: SendMailOptions["list"] = {
-    help: "https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/accompagner-les-futurs-apprentis",
+    help: `${config.publicUrl}/fr/documentation-technique`,
   };
 
   if (!isTransactional) {
@@ -92,9 +92,9 @@ export async function sendEmail<T extends ITemplate>(template: T): Promise<void>
 export function getEmailSubject<T extends ITemplate>(template: T): string {
   switch (template.name) {
     case "register":
-      return "Vous avez demandé à recevoir un lien de connexion à l'espace développeurs La bonne alternance.";
+      return "Vous avez demandé à recevoir un lien de connexion à API Communs numériques.";
     case "magic-link":
-      return "Vous avez demandé à recevoir un lien de connexion à l'espace développeurs La bonne alternance.";
+      return "Vous avez demandé à recevoir un lien de connexion à API Communs numériques.";
     case "register-feedback":
       return "Feedback de refus de création de compte";
     case "api-key-will-expire":
@@ -143,6 +143,7 @@ export async function renderEmail(template: ITemplate, emailEvent: IEmailEvent |
 
   const buffer = await renderFile(templateFile, {
     template,
+    contactEmail: config.contact_email,
     actions: {
       unsubscribe: isTransactional ? null : getUnsubscribeActionLink(template),
       preview: getPreviewActionLink(template),

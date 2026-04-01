@@ -4,6 +4,7 @@ import { Table } from "@codegouvfr/react-dsfr/Table";
 import { Grid, Typography } from "@mui/material";
 
 import Section from "@/components/section/Section";
+import { publicConfig } from "@/config.public";
 
 const anchors = {
   QuiEstResponsable: "qui-est-responsable",
@@ -86,12 +87,11 @@ const PolitiqueDeConfidentialite = () => {
             Qui est responsable ?
           </Typography>
           <Typography>
-            Le ministère du Travail, de la Santé, des Solidarités et des Familles traite des données à caractère
-            personnel dans le cadre de l’API Apprentissage. Ce service numérique est à l’initiative de la DGEFP et
-            développé au sein de la Mission interministérielle pour l’apprentissage.
+            La Cour de cassation traite des données à caractère personnel dans le cadre d’API Communs numériques. Ce
+            service numérique est porté par la Cour de cassation.
             <br />
-            L’objectif poursuivi est de simplifier l’accès à des données de l’apprentissage fiables et à jour grâce à un
-            point d’entrée unique et documenté.
+            L’objectif poursuivi est de simplifier l’accès à des données et services numériques fiables et à jour grâce
+            à un point d’entrée unique et documenté.
           </Typography>
         </Section>
 
@@ -123,7 +123,7 @@ const PolitiqueDeConfidentialite = () => {
             <li>Données du compte utilisateur : nom, prénom, adresse courriel.</li>
           </ul>
           <Typography>
-            Par ailleurs, API Apprentissage diffuse certaines catégories de données :
+            Par ailleurs, API Communs numériques diffuse certaines catégories de données :
             <ul>
               <li>
                 Numéro de téléphone et adresse courriel des missions locales (récupérées sur le site de l’Union
@@ -215,7 +215,7 @@ const PolitiqueDeConfidentialite = () => {
             <br />
             <br />
             Pour les exercer vous pouvez nous contacter par mail à l’adresse suivante :{" "}
-            <a href="mailto:api@apprentissage.beta.gouv.fr">api@apprentissage.beta.gouv.fr</a>
+            <a href={`mailto:${publicConfig.contactEmail}`}>{publicConfig.contactEmail}</a>
             <br />
             <br />
             Nous nous engageons à vous répondre dans un délai d’un mois à compter de la réception de votre demande.
@@ -244,8 +244,7 @@ const PolitiqueDeConfidentialite = () => {
           </Typography>
           <ul>
             <li>
-              La Délégation générale à l’emploi et à la formation professionnelle (DGEFP) et les membres de la Mission
-              interministérielle pour l’Apprentissage et plus spécifiquement les membres de l’équipe API Apprentissage ;
+              La Cour de cassation et les personnes habilitées en charge de l’exploitation d’API Communs numériques ;
             </li>
           </ul>
         </Section>
@@ -291,8 +290,8 @@ const PolitiqueDeConfidentialite = () => {
             </li>
           </ul>
           <Typography>
-            L'espace développeurs La bonne alternance utilise notamment l’outil de mesure d’audience Plausible, qui ne
-            dépose aucun cookie ou traceur et ne traite pas de données à caractère personnel.
+            API Communs numériques utilise notamment l’outil de mesure d’audience Plausible, qui ne dépose aucun cookie
+            ou traceur et ne traite pas de données à caractère personnel.
           </Typography>
         </Section>
       </Grid>

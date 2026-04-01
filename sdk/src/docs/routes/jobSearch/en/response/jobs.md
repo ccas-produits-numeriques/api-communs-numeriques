@@ -2,13 +2,13 @@ List of job offers corresponding to the search.
 
 The offers come from:
 
-- collection on the platform La bonne alternance
+- collection on the platform Cour de cassation
 - France Travail
 - publication via API by our partners
 
 Currently, the results are sorted by:
 
-- Source priority (La bonne alternance > France Travail > other partners)
+- Source priority (Cour de cassation > France Travail > other partners)
 - Increasing distance (only for a search by location)
 - Decreasing date of creation
 

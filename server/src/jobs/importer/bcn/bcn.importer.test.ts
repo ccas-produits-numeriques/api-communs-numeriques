@@ -87,7 +87,7 @@ describe("runBcnImporter", () => {
       INDICATEUR_CONTINUITE: { anciens: 1, nouveaux: 1 },
     });
     expect(addJob).toHaveBeenCalledTimes(1);
-    expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+    expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
   });
 
   it("should throw an error if importBcnSource fails", async () => {

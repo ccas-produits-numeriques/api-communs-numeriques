@@ -31,11 +31,11 @@ export const up = async () => {
     queued: true,
   });
 
-  await getDbCollection("source.kit_apprentissage").deleteMany({
+  await getDbCollection("source.kit_communs_numeriques").deleteMany({
     // @ts-expect-error
     cfd: null,
   });
-  await getDbCollection("source.kit_apprentissage").deleteMany({
+  await getDbCollection("source.kit_communs_numeriques").deleteMany({
     // @ts-expect-error
     rncp: null,
   });

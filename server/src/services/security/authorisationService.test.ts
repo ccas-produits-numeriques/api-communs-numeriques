@@ -1,4 +1,4 @@
-import type { SchemaWithSecurity } from "api-alternance-sdk";
+import type { SchemaWithSecurity } from "api-communs-numerique-sdk";
 import { generateOrganisationFixture, generateUserFixture } from "shared/models/fixtures/index";
 import { describe, expect, it } from "vitest";
 import { z } from "zod/v4-mini";

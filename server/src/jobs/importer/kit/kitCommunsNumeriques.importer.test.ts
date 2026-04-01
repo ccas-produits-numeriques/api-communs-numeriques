@@ -2,10 +2,10 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { addJob } from "job-processor";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { runKitApprentissageImporter } from "./kitApprentissage.importer.js";
+import { runKitCommunsNumeriquesImporter } from "./kitCommunsNumeriques.importer.js";
 import { useMongo } from "@tests/mongo.test.utils.js";
 
-import { getKitApprentissageData } from "@/services/apis/kit_apprentissage/kit_apprentissage.api.js";
+import { getKitCommunsNumeriquesData } from "@/services/apis/kit_communs_numeriques/kit_communs_numeriques.api.js";
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 import { getStaticFilePath } from "@/utils/getStaticFilePath.js";
 
@@ -13,7 +13,7 @@ vi.mock("@/utils/getStaticFilePath", () => ({
   getStaticFilePath: vi.fn(),
 }));
 
-vi.mock("@/services/apis/kit_apprentissage/kit_apprentissage.api.js");
+vi.mock("@/services/apis/kit_communs_numeriques/kit_communs_numeriques.api.js");
 
 vi.mock("job-processor", async (importOriginal) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +24,7 @@ vi.mock("job-processor", async (importOriginal) => {
   };
 });
 
-describe("runKitApprentissageImporter", () => {
+describe("runKitCommunsNumeriquesImporter", () => {
   useMongo();
 
   beforeEach(async () => {
@@ -35,10 +35,10 @@ describe("runKitApprentissageImporter", () => {
 
   describe("Legacy files", () => {
     beforeEach(() => {
-      vi.mocked(getKitApprentissageData).mockImplementation(async function* () {});
+      vi.mocked(getKitCommunsNumeriquesData).mockImplementation(async function* () {});
     });
 
-    it("should import Kit Apprentissage single_file source", async () => {
+    it("should import Kit Communs numeriques single_file source", async () => {
       const date = new Date("2023-04-08T22:00:00.000Z");
       vi.setSystemTime(date);
 
@@ -46,23 +46,23 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/single_file`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
 
       expect(result).toBe(10);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const data = await coll.find({}).toArray();
       expect(data.map((datum) => ({ ...datum, _id: "ObjectId" }))).toMatchSnapshot();
 
       expect(addJob).toHaveBeenCalledTimes(1);
-      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
       expect(await getDbCollection("import.meta").find({}).toArray()).toEqual([
         {
           _id: expect.any(Object),
           import_date: date,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
@@ -75,23 +75,23 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/xlsx`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
 
       expect(result).toBe(10);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const data = await coll.find({}).toArray();
       expect(data.map((datum) => ({ ...datum, _id: "ObjectId" }))).toMatchSnapshot();
 
       expect(addJob).toHaveBeenCalledTimes(1);
-      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
       expect(await getDbCollection("import.meta").find({}).toArray()).toEqual([
         {
           _id: expect.any(Object),
           import_date: date,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
@@ -104,16 +104,16 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/single_file`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
       expect(result).toBe(10);
 
       const date2 = new Date("2023-04-09T22:00:00.000Z");
       vi.setSystemTime(date2);
 
-      const result2 = await runKitApprentissageImporter();
+      const result2 = await runKitCommunsNumeriquesImporter();
       expect(result2).toBe(10);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const data = await coll.find({ date: date1 }).toArray();
       expect(data).toEqual([]);
 
@@ -122,26 +122,26 @@ describe("runKitApprentissageImporter", () => {
           _id: expect.any(Object),
           import_date: date1,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
         {
           _id: expect.any(Object),
           import_date: date2,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
 
-    it("should throw an error if importKitApprentissageSource fails", async () => {
+    it("should throw an error if importKitCommunsNumeriquesSource fails", async () => {
       const now = new Date("2023-04-08T22:00:00.000Z");
       vi.setSystemTime(now);
 
       const dataFixture = join(dirname(fileURLToPath(import.meta.url)), `fixtures/non-existing-file.csv`);
       vi.mocked(getStaticFilePath).mockReturnValue(dataFixture);
 
-      await expect(runKitApprentissageImporter()).rejects.toThrowError(
-        "import.kit_apprentissage: unable to runKitApprentissageImporter"
+      await expect(runKitCommunsNumeriquesImporter()).rejects.toThrowError(
+        "import.kit_communs_numeriques: unable to runKitCommunsNumeriquesImporter"
       );
 
       expect(addJob).toHaveBeenCalledTimes(0);
@@ -150,12 +150,12 @@ describe("runKitApprentissageImporter", () => {
           _id: expect.any(Object),
           import_date: now,
           status: "failed",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
 
-    it("should import Kit Apprentissage multiple_files source", async () => {
+    it("should import Kit Communs numeriques multiple_files source", async () => {
       const date = new Date("2023-04-08T22:00:00.000Z");
       vi.setSystemTime(date);
 
@@ -163,11 +163,11 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/multiple_files`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
 
       expect(result).toBe(7);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const stats = await coll.find({}, { projection: { _id: 0 }, sort: { cfd: 1, rncp: 1 } }).toArray();
 
       expect(stats).toEqual([
@@ -205,14 +205,14 @@ describe("runKitApprentissageImporter", () => {
       expect(data.map((datum) => ({ ...datum, _id: "ObjectId" }))).toMatchSnapshot();
 
       expect(addJob).toHaveBeenCalledTimes(1);
-      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
       expect(await getDbCollection("import.meta").find({}).toArray()).toEqual([
         {
           _id: expect.any(Object),
           import_date: date,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
@@ -225,23 +225,23 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/juin_2024`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
 
       expect(result).toBe(1);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const data = await coll.find({}).toArray();
       expect(data.map((datum) => ({ ...datum, _id: "ObjectId" }))).toMatchSnapshot();
 
       expect(addJob).toHaveBeenCalledTimes(1);
-      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
       expect(await getDbCollection("import.meta").find({}).toArray()).toEqual([
         {
           _id: expect.any(Object),
           import_date: date,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });
@@ -268,7 +268,7 @@ describe("runKitApprentissageImporter", () => {
     ];
 
     beforeEach(() => {
-      vi.mocked(getKitApprentissageData).mockImplementation(async function* () {
+      vi.mocked(getKitCommunsNumeriquesData).mockImplementation(async function* () {
         for (const item of apiData) {
           yield item;
         }
@@ -283,23 +283,23 @@ describe("runKitApprentissageImporter", () => {
         join(dirname(fileURLToPath(import.meta.url)), `fixtures/empty`, path)
       );
 
-      const result = await runKitApprentissageImporter();
+      const result = await runKitCommunsNumeriquesImporter();
 
       expect(result).toBe(2);
 
-      const coll = getDbCollection("source.kit_apprentissage");
+      const coll = getDbCollection("source.kit_communs_numeriques");
       const data = await coll.find({}, { projection: { _id: 0 } }).toArray();
       expect(data).toEqual([apiData[0], apiData[1]]);
 
       expect(addJob).toHaveBeenCalledTimes(1);
-      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_apprentissage:update" });
+      expect(addJob).toHaveBeenCalledWith({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
       expect(await getDbCollection("import.meta").find({}).toArray()).toEqual([
         {
           _id: expect.any(Object),
           import_date: date,
           status: "done",
-          type: "kit_apprentissage",
+          type: "kit_communs_numeriques",
         },
       ]);
     });

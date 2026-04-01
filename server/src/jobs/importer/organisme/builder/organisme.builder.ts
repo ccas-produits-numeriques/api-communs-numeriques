@@ -1,6 +1,6 @@
-import type { ICommune, IGeoJsonPoint, IOrganisme } from "api-alternance-sdk";
-import { zOrganisme } from "api-alternance-sdk";
-import { ParisDate } from "api-alternance-sdk/internal";
+import type { ICommune, IGeoJsonPoint, IOrganisme } from "api-communs-numerique-sdk";
+import { zOrganisme } from "api-communs-numerique-sdk";
+import { ParisDate } from "api-communs-numerique-sdk/internal";
 import type { IApiEntEtablissement, IApiEntUniteLegale } from "shared/models/cache/cache.entreprise.model";
 import type { ISourceReferentiel } from "shared/models/source/referentiel/source.referentiel.model";
 import { z } from "zod/v4-mini";

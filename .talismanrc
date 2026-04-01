@@ -10,23 +10,27 @@ fileignoreconfig:
 - filename: sdk/src/client/internal/geographie/geographie.module.test.ts
   checksum: 520b2ba0cac171d714a8cf8c7a4fdb349e280416aeaff419a94d423898674b0e
 - filename: sdk/src/docs/metier/depot-offre/depot-offre.doc.ts
-  checksum: 4f53b2048a9d7bda6fa2b5c72c1ebcfd353bf678958dc1d76d885e1226a03701
+  checksum: 7d367dbf83d6bca934e743f55c4d6b091374fe706f70da1f2a4b25c0f9c397eb
+- filename: sdk/src/docs/metier/recherche-offre/en/description.md
+  checksum: 4a1538140cf7081fd649bbcfb0d5871e04d5ee6868aa758c15bc2ffcb00fb2e6
 - filename: sdk/src/docs/metier/recherche-offre/en/description.md.ts
-  checksum: 9cfdebee64300522d54be59096b3f67fd92031cda4539eae86dc02eb404538e1
+  checksum: 9abc7e2092552eec5582e2b1e328a584a075dd8a27decca9895212bdaca0ae87
 - filename: sdk/src/docs/metier/recherche-offre/fr/description.md
-  checksum: 1ebbcc8b66776358683d65bbbe6cdb29fc23596ffdd6ca2e5d736d21117e302d
+  checksum: 9969ad077dae41ba3745401aae264acbfa69f5da7bbcc12d54e38d62f32b9a7f
 - filename: sdk/src/docs/metier/recherche-offre/fr/description.md.ts
-  checksum: f9c8dbc76805c0d6ec9e2bf565b69a5a691f183261260b52a5b6dcfe36935c43
+  checksum: d8cc1d6dbf0b9a88a72ff1d571af13b1671071702157e288527e8a34a1651131
+- filename: sdk/src/docs/metier/recuperation-detail-offre/en/description.md
+  checksum: b79965697d5e876d767add1f79c050b87f20821810d7ab7da56e85d27a0ebb29
 - filename: sdk/src/docs/metier/recuperation-detail-offre/en/description.md.ts
-  checksum: 38045e1bf126cb2e4f6d0f646ec5db366c34238b396d27810b1da73a69f0ac4b
+  checksum: c3428a600e3db25994536c6aa1172f70f1d8688a3fdb17b1e47a6caf321668c8
 - filename: sdk/src/docs/models/job/application.model.doc.ts
   checksum: 9eb6c1fff24b532a002385705e293152a0e74a357c8d0071a500383c3c17c50b
 - filename: sdk/src/docs/models/job/offer_read.model.doc.ts
   checksum: 403a69fa16e15f8a65d52c6aa7ec9b5c0eb4680996e2b4a2d07b52e5d297ce08
 - filename: sdk/src/docs/models/job/offer_write.model.doc.ts
-  checksum: 586ea3517bfa6cdad61453e2a2ecdd1a57ea52776f2e6ac63a6b700c3f569215
+  checksum: 0af0b366a41ec638512e0d35380f5f13e8597eb0cd5b9aef36efe07dedc94c25
 - filename: sdk/src/docs/models/job/recruiter.model.doc.ts
-  checksum: 01876f404d0d1ec92cc4ba83c1b869a32fe08621ed249b04d09609d3170f96f4
+  checksum: bff456857ebb3ab829766bf8d55a0e474578d02df828569c02b28b8623933898
 - filename: sdk/src/docs/routes/jobOfferUpdate/jobOfferUpdate.route.doc.ts
   checksum: 4c6e64beba2f719da577a0aae1c9642e6e2e8712dc909dc62c64c081a2c612a8
 - filename: sdk/src/docs/routes/jobSearchById/jobSearchById.route.doc.ts
@@ -34,9 +38,13 @@ fileignoreconfig:
 - filename: sdk/src/docs/routes/searchFormationById/searchFormationById.route.doc.ts
   checksum: c9c21285a42458dbaf264b7894cfd2418b813fb540ead95c718fcc941409a32f
 - filename: sdk/src/openapi/__snapshots__/openapiSpec.test.ts.snap
-  checksum: 284171c0363887ae1e119800e17aafb6cad92ae6ca7037aaa59704d2b3f368a8
+  checksum: 80902da01cc5cfbe5f6be6fe3a0e0f2792b9326713701b9d74ae48aeb152fd80
+- filename: sdk/src/openapi/builder/openapi.builder.ts
+  checksum: 809a69e535ff0feafb766767cbe12835bedc25903adabde1732e8ad31f04456d
 - filename: server/.env.test
   checksum: 65357f150bfedfebea511b1007eed941983484abf990d87e91fd7477360ad280
+- filename: server/src/config.ts
+  checksum: 4d43ea50fe7d511a1e2a7f6c0187ae2fb81afa414ddceb90449117fa70199192
 - filename: server/src/jobs/importer/catalogue/fixtures/sample.ts
   checksum: b1335a1859f5c91edfb6ccabe0b91d61dea53130f6270a5172e20450bb36e119
 - filename: server/src/jobs/importer/commune/__snapshots__/commune.importer.test.ts.snap
@@ -47,8 +55,12 @@ fileignoreconfig:
   checksum: acf09e358f0a245de48dd5b02cdceecb49cef2584954c3b9eafe3419922c7d74
 - filename: server/src/jobs/importer/formation/formation.importer.test.ts
   checksum: 9a37a19fdae0c86a797e57a7b43f21faf3d18bd76185adc88a6f6639d4984a27
+- filename: server/src/migrations/20240904102312-update-mia-users.ts
+  checksum: 1830b19b39589cedc38e96e6e80a007e6af536d3e586298937782a85d0e8bdeb
+- filename: server/src/server/routes/_private/auth.route.test.ts
+  checksum: f6985f94bc3e7f7fb8d0d6f5f886e13e0cb7596a52161942c78741fd648011e6
 - filename: server/src/server/routes/formations/formations.route.test.ts
-  checksum: 79689293db7fd897d17e08d175810d0ddb950019d221c8999bb5e4a4effe99fe
+  checksum: 2be6ce31fb8d1f4fd3751b07d3c9d577dcf078d46b2fc8708e1804ccd3269ce5
 - filename: server/src/services/apis/unml/unml.test.ts
   checksum: 71b196ba42a795b8a649fb9a17ac356cd719bfc9c254d4859a8aab22b05b03e5
 - filename: server/src/services/security/authenticationService.test.ts
@@ -58,11 +70,13 @@ fileignoreconfig:
 - filename: shared/src/models/fixtures/commune.model.fixture.ts
   checksum: 84d4cc1767cbdd9add0b2fec8c9509a08815deed3ae5d143e162c1b8dba88243
 - filename: shared/src/openapi/__snapshots__/generateOpenapi.test.ts.snap
-  checksum: 1a78e9db4da98b0211781a80fea16338136b44d47dcc7a105723b875878ae929
+  checksum: a70b729f5e7e140765c7ae27147692566a80a955d574c13a3f06bd95ed61ce6a
 - filename: ui/app/[lang]/explorer/certifications/page.tsx
   checksum: 79162968dc111206592c35c9bdbfc1babae88ad1390a190d6c7b5108ebb82b9d
 - filename: ui/app/[lang]/explorer/depot-offre/page.tsx
   checksum: 764fcfac0c4242d1b22a812798db3a661392d72688d80f7898b6e82714efe457
+- filename: ui/config.public.ts
+  checksum: eb295d5d7a427bc19ae5fe9b22f324c493ba61b12400e361736d78cb9f910a21
 scopeconfig:
 - scope: node
 custom_patterns:

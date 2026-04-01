@@ -1,5 +1,5 @@
 import { z } from "zod/v4-mini";
-import { zCommune } from "api-alternance-sdk";
+import { zCommune } from "api-communs-numerique-sdk";
 import type { IModelDescriptorGeneric } from "./common.js";
 import { zObjectIdMini } from "./common.js";
 

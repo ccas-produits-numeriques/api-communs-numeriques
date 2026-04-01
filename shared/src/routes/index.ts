@@ -1,5 +1,5 @@
-import type { IApiRouteSchema, IApiRouteSchemaWrite } from "api-alternance-sdk";
-import { zApiRoutesDelete, zApiRoutesGet, zApiRoutesPost, zApiRoutesPut } from "api-alternance-sdk";
+import type { IApiRouteSchema, IApiRouteSchemaWrite } from "api-communs-numerique-sdk";
+import { zApiRoutesDelete, zApiRoutesGet, zApiRoutesPost, zApiRoutesPut } from "api-communs-numerique-sdk";
 import type { ConditionalExcept, EmptyObject, Jsonify } from "type-fest";
 import type { z } from "zod/v4-mini";
 import type { $ZodType } from "zod/v4/core";

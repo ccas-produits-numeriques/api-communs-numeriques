@@ -1,29 +1,29 @@
-# API Alternance SDK
+# API Communs numériques SDK
 
-Ce SDK est une bibliothèque NodeJs 22+ qui fournit un moyen simple d'interagir avec [l'API Alternance](https://api.apprentissage.beta.gouv.fr/).
+Ce SDK est une bibliothèque NodeJs 22+ qui fournit un moyen simple d'interagir avec [l'API Communs numériques](https://api.courdecassation.beta.gouv.fr/).
 
 ## Pré-requis
 
 - NodeJs 24+: nous utilisons l'api `fetch` en natif sur NodeJS 24+. Si vous avez besoin d'élargir le support de la librairie à des versions antérieures, veuillez nous contacter.
-- Un jeton d'accès à l'API Alternance. Pour obtenir un jeton d'accès, veuillez [vous créer un compte][https://api.apprentissage.beta.gouv.fr/docs/](https://api.apprentissage.beta.gouv.fr/compte/profil).
+- Un jeton d'accès à l'API Communs numériques. Pour obtenir un jeton d'accès, veuillez [vous créer un compte](https://api.courdecassation.beta.gouv.fr/compte/profil).
 
 ## Installation
 
 ```bash
-yarn add api-alternance-sdk
+yarn add api-communs-numerique-sdk
 ```
 
 ## Utilisation
 
 ```javascript
-import { ApiClient } from "api-alternance-sdk";
+import { ApiClient } from "api-communs-numerique-sdk";
 
 const apiClient = new ApiClient({ key: "votre-cle-api" });
 ```
 
-Le client API dispose des méthode `get`, `post`, `put` et `delete` pour effectuer des requêtes HTTP sur l'API Alternance; ces méthodes vous retourneront les objets JSON typés renvoyés par l'API Alternance.
+Le client API dispose des méthodes `get`, `post`, `put` et `delete` pour effectuer des requêtes HTTP sur l'API Communs numériques ; ces méthodes renvoient les objets JSON typés exposés par l'API.
 
-Il existe également des modules spécifiques pour chaque ressource de l'API Alternance, qui permettent d'obtenir des objets parsés, notamment les dates. Il existe 2 modules `organisme` et `certification`.
+Il existe également des modules spécifiques pour chaque ressource de l'API, qui permettent d'obtenir des objets parsés, notamment les dates. Il existe 2 modules `organisme` et `certification`.
 
 ### Module Organisme
 

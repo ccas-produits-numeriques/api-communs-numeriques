@@ -3,23 +3,23 @@ import { importSPKI, jwtVerify, SignJWT } from "jose";
 import { JWSSignatureVerificationFailed, JWTExpired } from "jose/errors";
 import { z } from "zod/v4-mini";
 
-export const zApiAlternanceTokenData = z.object({
+export const zApiCommunsNumeriqueTokenData = z.object({
   email: z.string().check(z.email()),
   organisation: z.nullable(z.string()),
   habilitations: z.record(z.string(), z.boolean()),
 });
 
-export type IApiAlternanceTokenData = z.output<typeof zApiAlternanceTokenData>;
+export type IApiCommunsNumeriqueTokenData = z.output<typeof zApiCommunsNumeriqueTokenData>;
 
-type IParseApiAlternanceTokenParams = {
+type IParseApiCommunsNumeriqueTokenParams = {
   token: string;
   publicKey: string;
 };
 
-type IParseApiAlternanceTokenResult =
+type IParseApiCommunsNumeriqueTokenResult =
   | {
       success: true;
-      data: IApiAlternanceTokenData;
+      data: IApiCommunsNumeriqueTokenData;
     }
   | {
       success: false;
@@ -32,9 +32,9 @@ function extractBearerToken(authorization: string): null | string {
   return matches === null ? null : matches[1];
 }
 
-export async function parseApiAlternanceToken(
-  params: IParseApiAlternanceTokenParams
-): Promise<IParseApiAlternanceTokenResult> {
+export async function parseApiCommunsNumeriqueToken(
+  params: IParseApiCommunsNumeriqueTokenParams
+): Promise<IParseApiCommunsNumeriqueTokenResult> {
   try {
     const token = extractBearerToken(params.token);
 
@@ -48,7 +48,7 @@ export async function parseApiAlternanceToken(
     const publicKey = await importSPKI(params.publicKey, "ES512");
     const { payload } = await jwtVerify(token, publicKey);
 
-    const parseResult = zApiAlternanceTokenData.safeParse(payload);
+    const parseResult = zApiCommunsNumeriqueTokenData.safeParse(payload);
     if (!parseResult.success) {
       return {
         success: false,
@@ -79,17 +79,17 @@ export async function parseApiAlternanceToken(
   }
 }
 
-type ICreateApiAlternanceTokenParams = {
-  data: IApiAlternanceTokenData;
+type ICreateApiCommunsNumeriqueTokenParams = {
+  data: IApiCommunsNumeriqueTokenData;
   privateKey: string;
   expiresIn?: string | null;
 };
 
-export async function createApiAlternanceToken({
+export async function createApiCommunsNumeriqueToken({
   data,
   privateKey,
   expiresIn,
-}: ICreateApiAlternanceTokenParams): Promise<string> {
+}: ICreateApiCommunsNumeriqueTokenParams): Promise<string> {
   const key = createPrivateKey(privateKey);
   return new SignJWT(JSON.parse(JSON.stringify(data)))
     .setProtectedHeader({ alg: "ES512" })

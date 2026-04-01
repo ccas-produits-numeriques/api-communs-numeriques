@@ -1,4 +1,4 @@
-import type { SchemaWithSecurity } from "api-alternance-sdk";
+import type { SchemaWithSecurity } from "api-communs-numerique-sdk";
 import { ObjectId } from "mongodb";
 import { zRoutes } from "shared";
 import { generateUserFixture } from "shared/models/fixtures/index";

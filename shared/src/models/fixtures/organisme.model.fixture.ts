@@ -1,5 +1,5 @@
-import type { IOrganismeInput } from "api-alternance-sdk/fixtures";
-import { generateOrganismeFixture } from "api-alternance-sdk/fixtures";
+import type { IOrganismeInput } from "api-communs-numerique-sdk/fixtures";
+import { generateOrganismeFixture } from "api-communs-numerique-sdk/fixtures";
 import { ObjectId } from "bson";
 
 import type { IOrganismeInternal } from "../organisme.model.js";

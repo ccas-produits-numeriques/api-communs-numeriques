@@ -32,7 +32,7 @@ const yesterdayImportMeta: IImportMetaCertifications = {
       nom: "yesterday",
       oldest_date_publication: activationStart,
     },
-    kit_apprentissage: {
+    kit_communs_numeriques: {
       import_date: yesterday,
     },
   },
@@ -51,7 +51,7 @@ const todayImportMeta: IImportMetaCertifications = {
       nom: "today",
       oldest_date_publication: activationStart,
     },
-    kit_apprentissage: {
+    kit_communs_numeriques: {
       import_date: today,
     },
   },

@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import { createApiAlternanceToken } from "api-alternance-sdk";
+import { createApiCommunsNumeriqueToken } from "api-communs-numerique-sdk";
 import type { FastifyReply } from "fastify";
 import type { HttpHeader } from "fastify/types/utils.js";
 import type { IOrganisationInternal } from "shared/models/organisation.model";
@@ -23,7 +23,7 @@ export async function createAuthToken(
   { user, organisation }: Identity,
   expiresIn: string | null = null
 ): Promise<string> {
-  const token = await createApiAlternanceToken({
+  const token = await createApiCommunsNumeriqueToken({
     data: {
       email: user.email,
       organisation: user.organisation,
@@ -33,7 +33,7 @@ export async function createAuthToken(
         "appointments:write": hasHabilitation(organisation, "appointments:write"),
       },
     },
-    privateKey: config.api.alternance.private_key,
+    privateKey: config.api.cour_de_cassation.private_key,
     expiresIn,
   });
 

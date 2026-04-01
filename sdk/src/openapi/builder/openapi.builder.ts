@@ -27,9 +27,9 @@ function getTitle(lang: "en" | "fr" | null): string {
 function getContactName(lang: "en" | "fr" | null): string {
   switch (lang) {
     case "fr":
-      return "Équipe Espace développeurs La bonne alternance";
+      return "Équipe API Communs numériques";
     case "en":
-      return "The 'La bonne alternance' developer space team";
+      return "The API Communs numeriques team";
     default:
       return "";
   }
@@ -38,9 +38,9 @@ function getContactName(lang: "en" | "fr" | null): string {
 function getSecuritySchemeDescription(lang: "en" | "fr" | null): string {
   switch (lang) {
     case "fr":
-      return "Clé d'API à fournir dans le header `Authorization`. Si la route nécessite une habilitation particulière veuillez contacter le support pour en faire la demande à [support_api@apprentissage.beta.gouv.fr](mailto:support_api@apprentissage.beta.gouv.fr)";
+      return "Clé d'API à fournir dans le header `Authorization`. Si la route nécessite une habilitation particulière veuillez contacter le support pour en faire la demande à [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)";
     case "en":
-      return "API key to provide in the `Authorization` header. If the route requires a particular authorization, please contact support to request it at [support_api@apprentissage.beta.gouv.fr](mailto:support_api@apprentissage.beta.gouv.fr)";
+      return "API key to provide in the `Authorization` header. If the route requires a particular authorization, please contact support to request it at [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)";
     default:
       return "";
   }
@@ -80,10 +80,10 @@ export function buildOpenApiSchema(
         name: "Etalab-2.0",
         url: "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
       },
-      termsOfService: "https://api.apprentissage.beta.gouv.fr/cgu",
+      termsOfService: "https://api.courdecassation.beta.gouv.fr/cgu",
       contact: {
         name: getContactName(lang),
-        email: "support_api@apprentissage.beta.gouv.fr",
+        email: "api-communs-numeriques@courdecassation.fr",
       },
     },
     servers: [

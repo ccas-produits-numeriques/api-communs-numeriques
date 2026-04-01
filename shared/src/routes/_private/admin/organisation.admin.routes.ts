@@ -1,4 +1,4 @@
-import type { IApiRoutesDef } from "api-alternance-sdk";
+import type { IApiRoutesDef } from "api-communs-numerique-sdk";
 import { z } from "zod/v4-mini";
 import { zObjectIdMini } from "zod-mongodb-schema";
 

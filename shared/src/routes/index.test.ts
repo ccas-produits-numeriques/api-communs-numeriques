@@ -1,7 +1,7 @@
 import assert from "node:assert";
 
-import type { IApiRouteSchema, IApiRouteSchemaGet, IApiRouteSchemaWrite } from "api-alternance-sdk";
-import { ZResError } from "api-alternance-sdk";
+import type { IApiRouteSchema, IApiRouteSchemaGet, IApiRouteSchemaWrite } from "api-communs-numerique-sdk";
+import { ZResError } from "api-communs-numerique-sdk";
 import { describe, it } from "vitest";
 
 import { zRoutes } from "./index.js";

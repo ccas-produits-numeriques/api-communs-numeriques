@@ -1,4 +1,4 @@
-import type { IGeoJsonPoint } from "api-alternance-sdk";
+import type { IGeoJsonPoint } from "api-communs-numerique-sdk";
 import { ObjectId } from "mongodb";
 import nock from "nock";
 import { beforeEach, describe, expect, it, vi } from "vitest";

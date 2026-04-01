@@ -185,7 +185,7 @@ export const recruiterModelDoc = {
             { en: "Redirect URL to the application form", fr: "URL de redirection vers le formulaire de candidature" },
           ],
           examples: [
-            "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+            "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
         },
       },

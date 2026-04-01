@@ -1,5 +1,5 @@
-import type { IFormation } from "api-alternance-sdk";
-import { zFormation } from "api-alternance-sdk";
+import type { IFormation } from "api-communs-numerique-sdk";
+import { zFormation } from "api-communs-numerique-sdk";
 import type { ISourceCatalogue } from "shared/models/source/catalogue/source.catalogue.model";
 import { z } from "zod/v4-mini";
 

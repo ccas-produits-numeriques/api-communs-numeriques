@@ -50,11 +50,11 @@ const recruiterSections = {
 export const recuperationDetailOffrePageSummaryDoc = {
   title: {
     en: "View an apprenticeship job offer",
-    fr: "Consulter une opportunité d'emploi en alternance",
+    fr: "Consulter une opportunité d'emploi",
   },
   headline: {
     en: "Access the details of an apprenticeship job offer from its identifier",
-    fr: "Accéder au détail d'une opportunité d'emploi en alternance à partir de son identifiant",
+    fr: "Accéder au détail d'une opportunité d'emploi à partir de son identifiant",
   },
 } as const satisfies { title: OpenApiText; headline: OpenApiText };
 
@@ -72,10 +72,10 @@ export const recuperationDetailOffrePageDoc = {
   type: "data",
   sources: [
     {
-      name: "La bonne alternance",
+      name: "Cour de cassation",
       logo: { href: "/asset/logo/la_bonne_alternance.png" },
-      providers: ["La bonne alternance"],
-      href: "https://labonnealternance.apprentissage.beta.gouv.fr/",
+      providers: ["Cour de cassation"],
+      href: "https://labonnealternance.courdecassation.beta.gouv.fr/",
     },
   ],
   data: [

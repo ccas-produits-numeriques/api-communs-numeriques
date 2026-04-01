@@ -2330,7 +2330,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "url": {
                 "examples": [
-                  "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+                  "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
                 "format": "uri",
                 "type": "string",
@@ -2785,7 +2785,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               "url": {
                 "description": "URL pour candidater",
                 "examples": [
-                  "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+                  "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
                 "format": "uri",
                 "type": [
@@ -3114,7 +3114,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "url": {
                 "examples": [
-                  "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+                  "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
                 "format": "uri",
                 "type": "string",
@@ -3646,14 +3646,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
   },
   "info": {
     "contact": {
-      "email": "support_api@apprentissage.beta.gouv.fr",
+      "email": "api-communs-numeriques@courdecassation.fr",
       "name": "",
     },
     "license": {
       "name": "Etalab-2.0",
       "url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
     },
-    "termsOfService": "https://api.apprentissage.beta.gouv.fr/cgu",
+    "termsOfService": "https://api.courdecassation.beta.gouv.fr/cgu",
     "title": "",
     "version": "V1.0",
   },
@@ -5011,7 +5011,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "examples": [
-                "Hellowork&partners_to_exclude=RH Alternance",
+                "Hellowork&partners_to_exclude=RH Cour de cassation",
                 "Hellowork",
               ],
               "items": {
@@ -5626,7 +5626,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
   "servers": [
     {
       "description": "Production",
-      "url": "https://api.apprentissage.beta.gouv.fr",
+      "url": "https://api.courdecassation.beta.gouv.fr",
     },
   ],
   "tags": [

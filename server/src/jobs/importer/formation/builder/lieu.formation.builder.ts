@@ -1,6 +1,6 @@
 import { internal } from "@hapi/boom";
-import type { ICommune, IFormation } from "api-alternance-sdk";
-import { zSiret, zUai } from "api-alternance-sdk";
+import type { ICommune, IFormation } from "api-communs-numerique-sdk";
+import { zSiret, zUai } from "api-communs-numerique-sdk";
 import { LRUCache } from "lru-cache";
 import type { IFormationCatalogue } from "shared/models/source/catalogue/source.catalogue.model";
 

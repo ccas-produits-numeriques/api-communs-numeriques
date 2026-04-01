@@ -1,5 +1,5 @@
-import type { IApiRoutesDef } from "api-alternance-sdk";
-import { zRncp } from "api-alternance-sdk/internal";
+import type { IApiRoutesDef } from "api-communs-numerique-sdk";
+import { zRncp } from "api-communs-numerique-sdk/internal";
 import { z } from "zod/v4-mini";
 
 import { zSourceNpecNormalizedData } from "../../../models/source/npec/source.npec.normalized.model.js";

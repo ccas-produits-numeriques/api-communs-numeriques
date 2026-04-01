@@ -16,16 +16,13 @@ export default function Footer({ lang }: WithLang) {
       accessibility="partially compliant"
       contentDescription={
         <span>
-          Mandatée par plusieurs ministères, la{" "}
-          <Link href="https://beta.gouv.fr/startups/?incubateur=mission-apprentissage">
-            Mission interministérielle pour l'apprentissage
-          </Link>{" "}
-          développe plusieurs services destinés à faciliter les entrées en apprentissage.
+          API Communs numériques est un service porté par la{" "}
+          <Link href="https://www.courdecassation.fr/">Cour de cassation</Link>.
         </span>
       }
       operatorLogo={{
-        alt: "Logo France Relance",
-        imgUrl: "/images/france_relance.svg",
+        alt: "Logo République française",
+        imgUrl: "/images/logo_gouvernement.svg",
         orientation: "vertical",
       }}
       websiteMapLinkProps={{
@@ -61,16 +58,7 @@ export default function Footer({ lang }: WithLang) {
           bottomItem={{
             text: "Code source",
             linkProps: {
-              href: `https://github.com/mission-apprentissage/${publicConfig.productMeta.repoName}`,
-            },
-          }}
-        />,
-        <FooterBottomItem
-          key="statistiques"
-          bottomItem={{
-            text: "Statistiques",
-            linkProps: {
-              href: `http://api.apprentissage.beta.gouv.fr/metabase/public/dashboard/240019b1-0f17-4e7c-bf52-a297476d486f`,
+              href: publicConfig.repositoryUrl,
             },
           }}
         />,

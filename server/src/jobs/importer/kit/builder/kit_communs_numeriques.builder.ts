@@ -1,7 +1,7 @@
 import { internal } from "@hapi/boom";
 import type { AnyBulkWriteOperation } from "mongodb";
 import { ObjectId } from "mongodb";
-import type { ISourceKitApprentissage } from "shared/models/source/kitApprentissage/source.kit_apprentissage.model";
+import type { ISourceKitCommunsNumeriques } from "shared/models/source/kitCommunsNumeriques/source.kit_communs_numeriques.model";
 import { z } from "zod/v4-mini";
 
 export function getVersionNumber(source: string): string {
@@ -54,7 +54,7 @@ export function getVersionNumber(source: string): string {
     case "Kit apprentissage et RNCP v3.0.csv":
       return "20230619";
     default:
-      throw internal(`import.kit_apprentissage: unknown source file: ${source}`);
+      throw internal(`import.kit_communs_numeriques: unknown source file: ${source}`);
   }
 }
 
@@ -70,7 +70,7 @@ function getCFD(record: Record<string, unknown>): unknown {
   return typeof value === "string" || typeof value === "number" ? String(value).trim() : null;
 }
 
-export function buildKitApprentissageEntry(record: Record<string, unknown>): {
+export function buildKitCommunsNumeriquesEntry(record: Record<string, unknown>): {
   cfd: string | null;
   rncp: string | null;
 } {
@@ -93,13 +93,13 @@ export function buildKitApprentissageEntry(record: Record<string, unknown>): {
   };
 }
 
-export function buildKitApprentissageOp({
+export function buildKitCommunsNumeriquesOp({
   cfd,
   rncp,
 }: {
   cfd: string | null;
   rncp: string | null;
-}): AnyBulkWriteOperation<ISourceKitApprentissage> | null {
+}): AnyBulkWriteOperation<ISourceKitCommunsNumeriques> | null {
   if (!cfd || !rncp) {
     return null;
   }

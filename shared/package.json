@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "./index.ts",
   "types": "./index.ts",
-  "author": "mna",
+  "author": "Cour de cassation",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -27,7 +27,7 @@
     "dev": "tsc -b -w"
   },
   "dependencies": {
-    "api-alternance-sdk": "workspace:^",
+    "api-communs-numerique-sdk": "workspace:^",
     "job-processor": "^2.0.0-next.3",
     "luxon": "^3.7.1",
     "react": "19.2.3",

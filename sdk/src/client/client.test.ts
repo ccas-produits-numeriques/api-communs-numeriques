@@ -16,28 +16,31 @@ beforeEach(() => {
 
 describe("constructor", () => {
   it("should create an instance of ApiClient", () => {
-    const apiClient = new ApiClient({ key: "api-key", endpoint: "https://api-recette.apprentissage.beta.gouv.fr/api" });
+    const apiClient = new ApiClient({
+      key: "api-key",
+      endpoint: "https://api-recette.courdecassation.beta.gouv.fr/api",
+    });
 
-    expect(apiClient.endpoint).toBe("https://api-recette.apprentissage.beta.gouv.fr/api");
+    expect(apiClient.endpoint).toBe("https://api-recette.courdecassation.beta.gouv.fr/api");
     expect(apiClient.key).toBe("api-key");
   });
 
   it('should throw an error if "key" is not provided', () => {
     // @ts-expect-error
-    expect(() => new ApiClient({})).toThrow("api-alternance-sdk: api key is required");
+    expect(() => new ApiClient({})).toThrow("api-communs-numerique-sdk: api key is required");
   });
 
   it("should remove trailing slash from endpoint", () => {
     const apiClient = new ApiClient({
       key: "api-key",
-      endpoint: "https://api-recette.apprentissage.beta.gouv.fr/api/",
+      endpoint: "https://api-recette.courdecassation.beta.gouv.fr/api/",
     });
-    expect(apiClient.endpoint).toBe("https://api-recette.apprentissage.beta.gouv.fr/api");
+    expect(apiClient.endpoint).toBe("https://api-recette.courdecassation.beta.gouv.fr/api");
   });
 
-  it('should default endpoint to "https://api.apprentissage.beta.gouv.fr/api"', () => {
+  it('should default endpoint to "https://api.courdecassation.beta.gouv.fr/api"', () => {
     const apiClient = new ApiClient({ key: "api-key" });
-    expect(apiClient.endpoint).toBe("https://api.apprentissage.beta.gouv.fr/api");
+    expect(apiClient.endpoint).toBe("https://api.courdecassation.beta.gouv.fr/api");
   });
 });
 
@@ -73,7 +76,7 @@ describe("get", () => {
       resultat: null,
     };
 
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/organisme/v1/recherche")
@@ -93,7 +96,7 @@ describe("get", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -160,7 +163,7 @@ describe.each<["post" | "put" | "delete"]>([["post"], ["put"], ["delete"]])("%s"
   it("execute the request", async () => {
     const response = { ok: true };
 
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key", "content-type": "application/json" },
     });
 

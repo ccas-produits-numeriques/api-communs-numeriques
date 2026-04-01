@@ -1,5 +1,5 @@
 import { captureException } from "@sentry/node";
-import type { IRechercheOrganismeResponse, IRechercheOrganismeResultat } from "api-alternance-sdk";
+import type { IRechercheOrganismeResponse, IRechercheOrganismeResultat } from "api-communs-numerique-sdk";
 import type { Filter } from "mongodb";
 import type { ISourceReferentiel } from "shared/models/source/referentiel/source.referentiel.model";
 

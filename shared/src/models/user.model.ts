@@ -68,7 +68,7 @@ export const zUser = z.object({
     "editeur_logiciel",
     "organisme_financeur",
     "apprenant",
-    "mission_apprentissage",
+    "cour_de_cassation",
     "autre",
   ]),
   activite: zStringTrimmedNullable,

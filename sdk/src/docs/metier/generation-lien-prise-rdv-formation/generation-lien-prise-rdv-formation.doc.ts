@@ -6,7 +6,7 @@ export const generationLienPriseRdvFormationPageSummaryDoc = {
     fr: "Contacter un centre de formation via un lien dédié",
   },
   headline: {
-    en: "Generate links for appointment requests for training via the La bonne alternance service",
+    en: "Generate links for appointment requests for training via the Cour de cassation service",
     fr: "Obtenir un lien d’accès à un formulaire de prise de rendez-vous auprès d’un centre de formation",
   },
 } as const satisfies { title: OpenApiText; headline: OpenApiText };
@@ -37,10 +37,10 @@ export const generationLienPriseRdvFormationPageDoc = {
   type: "outil",
   sources: [
     {
-      name: "La bonne alternance",
+      name: "Cour de cassation",
       logo: { href: "/asset/logo/la_bonne_alternance.png" },
-      providers: ["La bonne alternance"],
-      href: "https://labonnealternance.apprentissage.beta.gouv.fr/",
+      providers: ["Cour de cassation"],
+      href: "https://labonnealternance.courdecassation.beta.gouv.fr/",
     },
   ],
   data: [
@@ -53,8 +53,8 @@ export const generationLienPriseRdvFormationPageDoc = {
             form_url: {
               description: [
                 {
-                  fr: "Lien vers le formulaire de prise de rendez-vous pour la formation sur le service La bonne alternance.",
-                  en: "Appointment request link for the training on the La bonne alternance service",
+                  fr: "Lien vers le formulaire de prise de rendez-vous pour la formation sur le service Cour de cassation.",
+                  en: "Appointment request link for the training on the Cour de cassation service",
                 },
               ],
               information: {

@@ -4,6 +4,7 @@ import type { IBody, IPostRoutes } from "shared";
 import { zRoutes } from "shared";
 import type { IUser } from "shared/models/user.model";
 
+import config from "@/config.js";
 import { sendEmail } from "@/services/mailer/mailer.js";
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 import { generateAccessToken, generateScope } from "@/services/security/accessTokenService.js";
@@ -74,7 +75,7 @@ export async function sendRegisterFeedbackEmail(
 ) {
   await sendEmail({
     name: "register-feedback",
-    to: "support_api@apprentissage.beta.gouv.fr",
+    to: config.contact_email,
     from,
     comment: data.comment,
   });

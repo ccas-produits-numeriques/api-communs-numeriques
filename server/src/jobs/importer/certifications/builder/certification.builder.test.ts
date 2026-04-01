@@ -1,7 +1,7 @@
-import type { ICertification } from "api-alternance-sdk";
+import type { ICertification } from "api-communs-numerique-sdk";
 import {
   generateCertificationInternalFixture,
-  generateKitApprentissageFixture,
+  generateKitCommunsNumeriquesFixture,
   generateSourceBcn_N_FormationDiplomeFixture,
   generateSourceBcn_N51_FormationDiplomeFixture,
   generateSourceFranceCompetenceFixture,
@@ -106,7 +106,7 @@ describe("buildCertification", () => {
     },
   });
 
-  const kitApprentissage = generateKitApprentissageFixture({
+  const kitCommunsNumeriques = generateKitCommunsNumeriquesFixture({
     cfd: "20512008",
     rncp: "RNCP24420",
   });
@@ -116,7 +116,7 @@ describe("buildCertification", () => {
   it("should build certification", () => {
     const data = {
       bcn: formation,
-      kit_apprentissage: kitApprentissage,
+      kit_communs_numeriques: kitCommunsNumeriques,
       france_competence: franceCompetence,
     };
 
@@ -152,7 +152,7 @@ describe("buildCertification", () => {
   it("should throw if built certification is invalid", () => {
     const data = {
       bcn: formation,
-      kit_apprentissage: kitApprentissage,
+      kit_communs_numeriques: kitCommunsNumeriques,
       france_competence: { ...franceCompetence, numero_fiche: "RNCP24X20" },
     };
 

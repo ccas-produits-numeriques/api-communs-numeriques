@@ -8,7 +8,7 @@ export const healthcheckRoutes = ({ server }: { server: Server }) => {
   server.get("/healthcheck", { schema: zRoutes.get["/healthcheck"] }, async (_request, response) => {
     ensureInitialization();
     response.status(200).send({
-      name: "Espace développeurs La bonne alternance",
+      name: "API Communs numériques",
       version: config.version,
       env: config.env,
     });

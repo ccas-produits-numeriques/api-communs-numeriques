@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import type { WithLangAndT } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
+import { publicConfig } from "@/config.public";
 import { PAGES } from "@/utils/routes.utils";
 
 export function LoginEmailSentModal({ email, lang, t }: WithLangAndT<{ email: string }>) {
@@ -75,10 +76,10 @@ export function LoginEmailSentModal({ email, lang, t }: WithLangAndT<{ email: st
             {t("loginEmailSent.problemeReceptionLien", { lng: lang })}{" "}
             <Box
               component="a"
-              href="mailto:support_api@apprentissage.beta.gouv.fr"
+              href={`mailto:${publicConfig.contactEmail}`}
               sx={{ color: fr.colors.decisions.text.actionHigh.blueFrance.default }}
             >
-              support_api@apprentissage.beta.gouv.fr
+              {publicConfig.contactEmail}
             </Box>
           </Typography>
         </Box>

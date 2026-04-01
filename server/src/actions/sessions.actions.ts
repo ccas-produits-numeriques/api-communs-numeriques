@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import type { UserWithType } from "api-alternance-sdk/internal";
+import type { UserWithType } from "api-communs-numerique-sdk/internal";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { jwtVerify, SignJWT } from "jose";
 import type { Filter, FindOptions } from "mongodb";

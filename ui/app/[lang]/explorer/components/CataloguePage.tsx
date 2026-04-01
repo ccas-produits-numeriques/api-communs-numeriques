@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { Box, Container } from "@mui/material";
-import type { DocPage } from "api-alternance-sdk/internal";
+import type { DocPage } from "api-communs-numerique-sdk/internal";
 
 import { CatalogueData } from "./CatalogueData";
 import { CatalogueHeadline } from "./CatalogueHeadline";

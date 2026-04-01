@@ -1,6 +1,6 @@
 import { internal } from "@hapi/boom";
-import type { IFormation } from "api-alternance-sdk";
-import { ParisDate } from "api-alternance-sdk/internal";
+import type { IFormation } from "api-communs-numerique-sdk";
+import { ParisDate } from "api-communs-numerique-sdk/internal";
 import { Interval } from "luxon";
 import type { IFormationCatalogue } from "shared/models/source/catalogue/source.catalogue.model";
 

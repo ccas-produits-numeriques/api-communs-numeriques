@@ -1,4 +1,4 @@
-import { zMissionLocale } from "api-alternance-sdk";
+import { zMissionLocale } from "api-communs-numerique-sdk";
 import { z } from "zod/v4-mini";
 
 import type { IModelDescriptorGeneric } from "../../common.js";

@@ -2,7 +2,7 @@ import { readdir, writeFile } from "node:fs/promises";
 
 import path from "path";
 import { internal } from "@hapi/boom";
-import { __dirname } from "api-alternance-sdk/internal";
+import { __dirname } from "api-communs-numerique-sdk/internal";
 import { format } from "date-fns";
 
 import { withCause } from "@/services/errors/withCause.js";

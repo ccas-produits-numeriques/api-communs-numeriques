@@ -48,7 +48,7 @@ describe("recherche", () => {
   };
 
   it("should call the API with the correct querystring", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/organisme/v1/recherche")
@@ -66,7 +66,7 @@ describe("recherche", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/organisme/v1/recherche")
@@ -94,7 +94,7 @@ describe("recherche", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/organisme/v1/recherche")
@@ -119,7 +119,7 @@ describe("recherche", () => {
   });
 
   it("should accepts future schema ehancements", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/organisme/v1/recherche")
