@@ -69,7 +69,7 @@ export const Header = ({ lang }: WithLang) => {
               iconId: "fr-icon-sun-fill",
               text: "Status",
               linkProps: {
-                href: "https://mission-apprentissage.github.io/upptime/history/api-apprentissage-api",
+                href: publicConfig.statusUrl,
                 target: "_blank",
                 rel: "noopener noreferrer",
               },
@@ -79,10 +79,10 @@ export const Header = ({ lang }: WithLang) => {
         ]}
         operatorLogo={{
           alt: "Retour à l'accueil",
-          imgUrl: "/images/logo_LBA.svg",
+          imgUrl: "/images/logo_gouvernement.svg",
           orientation: "horizontal",
         }}
-        serviceTitle={<>Espace développeurs</>}
+        serviceTitle={<>API Communs numériques</>}
         navigation={navigation}
       />
     </>

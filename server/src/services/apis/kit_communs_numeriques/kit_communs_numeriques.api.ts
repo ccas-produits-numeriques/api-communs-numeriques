@@ -9,18 +9,18 @@ import config from "@/config.js";
 import { withCause } from "@/services/errors/withCause.js";
 import { apiRateLimiter } from "@/utils/apiUtils.js";
 
-const kitClient = apiRateLimiter("kit_apprentissage", {
+const kitClient = apiRateLimiter("kit_communs_numeriques", {
   nbRequests: 5,
   durationInSeconds: 10,
   client: axios.create({
-    baseURL: config.api.kit_apprentissage.endpoint,
+    baseURL: config.api.kit_communs_numeriques.endpoint,
     timeout: 120_000,
   }),
   timeout: 900_000, // 15 minutes
   maxQueueSize: 100,
 });
 
-const zKitApprentissageResponse = z.object({
+const zKitCommunsNumeriquesResponse = z.object({
   total: z.number(),
   data: z.array(
     z.object({
@@ -30,11 +30,11 @@ const zKitApprentissageResponse = z.object({
   ),
 });
 
-type IKitApprentissageResponse = z.infer<typeof zKitApprentissageResponse>;
+type IKitCommunsNumeriquesResponse = z.infer<typeof zKitCommunsNumeriquesResponse>;
 
 const PAGE_SIZE = 100;
 
-async function getKitApprentissagePage(page: number): Promise<IKitApprentissageResponse> {
+async function getKitCommunsNumeriquesPage(page: number): Promise<IKitCommunsNumeriquesResponse> {
   return kitClient(async (client: AxiosInstance) => {
     const maxRetries = 2;
     let lastError;
@@ -43,11 +43,11 @@ async function getKitApprentissagePage(page: number): Promise<IKitApprentissageR
       try {
         const response = await client.get(`/cfd_rncp_intitule?page_num=${page}&page_size=${PAGE_SIZE}`, {
           headers: {
-            "token-connexion": config.api.kit_apprentissage.token,
+            "token-connexion": config.api.kit_communs_numeriques.token,
           },
         });
 
-        return zKitApprentissageResponse.parse(response.data);
+        return zKitCommunsNumeriquesResponse.parse(response.data);
       } catch (error) {
         lastError = error;
         if (attempt < maxRetries) {
@@ -61,22 +61,22 @@ async function getKitApprentissagePage(page: number): Promise<IKitApprentissageR
   });
 }
 
-export async function* getKitApprentissageData(): AsyncGenerator<
+export async function* getKitCommunsNumeriquesData(): AsyncGenerator<
   { cfd: string | null; rncp: string | null },
   void,
   void
 > {
   try {
-    logger.info("getKitApprentissageData: fetching data from Kit Apprentissage API");
-    const firstPage = await getKitApprentissagePage(1);
+    logger.info("getKitCommunsNumeriquesData: fetching data from Kit Communs numeriques API");
+    const firstPage = await getKitCommunsNumeriquesPage(1);
     const totalPages = Math.ceil(firstPage.total / PAGE_SIZE);
 
     yield* firstPage.data;
 
-    logger.info("getKitApprentissageData: total pages to fetch: " + totalPages);
+    logger.info("getKitCommunsNumeriquesData: total pages to fetch: " + totalPages);
     for (let page = 2; page <= totalPages; page++) {
-      logger.info(`getKitApprentissageData: fetching page ${page} of ${totalPages}`);
-      const response = await getKitApprentissagePage(page);
+      logger.info(`getKitCommunsNumeriquesData: fetching page ${page} of ${totalPages}`);
+      const response = await getKitCommunsNumeriquesPage(page);
       yield* response.data;
     }
   } catch (error) {
@@ -85,8 +85,8 @@ export async function* getKitApprentissageData(): AsyncGenerator<
     }
 
     if (isAxiosError(error)) {
-      throw internal("api.kit_apprentissage: unable to getKitApprentissageData", { data: error.toJSON() });
+      throw internal("api.kit_communs_numeriques: unable to getKitCommunsNumeriquesData", { data: error.toJSON() });
     }
-    throw withCause(internal("api.kit_apprentissage: unable to getKitApprentissageData"), error);
+    throw withCause(internal("api.kit_communs_numeriques: unable to getKitCommunsNumeriquesData"), error);
   }
 }

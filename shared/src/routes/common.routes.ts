@@ -1,11 +1,11 @@
-import type { SchemaWithSecurity } from "api-alternance-sdk";
+import type { SchemaWithSecurity } from "api-communs-numerique-sdk";
 import type { Jsonify } from "type-fest";
 import { z } from "zod/v4-mini";
 import type { $ZodObject } from "zod/v4/core";
 
 export const ZResOk = z.object({});
 
-export type { IResError, IResErrorJson } from "api-alternance-sdk";
+export type { IResError, IResErrorJson } from "api-communs-numerique-sdk";
 
 export const ZReqParamsSearchPagination = z.object({
   page: z.optional(z.coerce.number().check(z.int(), z.gte(0))),

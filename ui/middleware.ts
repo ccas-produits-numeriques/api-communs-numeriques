@@ -22,7 +22,7 @@ const contentSecurityPolicy = `
       };
       script-src-attr 'none';
       style-src 'self' https:  https: *.plausible.io 'unsafe-inline';
-      connect-src 'self' https://geo.api.gouv.fr/ https://plausible.io  https://sentry.apprentissage.beta.gouv.fr ${
+      connect-src 'self' https://geo.api.gouv.fr/ https://plausible.io  https://sentry.courdecassation.beta.gouv.fr ${
         process.env.NEXT_PUBLIC_ENV === "local" ? `http://localhost:${process.env.NEXT_PUBLIC_API_PORT}/` : ""
       };
       upgrade-insecure-requests;

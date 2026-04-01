@@ -1,6 +1,6 @@
 import { internal } from "@hapi/boom";
-import type { ICertification } from "api-alternance-sdk";
-import type { INiveauDiplomeEuropeen } from "api-alternance-sdk/internal";
+import type { ICertification } from "api-communs-numerique-sdk";
+import type { INiveauDiplomeEuropeen } from "api-communs-numerique-sdk/internal";
 import type { IBcn_N_NiveauFormationDiplome } from "shared/models/source/bcn/bcn.n_niveau_formation_diplome.model";
 
 import type { ISourceAggregatedData } from "@/jobs/importer/certifications/builder/certification.builder.js";

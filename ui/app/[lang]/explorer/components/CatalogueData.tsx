@@ -1,14 +1,15 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Tabs } from "@codegouvfr/react-dsfr/Tabs";
 import { Box, Container, Typography } from "@mui/material";
-import type { DocDatum, DocModelRow, DocModelSection, DocPage, OpenApiText } from "api-alternance-sdk/internal";
-import { getTextOpenAPI, getTextOpenAPIArray } from "api-alternance-sdk/internal";
+import type { DocDatum, DocModelRow, DocModelSection, DocPage, OpenApiText } from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI, getTextOpenAPIArray } from "api-communs-numerique-sdk/internal";
 
 import { GoodToKnow } from "./GoodToKnow";
 import { SwaggerLink } from "./SwaggerLink";
 import type { WithLangAndT } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
 import { DsfrLink } from "@/components/link/DsfrLink";
+import { publicConfig } from "@/config.public";
 import { DsfrMarkdown } from "@/components/markdown/DsfrMarkdown";
 import { Tag } from "@/components/tag/Tag";
 
@@ -240,7 +241,7 @@ function ContactSection({ t, lang }: WithLangAndT) {
             </Typography>
             <Box display="grid" gap={fr.spacing("2v")}>
               <Typography>
-                <DsfrLink href="mailto:support_api@apprentissage.beta.gouv.fr">
+                <DsfrLink href={`mailto:${publicConfig.contactEmail}`}>
                   {t("besoinDonnees.ditesLeNous", { lng: lang })}
                 </DsfrLink>
               </Typography>

@@ -208,7 +208,7 @@ export async function runBcnImporter(): Promise<Record<string, unknown>> {
 
     await getDbCollection("import.meta").updateOne({ _id: importId }, { $set: { status: "done" } });
 
-    await addJob({ name: "indicateurs:source_kit_apprentissage:update" });
+    await addJob({ name: "indicateurs:source_kit_communs_numeriques:update" });
 
     return statsBySource;
   } catch (error) {

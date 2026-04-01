@@ -1,4 +1,4 @@
-import type { IOrganisme } from "api-alternance-sdk";
+import type { IOrganisme } from "api-communs-numerique-sdk";
 import { ObjectId } from "mongodb";
 import type { IApiEntEtablissement, IApiEntUniteLegale } from "shared/models/cache/cache.entreprise.model";
 import type { ICommuneInternal } from "shared/models/commune.model";

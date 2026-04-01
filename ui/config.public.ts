@@ -7,41 +7,50 @@ export interface PublicConfig {
   apiEndpoint: string;
   env: "local" | "preview" | "recette" | "production";
   version: string;
+  contactEmail: string;
+  repositoryUrl: string;
+  statusUrl: string;
   productMeta: {
-    brandName: "Espace développeurs La bonne alternance";
+    brandName: "API Communs numériques";
     productName: string;
     repoName: string;
   };
 }
 
 function getProductionPublicConfig(): PublicConfig {
-  const host = "api.apprentissage.beta.gouv.fr";
+  const host = "api.courdecassation.beta.gouv.fr";
 
   return {
     sentry: {
-      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.apprentissage.beta.gouv.fr/10",
+      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.courdecassation.beta.gouv.fr/10",
     },
     host,
     baseUrl: `https://${host}`,
     env: "production",
     apiEndpoint: `https://${host}/api`,
     version: getVersion(),
+    contactEmail: getContactEmail(),
+    repositoryUrl: getRepositoryUrl(),
+    statusUrl: getStatusUrl(),
     productMeta: getProductMeta(),
   };
 }
 
 function getRecettePublicConfig(): PublicConfig {
-  const host = "api-recette.apprentissage.beta.gouv.fr";
+  const host = "api-recette.courdecassation.beta.gouv.fr";
 
   return {
     sentry: {
-      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.apprentissage.beta.gouv.fr/10",
+      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.courdecassation.beta.gouv.fr/10",
     },
     host,
     baseUrl: `https://${host}`,
     env: "recette",
     apiEndpoint: `https://${host}/api`,
     version: getVersion(),
+    contactEmail: getContactEmail(),
+    repositoryUrl: getRepositoryUrl(),
+    statusUrl: getStatusUrl(),
     productMeta: getProductMeta(),
   };
 }
@@ -54,17 +63,20 @@ function getPreviewPublicConfig(): PublicConfig {
     throw new Error(`getPreviewPublicConfig: invalid preview version ${version}`);
   }
 
-  const host = `${matches[1]}.api-preview.apprentissage.beta.gouv.fr`;
+  const host = `${matches[1]}.api-preview.courdecassation.beta.gouv.fr`;
 
   return {
     sentry: {
-      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.apprentissage.beta.gouv.fr/10",
+      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.courdecassation.beta.gouv.fr/10",
     },
     host,
     baseUrl: `https://${host}`,
     env: "preview",
     apiEndpoint: `https://${host}/api`,
     version: getVersion(),
+    contactEmail: getContactEmail(),
+    repositoryUrl: getRepositoryUrl(),
+    statusUrl: getStatusUrl(),
     productMeta: getProductMeta(),
   };
 }
@@ -73,13 +85,16 @@ function getLocalPublicConfig(): PublicConfig {
   const host = "localhost";
   return {
     sentry: {
-      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.apprentissage.beta.gouv.fr/10",
+      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.courdecassation.beta.gouv.fr/10",
     },
     host,
     baseUrl: `http://${host}:3002`,
     env: "local",
     apiEndpoint: `http://${host}:${process.env.NEXT_PUBLIC_API_PORT ?? 5000}/api`,
     version: getVersion(),
+    contactEmail: getContactEmail(),
+    repositoryUrl: getRepositoryUrl(),
+    statusUrl: getStatusUrl(),
     productMeta: getProductMeta(),
   };
 }
@@ -107,7 +122,21 @@ function getProductMeta(): PublicConfig["productMeta"] {
     throw new Error("missing NEXT_PUBLIC_PRODUCT_REPO env-vars");
   }
 
-  return { productName, repoName, brandName: "Espace développeurs La bonne alternance" };
+  return { productName, repoName, brandName: "API Communs numériques" };
+}
+
+function getContactEmail(): string {
+  return process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "api-communs-numeriques@courdecassation.fr";
+}
+
+function getRepositoryUrl(): string {
+  return process.env.NEXT_PUBLIC_REPOSITORY_URL ?? "https://github.com/ccas-produits-numeriques/api-communs-numeriques";
+}
+
+function getStatusUrl(): string {
+  return (
+    process.env.NEXT_PUBLIC_STATUS_URL ?? "https://github.com/ccas-produits-numeriques/api-communs-numeriques/actions"
+  );
 }
 
 function getEnv(): PublicConfig["env"] {

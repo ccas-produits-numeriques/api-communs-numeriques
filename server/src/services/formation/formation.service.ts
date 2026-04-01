@@ -1,5 +1,5 @@
 import { notFound } from "@hapi/boom";
-import type { IFormation, IFormationSearchApiQuery, IFormationSearchApiResult } from "api-alternance-sdk";
+import type { IFormation, IFormationSearchApiQuery, IFormationSearchApiResult } from "api-communs-numerique-sdk";
 import type { Filter } from "mongodb";
 import type { IFormationInternal } from "shared/models/formation.model";
 

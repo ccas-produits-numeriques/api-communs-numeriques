@@ -28,7 +28,7 @@ describe("recherche", () => {
       },
     };
 
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/formation/v1/search")
@@ -85,7 +85,7 @@ describe("recherche", () => {
     const expectedQs =
       "longitude=-4.6&latitude=42.85&radius=60&target_diploma_level=3&romes=I1401,I1306&rncp=RNCP38654&page_size=1";
 
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/formation/v1/search")
@@ -131,7 +131,7 @@ describe("recherche", () => {
 
     const expectedQs = "include_archived=true&page_size=1";
 
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/formation/v1/search")
@@ -157,7 +157,7 @@ describe("recherche", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/formation/v1/search")
@@ -187,7 +187,7 @@ describe("recherche", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/formation/v1/search")

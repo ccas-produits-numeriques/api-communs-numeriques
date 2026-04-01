@@ -5,7 +5,7 @@ import { generateOpenApiSchema } from "./generateOpenapi.js";
 
 describe("generateOpenApiSchema", () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const openapi: any = generateOpenApiSchema("V1.0", "Production", "https://api.apprentissage.beta.gouv.fr", null);
+  const openapi: any = generateOpenApiSchema("V1.0", "Production", "https://api.courdecassation.beta.gouv.fr", null);
 
   it("should generate proper schema", async () => {
     expect(openapi).toMatchSnapshot();

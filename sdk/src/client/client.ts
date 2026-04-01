@@ -62,8 +62,8 @@ class ApiClient {
   formation: FormationModule;
 
   constructor(config: ApiClientConfig) {
-    this.endpoint = removeAtEnd(config.endpoint ?? "https://api.apprentissage.beta.gouv.fr/api", "/");
-    this.key = config.key ?? throwError("api-alternance-sdk: api key is required");
+    this.endpoint = removeAtEnd(config.endpoint ?? "https://api.courdecassation.beta.gouv.fr/api", "/");
+    this.key = config.key ?? throwError("api-communs-numerique-sdk: api key is required");
 
     this.certification = buildCertificationModule(this);
     this.geographie = buildGeographieModule(this);

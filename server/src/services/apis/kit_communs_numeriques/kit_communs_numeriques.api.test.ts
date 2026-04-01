@@ -1,9 +1,9 @@
 import nock from "nock";
 import { describe, expect, it } from "vitest";
 
-import { getKitApprentissageData } from "./kit_apprentissage.api.js";
+import { getKitCommunsNumeriquesData } from "./kit_communs_numeriques.api.js";
 
-describe("getKitApprentissageData", () => {
+describe("getKitCommunsNumeriquesData", () => {
   it("should return the list data", async () => {
     const page1 = {
       data: [
@@ -263,7 +263,7 @@ describe("getKitApprentissageData", () => {
 
     scope.get("/cfd_rncp_intitule").query({ page_num: 2, page_size: 100 }).reply(200, page2);
 
-    const result = getKitApprentissageData();
+    const result = getKitCommunsNumeriquesData();
 
     const data = [];
     for await (const item of result) {

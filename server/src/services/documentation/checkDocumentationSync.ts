@@ -1,7 +1,11 @@
 import { internal } from "@hapi/boom";
 import { dereference } from "@readme/openapi-parser";
-import type { OpenapiOperation, StructureDiff } from "api-alternance-sdk/internal";
-import { compareOperationObjectsStructure, getOpenapiOperations, structureDiff } from "api-alternance-sdk/internal";
+import type { OpenapiOperation, StructureDiff } from "api-communs-numerique-sdk/internal";
+import {
+  compareOperationObjectsStructure,
+  getOpenapiOperations,
+  structureDiff,
+} from "api-communs-numerique-sdk/internal";
 import type { OpenAPIObject } from "openapi3-ts/oas31";
 import { generateOpenApiSchema } from "shared/openapi/generateOpenapi";
 
@@ -26,8 +30,8 @@ async function dereferenceOpenapiSchema(data: OpenAPIObject): Promise<OpenAPIObj
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (await dereference(data as any)) as any;
 }
-async function fetchLbaOperations(): Promise<Record<string, OpenapiOperation>> {
-  const response = await fetch(`${config.api.lba.endpoint}/docs/json`);
+async function fetchSijApiOperations(): Promise<Record<string, OpenapiOperation>> {
+  const response = await fetch(`${config.api.sij_api.endpoint}/docs/json`);
   const data = await response.json();
 
   const doc = await dereferenceOpenapiSchema(data as OpenAPIObject);
@@ -54,16 +58,16 @@ async function buildApiOpenapiPathItems(): Promise<Record<string, OpenapiOperati
 }
 
 export async function checkDocumentationSync() {
-  const [lbaOperations, apiOperations] = await Promise.all([fetchLbaOperations(), buildApiOpenapiPathItems()]);
+  const [sijApiOperations, apiOperations] = await Promise.all([fetchSijApiOperations(), buildApiOpenapiPathItems()]);
 
-  const result: Record<string, StructureDiff<"lba", "api">> = {};
+  const result: Record<string, StructureDiff<"sij_api", "api">> = {};
 
   for (const id of Object.keys(apiOperations)) {
     const apiOperation = apiOperations[id];
-    const lbaOperation = lbaOperations[OPERATION_MAPPING[id]] ?? null;
+    const sijApiOperation = sijApiOperations[OPERATION_MAPPING[id]] ?? null;
 
     const d = compareOperationObjectsStructure(
-      { name: "lba", op: lbaOperation.operation },
+      { name: "sij_api", op: sijApiOperation.operation },
       { name: "api", op: apiOperation?.operation }
     );
 
@@ -78,7 +82,7 @@ export async function checkDocumentationSync() {
   );
 
   if (delta) {
-    const message = `checkDocumentationSync: API Alternance documentation is not in sync with LBA`;
+    const message = `checkDocumentationSync: API Communs numeriques documentation is not in sync with SIJ-API`;
     logger.error({ delta, result }, message);
     throw internal(message, { delta, result });
   }

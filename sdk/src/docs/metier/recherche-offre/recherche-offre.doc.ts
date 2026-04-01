@@ -50,11 +50,11 @@ const recruiterSections = {
 export const rechercheOffrePageSummaryDoc = {
   title: {
     en: "Search for apprenticeship job opportunities",
-    fr: "Recherche d'opportunités d'emploi en alternance",
+    fr: "Recherche d'opportunités d'emploi",
   },
   headline: {
     en: "Access all apprenticeship job opportunities for free and in real-time",
-    fr: "Accéder gratuitement et en temps réel à l'ensemble des opportunités d'emploi en alternance",
+    fr: "Accéder gratuitement et en temps réel à l'ensemble des opportunités d'emploi",
   },
 } as const satisfies { title: OpenApiText; headline: OpenApiText };
 
@@ -72,10 +72,10 @@ export const rechercheOffrePageDoc = {
   type: "data",
   sources: [
     {
-      name: "La bonne alternance",
+      name: "Cour de cassation",
       logo: { href: "/asset/logo/la_bonne_alternance.png" },
-      providers: ["La bonne alternance"],
-      href: "https://labonnealternance.apprentissage.beta.gouv.fr/",
+      providers: ["Cour de cassation"],
+      href: "https://labonnealternance.courdecassation.beta.gouv.fr/",
     },
   ],
   data: [
@@ -139,8 +139,8 @@ export const rechercheOffrePageDoc = {
           rows: {
             identifier: {
               description: {
-                en: "The unique identifier of the potential recruiter identified by La bonne alternance.",
-                fr: "L'identifiant unique du recruiteur potentiel identifié par La bonne alternance.",
+                en: "The unique identifier of the potential recruiter identified by Cour de cassation.",
+                fr: "L'identifiant unique du recruiteur potentiel identifié par Cour de cassation.",
               },
               tags: [".id"],
             },

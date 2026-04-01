@@ -1,7 +1,7 @@
 "use client";
 
-import type { DocPage } from "api-alternance-sdk/internal";
-import { getTextOpenAPI, openapiSpec } from "api-alternance-sdk/internal";
+import type { DocPage } from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI, openapiSpec } from "api-communs-numerique-sdk/internal";
 import { useTranslation } from "react-i18next";
 import { safeSlugify } from "redoc";
 

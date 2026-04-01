@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.ico" }, { url: "/favicon.svg" }],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
-  title: "Espace développeurs La bonne alternance",
-  description: "Un service de la Mission Apprentissage",
+  title: "API Communs numériques",
+  description: "Un service de la Cour de cassation",
 };
 
 export function generateStaticParams() {

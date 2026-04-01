@@ -1,5 +1,5 @@
 import { z } from "zod/v4-mini";
-import type { IApiRoutesDef } from "api-alternance-sdk";
+import type { IApiRoutesDef } from "api-communs-numerique-sdk";
 
 export const zCoreRoutes = {
   get: {

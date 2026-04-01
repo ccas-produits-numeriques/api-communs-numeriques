@@ -25,12 +25,13 @@ import {
   recuperationFormationPageSummaryDoc,
   recuperationMissionLocalePageSummaryDoc,
   recuperationOrganismesPageSummaryDoc,
-} from "api-alternance-sdk/internal";
+} from "api-communs-numerique-sdk/internal";
 
 import { getServerTranslation } from "@/app/i18n";
 import type { PropsWithLangParams } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
 import { DsfrLink } from "@/components/link/DsfrLink";
+import { publicConfig } from "@/config.public";
 import { PAGES } from "@/utils/routes.utils";
 
 export default async function ExplorerApiPage({ params }: PropsWithLangParams) {
@@ -209,7 +210,7 @@ export default async function ExplorerApiPage({ params }: PropsWithLangParams) {
               </Typography>
               <Box display="grid" gap={fr.spacing("2v")}>
                 <Typography>
-                  <DsfrLink href="mailto:support_api@apprentissage.beta.gouv.fr">Dites-le nous</DsfrLink>
+                  <DsfrLink href={`mailto:${publicConfig.contactEmail}`}>Dites-le nous</DsfrLink>
                 </Typography>
               </Box>
             </Box>

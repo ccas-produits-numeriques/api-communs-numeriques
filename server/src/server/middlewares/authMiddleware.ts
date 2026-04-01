@@ -1,4 +1,4 @@
-import type { IApiRouteSchema, SecurityScheme, WithSecurityScheme } from "api-alternance-sdk";
+import type { IApiRouteSchema, SecurityScheme, WithSecurityScheme } from "api-communs-numerique-sdk";
 import type {
   ContextConfigDefault,
   FastifyBaseLogger,

@@ -1,5 +1,5 @@
-import type { IFormation } from "api-alternance-sdk";
-import { zCertification, zOrganisme } from "api-alternance-sdk";
+import type { IFormation } from "api-communs-numerique-sdk";
+import { zCertification, zOrganisme } from "api-communs-numerique-sdk";
 import { ObjectId } from "mongodb";
 import type { ICommuneInternal } from "shared/models/commune.model";
 import { generateCertificationInternalFixture } from "shared/models/fixtures/certification.model.fixture";
@@ -36,7 +36,7 @@ const yesterdaySourceImports = {
     status: "done",
     source: {
       bcn: { import_date: yesterday },
-      kit_apprentissage: { import_date: yesterday },
+      kit_communs_numeriques: { import_date: yesterday },
       france_competence: { import_date: yesterday, nom: "FC", oldest_date_publication: yesterday },
     },
   },
@@ -62,7 +62,7 @@ const todaySourceImports = {
     status: "done",
     source: {
       bcn: { import_date: twoHoursAgo },
-      kit_apprentissage: { import_date: twoHoursAgo },
+      kit_communs_numeriques: { import_date: twoHoursAgo },
       france_competence: { import_date: twoHoursAgo, nom: "FC", oldest_date_publication: yesterday },
     },
   },

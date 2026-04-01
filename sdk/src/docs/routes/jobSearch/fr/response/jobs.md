@@ -2,14 +2,14 @@ Liste des offres d’emploi correspondant à la recherche.
 
 Les offres proviennent de:
 
-- collection sur la plateforme La bonne alternance
+- collection sur la plateforme Cour de cassation
 - France Travail
 - publication via API par nos partenaires
 - partenaire via flux spécifique.
 
 Actuellement, les résultats sont triés par :
 
-- Priorité source (La bonne alternance > France Travail > autres partenaires)
+- Priorité source (Cour de cassation > France Travail > autres partenaires)
 - Augmentation de la distance (uniquement pour une recherche par emplacement)
 - Date de création décroissante
 

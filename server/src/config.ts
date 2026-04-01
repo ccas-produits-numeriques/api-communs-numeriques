@@ -10,7 +10,8 @@ const config = {
   env: environement,
   publicUrl,
   email: env.get("EMAIL").required().asString(),
-  email_from: "Mission Apprentissage",
+  email_from: "API Communs numériques",
+  contact_email: env.get("CONTACT_EMAIL").default("api-communs-numeriques@courdecassation.fr").asString(),
   apiPublicUrl: environement === "local" ? "http://localhost:5002/api" : `${publicUrl}/api`,
   mongodb: {
     uri: env.get("MONGODB_URI").required().asString(),
@@ -54,7 +55,7 @@ const config = {
   },
   disable_processors: env.get("DISABLE_PROCESSORS").default("false").asBool(),
   api: {
-    alternance: {
+    cour_de_cassation: {
       public_cert: env.get("API_TOKEN_PUBLIC_KEY").required().asString(),
       private_key: env.get("API_TOKEN_PRIVATE_KEY").required().asString(),
     },
@@ -100,12 +101,20 @@ const config = {
       baseurl: env.get("API_BAL_URL").required().asString(),
       apiKey: env.get("API_BAL_API_KEY").required().asString(),
     },
-    lba: {
-      endpoint: env.get("LBA_API_ENDPOINT").required().asString(),
+    sij_api: {
+      endpoint: env
+        .get("SIJ_API_ENDPOINT")
+        .default(process.env.LBA_API_ENDPOINT ?? "")
+        .required()
+        .asString(),
     },
-    kit_apprentissage: {
+    kit_communs_numeriques: {
       endpoint: "https://api-kit-apprentissage.intercariforef.org",
-      token: env.get("API_KIT_APPRENTISSAGE_TOKEN").required().asString(),
+      token: env
+        .get("API_KIT_COMMUNS_NUMERIQUES_TOKEN")
+        .default(process.env.API_KIT_APPRENTISSAGE_TOKEN ?? "")
+        .required()
+        .asString(),
     },
   },
 };

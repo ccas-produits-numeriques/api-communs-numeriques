@@ -5,7 +5,7 @@ import type { $ZodType } from "zod/v4/core";
 export class ApiParseError extends Error {
   constructor(zodError: $ZodError) {
     super(
-      "api-alternance-sdk: Error while parsing API response, this is either a bug in the SDK or a change in the API response. Please report this issue.\n" +
+      "api-communs-numerique-sdk: Error while parsing API response, this is either a bug in the SDK or a change in the API response. Please report this issue.\n" +
         JSON.stringify(treeifyError(zodError))
     );
     this.name = "ApiParseError";

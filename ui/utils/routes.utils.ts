@@ -12,7 +12,7 @@ import {
   recuperationFormationPageSummaryDoc,
   recuperationMissionLocalePageSummaryDoc,
   recuperationOrganismesPageSummaryDoc,
-} from "api-alternance-sdk/internal";
+} from "api-communs-numerique-sdk/internal";
 import type { TFunction } from "i18next";
 import type { MetadataRoute } from "next";
 

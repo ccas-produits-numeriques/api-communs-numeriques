@@ -18,12 +18,12 @@ export const offerReadModelDoc = {
         id: {
           descriptions: [
             {
-              en: "Identifier of the job offer in the La bonne alternance database.",
-              fr: "Identifiant de l'offre d'emploi dans la base de données La bonne alternance.",
+              en: "Identifier of the job offer in the Cour de cassation database.",
+              fr: "Identifiant de l'offre d'emploi dans la base de données Cour de cassation.",
             },
             {
-              en: "France Travail offers are not stored in the La bonne alternance database but are retrieved on the fly. They do not have an identifier in the database.",
-              fr: "Les offres France Travail ne sont pas stockées dans la base de données La bonne alternance mais sont récupérées à la volée. Elles n'ont pas d'identifiant dans la base de données.",
+              en: "France Travail offers are not stored in the Cour de cassation database but are retrieved on the fly. They do not have an identifier in the database.",
+              fr: "Les offres France Travail ne sont pas stockées dans la base de données Cour de cassation mais sont récupérées à la volée. Elles n'ont pas d'identifiant dans la base de données.",
             },
           ],
           examples: ["6687165396d52b5e01b409545"],
@@ -41,8 +41,8 @@ export const offerReadModelDoc = {
           descriptions: [
             { en: "Partner originating the job offer.", fr: "Partenaire à l'origine de l'offre d'emploi." },
             {
-              en: 'In the case of offers collected by La Bonne Alternance, the partner_label is: "offres_emploi_lba".<br />In the case of companies identified with a high potential to recruit, the partner_label is: "recruteurs_lba".',
-              fr: 'Dans le cas des offres collectées par La Bonne Alternance, le partner_label est : "offres_emploi_lba".<br />Dans le cas des entreprises identifiées comme ayant un fort potentiel d’embauche, le partner_label est : "recruteurs_lba".',
+              en: 'In the case of offers collected by Cour de cassation, the partner_label is: "offres_emploi_lba".<br />In the case of companies identified with a high potential to recruit, the partner_label is: "recruteurs_lba".',
+              fr: 'Dans le cas des offres collectées par Cour de cassation, le partner_label est : "offres_emploi_lba".<br />Dans le cas des entreprises identifiées comme ayant un fort potentiel d’embauche, le partner_label est : "recruteurs_lba".',
             },
           ],
           examples: ["France Travail", "offres_emploi_lba"],

@@ -2000,7 +2000,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
         },
         "url": {
           "examples": [
-            "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+            "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
           "format": "uri",
           "type": "string",
@@ -2458,7 +2458,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
         "url": {
           "description": "URL pour candidater",
           "examples": [
-            "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+            "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
           "format": "uri",
           "type": [
@@ -2790,7 +2790,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
         },
         "url": {
           "examples": [
-            "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
+            "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
           "format": "uri",
           "type": "string",
@@ -4327,7 +4327,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "examples": [
-              "Hellowork&partners_to_exclude=RH Alternance",
+              "Hellowork&partners_to_exclude=RH Cour de cassation",
               "Hellowork",
             ],
             "items": {

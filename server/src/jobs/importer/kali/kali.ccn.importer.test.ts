@@ -88,7 +88,7 @@ describe("runConventionCollectivesImporter", () => {
           type: "TI",
           id: "KALICONT000046660537",
           titre:
-            "Accord professionnel du 21 juillet 2022 relatif à la reconversion ou la promotion par l'alternance « Pro-A »",
+            "Accord professionnel du 21 juillet 2022 relatif à la reconversion ou la promotion par la formation « Pro-A »",
           nature: "ACCORD PROFESSIONNEL",
           etat: "VIGUEUR_ETEN",
           debut: new Date("2022-11-25T23:00:00.000Z"),

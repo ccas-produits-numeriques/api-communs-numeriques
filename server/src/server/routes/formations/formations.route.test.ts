@@ -1,4 +1,4 @@
-import { parseApiAlternanceToken, zFormation } from "api-alternance-sdk";
+import { parseApiCommunsNumeriqueToken, zFormation } from "api-communs-numerique-sdk";
 import nock, { cleanAll, disableNetConnect, enableNetConnect } from "nock";
 import {
   generateFormationInternalFixture,
@@ -250,9 +250,9 @@ const nockMatchUserAuthorization = (u: IUser, habilitations: string[]) => {
     expectAuth: async () => {
       return expect
         .soft(
-          parseApiAlternanceToken({
+          parseApiCommunsNumeriqueToken({
             token,
-            publicKey: config.api.alternance.public_cert,
+            publicKey: config.api.cour_de_cassation.public_cert,
           })
         )
         .resolves.toEqual({
@@ -353,7 +353,7 @@ describe("POST /formation/v1/appointment/generate-link", () => {
     }
   );
 
-  it("should return result from lba", async () => {
+  it("should return result from SIJ-API", async () => {
     const data = {
       cfd: "32025001",
       cle_ministere_educatif: "088281P01313885594860007038855948600070-67118#L01",
@@ -361,14 +361,14 @@ describe("POST /formation/v1/appointment/generate-link", () => {
       etablissement_formateur_entreprise_raison_sociale: "AFORP FORMATION",
       etablissement_formateur_siret: "77572845400205",
       form_url:
-        "https://labonnealternance.apprentissage.beta.gouv.fr/formation/rdv/088281P01313885594860007038855948600070-67118#L01",
+        "https://labonnealternance.courdecassation.beta.gouv.fr/formation/rdv/088281P01313885594860007038855948600070-67118#L01",
       intitule_long: "ASSISTANCE TECHNIQUE D'INGENIEUR (BTS)",
       lieu_formation_adresse: "64 Avenue de la Plaine de France",
       localite: "Tremblay-en-France",
     };
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.appointmentsWrite, ["appointments:write"]);
-    nock("https://labonnealternance-recette.apprentissage.beta.gouv.fr/api")
+    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
       .post("/v2/appointment", (b) => {
         expect.soft(b).toEqual(body);
         return true;

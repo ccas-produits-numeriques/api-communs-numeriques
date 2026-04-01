@@ -77,10 +77,10 @@ function VousEtesSection({ lang }: WithLang) {
               sx={{ color: fr.colors.decisions.artwork.minor.blueEcume.default, fontWeight: "normal" }}
             >
               <Box component="span" sx={{ color: fr.colors.decisions.text.label.blueEcume.default }}>
-                L’<strong>Espace développeurs La bonne alternance</strong>
+                L’<strong>API Communs numériques</strong>
               </Box>
               &nbsp;est le <strong>point d’entrée unique</strong> et documenté pour <strong>faciliter l’accès</strong> à
-              toutes les <strong>données relatives à l’apprentissage</strong>
+              des <strong>données de référence et services numériques</strong>
             </Typography>
           </Box>
 
@@ -169,7 +169,7 @@ function ProtectionDesDonneeSection({ lang }: WithLang) {
               Protection des données
             </Typography>
             <Typography variant="h4">
-              L’espace développeurs La bonne alternance est construit dans le{" "}
+              API Communs numériques est construit dans le{" "}
               <strong>respect strict de la vie privée des personnes</strong> et{" "}
               <strong>applique les standards de sécurité de l'État.</strong>
             </Typography>

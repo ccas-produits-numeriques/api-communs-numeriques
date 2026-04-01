@@ -48,7 +48,7 @@ export const zImportMetaSimple = z.object({
   import_date: z.date(),
   type: z.enum([
     "bcn",
-    "kit_apprentissage",
+    "kit_communs_numeriques",
     "acce",
     "kali_ccn",
     "communes",
@@ -83,7 +83,7 @@ export const zImportMetaCertifications = z.object({
       nom: z.string(),
       oldest_date_publication: z.date(),
     }),
-    kit_apprentissage: z.object({ import_date: z.date() }),
+    kit_communs_numeriques: z.object({ import_date: z.date() }),
   }),
 });
 

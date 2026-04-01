@@ -200,7 +200,7 @@ Fluentd est un collecteur de logs configuré comme suit :
 - Les archives sont séparées par date et par service.
 - La rotation des logs est effectuée quotidiennement.
 
-Pour le moment, les logs ne sont accessibles que depuis le serveur sur le disque local. Cependant, il est possible de transférer les logs vers notre serveur de monitoring à l'adresse https://monitoring.apprentissage.beta.gouv.fr en utilisant le [client Grafana Fluentd](https://grafana.com/docs/loki/latest/clients/fluentd/).
+Pour le moment, les logs ne sont accessibles que depuis le serveur sur le disque local. Cependant, il est possible de transférer les logs vers notre serveur de monitoring à l'adresse https://monitoring.courdecassation.beta.gouv.fr en utilisant le [client Grafana Fluentd](https://grafana.com/docs/loki/latest/clients/fluentd/).
 
 Il est également possible :
 
@@ -213,7 +213,7 @@ Ainsi, avec Fluentd, nous avons la flexibilité d'enrichir, structurer et transf
 
 La recette est similaire à l'environnement de production excepté que l'environnement intègre un serveur SMTP pour la gestion des emails.
 
-Il est possible d'accéder à l'interface via [https://bal-recette.apprentissage.beta.gouv.fr/smtp/](https://bal-recette.apprentissage.beta.gouv.fr/smtp/)
+Il est possible d'accéder à l'interface via [https://api-recette.courdecassation.beta.gouv.fr/smtp/](https://api-recette.courdecassation.beta.gouv.fr/smtp/)
 
 ## Preview
 

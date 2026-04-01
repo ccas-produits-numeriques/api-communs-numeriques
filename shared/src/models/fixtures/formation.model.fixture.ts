@@ -1,5 +1,5 @@
-import type { IFormationFixtureInput } from "api-alternance-sdk/fixtures";
-import { generateFormationFixture } from "api-alternance-sdk/fixtures";
+import type { IFormationFixtureInput } from "api-communs-numerique-sdk/fixtures";
+import { generateFormationFixture } from "api-communs-numerique-sdk/fixtures";
 import { ObjectId } from "bson";
 
 import type { IFormationInternal } from "../formation.model.js";

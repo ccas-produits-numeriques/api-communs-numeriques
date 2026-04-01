@@ -82,12 +82,11 @@ const MentionsLegales = () => {
             Éditeur de la plateforme
           </Typography>
           <Typography>
-            La plateforme “Espace développeurs La bonne alternance” est éditée par la Délégation générale à l’emploi et
-            à la formation professionnelle (DGEFP), située :
+            La plateforme “API Communs numériques” est éditée par la Cour de cassation, située :
             <br />
             <br />
-            14 avenue Duquesne
-            <br /> 75007 Paris
+            5 quai de l'Horloge
+            <br /> 75055 Paris Cedex 01
             <br /> France
           </Typography>
         </Section>
@@ -97,8 +96,7 @@ const MentionsLegales = () => {
             Directeur de la publication
           </Typography>
           <Typography gutterBottom>
-            Le directeur de la publication est Monsieur Benjamin MAURICE, Délégué général à l’emploi et à la formation
-            professionnelle.
+            Le directeur de la publication est le ou la responsable de publication de la Cour de cassation.
           </Typography>
         </Section>
 
@@ -116,16 +114,7 @@ const MentionsLegales = () => {
             Standard : 09.72.10.07
             <br />
             <br />
-            La conception et la réalisation du site sont effectuées par La Mission Interministérielle pour
-            l'apprentissage, située à l'adresse suivante :
-            <br />
-            Beta.gouv
-            <br />
-            20 avenue de Ségur
-            <br />
-            75007 Paris
-            <br />
-            01 44 38 38 38
+            La conception et la réalisation du site sont effectuées pour la Cour de cassation.
           </Typography>
         </Section>
 

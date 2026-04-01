@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import { ObjectId } from "mongodb";
 import {
   generateCertificationInternalFixture,
-  generateKitApprentissageFixture,
+  generateKitCommunsNumeriquesFixture,
   generateSourceBcn_N_FormationDiplomeDataFixture,
   generateSourceBcn_N_FormationDiplomeFixture,
   generateSourceBcn_N_NiveauFormationDiplomeFixtureList,
@@ -43,7 +43,12 @@ const oldestImportFc = {
 } as const;
 
 const yesterdayImports = {
-  kit_apprentissage: { _id: new ObjectId(), type: "kit_apprentissage", import_date: yesterday, status: "done" },
+  kit_communs_numeriques: {
+    _id: new ObjectId(),
+    type: "kit_communs_numeriques",
+    import_date: yesterday,
+    status: "done",
+  },
   bcn: { _id: new ObjectId(), type: "bcn", import_date: yesterday, status: "done" },
   france_competence: {
     _id: new ObjectId(),
@@ -78,15 +83,20 @@ const yesterdayImportCert = {
       nom: yesterdayImports.france_competence.archiveMeta.nom,
       oldest_date_publication: new Date("2021-12-24T02:00:00.000Z"),
     },
-    kit_apprentissage: {
-      import_date: yesterdayImports.kit_apprentissage.import_date,
+    kit_communs_numeriques: {
+      import_date: yesterdayImports.kit_communs_numeriques.import_date,
     },
   },
   status: "done",
 } as const;
 
 const todayImports = {
-  kit_apprentissage: { _id: new ObjectId(), type: "kit_apprentissage", import_date: twoHoursAgo, status: "done" },
+  kit_communs_numeriques: {
+    _id: new ObjectId(),
+    type: "kit_communs_numeriques",
+    import_date: twoHoursAgo,
+    status: "done",
+  },
   bcn: { _id: new ObjectId(), type: "bcn", import_date: twoHoursAgo, status: "done" },
   france_competence: {
     _id: new ObjectId(),
@@ -121,8 +131,8 @@ const todayImportCert = {
       nom: todayImports.france_competence.archiveMeta.nom,
       oldest_date_publication: new Date("2021-12-24T02:00:00.000Z"),
     },
-    kit_apprentissage: {
-      import_date: todayImports.kit_apprentissage.import_date,
+    kit_communs_numeriques: {
+      import_date: todayImports.kit_communs_numeriques.import_date,
     },
   },
 } as const;
@@ -142,12 +152,12 @@ describe("importCertifications", () => {
     };
   });
 
-  describe.each([["kit_apprentissage"], ["bcn"], ["france_competence"]])(
+  describe.each([["kit_communs_numeriques"], ["bcn"], ["france_competence"]])(
     "when source %s import is not complete",
     (source) => {
       beforeEach(async () => {
-        if (source !== "kit_apprentissage") {
-          await getDbCollection("import.meta").insertOne(todayImports.kit_apprentissage);
+        if (source !== "kit_communs_numeriques") {
+          await getDbCollection("import.meta").insertOne(todayImports.kit_communs_numeriques);
         }
         if (source !== "bcn") {
           await getDbCollection("import.meta").insertOne(todayImports.bcn);
@@ -166,7 +176,7 @@ describe("importCertifications", () => {
 
   describe("when source import is complete", () => {
     beforeEach(async () => {
-      await getDbCollection("import.meta").insertOne(yesterdayImports.kit_apprentissage);
+      await getDbCollection("import.meta").insertOne(yesterdayImports.kit_communs_numeriques);
       await getDbCollection("import.meta").insertOne(yesterdayImports.bcn);
       await getDbCollection("import.meta").insertMany([oldestImportFc, yesterdayImports.france_competence]);
     });
@@ -267,7 +277,7 @@ describe("importCertifications", () => {
       });
     });
 
-    describe.each<[keyof typeof todayImports]>([["kit_apprentissage"], ["bcn"], ["france_competence"]])(
+    describe.each<[keyof typeof todayImports]>([["kit_communs_numeriques"], ["bcn"], ["france_competence"]])(
       "when source %s import is updated",
       (source) => {
         beforeEach(async () => {
@@ -291,10 +301,10 @@ describe("importCertifications", () => {
                   source === "france_competence"
                     ? todayImportCert.source.france_competence
                     : yesterdayImportCert.source.france_competence,
-                kit_apprentissage:
-                  source === "kit_apprentissage"
-                    ? todayImportCert.source.kit_apprentissage
-                    : yesterdayImportCert.source.kit_apprentissage,
+                kit_communs_numeriques:
+                  source === "kit_communs_numeriques"
+                    ? todayImportCert.source.kit_communs_numeriques
+                    : yesterdayImportCert.source.kit_communs_numeriques,
               },
               status: "done",
               type: "certifications",
@@ -306,8 +316,8 @@ describe("importCertifications", () => {
 
     describe('when kit apprentissage data reference a "cfd" that does not exist', () => {
       beforeEach(async () => {
-        await getDbCollection("source.kit_apprentissage").insertOne(
-          generateKitApprentissageFixture({
+        await getDbCollection("source.kit_communs_numeriques").insertOne(
+          generateKitCommunsNumeriquesFixture({
             cfd: "36T23301",
             rncp: "RNCP1796",
           })
@@ -335,8 +345,8 @@ describe("importCertifications", () => {
 
     describe('when kit apprentissage data reference a "rncp" that does not exist', () => {
       beforeEach(async () => {
-        await getDbCollection("source.kit_apprentissage").insertOne(
-          generateKitApprentissageFixture({
+        await getDbCollection("source.kit_communs_numeriques").insertOne(
+          generateKitCommunsNumeriquesFixture({
             cfd: "36T23301",
             rncp: "RNCP1796",
           })
@@ -448,17 +458,17 @@ describe("importCertifications", () => {
       }),
     ];
 
-    const kitApprentissageData = [
-      generateKitApprentissageFixture({
+    const kitCommunsNumeriquesData = [
+      generateKitCommunsNumeriquesFixture({
         cfd: existingCertifications.updated[0].identifiant.cfd!,
         rncp: existingCertifications.updated[0].identifiant.rncp!,
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         // Couple updated
         cfd: existingCertifications.removed[1].identifiant.cfd!,
         rncp: existingCertifications.removed[2].identifiant.rncp!,
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: newCertifications[0].identifiant.cfd!,
         rncp: newCertifications[0].identifiant.rncp!,
       }),
@@ -565,10 +575,10 @@ describe("importCertifications", () => {
         ]),
         getDbCollection("source.bcn").insertMany(bcnData),
         getDbCollection("source.france_competence").insertMany(franceCompetenceData),
-        getDbCollection("source.kit_apprentissage").insertMany(kitApprentissageData),
+        getDbCollection("source.kit_communs_numeriques").insertMany(kitCommunsNumeriquesData),
         getDbCollection("import.meta").insertOne(oldestImportFc),
         getDbCollection("import.meta").insertOne(yesterdayImportCert),
-        getDbCollection("import.meta").insertOne(todayImports.kit_apprentissage),
+        getDbCollection("import.meta").insertOne(todayImports.kit_communs_numeriques),
         getDbCollection("import.meta").insertOne(todayImports.bcn),
         getDbCollection("import.meta").insertOne(todayImports.france_competence),
       ]);
@@ -588,7 +598,7 @@ describe("importCertifications", () => {
           source: {
             bcn: todayImportCert.source.bcn,
             france_competence: todayImportCert.source.france_competence,
-            kit_apprentissage: todayImportCert.source.kit_apprentissage,
+            kit_communs_numeriques: todayImportCert.source.kit_communs_numeriques,
           },
           status: "done",
           type: "certifications",
@@ -653,8 +663,8 @@ describe("importCertifications", () => {
       updated_at: yesterday,
     });
 
-    const kitApprentissageData = [
-      generateKitApprentissageFixture({
+    const kitCommunsNumeriquesData = [
+      generateKitCommunsNumeriquesFixture({
         cfd: existingCertification.identifiant.cfd!,
         rncp: existingCertification.identifiant.rncp!,
       }),
@@ -691,10 +701,10 @@ describe("importCertifications", () => {
         getDbCollection("certifications").insertOne(existingCertification),
         getDbCollection("source.bcn").insertMany(bcnData),
         getDbCollection("source.france_competence").insertMany(franceCompetenceData),
-        getDbCollection("source.kit_apprentissage").insertMany(kitApprentissageData),
+        getDbCollection("source.kit_communs_numeriques").insertMany(kitCommunsNumeriquesData),
         getDbCollection("import.meta").insertOne(oldestImportFc),
         getDbCollection("import.meta").insertOne(yesterdayImportCert),
-        getDbCollection("import.meta").insertOne(todayImports.kit_apprentissage),
+        getDbCollection("import.meta").insertOne(todayImports.kit_communs_numeriques),
         getDbCollection("import.meta").insertOne(todayImports.bcn),
         getDbCollection("import.meta").insertOne(todayImports.france_competence),
       ]);
@@ -714,7 +724,7 @@ describe("importCertifications", () => {
           source: {
             bcn: todayImportCert.source.bcn,
             france_competence: todayImportCert.source.france_competence,
-            kit_apprentissage: todayImportCert.source.kit_apprentissage,
+            kit_communs_numeriques: todayImportCert.source.kit_communs_numeriques,
           },
           type: "certifications",
           status: "done",
@@ -829,16 +839,16 @@ describe("importCertifications", () => {
       },
     } as const;
 
-    const kitApprentissageData = [
-      generateKitApprentissageFixture({
+    const kitCommunsNumeriquesData = [
+      generateKitCommunsNumeriquesFixture({
         cfd: "10000001",
         rncp: "RNCP00100",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "10000002",
         rncp: "RNCP00102",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "20000001",
         rncp: "RNCP00200",
       }),
@@ -912,7 +922,7 @@ describe("importCertifications", () => {
       await Promise.all([
         getDbCollection("source.bcn").insertMany(bcnData),
         getDbCollection("source.france_competence").insertMany(franceCompetenceData),
-        getDbCollection("source.kit_apprentissage").insertMany(kitApprentissageData),
+        getDbCollection("source.kit_communs_numeriques").insertMany(kitCommunsNumeriquesData),
         getDbCollection("import.meta").insertOne({
           _id: new ObjectId(),
           import_date: new Date("2024-03-05T09:32:27.106Z"),
@@ -931,7 +941,7 @@ describe("importCertifications", () => {
           },
           status: "done",
         }),
-        getDbCollection("import.meta").insertOne(todayImports.kit_apprentissage),
+        getDbCollection("import.meta").insertOne(todayImports.kit_communs_numeriques),
         getDbCollection("import.meta").insertOne(todayImports.bcn),
         getDbCollection("import.meta").insertOne(todayImports.france_competence),
       ]);
@@ -1003,24 +1013,24 @@ describe("importCertifications", () => {
       },
     } as const;
 
-    const kitApprentissageData = [
-      generateKitApprentissageFixture({
+    const kitCommunsNumeriquesData = [
+      generateKitCommunsNumeriquesFixture({
         cfd: "10000001",
         rncp: "RNCP00100",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "10000001",
         rncp: "RNCP00101",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "20000001",
         rncp: "RNCP00200",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "20000001",
         rncp: "RNCP00201",
       }),
-      generateKitApprentissageFixture({
+      generateKitCommunsNumeriquesFixture({
         cfd: "30000001",
         rncp: "RNCP00300",
       }),
@@ -1076,7 +1086,7 @@ describe("importCertifications", () => {
       await Promise.all([
         getDbCollection("source.bcn").insertMany(bcnData),
         getDbCollection("source.france_competence").insertMany(franceCompetenceData),
-        getDbCollection("source.kit_apprentissage").insertMany(kitApprentissageData),
+        getDbCollection("source.kit_communs_numeriques").insertMany(kitCommunsNumeriquesData),
         getDbCollection("import.meta").insertOne({
           _id: new ObjectId(),
           import_date: new Date("2024-03-05T09:32:27.106Z"),
@@ -1095,7 +1105,7 @@ describe("importCertifications", () => {
           },
           status: "done",
         }),
-        getDbCollection("import.meta").insertOne(todayImports.kit_apprentissage),
+        getDbCollection("import.meta").insertOne(todayImports.kit_communs_numeriques),
         getDbCollection("import.meta").insertOne(todayImports.bcn),
         getDbCollection("import.meta").insertOne(todayImports.france_competence),
       ]);

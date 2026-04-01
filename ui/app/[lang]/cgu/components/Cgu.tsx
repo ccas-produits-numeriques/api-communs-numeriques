@@ -79,9 +79,8 @@ const Cgu: FC<Props> = ({ onLoad }) => {
         </Typography>
         <Typography>Dernière mise à jour le : 31 mars 2025 - {cguVersion} </Typography>
         <Typography>
-          Les présentes conditions générales d’utilisation (dites “CGU”) fixent le cadre juridique de “L'espace
-          développeurs La bonne alternance” et définissent les conditions d’accès et d’utilisation des services par
-          l’Utilisateur.
+          Les présentes conditions générales d’utilisation (dites “CGU”) fixent le cadre juridique de “L'espace API
+          Communs numériques” et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.
         </Typography>
 
         <Section id={anchors.ChampApplication}>
@@ -100,9 +99,9 @@ const Cgu: FC<Props> = ({ onLoad }) => {
             Article 2 – Objet
           </Typography>
           <Typography>
-            L'espace développeurs La bonne alternance est destiné notamment aux opérateurs publics et privés, aux
-            organismes de formation, aux entreprises, chefs de projets, développeurs ou apprenants. <br />
-            L’objectif est de simplifier l’accès à des données de l’apprentissage fiables et à jour grâce à un point
+            L'espace API Communs numériques est destiné notamment aux opérateurs publics et privés, aux institutions,
+            aux entreprises, chefs de projets, développeurs ou utilisateurs métiers. <br />
+            L’objectif est de simplifier l’accès à des données et services numériques fiables et à jour grâce à un point
             d’entrée unique et documenté.
           </Typography>
         </Section>
@@ -111,19 +110,18 @@ const Cgu: FC<Props> = ({ onLoad }) => {
             Article 3 – Définitions
           </Typography>
           <Typography>
-            <strong>« Utilisateur »</strong> : désigne toute personne physique qui souhaite accéder aux données de
-            l’apprentissage.
+            <strong>« Utilisateur »</strong> : désigne toute personne physique qui souhaite accéder aux données et
+            services de la Plateforme.
             <br />
             <br />
             <strong>« Services »</strong> : désigne les fonctionnalités offertes par la Plateforme pour répondre à ses
             finalités.
             <br />
             <br />
-            <strong>« Plateforme »</strong> : désigne l'espace développeurs La bonne alternance.
+            <strong>« Plateforme »</strong> : désigne l'espace API Communs numériques.
             <br />
             <br />
-            <strong>« Éditeur »</strong> : désigne la Délégation générale à l’emploi et à la formation professionnelle
-            (DGEFP).
+            <strong>« Éditeur »</strong> : désigne la Cour de cassation.
           </Typography>
         </Section>
         <Section id={anchors.FonctionnaliteLieesAuxComptesDesUtilisateurs}>
@@ -133,8 +131,8 @@ const Cgu: FC<Props> = ({ onLoad }) => {
           <Typography>
             Chaque Utilisateur peut s’inscrire sur la Plateforme en renseignant son adresse e-mail.
             <br />
-            Il reçoit un lien lui permettant de se connecter à son compte sur l'espace développeurs La bonne alternance
-            et de compléter ses informations personnelles.
+            Il reçoit un lien lui permettant de se connecter à son compte sur l'espace API Communs numériques et de
+            compléter ses informations personnelles.
             <br />
             Un code technique d’accès est créé à l’Utilisateur pour qu’il puisse profiter des Services.
             <br />
@@ -151,8 +149,8 @@ const Cgu: FC<Props> = ({ onLoad }) => {
           </Typography>
           <Typography>
             <br />
-            Les sources des informations diffusées sur l'espace développeurs La bonne alternance sont réputées fiables
-            mais la Plateforme ne garantit pas qu’elle soit exempte de défauts, d’erreurs ou d’omissions. <br />
+            Les sources des informations diffusées sur l'espace API Communs numériques sont réputées fiables mais la
+            Plateforme ne garantit pas qu’elle soit exempte de défauts, d’erreurs ou d’omissions. <br />
             L’Éditeur s’engage à la sécurisation de la Plateforme, notamment en prenant toutes les mesures nécessaires
             permettant de garantir la sécurité et la confidentialité des informations fournies. <br />
             L’Éditeur fournit les moyens nécessaires et raisonnables pour assurer un accès continu à la Plateforme.

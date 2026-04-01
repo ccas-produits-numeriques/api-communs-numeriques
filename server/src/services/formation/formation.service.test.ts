@@ -1,4 +1,4 @@
-import type { ICertificationFixtureInput, IFormationFixtureInput } from "api-alternance-sdk/fixtures";
+import type { ICertificationFixtureInput, IFormationFixtureInput } from "api-communs-numerique-sdk/fixtures";
 import { sourceCommuneFixtures } from "shared/models/fixtures/commune.model.fixture";
 import { generateFormationInternalFixture } from "shared/models/fixtures/formation.model.fixture";
 import { describe, expect, it } from "vitest";

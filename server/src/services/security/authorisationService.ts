@@ -1,7 +1,13 @@
 import { forbidden, internal } from "@hapi/boom";
-import type { IApiRouteSchema, SchemaWithSecurity, WithSecurityScheme } from "api-alternance-sdk";
-import type { AccessPermission, AccessResourcePath, PathParam, QueryString, Role } from "api-alternance-sdk/internal";
-import { AdminRole, getBaseRole } from "api-alternance-sdk/internal";
+import type { IApiRouteSchema, SchemaWithSecurity, WithSecurityScheme } from "api-communs-numerique-sdk";
+import type {
+  AccessPermission,
+  AccessResourcePath,
+  PathParam,
+  QueryString,
+  Role,
+} from "api-communs-numerique-sdk/internal";
+import { AdminRole, getBaseRole } from "api-communs-numerique-sdk/internal";
 import type { FastifyRequest } from "fastify";
 import type { ObjectId } from "mongodb";
 import type { IOrganisationInternal } from "shared/models/organisation.model";

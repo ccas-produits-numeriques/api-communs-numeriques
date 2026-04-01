@@ -21,6 +21,7 @@ import type { Jsonify } from "type-fest";
 
 import type { PropsWithLangParams } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
+import { publicConfig } from "@/config.public";
 import { useAuth } from "@/context/AuthContext";
 import { useJwtToken } from "@/hooks/useJwtToken";
 import { ApiError, apiPost } from "@/utils/api.utils";
@@ -209,7 +210,7 @@ export default function RegisterPage({ params }: PropsWithLangParams) {
               <option value="editeur_logiciel">{t("creerCompte.editeurLogiciel", { lng: lang })}</option>
               <option value="organisme_financeur">{t("creerCompte.organismeFinanceur", { lng: lang })}</option>
               <option value="apprenant">{t("creerCompte.apprenant", { lng: lang })}</option>
-              <option value="mission_apprentissage">{t("creerCompte.missionApprentissage", { lng: lang })}</option>
+              <option value="cour_de_cassation">{t("creerCompte.missionApprentissage", { lng: lang })}</option>
               <option value="autre">{t("creerCompte.autre", { lng: lang })}</option>
             </Select>
             <Input
@@ -290,10 +291,10 @@ export default function RegisterPage({ params }: PropsWithLangParams) {
           {t("creerCompte.problemesConnexion", { lng: lang })}{" "}
           <Box
             component="a"
-            href="mailto:support_api@apprentissage.beta.gouv.fr"
+            href={`mailto:${publicConfig.contactEmail}`}
             sx={{ color: fr.colors.decisions.text.actionHigh.blueFrance.default }}
           >
-            support_api@apprentissage.beta.gouv.fr
+            {publicConfig.contactEmail}
           </Box>
         </Typography>
       </DialogContent>

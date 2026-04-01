@@ -1,5 +1,5 @@
-import type { ICertificationFixtureInput } from "api-alternance-sdk/fixtures";
-import { generateCertificationFixture } from "api-alternance-sdk/fixtures";
+import type { ICertificationFixtureInput } from "api-communs-numerique-sdk/fixtures";
+import { generateCertificationFixture } from "api-communs-numerique-sdk/fixtures";
 import { ObjectId } from "bson";
 
 import type { ICertificationInternal } from "../certification.model.js";

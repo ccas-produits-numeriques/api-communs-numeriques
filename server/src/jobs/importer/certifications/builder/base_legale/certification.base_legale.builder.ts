@@ -1,4 +1,4 @@
-import type { ICertification } from "api-alternance-sdk";
+import type { ICertification } from "api-communs-numerique-sdk";
 import { parseNullableParisLocalDate } from "shared/zod/date.primitives";
 
 import type { ISourceAggregatedData } from "@/jobs/importer/certifications/builder/certification.builder.js";

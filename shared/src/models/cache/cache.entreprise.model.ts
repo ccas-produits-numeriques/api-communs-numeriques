@@ -1,4 +1,4 @@
-import { zSiret } from "api-alternance-sdk";
+import { zSiret } from "api-communs-numerique-sdk";
 import { z } from "zod/v4-mini";
 
 import type { IModelDescriptorGeneric } from "../common.js";

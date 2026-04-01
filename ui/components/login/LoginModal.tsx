@@ -17,6 +17,7 @@ import { zRoutes } from "shared";
 import { LoginEmailSentModal } from "./LoginEmailSent";
 import type { WithLang } from "@/app/i18n/settings";
 import { Artwork } from "@/components/artwork/Artwork";
+import { publicConfig } from "@/config.public";
 import { ApiError, apiPost } from "@/utils/api.utils";
 import { PAGES } from "@/utils/routes.utils";
 
@@ -167,10 +168,10 @@ export function LoginModal({ lang }: WithLang) {
           {t("modal.problemeConnexionContactezNous", { lng: lang })}{" "}
           <Box
             component="a"
-            href="mailto:support_api@apprentissage.beta.gouv.fr"
+            href={`mailto:${publicConfig.contactEmail}`}
             sx={{ color: fr.colors.decisions.text.actionHigh.blueFrance.default }}
           >
-            support_api@apprentissage.beta.gouv.fr
+            {publicConfig.contactEmail}
           </Box>
         </Typography>
       </DialogContent>

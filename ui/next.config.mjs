@@ -6,7 +6,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 import { withPlausibleProxy } from "next-plausible";
 
 const nextConfig = {
-  transpilePackages: ["shared", "api-alternance-sdk"],
+  transpilePackages: ["shared", "api-communs-numerique-sdk"],
   poweredByHeader: false,
   productionBrowserSourceMaps: true,
   outputFileTracingRoot: path.join(path.dirname(fileURLToPath(import.meta.url)), "../"),
@@ -70,7 +70,7 @@ export default withSentryConfig(withPlausibleProxy()(nextConfig), {
 
   org: "sentry",
   project: "api-ui",
-  sentryUrl: "https://sentry.apprentissage.beta.gouv.fr/",
+  sentryUrl: "https://sentry.courdecassation.beta.gouv.fr/",
 
   // Only print logs for uploading source maps in CI
   silent: false,

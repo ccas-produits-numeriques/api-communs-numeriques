@@ -37,8 +37,8 @@ type ImportCertificationsOptions = {
 };
 
 async function getSourceImportMeta(): Promise<IImportMetaCertifications["source"] | null> {
-  const [kitApprentissage, bcn, franceCompetenceLatest, oldestFranceCompetence] = await Promise.all([
-    getDbCollection("import.meta").findOne({ type: "kit_apprentissage" }, { sort: { import_date: -1 } }),
+  const [kitCommunsNumeriques, bcn, franceCompetenceLatest, oldestFranceCompetence] = await Promise.all([
+    getDbCollection("import.meta").findOne({ type: "kit_communs_numeriques" }, { sort: { import_date: -1 } }),
     getDbCollection("import.meta").findOne({ type: "bcn" }, { sort: { import_date: -1 } }),
     getDbCollection("import.meta").findOne<IImportMetaFranceCompetence>(
       { type: "france_competence" },
@@ -50,12 +50,12 @@ async function getSourceImportMeta(): Promise<IImportMetaCertifications["source"
     ),
   ]);
 
-  if (!areSourcesSuccess([kitApprentissage, bcn, franceCompetenceLatest, oldestFranceCompetence])) {
+  if (!areSourcesSuccess([kitCommunsNumeriques, bcn, franceCompetenceLatest, oldestFranceCompetence])) {
     return null;
   }
 
   return {
-    kit_apprentissage: { import_date: kitApprentissage!.import_date },
+    kit_communs_numeriques: { import_date: kitCommunsNumeriques!.import_date },
     bcn: { import_date: bcn!.import_date },
     france_competence: {
       import_date: franceCompetenceLatest!.import_date,
@@ -140,22 +140,22 @@ function getSourceAggregatedDataFromBcn(): AggregationCursor<ISourceAggregatedDa
     },
     {
       $lookup: {
-        from: "source.kit_apprentissage",
+        from: "source.kit_communs_numeriques",
         localField: "_id",
         foreignField: "cfd",
-        as: "kit_apprentissage",
+        as: "kit_communs_numeriques",
       },
     },
     {
       $unwind: {
-        path: "$kit_apprentissage",
+        path: "$kit_communs_numeriques",
         preserveNullAndEmptyArrays: true,
       },
     },
     {
       $lookup: {
         from: "source.france_competence",
-        localField: "kit_apprentissage.rncp",
+        localField: "kit_communs_numeriques.rncp",
         foreignField: "numero_fiche",
         as: "france_competence",
       },
@@ -188,22 +188,22 @@ function getSourceAggregatedDataFromFranceCompetence(): AggregationCursor<ISourc
     },
     {
       $lookup: {
-        from: "source.kit_apprentissage",
+        from: "source.kit_communs_numeriques",
         localField: "numero_fiche",
         foreignField: "rncp",
-        as: "kit_apprentissage",
+        as: "kit_communs_numeriques",
       },
     },
     {
       $unwind: {
-        path: "$kit_apprentissage",
+        path: "$kit_communs_numeriques",
         preserveNullAndEmptyArrays: true,
       },
     },
     {
       $lookup: {
         from: "source.bcn",
-        let: { cfd: "$kit_apprentissage.cfd" },
+        let: { cfd: "$kit_communs_numeriques.cfd" },
         as: "bcn",
         pipeline: [
           {

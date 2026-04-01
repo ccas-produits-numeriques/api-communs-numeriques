@@ -1,7 +1,7 @@
 {
-  "name": "api-alternance-sdk",
+  "name": "api-communs-numerique-sdk",
   "version": "0.0.0",
-  "author": "Mission interministérielle pour l’apprentissage",
+  "author": "Cour de cassation",
   "license": "MIT",
   "sideEffects": [],
   "type": "module",

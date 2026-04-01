@@ -2,7 +2,7 @@
 
 Pour mettre à disposition une route API, il existe 2 cas d'usages:
 
-- Mettre à disposition une route native à l'API Alternance
+- Mettre à disposition une route native à l'API Communs numerique
 - Mettre à disposition une route passe-plat d'un acteur externe
 
 De plus la création d'une route consiste en la mise à disposition:
@@ -31,7 +31,7 @@ Le code relatif à la définition des routes, et de la documentation se trouve d
     - `models/*/*.model.doc.ts`: Contient les descriptions textuels des champs des modeles
     - `routes/*/*.route.doc.ts`: Contient les contenu textuels métier des routes
     - `**/*.md`: Un contenu markdown pour etre utilisé dans la documentation
-    - `**/*.md.ts`: Le code généré contenant le markdown associé (`yarn workspace api-alternance-sdk markdown:transpile`)
+    - `**/*.md.ts`: Le code généré contenant le markdown associé (`yarn workspace api-communs-numerique-sdk markdown:transpile`)
   - `models/`: Contient les définitions des modèles
     - `*/*.model.ts`: Schema zod et type typescript
     - `*/*.model.openapi.ts`: Schema openapi (sans le contenu textuel) et méthode de création du schema par langue
@@ -65,7 +65,7 @@ Le code relatif à la définition des routes, et de la documentation se trouve d
    1. Pour la structure partir de page existante
    2. Pour du contenu markdown plus complex
       1. Créer des fichier `.md`
-      2. Exécuter `yarn workspace api-alternance-sdk markdown:transpile`
+      2. Exécuter `yarn workspace api-communs-numerique-sdk markdown:transpile`
       3. Importer le contenu du fichier `.ts` genéré.
    3. Les liens `href` des logos pointent vers des fichiers dans le dossier `ui/public/` et doivent donc etre créé en consequence.
    4. Exporter le fichier dans `sdk/src/docs/metier/internal.ts`

@@ -1,4 +1,4 @@
-import { zRncp } from "api-alternance-sdk/internal";
+import { zRncp } from "api-communs-numerique-sdk/internal";
 import { z } from "zod/v4-mini";
 
 import type { IModelDescriptorGeneric } from "../../common.js";

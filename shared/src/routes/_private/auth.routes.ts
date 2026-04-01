@@ -1,5 +1,5 @@
-import type { IApiRoutesDef } from "api-alternance-sdk";
-import { zOrganisation } from "api-alternance-sdk";
+import type { IApiRoutesDef } from "api-communs-numerique-sdk";
+import { zOrganisation } from "api-communs-numerique-sdk";
 import type { Jsonify } from "type-fest";
 import { z } from "zod/v4-mini";
 

@@ -1,5 +1,5 @@
 import assert from "assert";
-import type { SecurityScheme } from "api-alternance-sdk";
+import type { SecurityScheme } from "api-communs-numerique-sdk";
 import type { RouteOptions } from "fastify";
 import { fastify } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";

@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import type { IGeoJsonPoint } from "api-alternance-sdk";
+import type { IGeoJsonPoint } from "api-communs-numerique-sdk";
 import type { AxiosError, AxiosInstance } from "axios";
 import axios, { isAxiosError } from "axios";
 import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from "axios-retry";

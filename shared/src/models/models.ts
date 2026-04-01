@@ -9,7 +9,7 @@ import emailDeniedModelDescriptor from "./email_denied.model.js";
 import emailEventsModelDescriptor from "./email_event.model.js";
 import { formationModelDescriptor } from "./formation.model.js";
 import { importMetaModelDescriptor } from "./import.meta.model.js";
-import { indicateurSourceKitApprentissageModelDescriptor } from "./indicateurs/source_kit_apprentissage.model.js";
+import { indicateurSourceKitCommunsNumeriquesModelDescriptor } from "./indicateurs/source_kit_communs_numeriques.model.js";
 import { indicateurUsageApiModelDescriptor } from "./indicateurs/usage_api.model.js";
 import { organisationModelDescriptor } from "./organisation.model.js";
 import { organismeModelDescriptor } from "./organisme.model.js";
@@ -21,7 +21,7 @@ import { sourceDaresApeIdccModelDescriptor } from "./source/dares/source.dares.a
 import { sourceDaresCcnModelDescriptor } from "./source/dares/source.dares.ccn.model.js";
 import { sourceFranceCompetenceModelDescriptor } from "./source/france_competence/source.france_competence.model.js";
 import { sourceKaliCcnModelDescriptor } from "./source/kali/source.kali.ccn.model.js";
-import { sourceKitApprentissageModelDescriptor } from "./source/kitApprentissage/source.kit_apprentissage.model.js";
+import { sourceKitCommunsNumeriquesModelDescriptor } from "./source/kitCommunsNumeriques/source.kit_communs_numeriques.model.js";
 import { zSourceCodeInseeToMissionLocaleDescriptor } from "./source/mission_locale/source.mission_locale.model.js";
 import { sourceNpecModelDescriptor } from "./source/npec/source.npec.model.js";
 import { sourceNpecNormalizedModelDescriptor } from "./source/npec/source.npec.normalized.model.js";
@@ -38,11 +38,12 @@ export const modelDescriptorMap = {
   [usersModelDescriptor.collectionName]: usersModelDescriptor,
   [sessionsModelDescriptor.collectionName]: sessionsModelDescriptor,
   [indicateurUsageApiModelDescriptor.collectionName]: indicateurUsageApiModelDescriptor,
-  [indicateurSourceKitApprentissageModelDescriptor.collectionName]: indicateurSourceKitApprentissageModelDescriptor,
+  [indicateurSourceKitCommunsNumeriquesModelDescriptor.collectionName]:
+    indicateurSourceKitCommunsNumeriquesModelDescriptor,
   [sourceAcceModelDescriptor.collectionName]: sourceAcceModelDescriptor,
   [sourcReferentielModelDescriptor.collectionName]: sourcReferentielModelDescriptor,
   [sourceBcnModelDescriptor.collectionName]: sourceBcnModelDescriptor,
-  [sourceKitApprentissageModelDescriptor.collectionName]: sourceKitApprentissageModelDescriptor,
+  [sourceKitCommunsNumeriquesModelDescriptor.collectionName]: sourceKitCommunsNumeriquesModelDescriptor,
   [sourceCatalogueModelDescriptor.collectionName]: sourceCatalogueModelDescriptor,
   [sourceFranceCompetenceModelDescriptor.collectionName]: sourceFranceCompetenceModelDescriptor,
   [sourceNpecModelDescriptor.collectionName]: sourceNpecModelDescriptor,

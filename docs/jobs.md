@@ -838,7 +838,7 @@ Ce job est déclenché automatiquement par :
 
 #### Description
 
-Vérifie que la documentation de l'API Alternance est synchronisée avec la documentation de La Bonne Alternance (LBA) pour les endpoints partagés.
+Vérifie que la documentation de l'API Communs numerique est synchronisée avec la documentation de Cour de cassation (LBA) pour les endpoints partagés.
 
 #### Étapes du job
 
@@ -851,7 +851,7 @@ Vérifie que la documentation de l'API Alternance est synchronisée avec la docu
 
 #### Opérations comparées
 
-| API Alternance                                   | LBA                                         |
+| API Communs numerique                            | LBA                                         |
 | ------------------------------------------------ | ------------------------------------------- |
 | `GET /job/v1/search`                             | `GET /v3/jobs/search`                       |
 | `POST /job/v1/offer`                             | `POST /v3/jobs`                             |

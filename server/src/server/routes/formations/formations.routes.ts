@@ -42,7 +42,7 @@ export const formationRoutes = ({ server }: { server: Server }) => {
 
       return forwardApiRequest(
         {
-          endpoint: config.api.lba.endpoint,
+          endpoint: config.api.sij_api.endpoint,
           path: "/v2/appointment",
           requestInit: {
             method: "POST",

@@ -29,7 +29,7 @@ export default defineConfig((options) => {
     shims: false,
     minify: false,
     sourcemap: true,
-    noExternal: ["shared", "api-alternance-sdk"],
+    noExternal: ["shared", "api-communs-numerique-sdk"],
     clean: true,
     env: {
       ...options.env,

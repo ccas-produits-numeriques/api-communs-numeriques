@@ -1,5 +1,5 @@
 import { internal } from "@hapi/boom";
-import type { IFormation } from "api-alternance-sdk";
+import type { IFormation } from "api-communs-numerique-sdk";
 import type { IFormationCatalogue } from "shared/models/source/catalogue/source.catalogue.model";
 import { z } from "zod/v4-mini";
 

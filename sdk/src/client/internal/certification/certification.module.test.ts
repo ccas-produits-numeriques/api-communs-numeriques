@@ -243,7 +243,7 @@ describe("index", () => {
   const certifJson = JSON.parse(JSON.stringify(certif));
 
   it("should call the API with the correct querystring", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -263,7 +263,7 @@ describe("index", () => {
   });
 
   it("should cache API responses", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -290,7 +290,7 @@ describe("index", () => {
     ["12345", "12345"],
     ["null", null],
   ])("should support cfd filter %s", async (queryValue, cfd) => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -311,7 +311,7 @@ describe("index", () => {
     ["12345", "12345"],
     ["null", null],
   ])("should support rncp filter %s", async (queryValue, rncp) => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -329,7 +329,7 @@ describe("index", () => {
   });
 
   it("should throw an ApiError when server error", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -357,7 +357,7 @@ describe("index", () => {
   });
 
   it("should throw if the response does not match the schema", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")
@@ -382,7 +382,7 @@ describe("index", () => {
   });
 
   it("should accepts future schema ehancements", async () => {
-    const scope = nock("https://api.apprentissage.beta.gouv.fr/api", {
+    const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
       .get("/certification/v1")

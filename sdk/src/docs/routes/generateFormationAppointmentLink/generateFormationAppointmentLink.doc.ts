@@ -135,8 +135,8 @@ export const generateFormationAppointmentLinkRouteDoc = {
             form_url: {
               descriptions: [
                 {
-                  en: "Appointment request link La bonne alternance",
-                  fr: "Lien de prise de rendez-vous La bonne alternance",
+                  en: "Appointment request link Cour de cassation",
+                  fr: "Lien de prise de rendez-vous Cour de cassation",
                 },
               ],
             },

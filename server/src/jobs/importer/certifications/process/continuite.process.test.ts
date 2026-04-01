@@ -42,7 +42,7 @@ describe("CFD continuite", () => {
         nom: "nom",
         oldest_date_publication: new Date("2019-12-25T02:00:00.000Z"),
       },
-      kit_apprentissage: {
+      kit_communs_numeriques: {
         import_date: new Date("2023-12-24T02:00:00.000Z"),
       },
     },
@@ -338,7 +338,7 @@ describe("RNCP continuite", () => {
         nom: "nom",
         oldest_date_publication: new Date("2019-12-25T02:00:00.000Z"),
       },
-      kit_apprentissage: {
+      kit_communs_numeriques: {
         import_date: new Date("2023-12-24T02:00:00.000Z"),
       },
     },

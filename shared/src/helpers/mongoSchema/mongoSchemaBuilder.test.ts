@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { zodToMongoSchema } from "zod-mongodb-schema";
 
 import type { $ZodType, JSONSchema } from "zod/v4/core";
-import { zParisLocalDate } from "api-alternance-sdk/internal";
+import { zParisLocalDate } from "api-communs-numerique-sdk/internal";
 import { modelDescriptors } from "../../models/models.js";
 
 describe("zodToMongoSchema", () => {

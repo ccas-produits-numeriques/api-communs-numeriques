@@ -5,7 +5,7 @@ export const jobSearchByIdRouteDoc = {
   summary: recuperationDetailOffrePageSummaryDoc.title,
   description: {
     en: "Access the details of an apprenticeship job offer from its identifier.",
-    fr: "Accéder au détail d'une opportunité d'emploi en alternance à partir de son identifiant.",
+    fr: "Accéder au détail d'une opportunité d'emploi à partir de son identifiant.",
   },
   parameters: {
     id: {

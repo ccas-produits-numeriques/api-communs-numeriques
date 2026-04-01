@@ -13,7 +13,7 @@ if [[ -z "${SENTRY_DSN:-}" ]]; then
   exit 1;
 fi
 
-export SENTRY_URL=https://sentry.apprentissage.beta.gouv.fr
+export SENTRY_URL=https://sentry.courdecassation.beta.gouv.fr
 export SENTRY_ORG=sentry
 export SENTRY_PROJECT=api-server
 

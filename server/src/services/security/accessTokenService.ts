@@ -1,7 +1,7 @@
 import { forbidden, internal } from "@hapi/boom";
 import { captureException } from "@sentry/node";
-import type { ISecuredRouteSchema, SchemaWithSecurity } from "api-alternance-sdk";
-import type { PathParam, QueryString } from "api-alternance-sdk/internal";
+import type { ISecuredRouteSchema, SchemaWithSecurity } from "api-communs-numerique-sdk";
+import type { PathParam, QueryString } from "api-communs-numerique-sdk/internal";
 import { jwtVerify, SignJWT } from "jose";
 import type { IUser } from "shared/models/user.model";
 import type { IAccessToken, IAccessTokenScope, IAccessTokenScopeParam } from "shared/routes/common.routes";

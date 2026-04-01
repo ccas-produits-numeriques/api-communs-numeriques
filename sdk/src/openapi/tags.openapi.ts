@@ -10,13 +10,13 @@ export const tagsOpenapi = {
   },
   job: {
     name: { fr: "Offre Emploi", en: "Job" },
-    description: { fr: "Opportunités d'emploi en alternance", en: "Apprenticeship job opportunities" },
+    description: { fr: "Opportunités d'emploi", en: "Job opportunities" },
   },
   formation: {
     name: { fr: "Formation", en: "Training" },
     description: {
-      fr: "Liste des opérations sur les formations en apprentissage",
-      en: "List of operations on apprenticeship training",
+      fr: "Liste des opérations sur les formations",
+      en: "List of operations on training",
     },
   },
   certifications: {

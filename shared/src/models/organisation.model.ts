@@ -1,4 +1,4 @@
-import { zOrganisation } from "api-alternance-sdk";
+import { zOrganisation } from "api-communs-numerique-sdk";
 import { z } from "zod/v4-mini";
 
 import type { IModelDescriptorGeneric } from "./common.js";

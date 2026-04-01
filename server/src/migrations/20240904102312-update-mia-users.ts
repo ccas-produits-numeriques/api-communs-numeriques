@@ -13,11 +13,11 @@ export const up = async () => {
           "sofia.boulaarab@beta.gouv.fr",
           "marion.guillet@beta.gouv.fr",
           "claire.arnaud@beta.gouv.fr",
-          "tdb@alternance.beta.gouv.fr",
+          "tdb@cour-de-cassation.beta.gouv.fr",
           "catherine.bourreau@beta.gouv.fr",
         ],
       },
     },
-    { $set: { type: "mission_apprentissage" } }
+    { $set: { type: "cour_de_cassation" } }
   );
 };

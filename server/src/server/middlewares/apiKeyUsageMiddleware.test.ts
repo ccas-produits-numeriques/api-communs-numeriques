@@ -1,4 +1,4 @@
-import type { IApiRouteSchema, ISecuredRouteSchema, WithSecurityScheme } from "api-alternance-sdk";
+import type { IApiRouteSchema, ISecuredRouteSchema, WithSecurityScheme } from "api-communs-numerique-sdk";
 import { fastify } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";

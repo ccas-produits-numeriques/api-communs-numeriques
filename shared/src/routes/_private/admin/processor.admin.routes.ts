@@ -1,4 +1,4 @@
-import type { IApiRoutesDef } from "api-alternance-sdk";
+import type { IApiRoutesDef } from "api-communs-numerique-sdk";
 import { zProcessorStatus } from "job-processor/dist/core.js";
 
 export const zProcessorAdminRoutes = {

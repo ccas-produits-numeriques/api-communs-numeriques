@@ -1,4 +1,4 @@
-import { zGeoJsonPoint, zGeoJsonPolygon } from "api-alternance-sdk";
+import { zGeoJsonPoint, zGeoJsonPolygon } from "api-communs-numerique-sdk";
 import { z } from "zod/v4-mini";
 
 export const sourceGeoRegion = z.object({
