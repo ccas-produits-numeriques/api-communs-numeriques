@@ -203,10 +203,6 @@ program
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:kit_communs_numeriques"));
 program
-  .command("import:kit_communs_numeriques")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:kit_communs_numeriques"));
-program
   .command("import:formation")
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:formation"));
