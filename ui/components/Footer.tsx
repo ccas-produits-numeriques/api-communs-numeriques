@@ -3,24 +3,34 @@ import { Footer as DSFRFooter, FooterBottomItem } from "@codegouvfr/react-dsfr/F
 import Link from "next/link";
 
 // import { usePlausible } from "next-plausible";
+import { styled } from "@mui/material";
 import { publicConfig } from "@/config.public";
 import { PAGES } from "@/utils/routes.utils";
 
+const StyledDSFRFooter = styled(DSFRFooter)({
+  "& .operator-logo-footer": {
+    width: "185px",
+    height: "75px",
+  },
+});
+
 export default function Footer() {
   return (
-    <DSFRFooter
+    <StyledDSFRFooter
       accessibility="partially compliant"
       contentDescription={
         <span>
-          API Communs numériques est un service porté par la{" "}
-          <Link href="https://www.courdecassation.fr/">Cour de cassation</Link>.
+          API Communs numériques est sponsorisé par la Cour de cassation <br />
+          Le portail de services est porté par{" "}
+          <Link href="https://beta.gouv.fr/incubateurs/justice">l'Incubateur de la Justice</Link>.
         </span>
       }
       operatorLogo={{
-        alt: "Logo République française",
-        imgUrl: "/images/logo_gouvernement.svg",
-        orientation: "vertical",
+        alt: "Logo Cour de cassation",
+        imgUrl: "/images/logo_courdecassation_vertical.svg",
+        orientation: "horizontal",
       }}
+      classes={{ operatorLogo: "operator-logo-footer" }}
       websiteMapLinkProps={{
         href: "/sitemap.xml",
       }}
