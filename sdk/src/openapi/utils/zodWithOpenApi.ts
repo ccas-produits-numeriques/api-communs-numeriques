@@ -7,18 +7,18 @@ import type { OpenapiRoute } from "../types.js";
 
 function getTextOpenAPI<T extends OpenApiText | null | undefined>(
   value: T,
-  lang: "fr" | "en" | null
+  lang: "fr" | "en" | null = "fr"
 ): T extends null | undefined ? null : string {
   if (value == null) {
     return null as T extends null | undefined ? null : string;
   }
 
-  if (lang === null) {
-    return "" as T extends null | undefined ? null : string;
+  if (lang && value[lang]) {
+    return value[lang].trim() as T extends null | undefined ? null : string;
   }
 
-  if (value[lang]) {
-    return value[lang].trim() as T extends null | undefined ? null : string;
+  if (value.fr) {
+    return value.fr.trim() as T extends null | undefined ? null : string;
   }
 
   const text = Object.values(value).find((v) => v !== null);
@@ -32,7 +32,7 @@ function getTextOpenAPI<T extends OpenApiText | null | undefined>(
 
 function getTextOpenAPIArray<T extends OpenApiText[] | null | undefined>(
   value: T,
-  lang: "fr" | "en" | null
+  lang: "fr" | "en" | null = "fr"
 ): T extends null | undefined ? null : string {
   if (Array.isArray(value)) {
     return value
@@ -44,13 +44,7 @@ function getTextOpenAPIArray<T extends OpenApiText[] | null | undefined>(
   return null as T extends null | undefined ? null : string;
 }
 
-function getDocOpenAPIAttributes(
-  field: DocTechnicalField | undefined,
-  lang: "en" | "fr" | null
-): {
-  description?: string;
-  examples?: unknown[];
-} {
+function getDocOpenAPIAttributes(field: DocTechnicalField | undefined): { description?: string; examples?: unknown[] } {
   if (!field) {
     return {};
   }
@@ -58,7 +52,7 @@ function getDocOpenAPIAttributes(
   const r: { description?: string; examples?: unknown[] } = {};
 
   if (field.descriptions && field.descriptions.length > 0) {
-    const description = getTextOpenAPIArray(field.descriptions, lang);
+    const description = getTextOpenAPIArray(field.descriptions);
     if (description) {
       r.description = description;
     }
@@ -88,7 +82,6 @@ function pickPropertiesOpenAPI<T extends Record<string, SchemaObject>, K extends
 function addSchemaDocList<T extends SchemaObject | ReferenceObject>(
   schemas: ReadonlyArray<T>,
   docs: DocTechnicalField[],
-  lang: "en" | "fr" | null,
   path: string[]
 ): T[] {
   if (schemas.length !== docs.length) {
@@ -96,14 +89,13 @@ function addSchemaDocList<T extends SchemaObject | ReferenceObject>(
   }
 
   return schemas.map((schema, index) => {
-    return addSchemaDoc(schema, docs[index], lang, [...path, `[${index}]`]);
+    return addSchemaDoc(schema, docs[index], [...path, `[${index}]`]);
   });
 }
 
 function addSchemaDoc<T extends SchemaObject | ReferenceObject | undefined>(
   schema: T,
   doc: DocTechnicalField | undefined,
-  lang: "en" | "fr" | null,
   path: string[]
 ): T {
   if (!schema || "$ref" in schema || !doc) {
@@ -114,7 +106,7 @@ function addSchemaDoc<T extends SchemaObject | ReferenceObject | undefined>(
     return schema;
   }
 
-  const output: SchemaObject = { ...schema, ...getDocOpenAPIAttributes(doc, lang) };
+  const output: SchemaObject = { ...schema, ...getDocOpenAPIAttributes(doc) };
 
   const docProperties = doc.properties;
 
@@ -133,7 +125,7 @@ function addSchemaDoc<T extends SchemaObject | ReferenceObject | undefined>(
     output.properties = Object.entries(output.properties).reduce(
       (acc, [prop, propSchema]) => {
         if (prop in docProperties) {
-          acc[prop] = addSchemaDoc(propSchema, docProperties[prop], lang, [...path, "properties", prop]);
+          acc[prop] = addSchemaDoc(propSchema, docProperties[prop], [...path, "properties", prop]);
         } else {
           acc[prop] = propSchema;
         }
@@ -145,54 +137,44 @@ function addSchemaDoc<T extends SchemaObject | ReferenceObject | undefined>(
   }
 
   if (output.items && doc.items) {
-    output.items = addSchemaDoc(output.items, doc.items, lang, [...path, "items"]);
+    output.items = addSchemaDoc(output.items, doc.items, [...path, "items"]);
   }
 
   if (output.allOf && doc.allOf) {
     output.allOf =
-      typeof output.allOf === "boolean"
-        ? output.allOf
-        : addSchemaDocList(output.allOf, doc.allOf, lang, [...path, "allOf"]);
+      typeof output.allOf === "boolean" ? output.allOf : addSchemaDocList(output.allOf, doc.allOf, [...path, "allOf"]);
   }
   if (output.oneOf && doc.oneOf) {
     output.oneOf =
-      typeof output.oneOf === "boolean"
-        ? output.oneOf
-        : addSchemaDocList(output.oneOf, doc.oneOf, lang, [...path, "oneOf"]);
+      typeof output.oneOf === "boolean" ? output.oneOf : addSchemaDocList(output.oneOf, doc.oneOf, [...path, "oneOf"]);
   }
   if (output.anyOf && doc.anyOf) {
     output.anyOf =
-      typeof output.anyOf === "boolean"
-        ? output.anyOf
-        : addSchemaDocList(output.anyOf, doc.anyOf, lang, [...path, "anyOf"]);
+      typeof output.anyOf === "boolean" ? output.anyOf : addSchemaDocList(output.anyOf, doc.anyOf, [...path, "anyOf"]);
   }
   if (output.not && doc.not) {
-    output.not = addSchemaDoc(output.not, doc.not, lang, [...path, "not"]);
+    output.not = addSchemaDoc(output.not, doc.not, [...path, "not"]);
   }
   if (typeof output.additionalProperties === "object" && doc.additionalProperties) {
-    output.additionalProperties = addSchemaDoc(output.additionalProperties, doc.additionalProperties, lang, [
+    output.additionalProperties = addSchemaDoc(output.additionalProperties, doc.additionalProperties, [
       ...path,
       "additionalProperties",
     ]);
   }
   if (output.propertyNames && doc.propertyNames) {
-    output.propertyNames = addSchemaDoc(output.propertyNames, doc.propertyNames, lang, [...path, "propertyNames"]);
+    output.propertyNames = addSchemaDoc(output.propertyNames, doc.propertyNames, [...path, "propertyNames"]);
   }
   if (output.prefixItems && doc.prefixItems) {
     output.prefixItems =
       typeof output.prefixItems === "boolean"
         ? output.prefixItems
-        : addSchemaDocList(output.prefixItems, doc.prefixItems, lang, [...path, "prefixItems"]);
+        : addSchemaDocList(output.prefixItems, doc.prefixItems, [...path, "prefixItems"]);
   }
 
   return output as T;
 }
 
-function addContentObjectDoc(
-  content: ContentObject,
-  doc: DocTechnicalField | undefined,
-  lang: "en" | "fr" | null
-): ContentObject {
+function addContentObjectDoc(content: ContentObject, doc: DocTechnicalField | undefined): ContentObject {
   if (!doc) {
     return content;
   }
@@ -205,30 +187,28 @@ function addContentObjectDoc(
 
     acc[mediaType] = {
       ...media,
-      schema: addSchemaDoc(media.schema, doc, lang, ["schema"]),
+      schema: addSchemaDoc(media.schema, doc, ["schema"]),
     };
 
     return acc;
   }, {} as ContentObject);
 }
 
-function addOperationDoc(route: OpenapiRoute, schema: OperationObject, lang: "en" | "fr" | null): OperationObject {
+function addOperationDoc(route: OpenapiRoute, schema: OperationObject): OperationObject {
   const { doc, tag } = route;
   const output = structuredClone(schema);
 
-  output.tags = [
-    getTextOpenAPI(tagsOpenapi[tag].name, lang ?? "en"), // Exception: keep tags
-  ];
+  output.tags = [getTextOpenAPI(tagsOpenapi[tag].name)];
 
   if (!doc) {
     return output;
   }
 
-  const summary = getTextOpenAPI(doc.summary, lang);
+  const summary = getTextOpenAPI(doc.summary);
   if (summary) {
     output.summary = summary;
   }
-  const description = getTextOpenAPI(doc.description, lang);
+  const description = getTextOpenAPI(doc.description);
   if (description) {
     output.description = description;
   }
@@ -251,7 +231,7 @@ function addOperationDoc(route: OpenapiRoute, schema: OperationObject, lang: "en
 
       return {
         ...param,
-        schema: addSchemaDoc(param.schema, docParams[param.name], lang, [param.name]),
+        schema: addSchemaDoc(param.schema, docParams[param.name], [param.name]),
       };
     });
   }
@@ -264,10 +244,10 @@ function addOperationDoc(route: OpenapiRoute, schema: OperationObject, lang: "en
     if (!("$ref" in output.requestBody)) {
       output.requestBody = {
         ...output.requestBody,
-        content: addContentObjectDoc(output.requestBody.content, doc.body.content, lang),
+        content: addContentObjectDoc(output.requestBody.content, doc.body.content),
       };
 
-      const description = getTextOpenAPI(doc.body.description, lang);
+      const description = getTextOpenAPI(doc.body.description);
       if (description) {
         output.requestBody.description = description;
       }
@@ -288,13 +268,13 @@ function addOperationDoc(route: OpenapiRoute, schema: OperationObject, lang: "en
           return acc;
         }
 
-        const description = getTextOpenAPI(docResponse.description, lang);
+        const description = getTextOpenAPI(docResponse.description);
 
         if (response.content) {
           acc[code] = {
             ...response,
             description,
-            content: addContentObjectDoc(response.content, docResponse.content, lang),
+            content: addContentObjectDoc(response.content, docResponse.content),
           };
         } else {
           acc[code] = {

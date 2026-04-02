@@ -19,7 +19,6 @@ import { fastify } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { generateOpenApiSchema } from "shared/openapi/generateOpenapi";
-import { z } from "zod/v4-mini";
 
 import { apiKeyUsageMiddleware } from "./middlewares/apiKeyUsageMiddleware.js";
 import { auth } from "./middlewares/authMiddleware.js";
@@ -57,13 +56,12 @@ export async function bind(app: Server) {
         }),
   });
 
-  const frSwaggerDoc = generateOpenApiSchema(config.version, config.env, config.apiPublicUrl, "fr");
-  const enSwaggerDoc = generateOpenApiSchema(config.version, config.env, config.apiPublicUrl, "en");
+  const swaggerDoc = generateOpenApiSchema(config.version, config.env, config.apiPublicUrl);
 
   const swaggerOpts: FastifyStaticSwaggerOptions = {
     mode: "static",
     specification: {
-      document: enSwaggerDoc as StaticDocumentSpec["document"],
+      document: swaggerDoc as StaticDocumentSpec["document"],
     },
   };
   await app.register(fastifySwagger, swaggerOpts);
@@ -82,17 +80,9 @@ export async function bind(app: Server) {
   };
   await app.register(fastifySwaggerUi, swaggerUiOptions);
 
-  app.get(
-    "/api/swagger.json",
-    {
-      schema: {
-        querystring: z.object({ lang: z.optional(z.string()) }),
-      },
-    },
-    async (req, res) => {
-      return res.header("content-type", "application/json").send(req.query.lang === "fr" ? frSwaggerDoc : enSwaggerDoc);
-    }
-  );
+  app.get("/api/swagger.json", async (_req, res) => {
+    return res.header("content-type", "application/json").send(swaggerDoc);
+  });
 
   app.register(fastifyCookie);
   app.decorate("auth", <S extends IApiRouteSchema & WithSecurityScheme>(scheme: S) => auth(scheme));

@@ -3,23 +3,28 @@
 exports[`openapiSpec#models > should generate proper schema Adresse 1`] = `
 {
   "additionalProperties": false,
+  "description": "Adresse",
   "properties": {
     "academie": {
       "additionalProperties": false,
+      "description": "Académie",
       "properties": {
         "code": {
+          "description": "Code de l'académie",
           "examples": [
             "A1",
           ],
           "type": "string",
         },
         "id": {
+          "description": "Identifiant de l'académie",
           "examples": [
             "1",
           ],
           "type": "string",
         },
         "nom": {
+          "description": "Nom de l'académie",
           "examples": [
             "Académie de Paris",
           ],
@@ -42,14 +47,18 @@ exports[`openapiSpec#models > should generate proper schema Adresse 1`] = `
           "type": "null",
         },
       ],
+      "description": "Code postal",
     },
     "commune": {
       "additionalProperties": false,
+      "description": "Ville",
       "properties": {
         "code_insee": {
+          "description": "Code INSEE de la ville",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de la ville",
           "type": "string",
         },
       },
@@ -61,11 +70,14 @@ exports[`openapiSpec#models > should generate proper schema Adresse 1`] = `
     },
     "departement": {
       "additionalProperties": false,
+      "description": "Département",
       "properties": {
         "code_insee": {
+          "description": "Code INSEE du département",
           "type": "string",
         },
         "nom": {
+          "description": "Nom du département",
           "type": "string",
         },
       },
@@ -84,14 +96,18 @@ exports[`openapiSpec#models > should generate proper schema Adresse 1`] = `
           "type": "null",
         },
       ],
+      "description": "Libellé de l'adresse",
     },
     "region": {
       "additionalProperties": false,
+      "description": "Région",
       "properties": {
         "code_insee": {
+          "description": "Code INSEE de la région",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de la région",
           "type": "string",
         },
       },
@@ -117,14 +133,21 @@ exports[`openapiSpec#models > should generate proper schema Adresse 1`] = `
 exports[`openapiSpec#models > should generate proper schema Certification 1`] = `
 {
   "additionalProperties": false,
+  "description": "Certification",
   "properties": {
     "base_legale": {
       "additionalProperties": false,
+      "description": "Dates de création et d’abrogation des diplômes crées par arrêtés",
       "properties": {
         "cfd": {
           "anyOf": [
             {
               "additionalProperties": false,
+              "description": "Informations légales issue de la base centrale des nomenclatures (BCN) relatives au diplôme.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
               "properties": {
                 "abrogation": {
                   "anyOf": [
@@ -136,6 +159,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date d'arrêté d'abrogation du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.
+- La date est retournée au format ISO 8601 avec le fuseau horaire 'Europe/Paris'.",
                   "examples": [
                     "2022-08-31T23:59:59.000+02:00",
                     "2022-12-31T23:59:59.000+01:00",
@@ -151,6 +180,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date d'arrêté de création du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.
+- La date est retournée au format ISO 8601 avec le fuseau horaire 'Europe/Paris'.",
                   "examples": [
                     "2014-02-21T00:00:00.000+01:00",
                     "2018-05-11T00:00:00.000+02:00",
@@ -176,6 +211,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
     },
     "blocs_competences": {
       "additionalProperties": false,
+      "description": "Liste du (ou des) code (s) et intitulé(s) des blocs de compétences validés par la certification",
       "properties": {
         "rncp": {
           "anyOf": [
@@ -216,6 +252,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Liste des blocs de compétences issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
         },
       },
       "required": [
@@ -225,6 +266,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
     },
     "continuite": {
       "additionalProperties": false,
+      "description": "**Liste des couples CFD-RNCP assurant la continuité de la certification professionnelle.** La liste inclut à la fois les fiches remplacées et remplaçantes. Elle est ordonnée par date d'activation de la fiche RNCP et inclut la fiche courante.",
       "properties": {
         "cfd": {
           "anyOf": [
@@ -237,6 +279,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                     "type": "string",
                   },
                   "courant": {
+                    "description": "Indique si le diplôme correspond au diplôme courant, i.e \`identifiant.cfd\` est égal au \`code\`.",
                     "type": "boolean",
                   },
                   "fermeture": {
@@ -253,6 +296,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                         "type": "null",
                       },
                     ],
+                    "description": "Date de fermeture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                   },
                   "ouverture": {
                     "anyOf": [
@@ -268,6 +316,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                         "type": "null",
                       },
                     ],
+                    "description": "Date d'ouverture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.",
                   },
                 },
                 "required": [
@@ -284,6 +337,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Liste des diplômes assurant la continuité du diplôme. La liste inclut à la fois les diplômes remplacés et remplaçant. La liste est ordonnée par date d'ouverture du diplôme et inclut le diplôme courant.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.
+- Pour distinguer les diplômes remplacés des diplômes remplaçant, il faut se référer aux dates d'ouverture et de fermeture des diplômes.",
         },
         "rncp": {
           "anyOf": [
@@ -292,6 +351,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                 "additionalProperties": false,
                 "properties": {
                   "actif": {
+                    "description": "Lorsque la fiche est active, les inscriptions à la formation sont ouvertes, à l’inverse, lorsque la fiche est inactive, les inscriptions sont fermées.",
                     "type": "boolean",
                   },
                   "activation": {
@@ -308,8 +368,16 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                         "type": "null",
                       },
                     ],
+                    "description": "Date à laquelle la fiche RNCP est passée au statut \`actif\`.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.
+
+- France Compétence ne fournie pas l'information, nous le déduisons de la date de premiere apparation de la fiche RNCP avec le statut \`actif\`.",
                   },
                   "code": {
+                    "description": "Indique si la fiche correspond à la fiche courante, i.e \`identifiant.rncp\` est égal au \`code\`.",
                     "pattern": "^RNCP\\d{3,5}$",
                     "type": "string",
                   },
@@ -330,6 +398,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                         "type": "null",
                       },
                     ],
+                    "description": "Date de fin d’enregistrement d’une fiche au RNCP.
+
+Notes:
+
+- France Compétence fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                   },
                 },
                 "required": [
@@ -347,6 +420,8 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.
+- Pour distinguer les fiches remplacées des fiches remplaçant, il faut se référer aux dates d'activation et de fin d'enregistrement des fiches.",
         },
       },
       "required": [
@@ -357,6 +432,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
     },
     "convention_collectives": {
       "additionalProperties": false,
+      "description": "Liste(s) de la ou des convention(s) collective(s) rattachées à la certification",
       "properties": {
         "rncp": {
           "anyOf": [
@@ -389,6 +465,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Liste des conventions collectives issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
         },
       },
       "required": [
@@ -401,6 +482,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
       "properties": {
         "formacodes": {
           "additionalProperties": false,
+          "description": "Formacode® issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
           "properties": {
             "rncp": {
               "anyOf": [
@@ -433,6 +519,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "Formacode® issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
             },
           },
           "required": [
@@ -480,6 +571,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "NSF issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.
+- Le code NSF est déduis du code formation diplôme (CFD), il n'inclut donc pas la lettre de spécialité et le tableau ne contient qu'un seul élément.",
             },
             "rncp": {
               "anyOf": [
@@ -520,6 +617,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "NSF issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
             },
           },
           "required": [
@@ -530,6 +632,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
         },
         "rome": {
           "additionalProperties": false,
+          "description": "Répertoire Opérationnel des Métiers et des Emplois (ROME).",
           "properties": {
             "rncp": {
               "anyOf": [
@@ -563,6 +666,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "ROME issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
             },
           },
           "required": [
@@ -580,6 +688,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
     },
     "identifiant": {
       "additionalProperties": false,
+      "description": "les fiches RNCP antérieures à la réforme de 2019 ont certaines données qui ne sont pas renseignées, elles sont identifiées par le champ \`rncp_anterieur_2019\` à \`true\`.",
       "properties": {
         "cfd": {
           "anyOf": [
@@ -594,6 +703,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Code Formation Diplôme (CFD) de la certification.
+
+Notes:
+
+- \`null\` si et seulement si aucun diplôme CFD correspondant à la fiche RNCP (\`identifiant.rncp\`) n'est connu.
+- Lorsque le code est \`null\`, toutes les informations issues de la base centrale des nomenclatures (BCN) seront \`null\`",
         },
         "rncp": {
           "anyOf": [
@@ -608,6 +723,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Code Répertoire National des Certifications Professionnelles (RNCP) de la certification.
+
+Notes:
+
+- \`null\` si et seulement si aucune fiche RNCP correspondant au diplôme (\`identifiant.cfd\`) n'est connu.
+- Lorsque le code est \`null\`, toutes les informations issues de France Compétence seront \`null\`",
         },
         "rncp_anterieur_2019": {
           "anyOf": [
@@ -618,6 +739,13 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Identifie les certifications dont le code RNCP correspond à une fiche antérieure à la réforme de 2019.
+
+Notes:
+
+- \`null\` si \`identifiant.rncp\` est \`null\`
+- \`true\` si le numéro de fiche \`identifiant.rncp\` est inférieur à \`34,000\`
+- \`false\` sinon",
         },
       },
       "required": [
@@ -636,6 +764,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "additionalProperties": false,
               "properties": {
                 "court": {
+                  "description": "**Intitulé court du diplôme.**",
                   "examples": [
                     "BOULANGER",
                     "GENIE BIO - AGRONOMIE",
@@ -643,6 +772,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "string",
                 },
                 "long": {
+                  "description": "**Intitulé long du diplôme.**",
                   "examples": [
                     "BOULANGER (CAP)",
                     "GENIE BIOLOGIQUE OPTION AGRONOMIE (DUT)",
@@ -660,9 +790,15 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Intitulés de la certification issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
         },
         "niveau": {
           "additionalProperties": false,
+          "description": "Niveau de qualification de la certification professionnelle",
           "properties": {
             "cfd": {
               "anyOf": [
@@ -692,8 +828,19 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                           "type": "null",
                         },
                       ],
+                      "description": "Niveau de qualification de la certification (de 1 à 8) utilisés dans les référentiels nationaux européens.
+
+Notes:
+
+- peut être \`null\` lorsque le niveau de diplôme n'a pas de correspondance avec les niveaux européens ou qu'elle n'est pas déterminée.
+- lorsque la fiche RNCP correspondante est connue, il faut priviliégier le niveau européen issue de France Compétences.",
                     },
                     "formation_diplome": {
+                      "description": "Code à 3 caractères qui renseigne sur le niveau du diplôme suivant le référentiel de l'Éducation Nationale.
+
+Notes:
+
+- correspond aux 3 premiers caractères du code CFD.",
                       "examples": [
                         "500",
                         "370",
@@ -701,6 +848,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "string",
                     },
                     "interministeriel": {
+                      "description": "code interministériel du niveau de la formation suivant le référentiel de l'Éducation Nationale.
+
+Notes:
+
+- correspond au premier caractère du code CFD, sauf pour le CFD \`01321401\`",
                       "examples": [
                         "3",
                         "6",
@@ -744,6 +896,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "Niveau de la certification issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
             },
             "rncp": {
               "anyOf": [
@@ -772,6 +929,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                           "type": "null",
                         },
                       ],
+                      "description": "Niveau de qualification de la certification (de 1 à 8) utilisés dans les référentiels nationaux européens.
+
+Notes:
+
+- \`null\` lorsque le niveau de diplôme n'a pas de correspondance avec les niveaux européens.",
                     },
                   },
                   "required": [
@@ -783,6 +945,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "Niveau de qualification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
             },
           },
           "required": [
@@ -803,6 +970,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Intitulé de la certification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
         },
       },
       "required": [
@@ -814,6 +986,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
     },
     "periode_validite": {
       "additionalProperties": false,
+      "description": "**Un couple CFD-RNCP a une période de validité** qui correspond à l’intersection de la période d’ouverture du diplôme et de la période d’activité de la fiche RNCP.
+
+Notes:
+
+Les dates sont retournées au format ISO 8601 avec le fuseau horaire Europe/Paris.",
       "properties": {
         "cfd": {
           "anyOf": [
@@ -832,6 +1009,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Année de sortie des derniers diplômés.",
                 },
                 "fermeture": {
                   "anyOf": [
@@ -847,6 +1025,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date de fermeture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                 },
                 "ouverture": {
                   "anyOf": [
@@ -862,6 +1045,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date d'ouverture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.",
                 },
                 "premiere_session": {
                   "anyOf": [
@@ -875,6 +1063,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Année de sortie des premiers diplômés.",
                 },
               },
               "required": [
@@ -889,6 +1078,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
         },
         "debut": {
           "anyOf": [
@@ -900,6 +1090,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Date de début de validité de la certification. Cette date correspond à l'intersection de la date d'ouverture du diplôme et de la date d'activation de la fiche RNCP.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.",
           "examples": [
             "2021-09-01T00:00:00.000+02:00",
             "2022-01-01T00:00:00.000+01:00",
@@ -915,6 +1110,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Date de fin de validité de la certification. Cette date correspond à l'intersection de la date de fermeture du diplôme et de la date de fin d'enregistrement.",
           "examples": [
             "2022-08-31T23:59:59.000+02:00",
             "2022-12-31T23:59:59.000+01:00",
@@ -926,6 +1122,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "additionalProperties": false,
               "properties": {
                 "actif": {
+                  "description": "Lorsque la fiche est active, les inscriptions à la formation sont ouvertes, à l’inverse, lorsque la fiche est inactive, les inscriptions sont fermées.",
                   "type": "boolean",
                 },
                 "activation": {
@@ -938,6 +1135,12 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date à laquelle la fiche RNCP est passée au statut \`actif\`.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.
+- France Compétence ne fournie pas l'information, nous le déduisons de la date de premiere apparation de la fiche RNCP avec le statut \`actif\`.",
                   "examples": [
                     "2021-09-01T00:00:00.000+02:00",
                     "2022-01-01T00:00:00.000+01:00",
@@ -953,6 +1156,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date de début des parcours certifiants. Anciennement appelée 'date d'effet' pour les enregistrements de droit et correspondant à la date de décision pour les enregistrements sur demande.
+
+Notes:
+
+La date est retournée au format ISO 8601 avec le fuseau horaire Europe/Paris.",
                 },
                 "fin_enregistrement": {
                   "anyOf": [
@@ -964,6 +1172,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                       "type": "null",
                     },
                   ],
+                  "description": "Date de fin d’enregistrement d’une fiche au RNCP.
+
+Notes:
+
+- France Compétence fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                   "examples": [
                     "2021-09-01T00:00:00.000+02:00",
                     "2022-01-01T00:00:00.000+01:00",
@@ -982,6 +1195,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
         },
       },
       "required": [
@@ -1002,9 +1216,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                 "additionalProperties": false,
                 "properties": {
                   "nom": {
+                    "description": "Nom du certificateur renseigné dans le RNCP.",
                     "type": "string",
                   },
                   "siret": {
+                    "description": "Numéro SIRET du certificateur renseigné dans le RNCP.",
                     "type": "string",
                   },
                 },
@@ -1020,6 +1236,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Liste des certificateurs de la fiche RNCP.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
         },
         "enregistrement_rncp": {
           "anyOf": [
@@ -1034,6 +1255,9 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Permet de savoir si la certification est enregistrée de droit ou sur demande au Repertoire National des Certifications Professionnelles (RNCP)
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
           "examples": [
             "Enregistrement de droit",
           ],
@@ -1047,12 +1271,18 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
               "type": "null",
             },
           ],
+          "description": "Service responsable de la définition du diplôme.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
           "examples": [
             "DGESCO A2-3",
           ],
         },
         "nature": {
           "additionalProperties": false,
+          "description": "Nature du diplôme.",
           "properties": {
             "cfd": {
               "anyOf": [
@@ -1100,6 +1330,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "Nature du diplôme issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
             },
           },
           "required": [
@@ -1109,6 +1344,7 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
         },
         "voie_acces": {
           "additionalProperties": false,
+          "description": "Voie d’accès à la certification.",
           "properties": {
             "rncp": {
               "anyOf": [
@@ -1116,21 +1352,27 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "additionalProperties": false,
                   "properties": {
                     "apprentissage": {
+                      "description": "Certification accessible en contrat d’apprentissage.",
                       "type": "boolean",
                     },
                     "candidature_individuelle": {
+                      "description": "Certification accessible par candidature individuelle.",
                       "type": "boolean",
                     },
                     "contrat_professionnalisation": {
+                      "description": "Certification accessible en contrat de professionnalisation.",
                       "type": "boolean",
                     },
                     "experience": {
+                      "description": "Certification accessible par expérience.",
                       "type": "boolean",
                     },
                     "formation_continue": {
+                      "description": "Certification accessible après un parcours de formation continue.",
                       "type": "boolean",
                     },
                     "formation_statut_eleve": {
+                      "description": "Certification accessible après un parcours de formation sous statut d’élève ou d’étudiant.",
                       "type": "boolean",
                     },
                   },
@@ -1148,6 +1390,11 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
                   "type": "null",
                 },
               ],
+              "description": "Voie d’accès à la certification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
             },
           },
           "required": [
@@ -1184,17 +1431,22 @@ exports[`openapiSpec#models > should generate proper schema Certification 1`] = 
 exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
 {
   "additionalProperties": false,
+  "description": "Commune",
   "properties": {
     "academie": {
       "additionalProperties": false,
+      "description": "Académie de la commune",
       "properties": {
         "code": {
+          "description": "Code de l'académie",
           "type": "string",
         },
         "id": {
+          "description": "Identifiant de l'académie",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de l'académie",
           "type": "string",
         },
       },
@@ -1206,13 +1458,16 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
       "type": "object",
     },
     "anciennes": {
+      "description": "Anciennes communes fusionnées",
       "items": {
         "additionalProperties": false,
         "properties": {
           "codeInsee": {
+            "description": "Code INSEE de l'ancienne commune",
             "type": "string",
           },
           "nom": {
+            "description": "Nom de l'ancienne commune",
             "type": "string",
           },
         },
@@ -1225,13 +1480,16 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
       "type": "array",
     },
     "arrondissements": {
+      "description": "Arrondissements de la commune",
       "items": {
         "additionalProperties": false,
         "properties": {
           "code": {
+            "description": "Code INSEE de l'arrondissement",
             "type": "string",
           },
           "nom": {
+            "description": "Nom de l'arrondissement",
             "type": "string",
           },
         },
@@ -1245,11 +1503,16 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
     },
     "code": {
       "additionalProperties": false,
+      "description": "Code INSEE et postaux de la commune
+
+Une commune peut avoir plusieurs code postaux, et un code postal peut correspondre à plusieurs communes. Le code INSEE lui est unique pour chaque commune.",
       "properties": {
         "insee": {
+          "description": "Code INSEE de la commune",
           "type": "string",
         },
         "postaux": {
+          "description": "Liste des codes postaux de la commune",
           "items": {
             "type": "string",
           },
@@ -1264,11 +1527,14 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
     },
     "departement": {
       "additionalProperties": false,
+      "description": "Département de la commune",
       "properties": {
         "codeInsee": {
+          "description": "Code INSEE du département",
           "type": "string",
         },
         "nom": {
+          "description": "Nom du département",
           "type": "string",
         },
       },
@@ -1280,6 +1546,12 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
     },
     "localisation": {
       "additionalProperties": false,
+      "description": "Les informations de localisations sont composés du:
+
+- Du \`centre\` de la commune
+- De la boite englobante (\`bbox\`) qui délimite la zone de la commune.
+
+Les champs \`centre\` et \`bbox\` sont tous les deux au format [GeoJSON](https://fr.wikipedia.org/wiki/GeoJSON)",
       "properties": {
         "bbox": {
           "$ref": "#/components/schemas/GeoJsonPolygon",
@@ -1303,17 +1575,22 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
           "type": "null",
         },
       ],
+      "description": "Mission locale dont relève la commune",
     },
     "nom": {
+      "description": "Nom de la commune",
       "type": "string",
     },
     "region": {
       "additionalProperties": false,
+      "description": "Région de la commune",
       "properties": {
         "codeInsee": {
+          "description": "Code INSEE de la région",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de la région",
           "type": "string",
         },
       },
@@ -1342,17 +1619,22 @@ exports[`openapiSpec#models > should generate proper schema Commune 1`] = `
 exports[`openapiSpec#models > should generate proper schema Departement 1`] = `
 {
   "additionalProperties": false,
+  "description": "Département",
   "properties": {
     "academie": {
       "additionalProperties": false,
+      "description": "Académie de la commune",
       "properties": {
         "code": {
+          "description": "Code de l'académie",
           "type": "string",
         },
         "id": {
+          "description": "Identifiant de l'académie",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de l'académie",
           "type": "string",
         },
       },
@@ -1364,18 +1646,23 @@ exports[`openapiSpec#models > should generate proper schema Departement 1`] = `
       "type": "object",
     },
     "codeInsee": {
+      "description": "Code INSEE du département",
       "type": "string",
     },
     "nom": {
+      "description": "Nom du département",
       "type": "string",
     },
     "region": {
       "additionalProperties": false,
+      "description": "Région de la commune",
       "properties": {
         "codeInsee": {
+          "description": "Code INSEE de la région",
           "type": "string",
         },
         "nom": {
+          "description": "Nom de la région",
           "type": "string",
         },
       },
@@ -1399,11 +1686,16 @@ exports[`openapiSpec#models > should generate proper schema Departement 1`] = `
 exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
 {
   "additionalProperties": false,
+  "description": "Formation",
   "properties": {
     "certification": {
       "additionalProperties": false,
+      "description": "Certification de la formation",
       "properties": {
         "connue": {
+          "description": "Lorsque la certification est connue, alors la certification est disponible dans l'API certifications
+
+Dans le cas contraire, la certification est construite à partir des informations issue du RNCP et du CFD indépendemment.",
           "type": "boolean",
         },
         "valeur": {
@@ -1418,6 +1710,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "contact": {
       "additionalProperties": false,
+      "description": "Coordonnées à utiliser pour contacter l'organisme",
       "properties": {
         "email": {
           "anyOf": [
@@ -1430,6 +1723,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Email de contact de la formation",
         },
         "telephone": {
           "anyOf": [
@@ -1440,6 +1734,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Téléphone de contact de la formation",
         },
       },
       "required": [
@@ -1450,11 +1745,14 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "contenu_educatif": {
       "additionalProperties": false,
+      "description": "Contenu éducatif de la formation",
       "properties": {
         "contenu": {
+          "description": "Contenu de la formation",
           "type": "string",
         },
         "objectif": {
+          "description": "Objectif de la formation",
           "type": "string",
         },
       },
@@ -1466,8 +1764,16 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "formateur": {
       "additionalProperties": false,
+      "description": "Formateur de la formation
+
+L'organisme formateur a pour mission de dispenser la formation",
       "properties": {
         "connu": {
+          "description": "Indique si le formateur est connu de l'API
+
+L'organisme est connu lorsqu'il est présent dans [le référentiel des organismes de formation](https://referentiel.apprentissage.onisep.fr/organismes) ou s'il l'a été dans le passé.
+
+Il peut s'agir d'un organisme qui n'est plus sur le référentiel des organismes de formation. Veuillez vérifier le statut de l'organisme.",
           "type": "boolean",
         },
         "organisme": {
@@ -1479,6 +1785,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "L'organisme de formation",
         },
       },
       "required": [
@@ -1489,8 +1796,10 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "identifiant": {
       "additionalProperties": false,
+      "description": "Identifiant de la formation",
       "properties": {
         "cle_ministere_educatif": {
+          "description": "Identifiant unique de la formation sur [le catalogue des formations en apprentissage](https://catalogue-apprentissage.intercariforef.org/recherche/formations)",
           "type": "string",
         },
       },
@@ -1501,6 +1810,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "lieu": {
       "additionalProperties": false,
+      "description": "Lieu où la formation est dispensée",
       "properties": {
         "adresse": {
           "$ref": "#/components/schemas/Adresse",
@@ -1517,6 +1827,9 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Précision de la géolocalisation du lieu de formation en mètres.
+
+Il s'agit de la distance entre le point géolocalisé et la locasation déduite de l'adresse",
         },
         "siret": {
           "anyOf": [
@@ -1528,6 +1841,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Numéro SIRET du lieu de formation",
         },
         "uai": {
           "anyOf": [
@@ -1539,6 +1853,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Numéro UAI du lieu de formation",
         },
       },
       "required": [
@@ -1552,6 +1867,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "modalite": {
       "additionalProperties": false,
+      "description": "Modalité de la formation",
       "properties": {
         "annee_cycle": {
           "anyOf": [
@@ -1562,11 +1878,14 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "- L'année de démarrage de la session de formation.",
         },
         "duree_indicative": {
+          "description": "Durée indicative de la formation",
           "type": "number",
         },
         "entierement_a_distance": {
+          "description": "Indique si la formation est entièrement à distance",
           "type": "boolean",
         },
         "mef_10": {
@@ -1579,6 +1898,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "Code MEF 10 de la formation",
         },
       },
       "required": [
@@ -1591,6 +1911,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "onisep": {
       "additionalProperties": false,
+      "description": "Informations lié à la formation issues de l'ONISEP",
       "properties": {
         "discipline": {
           "anyOf": [
@@ -1666,8 +1987,16 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "responsable": {
       "additionalProperties": false,
+      "description": "Responsable de la formation
+
+Le responsable de la formation est l'organisme qui a la responsabilité administrative de la formation
+
+Il peut s'agir d'un organisme qui n'est plus sur le référentiel des organismes de formation. Veuillez vérifier le statut de l'organisme.",
       "properties": {
         "connu": {
+          "description": "Indique si le responsable est connu de l'API
+
+L'organisme est connu lorsqu'il est présent dans [le référentiel des organismes de formation](https://referentiel.apprentissage.onisep.fr/organismes) ou s'il l'a été dans le passé.",
           "type": "boolean",
         },
         "organisme": {
@@ -1679,6 +2008,7 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
               "type": "null",
             },
           ],
+          "description": "L'organisme responsable",
         },
       },
       "required": [
@@ -1688,8 +2018,10 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
       "type": "object",
     },
     "sessions": {
+      "description": "Liste des sessions de formation",
       "items": {
         "additionalProperties": false,
+        "description": "Session de formation",
         "properties": {
           "capacite": {
             "anyOf": [
@@ -1700,12 +2032,15 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
                 "type": "null",
               },
             ],
+            "description": "Capacité de la session",
           },
           "debut": {
+            "description": "Date de début de la session",
             "format": "date-time",
             "type": "string",
           },
           "fin": {
+            "description": "Date de fin de la session",
             "format": "date-time",
             "type": "string",
           },
@@ -1721,8 +2056,10 @@ exports[`openapiSpec#models > should generate proper schema Formation 1`] = `
     },
     "statut": {
       "additionalProperties": false,
+      "description": "Statut de la formation",
       "properties": {
         "catalogue": {
+          "description": "Statut de la formation sur le catalogue",
           "enum": [
             "publié",
             "supprimé",
@@ -1761,6 +2098,7 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPoint 1`] = `
     "coordinates": {
       "prefixItems": [
         {
+          "description": "Longitude",
           "examples": [
             48.850699,
           ],
@@ -1769,6 +2107,7 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPoint 1`] = `
           "type": "number",
         },
         {
+          "description": "Latitude",
           "examples": [
             2.308628,
           ],
@@ -1801,6 +2140,7 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPolygon 1`] =
         "items": {
           "prefixItems": [
             {
+              "description": "Longitude",
               "examples": [
                 48.850699,
               ],
@@ -1809,6 +2149,7 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPolygon 1`] =
               "type": "number",
             },
             {
+              "description": "Latitude",
               "examples": [
                 2.308628,
               ],
@@ -1839,42 +2180,50 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPolygon 1`] =
 exports[`openapiSpec#models > should generate proper schema JobApplicationWrite 1`] = `
 {
   "additionalProperties": false,
+  "description": "Candidature",
   "properties": {
     "applicant_attachment_content": {
+      "description": "CV du candidat",
       "format": "byte",
       "maxLength": 4215276,
       "type": "string",
     },
     "applicant_attachment_name": {
+      "description": "Nom du CV",
       "minLength": 1,
       "pattern": "((.*?))(\\.)+([Dd][Oo][Cc][Xx]|[Pp][Dd][Ff])$",
       "type": "string",
     },
     "applicant_email": {
+      "description": "Email du candidat",
       "format": "email",
       "type": "string",
     },
     "applicant_first_name": {
+      "description": "Prénom du candidat",
       "maxLength": 50,
       "minLength": 1,
       "type": "string",
     },
     "applicant_last_name": {
+      "description": "Nom du candidat",
       "maxLength": 50,
       "minLength": 1,
       "type": "string",
     },
     "applicant_message": {
+      "description": "Message du candidat",
       "type": [
         "string",
         "null",
       ],
     },
     "applicant_phone": {
+      "description": "Numéro de téléphone du candidat",
       "type": "string",
     },
     "recipient_id": {
-      "description": "Identifiant unique de la ressource vers laquelle la candidature est faite, préfixé par le nom de la collection",
+      "description": "Identifiant du destinataire récupéré de \`apply.recipient_id\` depuis les resultas de la route de recherche.",
       "type": "string",
     },
   },
@@ -1893,8 +2242,10 @@ exports[`openapiSpec#models > should generate proper schema JobApplicationWrite 
 
 exports[`openapiSpec#models > should generate proper schema JobOfferExport 1`] = `
 {
+  "description": "Informations concernant l'export de toutes les offres.",
   "properties": {
     "lastUpdate": {
+      "description": "Date de l'export",
       "examples": [
         "2025-06-26T08:28:05.000Z",
       ],
@@ -1902,6 +2253,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferExport 1`] =
       "type": "string",
     },
     "url": {
+      "description": "URL de l'export. le lien de téléchargement est valable pendant 2 minutes. 
+
+Les offres sont au format JSON. La structure de données des offres est identique à la réponse de la [route de recherche](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
       "examples": [
         "https://s3.rbx.io.cloud.ovh.net/bucket/file.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD",
       ],
@@ -1918,12 +2272,16 @@ exports[`openapiSpec#models > should generate proper schema JobOfferExport 1`] =
 
 exports[`openapiSpec#models > should generate proper schema JobOfferPublishing 1`] = `
 {
+  "description": "Informations sur la publication de l'offre d'emploi",
   "properties": {
     "publishing": {
+      "description": "Informations sur la publication de l'offre d'emploi",
       "properties": {
         "error": {
+          "description": "Objet contenant l'erreur",
           "properties": {
             "code": {
+              "description": "Code de l'erreur. Ce code ne changera pas.",
               "examples": [
                 "CLOSED_COMPANY",
                 "DUPLICATE",
@@ -1937,6 +2295,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferPublishing 1
               "type": "string",
             },
             "label": {
+              "description": "Description de l'erreur",
               "examples": [
                 "WILL_BE_PUBLISHED",
                 "PUBLISHED",
@@ -1952,6 +2311,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferPublishing 1
           "type": "object",
         },
         "status": {
+          "description": "Etat de la publication. Si la valeur vaut WILL_NOT_BE_PUBLISHED, l'offre ne sera pas publiée.",
           "enum": [
             "WILL_BE_PUBLISHED",
             "PUBLISHED",
@@ -1980,10 +2340,19 @@ exports[`openapiSpec#models > should generate proper schema JobOfferPublishing 1
 
 exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
 {
+  "description": "Offre d'emploi",
   "properties": {
     "apply": {
+      "description": "Cet élément regroupe les différents moyens de candidature proposés aux candidats.
+
+- URL vers laquelle rediriger le candidat pour qu’il postule
+- Numéro de téléphone de la personne chargée du recrutement
+- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
       "properties": {
         "phone": {
+          "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
+
+Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
           "examples": [
             "0199000000",
           ],
@@ -1993,12 +2362,14 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "recipient_id": {
+          "description": "Identifiant à utiliser pour postuler à l'offre d'emploi via la route /v3/jobs/apply ou pour afficher le widget postuler. Si null, la candidature n'est pas disponible pour cette offre par la route apply_route ni par le widget /postuler.",
           "type": [
             "string",
             "null",
           ],
         },
         "url": {
+          "description": "URL de redirection vers le formulaire de candidature",
           "examples": [
             "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
@@ -2013,8 +2384,15 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
       "type": "object",
     },
     "contract": {
+      "description": "Un contrat est décrit par :
+
+- Le type (apprentissage et/ou professionnalisation).
+- La date de début.
+- La durée.
+- Le mode de travail (présentiel, télétravail ou hybride).",
       "properties": {
         "duration": {
+          "description": "Durée du contrat en mois.",
           "examples": [
             12,
           ],
@@ -2025,6 +2403,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "remote": {
+          "description": "Mode de travail (sur site, à distance ou hybride)",
           "enum": [
             "onsite",
             "remote",
@@ -2041,6 +2420,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "start": {
+          "description": "Date de début du contrat.",
           "examples": [
             "2024-09-23T10:00:00.000Z",
           ],
@@ -2051,7 +2431,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "type": {
+          "description": "Type de contrat (apprentissage et/ou professionnalisation)",
           "items": {
+            "description": "Type de contrat (apprentissage et/ou professionnalisation)",
             "enum": [
               "Apprentissage",
               "Professionnalisation",
@@ -2074,8 +2456,15 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
       "type": "object",
     },
     "identifier": {
+      "description": "Cet élément regroupe :
+
+- le partenaire à l'origine de l'offre d'emploi
+- l'identifiant unique de l'offre d'emploi au sein du système d'information Cour de cassation",
       "properties": {
         "id": {
+          "description": "Identifiant de l'offre d'emploi dans la base de données Cour de cassation.
+
+Les offres France Travail ne sont pas stockées dans la base de données Cour de cassation mais sont récupérées à la volée. Elles n'ont pas d'identifiant dans la base de données.",
           "examples": [
             "6687165396d52b5e01b409545",
           ],
@@ -2085,12 +2474,16 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "partner_job_id": {
+          "description": "Identifiant de l'offre dans le système d'information du partenaire.",
           "examples": [
             "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
           ],
           "type": "string",
         },
         "partner_label": {
+          "description": "Partenaire à l'origine de l'offre d'emploi.
+
+Dans le cas des offres collectées par Cour de cassation, le partner_label est : "offres_emploi_lba".<br />Dans le cas des entreprises identifiées comme ayant un fort potentiel d’embauche, le partner_label est : "recruteurs_lba".",
           "examples": [
             "France Travail",
             "offres_emploi_lba",
@@ -2107,16 +2500,28 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
     },
     "is_delegated": {
       "default": false,
-      "description": "Indicates if the job offer management is delegated to a partner school",
+      "description": "Indique si la gestion de l'offre est déléguée à un CFA partenaire. valeurs true | false",
       "examples": [
         true,
       ],
       "type": "boolean",
     },
     "offer": {
+      "description": "Une offre d’emploi est décrite par :
+
+- L’intitulé. Exemple : Développeur / Développeuse web.
+- La description. Exemple : Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.
+- Le niveau de diplôme visé. Exemple : BP, Bac, autres formations niveau (Bac)
+- Les compétences ou qualités attendues pour le poste. Exemple : Faire preuve d'autonomie ; Faire preuve de créativité, d'inventivité ; Faire preuve de rigueur et de précision ; Travailler en équipe
+- Les compétences ou qualités à acquérir durant la formation. Exemple : Recherche, Innovation (Analyser les indicateurs pertinents sur les tendances et les usages des clients ; Concevoir et développer une solution digitale ; Créer une documentation technique). Nouvelles technologies (Assembler des composants logiciels ; Concevoir une application web)
+- Les conditions d’accès au métier. Exemple : Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique. Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif. La pratique de l'anglais (vocabulaire technique) est requise.
+- Le nombre de postes à pourvoir.
+- Le ou les codes ROME associés. Exemple : M1805, M1806, M1807",
       "properties": {
         "access_conditions": {
+          "description": "Les conditions d'accès au métier",
           "items": {
+            "description": "Les conditions d'accès au métier",
             "examples": [
               "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
               "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -2127,13 +2532,16 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "array",
         },
         "description": {
+          "description": "Description de l'offre d'emploi.",
           "examples": [
             "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
           ],
           "type": "string",
         },
         "desired_skills": {
+          "description": "Les compétences ou qualités attendues pour le poste.",
           "items": {
+            "description": "Les compétences ou qualités attendues pour le poste.",
             "examples": [
               "Faire preuve d'autonomie",
               "Faire preuve de créativité, d'inventivité",
@@ -2145,6 +2553,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "array",
         },
         "opening_count": {
+          "description": "Nombre de postes disponibles pour cette offre d'emploi",
           "examples": [
             1,
             3,
@@ -2152,8 +2561,10 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "number",
         },
         "publication": {
+          "description": "Une opportunité d’emploi possède un cycle de vie : une date de création et une date d'expiration.",
           "properties": {
             "creation": {
+              "description": "Date de création de l'opportunité d'emploi.",
               "examples": [
                 "2024-07-23T13:23:01.000Z",
               ],
@@ -2164,6 +2575,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
               ],
             },
             "expiration": {
+              "description": "Date d'expiration de l'opportunité d'emploi.",
               "examples": [
                 "2027-05-14T00:00:00Z",
               ],
@@ -2181,7 +2593,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "object",
         },
         "rome_codes": {
+          "description": "Code(s) ROME de l'offre",
           "items": {
+            "description": "Code ROME",
             "examples": [
               "A1401",
             ],
@@ -2191,6 +2605,13 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "array",
         },
         "status": {
+          "description": "Le statut de l'offre (cycle de vie) :
+
+- Active : L'offre est disponible sur la plateforme et il est possible d'y postuler.
+- Filled : L'offre a été pourvue et n'est donc plus disponible.
+- Cancelled : L'offre a été annulée et n'est donc plus disponible.
+
+Seules les offres actives sont retournées par la recherche.",
           "enum": [
             "Active",
             "Filled",
@@ -2202,8 +2623,10 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "string",
         },
         "target_diploma": {
+          "description": "Diplôme visé à l'issue des études.",
           "properties": {
             "european": {
+              "description": "Diplôme visé à l'issue des études.",
               "enum": [
                 "3",
                 "4",
@@ -2217,6 +2640,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
               "type": "string",
             },
             "label": {
+              "description": "Le nom du diplôme visé à l'issue des études.",
               "examples": [
                 "BP, Bac, autres formations niveau (Bac)",
               ],
@@ -2233,6 +2657,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "title": {
+          "description": "Intitulé de l'offre d'emploi.",
           "examples": [
             "Développeur / Développeuse web",
           ],
@@ -2240,7 +2665,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "string",
         },
         "to_be_acquired_skills": {
+          "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
           "items": {
+            "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
             "examples": [
               "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
               "Recherche, Innovation : Concevoir et développer une solution digitale",
@@ -2266,8 +2693,15 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
       "type": "object",
     },
     "workplace": {
+      "description": "Le lieu d’exécution du contrat est décrit par :
+
+- Le nom (enseigne ou à défaut, raison sociale) et le numéro SIRET de l’entreprise.
+- La description de l’employeur et/ou du service où s’exécutera le contrat.
+- La tranche effectif de l’entreprise, en nombre de salariés.
+- Le site web de l’entreprise.",
       "properties": {
         "brand": {
+          "description": "Enseigne de l'établissement",
           "examples": [
             "Enseigne (todo)",
           ],
@@ -2277,6 +2711,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "description": {
+          "description": "Description de l'employeur et/ou du département où sera exécuté le contrat.",
           "examples": [
             "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
           ],
@@ -2286,8 +2721,14 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "domain": {
+          "description": "Regroupe des éléments qui décrivent le domaine auquel est rattaché le numéro SIRET de l’entreprise :
+
+- La Nomenclature d’Activité Française (NAF). Produite par l’INSEE, elle a pour objectif de faciliter l'organisation de l'information économique et sociale.
+- Le numéro IDCC de la convention collective. Produit par le ministère chargé du travail (Dares et DGT) et celui chargé de l’agriculture.
+- L’Opérateur de Compétence (OPCO) de rattachement pouvant prendre en charge le financement du contrat.",
           "properties": {
             "idcc": {
+              "description": "Numéro de convention collective associé au SIRET",
               "examples": [
                 1979,
               ],
@@ -2297,14 +2738,17 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
               ],
             },
             "naf": {
+              "description": "Code NAF (secteur d'activité) associé au SIRET",
               "properties": {
                 "code": {
+                  "description": "Code NAF (secteur d'activité) associé au SIRET",
                   "examples": [
                     "8411Z",
                   ],
                   "type": "string",
                 },
                 "label": {
+                  "description": "Libellé du code NAF (secteur d'activité) associé au SIRET",
                   "examples": [
                     "Administration publique générale",
                   ],
@@ -2324,6 +2768,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
               ],
             },
             "opco": {
+              "description": "OPérateur de Compétences (OPCO) associé au SIRET",
               "examples": [
                 "OPCO 2i",
               ],
@@ -2341,14 +2786,17 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "object",
         },
         "legal_name": {
+          "description": "Raison sociale de l'entreprise ou raison sociale du CFA si is_delegated = true",
           "type": [
             "string",
             "null",
           ],
         },
         "location": {
+          "description": "Adresse postale et géolocalisation rattachées au numéro SIRET de l’entreprise",
           "properties": {
             "address": {
+              "description": "Adresse postale du lieu de l'offre d'emploi ou du CFA si is_delegated = true.",
               "examples": [
                 "20 AVENUE DE SEGUR 75007 PARIS",
               ],
@@ -2365,6 +2813,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           "type": "object",
         },
         "name": {
+          "description": "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true
+
+Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
           "examples": [
             "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
           ],
@@ -2374,6 +2825,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "siret": {
+          "description": "SIRET du lieu d'exécution du contrat ou du CFA si is_delegated = true",
           "examples": [
             "13002526500013",
           ],
@@ -2384,6 +2836,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "size": {
+          "description": "Effectif de l'entreprise, en nombre d'employés",
           "examples": [
             "100-199",
           ],
@@ -2393,6 +2846,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
           ],
         },
         "website": {
+          "description": "Site web de l'entreprise",
           "examples": [
             "https://beta.gouv.fr/startups/",
           ],
@@ -2431,11 +2885,17 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
 
 exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = `
 {
+  "description": "Offre d'emploi",
   "properties": {
     "apply": {
+      "description": "Eléments qui permettent de déposer une candidature (au moins 1 élément requis sur 3):
+
+- URL de redirection
+- numéro de téléphone
+- email de l’entreprise",
       "properties": {
         "email": {
-          "description": "Email de contact",
+          "description": "Adresse email du recruteur",
           "examples": [
             "jean.dupuis@beta.gouv.fr",
           ],
@@ -2446,7 +2906,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "phone": {
-          "description": "Téléphone de contact",
+          "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
+
+Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
           "examples": [
             "0199000000",
           ],
@@ -2456,7 +2918,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "url": {
-          "description": "URL pour candidater",
+          "description": "URL de redirection",
           "examples": [
             "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
@@ -2470,8 +2932,15 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
       "type": "object",
     },
     "contract": {
+      "description": "Un contrat est décrit par :
+
+- Le type (apprentissage et/ou professionnalisation).
+- La date de début.
+- La durée.
+- Le mode de travail (présentiel, télétravail ou hybride).",
       "properties": {
         "duration": {
+          "description": "Durée du contrat en mois.",
           "examples": [
             12,
           ],
@@ -2482,6 +2951,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "remote": {
+          "description": "Mode de travail (sur site, à distance ou hybride)",
           "enum": [
             "onsite",
             "remote",
@@ -2498,6 +2968,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "start": {
+          "description": "Date de début du contrat.",
           "examples": [
             "2024-09-23T10:00:00.000Z",
           ],
@@ -2512,7 +2983,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
             "Apprentissage",
             "Professionnalisation",
           ],
+          "description": "Type de contrat (apprentissage et/ou professionnalisation)",
           "items": {
+            "description": "Type de contrat (apprentissage et/ou professionnalisation)",
             "enum": [
               "Apprentissage",
               "Professionnalisation",
@@ -2529,8 +3002,13 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
       "type": "object",
     },
     "identifier": {
+      "description": "Cet élément regroupe :
+
+- le partenaire à l'origine de l'offre d'emploi
+- l'identifiant unique de l'offre d'emploi au sein du système d'information Cour de cassation",
       "properties": {
         "partner_job_id": {
+          "description": "Identifiant de l'offre dans le système d'information du partenaire.",
           "examples": [
             "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
           ],
@@ -2543,10 +3021,22 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
       "type": "object",
     },
     "offer": {
+      "description": "Une offre d’emploi est décrite par :
+
+- L’intitulé. Exemple : Développeur / Développeuse web.
+- La description. Exemple : Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.
+- Le niveau de diplôme visé. Exemple : BP, Bac, autres formations niveau (Bac)
+- Les compétences ou qualités attendues pour le poste. Exemple : Faire preuve d'autonomie ; Faire preuve de créativité, d'inventivité ; Faire preuve de rigueur et de précision ; Travailler en équipe
+- Les compétences ou qualités à acquérir durant la formation. Exemple : Recherche, Innovation (Analyser les indicateurs pertinents sur les tendances et les usages des clients ; Concevoir et développer une solution digitale ; Créer une documentation technique). Nouvelles technologies (Assembler des composants logiciels ; Concevoir une application web)
+- Les conditions d’accès au métier. Exemple : Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique. Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif. La pratique de l'anglais (vocabulaire technique) est requise.
+- Le nombre de postes à pourvoir.
+- Le ou les codes ROME associés. Exemple : M1805, M1806, M1807",
       "properties": {
         "access_conditions": {
           "default": [],
+          "description": "Les conditions d'accès au métier",
           "items": {
+            "description": "Les conditions d'accès au métier",
             "examples": [
               "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
               "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -2557,6 +3047,11 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           "type": "array",
         },
         "description": {
+          "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
+
+- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
+
+Toute autre balise ou attribut sera supprimée lors de la validation",
           "examples": [
             "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
           ],
@@ -2565,7 +3060,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
         },
         "desired_skills": {
           "default": [],
+          "description": "Les compétences ou qualités attendues pour le poste.",
           "items": {
+            "description": "Les compétences ou qualités attendues pour le poste.",
             "examples": [
               "Faire preuve d'autonomie",
               "Faire preuve de créativité, d'inventivité",
@@ -2583,6 +3080,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
         },
         "opening_count": {
           "default": 1,
+          "description": "Nombre de postes disponibles pour cette offre d'emploi",
           "examples": [
             1,
             3,
@@ -2597,8 +3095,10 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "publication": {
+          "description": "Une opportunité d’emploi possède un cycle de vie : une date de création et une date d'expiration.",
           "properties": {
             "creation": {
+              "description": "Date de création de l'opportunité d'emploi.",
               "examples": [
                 "2024-07-23T13:23:01.000Z",
               ],
@@ -2609,6 +3109,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
               ],
             },
             "expiration": {
+              "description": "Date d'expiration de l'opportunité d'emploi.",
               "examples": [
                 "2027-05-14T00:00:00Z",
               ],
@@ -2622,7 +3123,11 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           "type": "object",
         },
         "rome_codes": {
+          "description": "Code(s) ROME de l'offre
+
+Si l'offre publiée ne dispose pas de code ROME fourni, nous déduisons les codes ROME à partir du titre de l'offre d'emploi.",
           "items": {
+            "description": "Code ROME",
             "examples": [
               "A1401",
             ],
@@ -2636,6 +3141,15 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
         },
         "status": {
           "default": "Active",
+          "description": "Le statut de l'offre (cycle de vie) :
+
+- Active : L'offre est disponible sur la plateforme et il est possible d'y postuler.
+- Filled : L'offre a été pourvue et n'est donc plus disponible.
+- Cancelled : L'offre a été annulée et n'est donc plus disponible.
+
+Seules les offres actives sont retournées par la recherche.
+
+Lors de la création d'une offre, seules les offres actives sont acceptées. Cependant, lors d'une mise à jour, il est possible d'annuler ou de marquer une offre comme remplie.",
           "enum": [
             "Active",
             "Filled",
@@ -2649,8 +3163,10 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           "type": "string",
         },
         "target_diploma": {
+          "description": "Diplôme visé à l'issue des études.",
           "properties": {
             "european": {
+              "description": "Diplôme visé à l'issue des études.",
               "enum": [
                 "3",
                 "4",
@@ -2673,6 +3189,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "title": {
+          "description": "Intitulé de l'offre d'emploi.",
           "examples": [
             "Développeur / Développeuse web",
           ],
@@ -2681,7 +3198,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
         },
         "to_be_acquired_skills": {
           "default": [],
+          "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
           "items": {
+            "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
             "examples": [
               "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
               "Recherche, Innovation : Concevoir et développer une solution digitale",
@@ -2699,8 +3218,19 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
       "type": "object",
     },
     "workplace": {
+      "description": "Le lieu d’exécution du contrat est décrit par :
+
+- Le nom (enseigne ou à défaut, raison sociale) et le numéro SIRET de l’entreprise.
+- La description de l’employeur et/ou du service où s’exécutera le contrat.
+- La tranche effectif de l’entreprise, en nombre de salariés.
+- Le site web de l’entreprise.",
       "properties": {
         "description": {
+          "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
+
+- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
+
+Toute autre balise ou attribut sera supprimée lors de la validation",
           "examples": [
             "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
           ],
@@ -2710,8 +3240,14 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "location": {
+          "description": "Adresse postale et géolocalisation rattachées au numéro SIRET de l’entreprise",
           "properties": {
             "address": {
+              "description": "Adresse de l'offre d'emploi
+
+Dans le cas de la publication d'une offre d'emploi, une adresse personnalisée peut être fournie ; sinon, l'adresse de l'établissement sera utilisée.
+
+Le champ geopoint est dérivé de l'adresse.",
               "examples": [
                 "20 AVENUE DE SEGUR 75007 PARIS",
               ],
@@ -2727,6 +3263,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "name": {
+          "description": "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true
+
+Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
           "examples": [
             "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
           ],
@@ -2736,6 +3275,9 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           ],
         },
         "siret": {
+          "description": "SIRET du lieu d'exécution du contrat
+
+La marque, le nom légal, la taille, l'IDCC, l'OPCO et le NAF sont automatiquement déduits du SIRET.",
           "examples": [
             "13002526500013",
           ],
@@ -2743,6 +3285,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
           "type": "string",
         },
         "website": {
+          "description": "Site web de l'entreprise",
           "examples": [
             "https://beta.gouv.fr/startups/",
           ],
@@ -2770,10 +3313,19 @@ exports[`openapiSpec#models > should generate proper schema JobOfferWrite 1`] = 
 
 exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
 {
+  "description": "Recruteur",
   "properties": {
     "apply": {
+      "description": "Cet élément regroupe les différents moyens de candidature proposés aux candidats.
+
+- URL vers laquelle rediriger le candidat pour qu’il postule
+- Numéro de téléphone de la personne chargée du recrutement
+- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
       "properties": {
         "phone": {
+          "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
+
+Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
           "examples": [
             "0199000000",
           ],
@@ -2783,12 +3335,14 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "recipient_id": {
+          "description": "Identifiant à utiliser pour postuler à l'offre d'emploi via la route /v3/jobs/apply ou pour afficher le widget postuler. Si null, la candidature n'est pas disponible pour cette offre par la route apply_route ni par le widget /postuler.",
           "type": [
             "string",
             "null",
           ],
         },
         "url": {
+          "description": "URL de redirection vers le formulaire de candidature",
           "examples": [
             "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],
@@ -2803,8 +3357,13 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
       "type": "object",
     },
     "identifier": {
+      "description": "Cet élément regroupe :
+
+- le partenaire à l'origine de l'offre d'emploi
+- l'identifiant unique de l'offre d'emploi au sein du système d'information Cour de cassation",
       "properties": {
         "id": {
+          "description": "Identifiant unique du recruteur",
           "examples": [
             "6687165396d52b5e01b409545",
           ],
@@ -2817,8 +3376,15 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
       "type": "object",
     },
     "workplace": {
+      "description": "Le lieu d’exécution du contrat est décrit par :
+
+- Le nom (enseigne ou à défaut, raison sociale) et le numéro SIRET de l’entreprise.
+- La description de l’employeur et/ou du service où s’exécutera le contrat.
+- La tranche effectif de l’entreprise, en nombre de salariés.
+- Le site web de l’entreprise.",
       "properties": {
         "brand": {
+          "description": "Enseigne de l'établissement",
           "examples": [
             "Enseigne (todo)",
           ],
@@ -2828,6 +3394,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "description": {
+          "description": "Description de l'employeur et/ou du département où sera exécuté le contrat.",
           "examples": [
             "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
           ],
@@ -2837,8 +3404,14 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "domain": {
+          "description": "Regroupe des éléments qui décrivent le domaine auquel est rattaché le numéro SIRET de l’entreprise :
+
+- La Nomenclature d’Activité Française (NAF). Produite par l’INSEE, elle a pour objectif de faciliter l'organisation de l'information économique et sociale.
+- Le numéro IDCC de la convention collective. Produit par le ministère chargé du travail (Dares et DGT) et celui chargé de l’agriculture.
+- L’Opérateur de Compétence (OPCO) de rattachement pouvant prendre en charge le financement du contrat.",
           "properties": {
             "idcc": {
+              "description": "Numéro de convention collective associé au SIRET",
               "examples": [
                 1979,
               ],
@@ -2848,14 +3421,17 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
               ],
             },
             "naf": {
+              "description": "Code NAF (secteur d'activité) associé au SIRET",
               "properties": {
                 "code": {
+                  "description": "Code NAF (secteur d'activité) associé au SIRET",
                   "examples": [
                     "8411Z",
                   ],
                   "type": "string",
                 },
                 "label": {
+                  "description": "Libellé du code NAF (secteur d'activité) associé au SIRET",
                   "examples": [
                     "Administration publique générale",
                   ],
@@ -2875,6 +3451,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
               ],
             },
             "opco": {
+              "description": "OPérateur de Compétences (OPCO) associé au SIRET",
               "examples": [
                 "OPCO 2i",
               ],
@@ -2892,14 +3469,17 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           "type": "object",
         },
         "legal_name": {
+          "description": "Raison sociale de l'entreprise ou raison sociale du CFA si is_delegated = true",
           "type": [
             "string",
             "null",
           ],
         },
         "location": {
+          "description": "Adresse postale et géolocalisation rattachées au numéro SIRET de l’entreprise",
           "properties": {
             "address": {
+              "description": "Adresse postale du lieu de l'offre d'emploi ou du CFA si is_delegated = true.",
               "examples": [
                 "20 AVENUE DE SEGUR 75007 PARIS",
               ],
@@ -2916,6 +3496,9 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           "type": "object",
         },
         "name": {
+          "description": "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true
+
+Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
           "examples": [
             "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
           ],
@@ -2925,6 +3508,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "siret": {
+          "description": "SIRET du lieu d'exécution du contrat ou du CFA si is_delegated = true",
           "examples": [
             "13002526500013",
           ],
@@ -2935,6 +3519,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "size": {
+          "description": "Effectif de l'entreprise, en nombre d'employés",
           "examples": [
             "100-199",
           ],
@@ -2944,6 +3529,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
           ],
         },
         "website": {
+          "description": "Site web de l'entreprise",
           "examples": [
             "https://beta.gouv.fr/startups/",
           ],
@@ -2980,12 +3566,15 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
 exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = `
 {
   "additionalProperties": false,
+  "description": "Mission Locale",
   "properties": {
     "code": {
+      "description": "Code de la mission locale",
       "type": "string",
     },
     "contact": {
       "additionalProperties": false,
+      "description": "Contact de la mission locale",
       "properties": {
         "email": {
           "anyOf": [
@@ -2998,6 +3587,7 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
               "type": "null",
             },
           ],
+          "description": "Email de contact de la mission locale",
         },
         "siteWeb": {
           "anyOf": [
@@ -3008,6 +3598,7 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
               "type": "null",
             },
           ],
+          "description": "Site web de la mission locale",
         },
         "telephone": {
           "anyOf": [
@@ -3018,6 +3609,7 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
               "type": "null",
             },
           ],
+          "description": "Téléphone de contact de la mission locale",
         },
       },
       "required": [
@@ -3028,15 +3620,19 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
       "type": "object",
     },
     "id": {
+      "description": "Identifiant de la Mission Locale",
       "type": "number",
     },
     "localisation": {
       "additionalProperties": false,
+      "description": "Localisation de la mission locale",
       "properties": {
         "adresse": {
+          "description": "Adresse de la Mission Locale",
           "type": "string",
         },
         "cp": {
+          "description": "Code postal de la Mission Locale",
           "type": "string",
         },
         "geopoint": {
@@ -3048,8 +3644,10 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
               "type": "null",
             },
           ],
+          "description": "Coordonnés GPS au format GeoJSON "Point"",
         },
         "ville": {
+          "description": "Ville de la Mission Locale",
           "type": "string",
         },
       },
@@ -3062,9 +3660,11 @@ exports[`openapiSpec#models > should generate proper schema MissionLocale 1`] = 
       "type": "object",
     },
     "nom": {
+      "description": "Nom de la mission locale",
       "type": "string",
     },
     "siret": {
+      "description": "Numéro SIRET de la mission locale",
       "type": "string",
     },
   },
@@ -3085,18 +3685,22 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
   "additionalProperties": false,
   "properties": {
     "contacts": {
+      "description": "Contacts de l'organisme",
       "items": {
         "additionalProperties": false,
         "properties": {
           "confirmation_referentiel": {
+            "description": "Indique si le contact a un statut "confirmé" sur le référentiel des organismes de formation",
             "type": "boolean",
           },
           "email": {
+            "description": "Email du contact",
             "format": "email",
             "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
             "type": "string",
           },
           "sources": {
+            "description": "Sources du contact",
             "items": {
               "type": "string",
             },
@@ -3114,6 +3718,7 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
     },
     "etablissement": {
       "additionalProperties": false,
+      "description": "Etablissement de l'organisme",
       "properties": {
         "adresse": {
           "anyOf": [
@@ -3124,8 +3729,10 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Adresse de l'établissement",
         },
         "creation": {
+          "description": "Date de création de l'établissement",
           "format": "date-time",
           "type": "string",
         },
@@ -3139,6 +3746,7 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Enseigne de l'établissement",
         },
         "fermeture": {
           "anyOf": [
@@ -3150,6 +3758,7 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Date de fermeture de l'établissement",
         },
         "geopoint": {
           "anyOf": [
@@ -3160,11 +3769,14 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Coordonnées GPS de l'établissement",
         },
         "ouvert": {
+          "description": "Etablissement ouvert",
           "type": "boolean",
         },
         "siret": {
+          "description": "Numéro SIRET de l'établissement",
           "pattern": "^\\d{14}$",
           "type": "string",
         },
@@ -3182,8 +3794,10 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
     },
     "identifiant": {
       "additionalProperties": false,
+      "description": "Identifiant de l'organisme",
       "properties": {
         "siret": {
+          "description": "Numéro SIRET de l'organisme",
           "pattern": "^\\d{14}$",
           "type": "string",
         },
@@ -3197,6 +3811,7 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Numéro UAI de l'organisme",
         },
       },
       "required": [
@@ -3207,6 +3822,7 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
     },
     "renseignements_specifiques": {
       "additionalProperties": false,
+      "description": "Renseignements spécifiques",
       "properties": {
         "numero_activite": {
           "anyOf": [
@@ -3217,8 +3833,10 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Numéro d'activité",
         },
         "qualiopi": {
+          "description": "Qualiopi",
           "type": "boolean",
         },
       },
@@ -3230,8 +3848,10 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
     },
     "statut": {
       "additionalProperties": false,
+      "description": "Statut de l'organisme",
       "properties": {
         "referentiel": {
+          "description": "Statut de l'organisme dans le réferentiel des organismes en apprentissage",
           "enum": [
             "présent",
             "supprimé",
@@ -3246,8 +3866,10 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
     },
     "unite_legale": {
       "additionalProperties": false,
+      "description": "Unité légale de l'organisme",
       "properties": {
         "actif": {
+          "description": "Unité légale active",
           "type": "boolean",
         },
         "cessation": {
@@ -3260,15 +3882,19 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
               "type": "null",
             },
           ],
+          "description": "Date de cessation de l'unité légale",
         },
         "creation": {
+          "description": "Date de création de l'unité légale",
           "format": "date-time",
           "type": "string",
         },
         "raison_sociale": {
+          "description": "Raison sociale de l'unité légale",
           "type": "string",
         },
         "siren": {
+          "description": "Numéro SIREN de l'unité légale",
           "type": "string",
         },
       },
@@ -3297,16 +3923,20 @@ exports[`openapiSpec#models > should generate proper schema Organisme 1`] = `
 exports[`openapiSpec#models > should generate proper schema Pagination 1`] = `
 {
   "additionalProperties": false,
+  "description": "Informations de pagination",
   "properties": {
     "page_count": {
+      "description": "Nombre total de pages",
       "minimum": 0,
       "type": "integer",
     },
     "page_index": {
+      "description": "Numéro de la page actuelle",
       "minimum": 0,
       "type": "integer",
     },
     "page_size": {
+      "description": "Nombre d'éléments par page",
       "maximum": 1000,
       "minimum": 1,
       "type": "integer",
@@ -3327,6 +3957,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/certification/v1",
     "method": "get",
     "operation": {
+      "description": "Récupère la liste des certifications, filtrée par \`identifiant.cfd\` et \`identifiant.rncp\`",
       "operationId": "get_certification_v1",
       "parameters": [
         {
@@ -3335,6 +3966,13 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "identifiant.cfd",
           "required": false,
           "schema": {
+            "description": "Filtre la liste des certifications par \`identifiant.cfd\`
+
+- Si la valeur est vide ou \`null\`, filtre avec \`identifiant.cfd = null\`
+
+- Si la valeur est absente, aucun filtre n'est appliqué
+
+- Sinon doit respecter le regex \`/^[A-Z0-9]{3}\\d{3}[A-Z0-9]{2}$/\`",
             "examples": [
               "46X32402",
               "",
@@ -3350,6 +3988,13 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "identifiant.rncp",
           "required": false,
           "schema": {
+            "description": "Filtre la liste des certifications par \`identifiant.rncp\`
+
+- Si la valeur est vide ou \`null\`, filtre avec \`identifiant.rncp = null\`
+
+- Si la valeur est absente, aucun filtre n'est appliqué
+
+- Sinon doit respecter le regex \`/^RNCP\\d{3,5}$/\`",
             "examples": [
               "RNCP12345",
               "",
@@ -3365,6 +4010,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "content": {
             "application/json": {
               "schema": {
+                "description": "Liste des communes correspondant au code INSEE ou postal recherché",
                 "items": {
                   "$ref": "#/components/schemas/Certification",
                 },
@@ -3372,7 +4018,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3407,6 +4053,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Liste des certifications professionnelles",
       "tags": [
         "Certifications",
       ],
@@ -3417,6 +4064,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/formation/v1/search",
     "method": "get",
     "operation": {
+      "description": "Accéder gratuitement à l’ensemble des formations disponibles en apprentissage",
       "operationId": "get_formation_v1_search",
       "parameters": [
         {
@@ -3425,6 +4073,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 100,
+            "description": "Nombre d'éléments par page",
             "examples": [
               10,
             ],
@@ -3440,6 +4089,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 0,
+            "description": "Numéro de la page actuelle (commence à 0)",
             "examples": [
               12,
             ],
@@ -3453,6 +4103,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "latitude",
           "required": false,
           "schema": {
+            "description": "Latitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
             "examples": [
               2.3522,
             ],
@@ -3467,6 +4122,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "longitude",
           "required": false,
           "schema": {
+            "description": "Longitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
             "examples": [
               48.8566,
             ],
@@ -3482,6 +4142,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 30,
+            "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
             "examples": [
               30,
             ],
@@ -3495,6 +4156,14 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "target_diploma_level",
           "required": false,
           "schema": {
+            "description": "Niveau de diplôme cible à la fin des études.
+
+Lors du filtrage par niveau de diplôme, nous retournons les données :
+
+- où le niveau de diplôme cible est inconnu / non précisé / indifférent
+- **et** lorsque le niveau de diplôme cible correspond au niveau de diplôme demandé
+
+En filtrant sur le « 4 », seules les données relatives à ce niveau de diplôme, ainsi que celles avec des niveaux inconnus ou non précisés, vous seront renvoyées.",
             "enum": [
               "1",
               "2",
@@ -3520,6 +4189,13 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "romes",
           "required": false,
           "schema": {
+            "description": "Code(s) ROME pour le champ de recherche
+
+Le ROME correspond à la référence opérationnelle pour les métiers et les emplois conçue par France Travail.
+
+Liste des codes séparés par des virgules
+
+Les codes doivent respecter les formats ROME",
             "examples": [
               "F1601,F1201,F1106",
               "M1806",
@@ -3532,6 +4208,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "rncp",
           "required": false,
           "schema": {
+            "description": "Code RNCP du périmètre de recherche
+
+Le RNCP correspond au Répertoire national des certifications professionnelles de [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
             "examples": [
               "RNCP34436",
               "RNCP183",
@@ -3546,6 +4225,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": "false",
+            "description": "Inclure les formations archivées dans les résultats",
             "enum": [
               "true",
               "false",
@@ -3562,6 +4242,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "additionalProperties": false,
                 "properties": {
                   "data": {
+                    "description": "Liste des formations correspondant aux critères de recherche",
                     "items": {
                       "$ref": "#/components/schemas/Formation",
                     },
@@ -3579,7 +4260,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3614,8 +4295,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Recherche de formations en apprentissage",
       "tags": [
-        "Training",
+        "Formation",
       ],
     },
     "path": "/formation/v1/search",
@@ -3624,6 +4306,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/formation/v1/{id}",
     "method": "get",
     "operation": {
+      "description": "Accéder au détail d'une formation en apprentissage à partir de son identifiant",
       "operationId": "get_formation_v1__id",
       "parameters": [
         {
@@ -3632,6 +4315,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "id",
           "required": true,
           "schema": {
+            "description": "Identifiant unique de la formation - clé ME",
             "examples": [
               "049510P01118838776490001178615112600012-49099#L01",
             ],
@@ -3648,7 +4332,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3683,8 +4367,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Consulter le détail d'une formation",
       "tags": [
-        "Training",
+        "Formation",
       ],
     },
     "path": "/formation/v1/{id}",
@@ -3693,6 +4378,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/geographie/v1/commune/search",
     "method": "get",
     "operation": {
+      "description": "Recherche de communes par code insee ou postal. La recherche par code INSEE, recherche également parmis les anciennes communes fusionnées (déléguées ou associées) et parmis les arrondissements municipaux. Attention, un meme code postal peut-etre associé à plusieurs communes et une commune peut avoir plusieurs code postaux.",
       "operationId": "get_geographie_v1_commune_search",
       "parameters": [
         {
@@ -3700,6 +4386,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "code",
           "required": true,
           "schema": {
+            "description": "Code INSEE ou postal recherché",
             "examples": [
               "75056",
               "75000",
@@ -3714,6 +4401,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "content": {
             "application/json": {
               "schema": {
+                "description": "Liste des communes correspondant au code INSEE ou postal recherché",
                 "items": {
                   "$ref": "#/components/schemas/Commune",
                 },
@@ -3721,7 +4409,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3756,8 +4444,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Recherche de communes",
       "tags": [
-        "Geography",
+        "Géographie",
       ],
     },
     "path": "/geographie/v1/commune/search",
@@ -3766,12 +4455,14 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/geographie/v1/departement",
     "method": "get",
     "operation": {
+      "description": "Récupération des départements français, pour des raisons pratiques les collectivités et territoires d'outre-mer sont inclus et assimilés à des départements",
       "operationId": "get_geographie_v1_departement",
       "responses": {
         "200": {
           "content": {
             "application/json": {
               "schema": {
+                "description": "Liste des départements français",
                 "items": {
                   "$ref": "#/components/schemas/Departement",
                 },
@@ -3779,7 +4470,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3814,8 +4505,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Récupération des départements",
       "tags": [
-        "Geography",
+        "Géographie",
       ],
     },
     "path": "/geographie/v1/departement",
@@ -3824,6 +4516,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/geographie/v1/mission-locale",
     "method": "get",
     "operation": {
+      "description": "Récupération de la liste des missions locales",
       "operationId": "get_geographie_v1_mission_locale",
       "parameters": [
         {
@@ -3832,6 +4525,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "latitude",
           "required": false,
           "schema": {
+            "description": "Latitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
             "examples": [
               2.3522,
             ],
@@ -3846,6 +4544,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "longitude",
           "required": false,
           "schema": {
+            "description": "Longitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
             "examples": [
               48.8566,
             ],
@@ -3861,6 +4564,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 30,
+            "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
             "examples": [
               30,
             ],
@@ -3875,6 +4579,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "content": {
             "application/json": {
               "schema": {
+                "description": "Liste des missions locales",
                 "items": {
                   "$ref": "#/components/schemas/MissionLocale",
                 },
@@ -3882,7 +4587,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -3917,8 +4622,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Récupération des Mission Locales",
       "tags": [
-        "Geography",
+        "Géographie",
       ],
     },
     "path": "/geographie/v1/mission-locale",
@@ -3993,7 +4699,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
       },
       "security": [],
       "tags": [
-        "System",
+        "Système",
       ],
     },
     "path": "/healthcheck",
@@ -4002,6 +4708,8 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/job/v1/export",
     "method": "get",
     "operation": {
+      "description": "Expose la totalité des opportunités d'emploi (offres et entreprises auprès desquelles adresser des candidatures spontanées).
+<br/>Les opportunités sont mises à jour une fois par jour à 3h du matin heure de Paris.",
       "operationId": "jobsExport",
       "responses": {
         "200": {
@@ -4012,7 +4720,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4047,8 +4755,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Export des offres d'emploi",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/export",
@@ -4057,6 +4766,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/job/v1/offer/{id}",
     "method": "get",
     "operation": {
+      "description": "Accéder au détail d'une opportunité d'emploi à partir de son identifiant.",
       "operationId": "jobSearchById",
       "parameters": [
         {
@@ -4064,6 +4774,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "id",
           "required": true,
           "schema": {
+            "description": "Identifiant unique de l’opportunité d’emploi",
             "examples": [
               "6687165396d52b5e01b409545",
             ],
@@ -4080,7 +4791,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4115,8 +4826,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Consulter une opportunité d'emploi",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/offer/{id}",
@@ -4125,6 +4837,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/job/v1/offer/{id}/publishing-informations",
     "method": "get",
     "operation": {
+      "description": "Cette route donne des informations sur l'état de la dernière publication de l'offre. En effet, la publication d'une offre peut prendre jusqu'à 10 minutes.",
       "operationId": "jobPublisingInfos",
       "parameters": [
         {
@@ -4132,6 +4845,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "id",
           "required": true,
           "schema": {
+            "description": "Identifiant unique de l’opportunité d’emploi",
             "examples": [
               "6687165396d52b5e01b409545",
             ],
@@ -4148,7 +4862,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4183,8 +4897,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Etat de la dernière publication de l'offre",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/offer/{id}/publishing-informations",
@@ -4193,6 +4908,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/job/v1/search",
     "method": "get",
     "operation": {
+      "description": "Accéder en temps réel à toutes les opportunités d'emploi en apprentissage disponibles en France et proposez-les à vos utilisateurs gratuitement et sous un format white-label.",
       "operationId": "jobSearch",
       "parameters": [
         {
@@ -4200,6 +4916,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "longitude",
           "required": false,
           "schema": {
+            "description": "Longitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
             "examples": [
               48.8566,
             ],
@@ -4213,6 +4934,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "latitude",
           "required": false,
           "schema": {
+            "description": "Latitude de la coordonnée GPS de la zone de recherche.
+
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
+
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
             "examples": [
               2.3522,
             ],
@@ -4227,6 +4953,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 30,
+            "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
             "examples": [
               30,
             ],
@@ -4240,6 +4967,14 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "target_diploma_level",
           "required": false,
           "schema": {
+            "description": "Niveau de diplôme cible à la fin des études.
+
+Lors du filtrage par niveau de diplôme, nous retournons les données :
+
+- où le niveau de diplôme cible est inconnu / non précisé / indifférent
+- **et** lorsque le niveau de diplôme cible correspond au niveau de diplôme demandé
+
+En filtrant sur le « 4 », seules les données relatives à ce niveau de diplôme, ainsi que celles avec des niveaux inconnus ou non précisés, vous seront renvoyées.",
             "enum": [
               "3",
               "4",
@@ -4262,6 +4997,13 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "romes",
           "required": false,
           "schema": {
+            "description": "Code(s) ROME pour le champ de recherche
+
+Le ROME correspond à la référence opérationnelle pour les métiers et les emplois conçue par France Travail.
+
+Liste des codes séparés par des virgules
+
+Les codes doivent respecter les formats ROME",
             "examples": [
               "F1601,F1201,F1106",
               "M1806",
@@ -4274,6 +5016,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "rncp",
           "required": false,
           "schema": {
+            "description": "Code RNCP du périmètre de recherche
+
+Le RNCP correspond au Répertoire national des certifications professionnelles de [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
             "examples": [
               "RNCP34436",
               "RNCP183",
@@ -4287,6 +5032,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "opco",
           "required": false,
           "schema": {
+            "description": "Filtrer les offres d’emploi par opco. voir la liste des valeurs possibles.",
             "enum": [
               "AFDAS",
               "AKTO / Opco entreprises et salariés des services à forte intensité de main d'oeuvre",
@@ -4311,6 +5057,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "departements",
           "required": false,
           "schema": {
+            "description": "Filtrer les offres d’emploi par département. Ce paramètre accepte un tableau de numéros de départements",
             "examples": [
               "75&departements=06",
               "06",
@@ -4326,6 +5073,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "partners_to_exclude",
           "required": false,
           "schema": {
+            "description": "Liste des labels de partenaires à exclure de la recherche.<br />Cette liste change régulièrement. La liste mise à jour est disponible [à cette adresse](http://labonnealternance.courdecassation.beta.gouv.fr/metabase/public/question/70f84c13-6156-4933-9fb3-54c88887d95d)",
             "examples": [
               "Hellowork&partners_to_exclude=RH Cour de cassation",
               "Hellowork",
@@ -4344,18 +5092,38 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               "schema": {
                 "properties": {
                   "jobs": {
+                    "description": "Liste des offres d’emploi correspondant à la recherche.
+
+Les offres proviennent de:
+
+- collection sur la plateforme Cour de cassation
+- France Travail
+- publication via API par nos partenaires
+- partenaire via flux spécifique.
+
+Actuellement, les résultats sont triés par :
+
+- Priorité source (Cour de cassation > France Travail > autres partenaires)
+- Augmentation de la distance (uniquement pour une recherche par emplacement)
+- Date de création décroissante
+
+Les résultats sont limités à 150 par source, et actuellement, il n’est pas possible de récupérer toutes les offres correspondant aux critères de recherche.",
                     "items": {
                       "$ref": "#/components/schemas/JobOfferRead",
                     },
                     "type": "array",
                   },
                   "recruiters": {
+                    "description": "Liste des entreprises qui n’ont pas publié d’offre d’emploi mais qui sont susceptibles d’embaucher des apprentis dans le domaine souhaité.
+
+Les résultats sont limités à 150, et actuellement, il n’est pas possible de retrouver tous les recruteurs correspondant aux critères de recherche.",
                     "items": {
                       "$ref": "#/components/schemas/JobRecruiter",
                     },
                     "type": "array",
                   },
                   "warnings": {
+                    "description": "Liste des avertissements liés à la recherche.",
                     "examples": [
                       {
                         "code": "WARNING_CODE",
@@ -4389,7 +5157,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4424,8 +5192,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Recherche d'opportunités d'emploi",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/search",
@@ -4434,6 +5203,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/organisme/v1/export",
     "method": "get",
     "operation": {
+      "description": "Récupérer la liste de tous les organismes issus du référentiel Onisep historisé",
       "operationId": "get_organisme_v1_export",
       "parameters": [
         {
@@ -4442,6 +5212,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 100,
+            "description": "Nombre d'éléments par page",
             "examples": [
               10,
             ],
@@ -4457,6 +5228,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "required": false,
           "schema": {
             "default": 0,
+            "description": "Numéro de la page actuelle (commence à 0)",
             "examples": [
               12,
             ],
@@ -4473,6 +5245,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "additionalProperties": false,
                 "properties": {
                   "data": {
+                    "description": "Liste des organismes",
                     "items": {
                       "$ref": "#/components/schemas/Organisme",
                     },
@@ -4490,7 +5263,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4525,8 +5298,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Récupération des organismes de formation en apprentissage",
       "tags": [
-        "Organisms",
+        "Organismes",
       ],
     },
     "path": "/organisme/v1/export",
@@ -4535,6 +5309,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "get:/organisme/v1/recherche",
     "method": "get",
     "operation": {
+      "description": "Récupère la liste des organismes, filtrée par UAI et/ou SIRET fournis",
       "operationId": "get_organisme_v1_recherche",
       "parameters": [
         {
@@ -4551,6 +5326,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "type": "null",
               },
             ],
+            "description": "UAI de l'organisme à rechercher",
           },
         },
         {
@@ -4567,6 +5343,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "type": "null",
               },
             ],
+            "description": "SIRET de l'organisme à rechercher",
           },
         },
       ],
@@ -4578,11 +5355,13 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "additionalProperties": false,
                 "properties": {
                   "candidats": {
+                    "description": "Liste des organismes candidats correspondant aux critères de recherche",
                     "items": {
                       "additionalProperties": false,
                       "properties": {
                         "correspondances": {
                           "additionalProperties": false,
+                          "description": "Informations sur les correspondances avec les critères de recherche",
                           "properties": {
                             "siret": {
                               "anyOf": [
@@ -4590,12 +5369,15 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                   "additionalProperties": false,
                                   "properties": {
                                     "lui_meme": {
+                                      "description": "Le SIRET de l'organisme correspond exactement à celui recherché",
                                       "type": "boolean",
                                     },
                                     "son_formateur": {
+                                      "description": "Le SIRET d'un de ces formateurs correspond à celui recherché",
                                       "type": "boolean",
                                     },
                                     "son_responsable": {
+                                      "description": "Le SIRET du responsable de l'organisme correspond à celui recherché",
                                       "type": "boolean",
                                     },
                                   },
@@ -4607,9 +5389,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                   "type": "object",
                                 },
                                 {
+                                  "description": "Aucune recherche par SIRET n'a été effectuée",
                                   "type": "null",
                                 },
                               ],
+                              "description": "Informations sur les correspondances SIRET",
                             },
                             "uai": {
                               "anyOf": [
@@ -4617,9 +5401,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                   "additionalProperties": false,
                                   "properties": {
                                     "lui_meme": {
+                                      "description": "L'UAI de l'organisme correspond exactement à celui recherché",
                                       "type": "boolean",
                                     },
                                     "son_lieu": {
+                                      "description": "L'UAI d'un de ces lieux correspond à celui recherché",
                                       "type": "boolean",
                                     },
                                   },
@@ -4630,9 +5416,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                   "type": "object",
                                 },
                                 {
+                                  "description": "Aucune recherche par UAI n'a été effectuée",
                                   "type": "null",
                                 },
                               ],
+                              "description": "Informations sur les correspondances UAI",
                             },
                           },
                           "required": [
@@ -4643,11 +5431,14 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                         },
                         "organisme": {
                           "additionalProperties": false,
+                          "description": "Référence de l'organisme",
                           "properties": {
                             "identifiant": {
                               "additionalProperties": false,
+                              "description": "Identifiant de l'organisme",
                               "properties": {
                                 "siret": {
+                                  "description": "Numéro SIRET de l'organisme",
                                   "pattern": "^\\d{14}$",
                                   "type": "string",
                                 },
@@ -4661,6 +5452,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                       "type": "null",
                                     },
                                   ],
+                                  "description": "Numéro UAI de l'organisme",
                                 },
                               },
                               "required": [
@@ -4677,14 +5469,18 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                         },
                         "status": {
                           "additionalProperties": false,
+                          "description": "Statut référencementiel de l'organisme",
                           "properties": {
                             "declaration_catalogue": {
+                              "description": "Indique si l'organisme est présent dans le "Catalogue des formations en apprentissage"",
                               "type": "boolean",
                             },
                             "ouvert": {
+                              "description": "Indique si l'organisme est ouvert (état administratif actif)",
                               "type": "boolean",
                             },
                             "validation_uai": {
+                              "description": "Indique si l'UAI de l'organisme est validée par le Référentiel des Organismes de Formation",
                               "type": "boolean",
                             },
                           },
@@ -4707,6 +5503,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                   },
                   "metadata": {
                     "additionalProperties": false,
+                    "description": "Métadonnées sur les critères de recherche effectuée",
                     "properties": {
                       "siret": {
                         "anyOf": [
@@ -4731,6 +5528,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                             "type": "null",
                           },
                         ],
+                        "description": "Metadata sur le SIRET de recherche",
                       },
                       "uai": {
                         "anyOf": [
@@ -4754,6 +5552,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                             "type": "null",
                           },
                         ],
+                        "description": "Metadata sur l'UAI de recherche",
                       },
                     },
                     "required": [
@@ -4769,6 +5568,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                         "properties": {
                           "correspondances": {
                             "additionalProperties": false,
+                            "description": "Informations sur les correspondances avec les critères de recherche",
                             "properties": {
                               "siret": {
                                 "anyOf": [
@@ -4776,12 +5576,15 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                     "additionalProperties": false,
                                     "properties": {
                                       "lui_meme": {
+                                        "description": "Le SIRET de l'organisme correspond exactement à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_formateur": {
+                                        "description": "Le SIRET d'un de ces formateurs correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_responsable": {
+                                        "description": "Le SIRET du responsable de l'organisme correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                     },
@@ -4793,9 +5596,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                     "type": "object",
                                   },
                                   {
+                                    "description": "Aucune recherche par SIRET n'a été effectuée",
                                     "type": "null",
                                   },
                                 ],
+                                "description": "Informations sur les correspondances SIRET",
                               },
                               "uai": {
                                 "anyOf": [
@@ -4803,9 +5608,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                     "additionalProperties": false,
                                     "properties": {
                                       "lui_meme": {
+                                        "description": "L'UAI de l'organisme correspond exactement à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_lieu": {
+                                        "description": "L'UAI d'un de ces lieux correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                     },
@@ -4816,9 +5623,11 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                     "type": "object",
                                   },
                                   {
+                                    "description": "Aucune recherche par UAI n'a été effectuée",
                                     "type": "null",
                                   },
                                 ],
+                                "description": "Informations sur les correspondances UAI",
                               },
                             },
                             "required": [
@@ -4829,11 +5638,14 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                           },
                           "organisme": {
                             "additionalProperties": false,
+                            "description": "Référence de l'organisme",
                             "properties": {
                               "identifiant": {
                                 "additionalProperties": false,
+                                "description": "Identifiant de l'organisme",
                                 "properties": {
                                   "siret": {
+                                    "description": "Numéro SIRET de l'organisme",
                                     "pattern": "^\\d{14}$",
                                     "type": "string",
                                   },
@@ -4847,6 +5659,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                                         "type": "null",
                                       },
                                     ],
+                                    "description": "Numéro UAI de l'organisme",
                                   },
                                 },
                                 "required": [
@@ -4863,14 +5676,18 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                           },
                           "status": {
                             "additionalProperties": false,
+                            "description": "Statut référencementiel de l'organisme",
                             "properties": {
                               "declaration_catalogue": {
+                                "description": "Indique si l'organisme est présent dans le "Catalogue des formations en apprentissage"",
                                 "type": "boolean",
                               },
                               "ouvert": {
+                                "description": "Indique si l'organisme est ouvert (état administratif actif)",
                                 "type": "boolean",
                               },
                               "validation_uai": {
+                                "description": "Indique si l'UAI de l'organisme est validée par le Référentiel des Organismes de Formation",
                                 "type": "boolean",
                               },
                             },
@@ -4893,6 +5710,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                         "type": "null",
                       },
                     ],
+                    "description": "Meilleur résultat correspondant aux critères de recherche. Peut être null si aucun résultat sastisfaisant n'est trouvé.",
                   },
                 },
                 "required": [
@@ -4904,7 +5722,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -4939,8 +5757,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Recherche d'organismes par UAI et/ou SIRET",
       "tags": [
-        "Organisms",
+        "Organismes",
       ],
     },
     "path": "/organisme/v1/recherche",
@@ -4949,6 +5768,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "post:/formation/v1/appointment/generate-link",
     "method": "post",
     "operation": {
+      "description": "Obtenir un lien d’accès à un formulaire de prise de rendez-vous auprès d’un centre de formation",
       "operationId": "generateFormationAppointmentLink",
       "requestBody": {
         "content": {
@@ -4957,8 +5777,10 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               "anyOf": [
                 {
                   "additionalProperties": false,
+                  "description": "Identifiant Parcoursup de la formation",
                   "properties": {
                     "parcoursup_id": {
+                      "description": "Identifiant Parcoursup de la formation",
                       "type": "string",
                     },
                   },
@@ -4969,8 +5791,10 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 },
                 {
                   "additionalProperties": false,
+                  "description": "Identifiant ONISEP de la formation",
                   "properties": {
                     "onisep_id": {
+                      "description": "Identifiant ONISEP utilisé avec le mapping de la collection referentielonisep",
                       "type": "string",
                     },
                   },
@@ -4981,8 +5805,10 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 },
                 {
                   "additionalProperties": false,
+                  "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                   "properties": {
                     "cle_ministere_educatif": {
+                      "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                       "type": "string",
                     },
                   },
@@ -4995,6 +5821,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
             },
           },
         },
+        "description": "Identifiant de la formation, permettant de générer un lien de prise de rendez-vous pour la formation. Possibilité de fournir 1 paramètre parmi 3 types possibles : cle_ministere_educatif, parcoursup_id, onisep_id",
         "required": true,
       },
       "responses": {
@@ -5005,23 +5832,29 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                 "anyOf": [
                   {
                     "additionalProperties": false,
+                    "description": "Résultat en cas de succès",
                     "properties": {
                       "cfd": {
+                        "description": "Code formation diplôme de la formation",
                         "type": "string",
                       },
                       "cle_ministere_educatif": {
+                        "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                         "type": "string",
                       },
                       "code_postal": {
+                        "description": "Code postal du lieu de formation",
                         "type": "string",
                       },
                       "etablissement_formateur_entreprise_raison_sociale": {
+                        "description": "Raison social de l'établissement formateur",
                         "type": [
                           "string",
                           "null",
                         ],
                       },
                       "etablissement_formateur_siret": {
+                        "description": "Le numéro de SIRET de l'établissement",
                         "examples": [
                           "78424186100011",
                         ],
@@ -5032,15 +5865,19 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                         ],
                       },
                       "form_url": {
+                        "description": "Lien de prise de rendez-vous Cour de cassation",
                         "type": "string",
                       },
                       "intitule_long": {
+                        "description": "Intitulé long de la formation",
                         "type": "string",
                       },
                       "lieu_formation_adresse": {
+                        "description": "Adresse du lieu de formation",
                         "type": "string",
                       },
                       "localite": {
+                        "description": "Localité du lieu de formation",
                         "type": "string",
                       },
                     },
@@ -5058,6 +5895,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
                     "type": "object",
                   },
                   {
+                    "description": "Résultat en cas d'erreur",
                     "properties": {
                       "error": {
                         "enum": [
@@ -5075,7 +5913,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Réponse",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -5110,8 +5948,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "api-key": [],
         },
       ],
+      "summary": "Contacter un centre de formation via un lien dédié",
       "tags": [
-        "Training",
+        "Formation",
       ],
     },
     "path": "/formation/v1/appointment/generate-link",
@@ -5120,6 +5959,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "post:/job/v1/apply",
     "method": "post",
     "operation": {
+      "description": "Afin de fluidifier le parcours de vos utilisateurs, cette API vous permet de transmettre directement aux recruteurs les candidatures de vos usagers, sans que ces derniers n’aient à quitter votre site.
+
+Pour cela, elle requiert seulement la transmission des coordonnées ainsi que du CV du candidat. Un message de motivation, à destination du recruteur, peut également être transmis de manière facultative. La candidature est ensuite envoyée au recruteur par email.",
       "operationId": "jobApply",
       "requestBody": {
         "content": {
@@ -5138,6 +5980,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               "schema": {
                 "properties": {
                   "id": {
+                    "description": "Identifiant de la candidature.",
                     "type": "string",
                   },
                 },
@@ -5148,7 +5991,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -5185,8 +6028,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           ],
         },
       ],
+      "summary": "Envoi d’une candidature à une opportunité d’emploi",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/apply",
@@ -5195,6 +6039,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "post:/job/v1/offer",
     "method": "post",
     "operation": {
+      "description": "Cette API vous permet de maximiser la visibilité de vos offres d'emploi en les partageant avec le service Cour de cassation qui les redistribue automatiquement aux candidats les plus pertinents sur son site ainsi que sur ses sites partenaires. <br /><br /> Limite : 1 appel par seconde",
       "operationId": "jobOfferCreate",
       "requestBody": {
         "content": {
@@ -5213,6 +6058,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               "schema": {
                 "properties": {
                   "id": {
+                    "description": "Identifiant de l'offre crée",
                     "type": "string",
                   },
                 },
@@ -5223,7 +6069,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
               },
             },
           },
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -5260,8 +6106,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           ],
         },
       ],
+      "summary": "Dépôt d’offres d’emploi",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/offer",
@@ -5270,6 +6117,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
     "id": "put:/job/v1/offer/{id}",
     "method": "put",
     "operation": {
+      "description": "Cette API vous permet de maximiser la visibilité de vos offres d'emploi en les partageant avec le service Cour de cassation qui les redistribue automatiquement aux candidats les plus pertinents sur son site ainsi que sur ses sites partenaires.",
       "operationId": "jobOfferUpdate",
       "parameters": [
         {
@@ -5277,6 +6125,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           "name": "id",
           "required": true,
           "schema": {
+            "description": "Identifiant unique de l’opportunité d’emploi",
             "examples": [
               "6687165396d52b5e01b409545",
             ],
@@ -5296,7 +6145,7 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
       },
       "responses": {
         "204": {
-          "description": "",
+          "description": "Succès",
         },
         "400": {
           "$ref": "#/components/responses/BadRequest",
@@ -5333,8 +6182,9 @@ exports[`openapiSpec#routes > should generate schema in sync with zod definition
           ],
         },
       ],
+      "summary": "Modifier une offre d'emploi. L'offre doit être publiée et active",
       "tags": [
-        "Job",
+        "Offre Emploi",
       ],
     },
     "path": "/job/v1/offer/{id}",

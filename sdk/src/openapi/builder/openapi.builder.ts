@@ -13,47 +13,19 @@ import { generateComponents, generateOpenApiOperationObjectFromZod } from "../ut
 
 type RegistryMeta = { id?: string | undefined; openapi?: Partial<SchemaObject> };
 
-function getTitle(lang: "en" | "fr" | null): string {
-  switch (lang) {
-    case "fr":
-      return "Documentation technique";
-    case "en":
-      return "Technical documentation";
-    default:
-      return "";
-  }
+function getTitle(): string {
+  return "Documentation technique";
 }
 
-function getContactName(lang: "en" | "fr" | null): string {
-  switch (lang) {
-    case "fr":
-      return "Équipe API Communs numériques";
-    case "en":
-      return "The API Communs numeriques team";
-    default:
-      return "";
-  }
+function getContactName(): string {
+  return "Équipe API Communs numériques";
 }
 
-function getSecuritySchemeDescription(lang: "en" | "fr" | null): string {
-  switch (lang) {
-    case "fr":
-      return "Clé d'API à fournir dans le header `Authorization`. Si la route nécessite une habilitation particulière veuillez contacter le support pour en faire la demande à [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)";
-    case "en":
-      return "API key to provide in the `Authorization` header. If the route requires a particular authorization, please contact support to request it at [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)";
-    default:
-      return "";
-  }
+function getSecuritySchemeDescription(): string {
+  return "Clé d'API à fournir dans le header `Authorization`. Si la route nécessite une habilitation particulière veuillez contacter le support pour en faire la demande à [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)";
 }
 
-// Using the lang null is mainly used for testing purposes, it allows to generate the OpenAPI spec without text
-// The text can be changed anytime, so it is useful to test the OpenAPI generation without worrying about the text
-export function buildOpenApiSchema(
-  version: string,
-  env: string,
-  publicUrl: string,
-  lang: "en" | "fr" | null
-): OpenApiBuilder {
+export function buildOpenApiSchema(version: string, env: string, publicUrl: string): OpenApiBuilder {
   const zodRegistry = registry<RegistryMeta>();
 
   for (const [, model] of Object.entries(openapiSpec.models)) {
@@ -74,7 +46,7 @@ export function buildOpenApiSchema(
   const builder = new OpenApiBuilder({
     openapi: "3.1.0",
     info: {
-      title: getTitle(lang),
+      title: getTitle(),
       version,
       license: {
         name: "Etalab-2.0",
@@ -82,7 +54,7 @@ export function buildOpenApiSchema(
       },
       termsOfService: "https://api.courdecassation.beta.gouv.fr/cgu",
       contact: {
-        name: getContactName(lang),
+        name: getContactName(),
         email: "api-communs-numeriques@courdecassation.fr",
       },
     },
@@ -93,8 +65,8 @@ export function buildOpenApiSchema(
       },
     ],
     tags: Object.values(openapiSpec.tags).map(({ name, description }) => ({
-      name: getTextOpenAPI(name, lang ?? "en"), // Exception: keep tags
-      description: getTextOpenAPI(description, lang),
+      name: getTextOpenAPI(name),
+      description: getTextOpenAPI(description),
     })),
   });
 
@@ -102,13 +74,13 @@ export function buildOpenApiSchema(
     type: "http",
     scheme: "bearer",
     bearerFormat: "Bearer",
-    description: getSecuritySchemeDescription(lang),
+    description: getSecuritySchemeDescription(),
   });
 
   for (const [name, s] of Object.entries(openapiSpec.models)) {
     builder.addSchema(
       name,
-      addSchemaDoc("schema" in s ? s.schema : components.schemas[`#/components/schemas/${name}`], s.doc, lang, [
+      addSchemaDoc("schema" in s ? s.schema : components.schemas[`#/components/schemas/${name}`], s.doc, [
         "models",
         name,
       ])
@@ -117,15 +89,14 @@ export function buildOpenApiSchema(
 
   for (const [path, operations] of Object.entries(openapiSpec.routes)) {
     builder.addPath(
-      path.replaceAll(/:([^:/]+)/g, "{$1}"), // Replace :param with {param} for OpenAPI
+      path.replaceAll(/:([^:/]+)/g, "{$1}"),
       Object.entries(operations).reduce<PathItemObject>((acc, [method, operation]) => {
         const r: IApiRoutesDef = zApiRoutes;
         const m = method as "get" | "put" | "post" | "delete";
         acc[m] = addOperationDoc(
           operation,
           operation.schema ??
-            generateOpenApiOperationObjectFromZod(r?.[m]?.[path], zodRegistry, path, method, operation.tag),
-          lang
+            generateOpenApiOperationObjectFromZod(r?.[m]?.[path], zodRegistry, path, method, operation.tag)
         );
         return acc;
       }, {})
@@ -144,12 +115,11 @@ export function buildOpenApiSchema(
         "/healthcheck",
         "get",
         "system"
-      ),
-      lang
+      )
     ),
   });
 
-  registerOpenApiErrorsSchema(builder, lang);
+  registerOpenApiErrorsSchema(builder);
 
   return builder;
 }

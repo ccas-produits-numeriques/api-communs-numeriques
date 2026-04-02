@@ -363,23 +363,28 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     "schemas": {
       "Adresse": {
         "additionalProperties": false,
+        "description": "Adresse",
         "properties": {
           "academie": {
             "additionalProperties": false,
+            "description": "Académie",
             "properties": {
               "code": {
+                "description": "Code de l'académie",
                 "examples": [
                   "A1",
                 ],
                 "type": "string",
               },
               "id": {
+                "description": "Identifiant de l'académie",
                 "examples": [
                   "1",
                 ],
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de l'académie",
                 "examples": [
                   "Académie de Paris",
                 ],
@@ -402,14 +407,18 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "null",
               },
             ],
+            "description": "Code postal",
           },
           "commune": {
             "additionalProperties": false,
+            "description": "Ville",
             "properties": {
               "code_insee": {
+                "description": "Code INSEE de la ville",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de la ville",
                 "type": "string",
               },
             },
@@ -421,11 +430,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "departement": {
             "additionalProperties": false,
+            "description": "Département",
             "properties": {
               "code_insee": {
+                "description": "Code INSEE du département",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom du département",
                 "type": "string",
               },
             },
@@ -444,14 +456,18 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "null",
               },
             ],
+            "description": "Libellé de l'adresse",
           },
           "region": {
             "additionalProperties": false,
+            "description": "Région",
             "properties": {
               "code_insee": {
+                "description": "Code INSEE de la région",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de la région",
                 "type": "string",
               },
             },
@@ -474,14 +490,21 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "Certification": {
         "additionalProperties": false,
+        "description": "Certification",
         "properties": {
           "base_legale": {
             "additionalProperties": false,
+            "description": "Dates de création et d’abrogation des diplômes crées par arrêtés",
             "properties": {
               "cfd": {
                 "anyOf": [
                   {
                     "additionalProperties": false,
+                    "description": "Informations légales issue de la base centrale des nomenclatures (BCN) relatives au diplôme.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
                     "properties": {
                       "abrogation": {
                         "anyOf": [
@@ -493,6 +516,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date d'arrêté d'abrogation du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.
+- La date est retournée au format ISO 8601 avec le fuseau horaire 'Europe/Paris'.",
                         "examples": [
                           "2022-08-31T23:59:59.000+02:00",
                           "2022-12-31T23:59:59.000+01:00",
@@ -508,6 +537,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date d'arrêté de création du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.
+- La date est retournée au format ISO 8601 avec le fuseau horaire 'Europe/Paris'.",
                         "examples": [
                           "2014-02-21T00:00:00.000+01:00",
                           "2018-05-11T00:00:00.000+02:00",
@@ -533,6 +568,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "blocs_competences": {
             "additionalProperties": false,
+            "description": "Liste du (ou des) code (s) et intitulé(s) des blocs de compétences validés par la certification",
             "properties": {
               "rncp": {
                 "anyOf": [
@@ -573,6 +609,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Liste des blocs de compétences issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
               },
             },
             "required": [
@@ -582,6 +623,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "continuite": {
             "additionalProperties": false,
+            "description": "**Liste des couples CFD-RNCP assurant la continuité de la certification professionnelle.** La liste inclut à la fois les fiches remplacées et remplaçantes. Elle est ordonnée par date d'activation de la fiche RNCP et inclut la fiche courante.",
             "properties": {
               "cfd": {
                 "anyOf": [
@@ -594,6 +636,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           "type": "string",
                         },
                         "courant": {
+                          "description": "Indique si le diplôme correspond au diplôme courant, i.e \`identifiant.cfd\` est égal au \`code\`.",
                           "type": "boolean",
                         },
                         "fermeture": {
@@ -610,6 +653,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Date de fermeture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                         },
                         "ouverture": {
                           "anyOf": [
@@ -625,6 +673,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Date d'ouverture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.",
                         },
                       },
                       "required": [
@@ -641,6 +694,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Liste des diplômes assurant la continuité du diplôme. La liste inclut à la fois les diplômes remplacés et remplaçant. La liste est ordonnée par date d'ouverture du diplôme et inclut le diplôme courant.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.
+- Pour distinguer les diplômes remplacés des diplômes remplaçant, il faut se référer aux dates d'ouverture et de fermeture des diplômes.",
               },
               "rncp": {
                 "anyOf": [
@@ -649,6 +708,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                       "additionalProperties": false,
                       "properties": {
                         "actif": {
+                          "description": "Lorsque la fiche est active, les inscriptions à la formation sont ouvertes, à l’inverse, lorsque la fiche est inactive, les inscriptions sont fermées.",
                           "type": "boolean",
                         },
                         "activation": {
@@ -665,8 +725,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Date à laquelle la fiche RNCP est passée au statut \`actif\`.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.
+
+- France Compétence ne fournie pas l'information, nous le déduisons de la date de premiere apparation de la fiche RNCP avec le statut \`actif\`.",
                         },
                         "code": {
+                          "description": "Indique si la fiche correspond à la fiche courante, i.e \`identifiant.rncp\` est égal au \`code\`.",
                           "pattern": "^RNCP\\d{3,5}$",
                           "type": "string",
                         },
@@ -687,6 +755,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Date de fin d’enregistrement d’une fiche au RNCP.
+
+Notes:
+
+- France Compétence fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                         },
                       },
                       "required": [
@@ -704,6 +777,8 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.
+- Pour distinguer les fiches remplacées des fiches remplaçant, il faut se référer aux dates d'activation et de fin d'enregistrement des fiches.",
               },
             },
             "required": [
@@ -714,6 +789,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "convention_collectives": {
             "additionalProperties": false,
+            "description": "Liste(s) de la ou des convention(s) collective(s) rattachées à la certification",
             "properties": {
               "rncp": {
                 "anyOf": [
@@ -746,6 +822,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Liste des conventions collectives issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
               },
             },
             "required": [
@@ -758,6 +839,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "properties": {
               "formacodes": {
                 "additionalProperties": false,
+                "description": "Formacode® issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                 "properties": {
                   "rncp": {
                     "anyOf": [
@@ -790,6 +876,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "Formacode® issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -837,6 +928,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "NSF issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.
+- Le code NSF est déduis du code formation diplôme (CFD), il n'inclut donc pas la lettre de spécialité et le tableau ne contient qu'un seul élément.",
                   },
                   "rncp": {
                     "anyOf": [
@@ -877,6 +974,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "NSF issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -887,6 +989,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "rome": {
                 "additionalProperties": false,
+                "description": "Répertoire Opérationnel des Métiers et des Emplois (ROME).",
                 "properties": {
                   "rncp": {
                     "anyOf": [
@@ -920,6 +1023,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "ROME issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -937,6 +1045,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "identifiant": {
             "additionalProperties": false,
+            "description": "les fiches RNCP antérieures à la réforme de 2019 ont certaines données qui ne sont pas renseignées, elles sont identifiées par le champ \`rncp_anterieur_2019\` à \`true\`.",
             "properties": {
               "cfd": {
                 "anyOf": [
@@ -951,6 +1060,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Code Formation Diplôme (CFD) de la certification.
+
+Notes:
+
+- \`null\` si et seulement si aucun diplôme CFD correspondant à la fiche RNCP (\`identifiant.rncp\`) n'est connu.
+- Lorsque le code est \`null\`, toutes les informations issues de la base centrale des nomenclatures (BCN) seront \`null\`",
               },
               "rncp": {
                 "anyOf": [
@@ -965,6 +1080,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Code Répertoire National des Certifications Professionnelles (RNCP) de la certification.
+
+Notes:
+
+- \`null\` si et seulement si aucune fiche RNCP correspondant au diplôme (\`identifiant.cfd\`) n'est connu.
+- Lorsque le code est \`null\`, toutes les informations issues de France Compétence seront \`null\`",
               },
               "rncp_anterieur_2019": {
                 "anyOf": [
@@ -975,6 +1096,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Identifie les certifications dont le code RNCP correspond à une fiche antérieure à la réforme de 2019.
+
+Notes:
+
+- \`null\` si \`identifiant.rncp\` est \`null\`
+- \`true\` si le numéro de fiche \`identifiant.rncp\` est inférieur à \`34,000\`
+- \`false\` sinon",
               },
             },
             "required": [
@@ -993,6 +1121,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "additionalProperties": false,
                     "properties": {
                       "court": {
+                        "description": "**Intitulé court du diplôme.**",
                         "examples": [
                           "BOULANGER",
                           "GENIE BIO - AGRONOMIE",
@@ -1000,6 +1129,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "string",
                       },
                       "long": {
+                        "description": "**Intitulé long du diplôme.**",
                         "examples": [
                           "BOULANGER (CAP)",
                           "GENIE BIOLOGIQUE OPTION AGRONOMIE (DUT)",
@@ -1017,9 +1147,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Intitulés de la certification issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
               },
               "niveau": {
                 "additionalProperties": false,
+                "description": "Niveau de qualification de la certification professionnelle",
                 "properties": {
                   "cfd": {
                     "anyOf": [
@@ -1049,8 +1185,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                 "type": "null",
                               },
                             ],
+                            "description": "Niveau de qualification de la certification (de 1 à 8) utilisés dans les référentiels nationaux européens.
+
+Notes:
+
+- peut être \`null\` lorsque le niveau de diplôme n'a pas de correspondance avec les niveaux européens ou qu'elle n'est pas déterminée.
+- lorsque la fiche RNCP correspondante est connue, il faut priviliégier le niveau européen issue de France Compétences.",
                           },
                           "formation_diplome": {
+                            "description": "Code à 3 caractères qui renseigne sur le niveau du diplôme suivant le référentiel de l'Éducation Nationale.
+
+Notes:
+
+- correspond aux 3 premiers caractères du code CFD.",
                             "examples": [
                               "500",
                               "370",
@@ -1058,6 +1205,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "string",
                           },
                           "interministeriel": {
+                            "description": "code interministériel du niveau de la formation suivant le référentiel de l'Éducation Nationale.
+
+Notes:
+
+- correspond au premier caractère du code CFD, sauf pour le CFD \`01321401\`",
                             "examples": [
                               "3",
                               "6",
@@ -1101,6 +1253,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "Niveau de la certification issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
                   },
                   "rncp": {
                     "anyOf": [
@@ -1129,6 +1286,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                 "type": "null",
                               },
                             ],
+                            "description": "Niveau de qualification de la certification (de 1 à 8) utilisés dans les référentiels nationaux européens.
+
+Notes:
+
+- \`null\` lorsque le niveau de diplôme n'a pas de correspondance avec les niveaux européens.",
                           },
                         },
                         "required": [
@@ -1140,6 +1302,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "Niveau de qualification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -1160,6 +1327,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Intitulé de la certification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
               },
             },
             "required": [
@@ -1171,6 +1343,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "periode_validite": {
             "additionalProperties": false,
+            "description": "**Un couple CFD-RNCP a une période de validité** qui correspond à l’intersection de la période d’ouverture du diplôme et de la période d’activité de la fiche RNCP.
+
+Notes:
+
+Les dates sont retournées au format ISO 8601 avec le fuseau horaire Europe/Paris.",
             "properties": {
               "cfd": {
                 "anyOf": [
@@ -1189,6 +1366,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Année de sortie des derniers diplômés.",
                       },
                       "fermeture": {
                         "anyOf": [
@@ -1204,6 +1382,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date de fermeture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                       },
                       "ouverture": {
                         "anyOf": [
@@ -1219,6 +1402,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date d'ouverture du diplôme.
+
+Notes:
+
+- La base centrale des nomenclatures (BCN) fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '00:00:00' sur le fuseau horaire 'Europe/Paris'.",
                       },
                       "premiere_session": {
                         "anyOf": [
@@ -1232,6 +1420,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Année de sortie des premiers diplômés.",
                       },
                     },
                     "required": [
@@ -1246,6 +1435,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
               },
               "debut": {
                 "anyOf": [
@@ -1257,6 +1447,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Date de début de validité de la certification. Cette date correspond à l'intersection de la date d'ouverture du diplôme et de la date d'activation de la fiche RNCP.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.",
                 "examples": [
                   "2021-09-01T00:00:00.000+02:00",
                   "2022-01-01T00:00:00.000+01:00",
@@ -1272,6 +1467,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Date de fin de validité de la certification. Cette date correspond à l'intersection de la date de fermeture du diplôme et de la date de fin d'enregistrement.",
                 "examples": [
                   "2022-08-31T23:59:59.000+02:00",
                   "2022-12-31T23:59:59.000+01:00",
@@ -1283,6 +1479,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "additionalProperties": false,
                     "properties": {
                       "actif": {
+                        "description": "Lorsque la fiche est active, les inscriptions à la formation sont ouvertes, à l’inverse, lorsque la fiche est inactive, les inscriptions sont fermées.",
                         "type": "boolean",
                       },
                       "activation": {
@@ -1295,6 +1492,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date à laquelle la fiche RNCP est passée au statut \`actif\`.
+
+Notes:
+
+- La couverture de ce champ est partiel car nous ne sommes pas en mesure pour le moment de récupérer les dates d'activation antérieures au 24 décembre 2021.
+- France Compétence ne fournie pas l'information, nous le déduisons de la date de premiere apparation de la fiche RNCP avec le statut \`actif\`.",
                         "examples": [
                           "2021-09-01T00:00:00.000+02:00",
                           "2022-01-01T00:00:00.000+01:00",
@@ -1310,6 +1513,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date de début des parcours certifiants. Anciennement appelée 'date d'effet' pour les enregistrements de droit et correspondant à la date de décision pour les enregistrements sur demande.
+
+Notes:
+
+La date est retournée au format ISO 8601 avec le fuseau horaire Europe/Paris.",
                       },
                       "fin_enregistrement": {
                         "anyOf": [
@@ -1321,6 +1529,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             "type": "null",
                           },
                         ],
+                        "description": "Date de fin d’enregistrement d’une fiche au RNCP.
+
+Notes:
+
+- France Compétence fournie cette date sans l'information de l'heure, nous interprétons arbitrairement l'heure à '23:59:59' sur le fuseau horaire 'Europe/Paris'.",
                         "examples": [
                           "2021-09-01T00:00:00.000+02:00",
                           "2022-01-01T00:00:00.000+01:00",
@@ -1339,6 +1552,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
               },
             },
             "required": [
@@ -1359,9 +1573,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                       "additionalProperties": false,
                       "properties": {
                         "nom": {
+                          "description": "Nom du certificateur renseigné dans le RNCP.",
                           "type": "string",
                         },
                         "siret": {
+                          "description": "Numéro SIRET du certificateur renseigné dans le RNCP.",
                           "type": "string",
                         },
                       },
@@ -1377,6 +1593,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Liste des certificateurs de la fiche RNCP.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
               },
               "enregistrement_rncp": {
                 "anyOf": [
@@ -1391,6 +1612,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Permet de savoir si la certification est enregistrée de droit ou sur demande au Repertoire National des Certifications Professionnelles (RNCP)
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                 "examples": [
                   "Enregistrement de droit",
                 ],
@@ -1404,12 +1628,18 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Service responsable de la définition du diplôme.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
                 "examples": [
                   "DGESCO A2-3",
                 ],
               },
               "nature": {
                 "additionalProperties": false,
+                "description": "Nature du diplôme.",
                 "properties": {
                   "cfd": {
                     "anyOf": [
@@ -1457,6 +1687,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "Nature du diplôme issue de la base centrale des nomenclatures (BCN).
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.cfd\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -1466,6 +1701,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "voie_acces": {
                 "additionalProperties": false,
+                "description": "Voie d’accès à la certification.",
                 "properties": {
                   "rncp": {
                     "anyOf": [
@@ -1473,21 +1709,27 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "additionalProperties": false,
                         "properties": {
                           "apprentissage": {
+                            "description": "Certification accessible en contrat d’apprentissage.",
                             "type": "boolean",
                           },
                           "candidature_individuelle": {
+                            "description": "Certification accessible par candidature individuelle.",
                             "type": "boolean",
                           },
                           "contrat_professionnalisation": {
+                            "description": "Certification accessible en contrat de professionnalisation.",
                             "type": "boolean",
                           },
                           "experience": {
+                            "description": "Certification accessible par expérience.",
                             "type": "boolean",
                           },
                           "formation_continue": {
+                            "description": "Certification accessible après un parcours de formation continue.",
                             "type": "boolean",
                           },
                           "formation_statut_eleve": {
+                            "description": "Certification accessible après un parcours de formation sous statut d’élève ou d’étudiant.",
                             "type": "boolean",
                           },
                         },
@@ -1505,6 +1747,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                         "type": "null",
                       },
                     ],
+                    "description": "Voie d’accès à la certification issue de France Compétences.
+
+Notes:
+
+- \`null\` lorsque le champs \`identifiant.rncp\` est \`null\`.",
                   },
                 },
                 "required": [
@@ -1538,17 +1785,22 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "Commune": {
         "additionalProperties": false,
+        "description": "Commune",
         "properties": {
           "academie": {
             "additionalProperties": false,
+            "description": "Académie de la commune",
             "properties": {
               "code": {
+                "description": "Code de l'académie",
                 "type": "string",
               },
               "id": {
+                "description": "Identifiant de l'académie",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de l'académie",
                 "type": "string",
               },
             },
@@ -1560,13 +1812,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "anciennes": {
+            "description": "Anciennes communes fusionnées",
             "items": {
               "additionalProperties": false,
               "properties": {
                 "codeInsee": {
+                  "description": "Code INSEE de l'ancienne commune",
                   "type": "string",
                 },
                 "nom": {
+                  "description": "Nom de l'ancienne commune",
                   "type": "string",
                 },
               },
@@ -1579,13 +1834,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "array",
           },
           "arrondissements": {
+            "description": "Arrondissements de la commune",
             "items": {
               "additionalProperties": false,
               "properties": {
                 "code": {
+                  "description": "Code INSEE de l'arrondissement",
                   "type": "string",
                 },
                 "nom": {
+                  "description": "Nom de l'arrondissement",
                   "type": "string",
                 },
               },
@@ -1599,11 +1857,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "code": {
             "additionalProperties": false,
+            "description": "Code INSEE et postaux de la commune
+
+Une commune peut avoir plusieurs code postaux, et un code postal peut correspondre à plusieurs communes. Le code INSEE lui est unique pour chaque commune.",
             "properties": {
               "insee": {
+                "description": "Code INSEE de la commune",
                 "type": "string",
               },
               "postaux": {
+                "description": "Liste des codes postaux de la commune",
                 "items": {
                   "type": "string",
                 },
@@ -1618,11 +1881,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "departement": {
             "additionalProperties": false,
+            "description": "Département de la commune",
             "properties": {
               "codeInsee": {
+                "description": "Code INSEE du département",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom du département",
                 "type": "string",
               },
             },
@@ -1634,6 +1900,12 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "localisation": {
             "additionalProperties": false,
+            "description": "The location information consists of:
+
+- The \`center\` of the municipality
+- The bounding box (\`bbox\`) that defines the area of the municipality.
+
+The \`center\` and \`bbox\` fields are both in [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format.",
             "properties": {
               "bbox": {
                 "$ref": "#/components/schemas/GeoJsonPolygon",
@@ -1657,17 +1929,22 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "null",
               },
             ],
+            "description": "Mission locale dont relève la commune",
           },
           "nom": {
+            "description": "Nom de la commune",
             "type": "string",
           },
           "region": {
             "additionalProperties": false,
+            "description": "Région de la commune",
             "properties": {
               "codeInsee": {
+                "description": "Code INSEE de la région",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de la région",
                 "type": "string",
               },
             },
@@ -1693,17 +1970,22 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "Departement": {
         "additionalProperties": false,
+        "description": "Département",
         "properties": {
           "academie": {
             "additionalProperties": false,
+            "description": "Académie de la commune",
             "properties": {
               "code": {
+                "description": "Code de l'académie",
                 "type": "string",
               },
               "id": {
+                "description": "Identifiant de l'académie",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de l'académie",
                 "type": "string",
               },
             },
@@ -1715,18 +1997,23 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "codeInsee": {
+            "description": "Code INSEE du département",
             "type": "string",
           },
           "nom": {
+            "description": "Nom du département",
             "type": "string",
           },
           "region": {
             "additionalProperties": false,
+            "description": "Région de la commune",
             "properties": {
               "codeInsee": {
+                "description": "Code INSEE de la région",
                 "type": "string",
               },
               "nom": {
+                "description": "Nom de la région",
                 "type": "string",
               },
             },
@@ -1747,11 +2034,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "Formation": {
         "additionalProperties": false,
+        "description": "Training",
         "properties": {
           "certification": {
             "additionalProperties": false,
+            "description": "Certification de la formation",
             "properties": {
               "connue": {
+                "description": "Lorsque la certification est connue, alors la certification est disponible dans l'API certifications
+
+Dans le cas contraire, la certification est construite à partir des informations issue du RNCP et du CFD indépendemment.",
                 "type": "boolean",
               },
               "valeur": {
@@ -1766,6 +2058,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "contact": {
             "additionalProperties": false,
+            "description": "Coordonnées à utiliser pour contacter l'organisme",
             "properties": {
               "email": {
                 "anyOf": [
@@ -1778,6 +2071,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Email de contact de la formation",
               },
               "telephone": {
                 "anyOf": [
@@ -1788,6 +2082,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Téléphone de contact de la formation",
               },
             },
             "required": [
@@ -1798,11 +2093,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "contenu_educatif": {
             "additionalProperties": false,
+            "description": "Contenu éducatif de la formation",
             "properties": {
               "contenu": {
+                "description": "Contenu de la formation",
                 "type": "string",
               },
               "objectif": {
+                "description": "Objectif de la formation",
                 "type": "string",
               },
             },
@@ -1814,8 +2112,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "formateur": {
             "additionalProperties": false,
+            "description": "Formateur de la formation
+
+L'organisme formateur a pour mission de dispenser la formation",
             "properties": {
               "connu": {
+                "description": "Indique si le formateur est connu de l'API
+
+L'organisme est connu lorsqu'il est présent dans [le référentiel des organismes de formation](https://referentiel.apprentissage.onisep.fr/organismes) ou s'il l'a été dans le passé.
+
+Il peut s'agir d'un organisme qui n'est plus sur le référentiel des organismes de formation. Veuillez vérifier le statut de l'organisme.",
                 "type": "boolean",
               },
               "organisme": {
@@ -1827,6 +2133,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "L'organisme de formation",
               },
             },
             "required": [
@@ -1837,8 +2144,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "identifiant": {
             "additionalProperties": false,
+            "description": "Identifiant de la formation",
             "properties": {
               "cle_ministere_educatif": {
+                "description": "Identifiant unique de la formation sur [le catalogue des formations en apprentissage](https://catalogue-apprentissage.intercariforef.org/recherche/formations)",
                 "type": "string",
               },
             },
@@ -1849,6 +2158,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "lieu": {
             "additionalProperties": false,
+            "description": "Lieu où la formation est dispensée",
             "properties": {
               "adresse": {
                 "$ref": "#/components/schemas/Adresse",
@@ -1865,6 +2175,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Précision de la géolocalisation du lieu de formation en mètres.
+
+Il s'agit de la distance entre le point géolocalisé et la locasation déduite de l'adresse",
               },
               "siret": {
                 "anyOf": [
@@ -1876,6 +2189,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Numéro SIRET du lieu de formation",
               },
               "uai": {
                 "anyOf": [
@@ -1887,6 +2201,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Numéro UAI du lieu de formation",
               },
             },
             "required": [
@@ -1900,6 +2215,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "modalite": {
             "additionalProperties": false,
+            "description": "Modalité de la formation",
             "properties": {
               "annee_cycle": {
                 "anyOf": [
@@ -1910,11 +2226,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "- L'année de démarrage de la session de formation.",
               },
               "duree_indicative": {
+                "description": "Durée indicative de la formation",
                 "type": "number",
               },
               "entierement_a_distance": {
+                "description": "Indique si la formation est entièrement à distance",
                 "type": "boolean",
               },
               "mef_10": {
@@ -1927,6 +2246,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Code MEF 10 de la formation",
               },
             },
             "required": [
@@ -1939,6 +2259,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "onisep": {
             "additionalProperties": false,
+            "description": "Informations lié à la formation issues de l'ONISEP",
             "properties": {
               "discipline": {
                 "anyOf": [
@@ -2014,8 +2335,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "responsable": {
             "additionalProperties": false,
+            "description": "Responsable de la formation
+
+Le responsable de la formation est l'organisme qui a la responsabilité administrative de la formation
+
+Il peut s'agir d'un organisme qui n'est plus sur le référentiel des organismes de formation. Veuillez vérifier le statut de l'organisme.",
             "properties": {
               "connu": {
+                "description": "Indique si le responsable est connu de l'API
+
+L'organisme est connu lorsqu'il est présent dans [le référentiel des organismes de formation](https://referentiel.apprentissage.onisep.fr/organismes) ou s'il l'a été dans le passé.",
                 "type": "boolean",
               },
               "organisme": {
@@ -2027,6 +2356,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "L'organisme responsable",
               },
             },
             "required": [
@@ -2036,8 +2366,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "sessions": {
+            "description": "Liste des sessions de formation",
             "items": {
               "additionalProperties": false,
+              "description": "Session de formation",
               "properties": {
                 "capacite": {
                   "anyOf": [
@@ -2048,12 +2380,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                       "type": "null",
                     },
                   ],
+                  "description": "Capacité de la session",
                 },
                 "debut": {
+                  "description": "Date de début de la session",
                   "format": "date-time",
                   "type": "string",
                 },
                 "fin": {
+                  "description": "Date de fin de la session",
                   "format": "date-time",
                   "type": "string",
                 },
@@ -2069,8 +2404,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "statut": {
             "additionalProperties": false,
+            "description": "Statut de la formation",
             "properties": {
               "catalogue": {
+                "description": "Statut de la formation sur le catalogue",
                 "enum": [
                   "publié",
                   "supprimé",
@@ -2106,6 +2443,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           "coordinates": {
             "prefixItems": [
               {
+                "description": "Longitude",
                 "examples": [
                   48.850699,
                 ],
@@ -2114,6 +2452,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "number",
               },
               {
+                "description": "Latiude",
                 "examples": [
                   2.308628,
                 ],
@@ -2143,6 +2482,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               "items": {
                 "prefixItems": [
                   {
+                    "description": "Longitude",
                     "examples": [
                       48.850699,
                     ],
@@ -2151,6 +2491,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "number",
                   },
                   {
+                    "description": "Latiude",
                     "examples": [
                       2.308628,
                     ],
@@ -2178,42 +2519,50 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "JobApplicationWrite": {
         "additionalProperties": false,
+        "description": "Application",
         "properties": {
           "applicant_attachment_content": {
+            "description": "Resume file",
             "format": "byte",
             "maxLength": 4215276,
             "type": "string",
           },
           "applicant_attachment_name": {
+            "description": "Resume file name",
             "minLength": 1,
             "pattern": "((.*?))(\\.)+([Dd][Oo][Cc][Xx]|[Pp][Dd][Ff])$",
             "type": "string",
           },
           "applicant_email": {
+            "description": "Applicant's email",
             "format": "email",
             "type": "string",
           },
           "applicant_first_name": {
+            "description": "Applicant's firstname",
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
           },
           "applicant_last_name": {
+            "description": "Applicant's lastname",
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
           },
           "applicant_message": {
+            "description": "Applicant's message",
             "type": [
               "string",
               "null",
             ],
           },
           "applicant_phone": {
+            "description": "Applicant's phone",
             "type": "string",
           },
           "recipient_id": {
-            "description": "Identifiant unique de la ressource vers laquelle la candidature est faite, préfixé par le nom de la collection",
+            "description": "Recipient identifier retrieved from \`apply.recipient_id\` from search route.",
             "type": "string",
           },
         },
@@ -2229,8 +2578,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "type": "object",
       },
       "JobOfferExport": {
+        "description": "Informations relative to the export of the all the offers.",
         "properties": {
           "lastUpdate": {
+            "description": "Export date",
             "examples": [
               "2025-06-26T08:28:05.000Z",
             ],
@@ -2238,6 +2589,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "string",
           },
           "url": {
+            "description": "URL of the export. Provided URL is valid for 2 minutes. 
+
+Offers are returned using the JSON format. The data structure of the offers is identical to the response of the [search route](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
             "examples": [
               "https://s3.rbx.io.cloud.ovh.net/bucket/file.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD",
             ],
@@ -2251,12 +2605,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "type": "object",
       },
       "JobOfferPublishing": {
+        "description": "Publishing informations of the offer",
         "properties": {
           "publishing": {
+            "description": "Publishing informations of the offer",
             "properties": {
               "error": {
+                "description": "Object containing the error",
                 "properties": {
                   "code": {
+                    "description": "Code of the error. This code will not change.",
                     "examples": [
                       "CLOSED_COMPANY",
                       "DUPLICATE",
@@ -2270,6 +2628,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "string",
                   },
                   "label": {
+                    "description": "Error description",
                     "examples": [
                       "WILL_BE_PUBLISHED",
                       "PUBLISHED",
@@ -2285,6 +2644,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "status": {
+                "description": "State of the publishing. If the value is WILL_NOT_BE_PUBLISHED, the offer will not be published.",
                 "enum": [
                   "WILL_BE_PUBLISHED",
                   "PUBLISHED",
@@ -2310,10 +2670,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "type": "object",
       },
       "JobOfferRead": {
+        "description": "Offre d'emploi",
         "properties": {
           "apply": {
+            "description": "This element groups the different means of application offered to candidates.
+
+- URL to redirect the candidate to apply
+- Phone number of the person in charge of recruitment
+- Identifier of the job opportunity to use to allow your users to apply directly from your site using [this additional API](./candidature-offre).",
             "properties": {
               "phone": {
+                "description": "Recruiter's phone number or School phone number if is_delegated is true
+
+Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
                 "examples": [
                   "0199000000",
                 ],
@@ -2323,12 +2692,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "recipient_id": {
+                "description": "Identifier to use for applying to the job offer using /v3/jobs/apply route or to display the apply /postuler widget. If null applying is not available for this offer by apply_route nor by /postuler widget.",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "url": {
+                "description": "Redirect URL to the application form",
                 "examples": [
                   "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
@@ -2343,8 +2714,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "contract": {
+            "description": "Un contrat est décrit par :
+
+- Le type (apprentissage et/ou professionnalisation).
+- La date de début.
+- La durée.
+- Le mode de travail (présentiel, télétravail ou hybride).",
             "properties": {
               "duration": {
+                "description": "Contract duration in months.",
                 "examples": [
                   12,
                 ],
@@ -2355,6 +2733,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "remote": {
+                "description": "Work mode (on-site, remote, or hybrid)",
                 "enum": [
                   "onsite",
                   "remote",
@@ -2371,6 +2750,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "start": {
+                "description": "Date de début du contrat.",
                 "examples": [
                   "2024-09-23T10:00:00.000Z",
                 ],
@@ -2381,7 +2761,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "type": {
+                "description": "Contract type (apprenticeship and/or professionalization)",
                 "items": {
+                  "description": "Contract type (apprenticeship and/or professionalization)",
                   "enum": [
                     "Apprentissage",
                     "Professionnalisation",
@@ -2404,8 +2786,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "identifier": {
+            "description": "This element includes:
+
+- the partner responsible for the job offer
+- the unique identifier of the job offer within the "Cour de cassation" information system",
             "properties": {
               "id": {
+                "description": "Identifier of the job offer in the Cour de cassation database.
+
+France Travail offers are not stored in the Cour de cassation database but are retrieved on the fly. They do not have an identifier in the database.",
                 "examples": [
                   "6687165396d52b5e01b409545",
                 ],
@@ -2415,12 +2804,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "partner_job_id": {
+                "description": "Offer identifier within the partner's information system.",
                 "examples": [
                   "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
                 ],
                 "type": "string",
               },
               "partner_label": {
+                "description": "Partner originating the job offer.
+
+In the case of offers collected by Cour de cassation, the partner_label is: "offres_emploi_lba".<br />In the case of companies identified with a high potential to recruit, the partner_label is: "recruteurs_lba".",
                 "examples": [
                   "France Travail",
                   "offres_emploi_lba",
@@ -2437,16 +2830,28 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "is_delegated": {
             "default": false,
-            "description": "Indicates if the job offer management is delegated to a partner school",
+            "description": "true if offer management is delegated to a partner school. false otherwise",
             "examples": [
               true,
             ],
             "type": "boolean",
           },
           "offer": {
+            "description": "A job offer is described by:
+
+- The title. Example: Web Developer.
+- The description. Example: Designs, develops, and implements a software application project, from the study phase to its integration, for a client or company, according to functional needs and specifications. May lead development projects. May coordinate a team.
+- The targeted diploma level. Example: BP, Bac, other level (Bac) qualifications.
+- The skills or qualities expected for the position. Example: Demonstrate autonomy; Show creativity and inventiveness; Display rigor and precision; Work well in a team.
+- The skills or qualities to be acquired during the apprenticeship. Example: Research, Innovation (Analyze relevant indicators on trends and customer usage; Design and develop a digital solution; Create technical documentation). New technologies (Assemble software components; Design a web application).
+- The conditions for entering the profession. Example: This profession is accessible with a degree from Bac+2 (BTS, DUT) to Master (MIAGE, engineering degree, professional Master, etc.) in computer science. It is also accessible with professional experience in computer science, operating systems, or an application domain. Proficiency in English (technical vocabulary) is required.
+- The number of positions to be filled.
+- List of ROME codes associated to the offer.",
             "properties": {
               "access_conditions": {
+                "description": "The conditions for entering the profession",
                 "items": {
+                  "description": "The conditions for entering the profession",
                   "examples": [
                     "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
                     "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -2457,13 +2862,16 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "array",
               },
               "description": {
+                "description": "Job offer description.",
                 "examples": [
                   "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
                 ],
                 "type": "string",
               },
               "desired_skills": {
+                "description": "The skills or qualities expected for the position.",
                 "items": {
+                  "description": "The skills or qualities expected for the position.",
                   "examples": [
                     "Faire preuve d'autonomie",
                     "Faire preuve de créativité, d'inventivité",
@@ -2475,6 +2883,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "array",
               },
               "opening_count": {
+                "description": "Number of positions available for this job offer",
                 "examples": [
                   1,
                   3,
@@ -2482,8 +2891,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "number",
               },
               "publication": {
+                "description": "A job opportunity has a life cycle: a creation date and an expiration date.",
                 "properties": {
                   "creation": {
+                    "description": "Creation date of the job opportunity.",
                     "examples": [
                       "2024-07-23T13:23:01.000Z",
                     ],
@@ -2494,6 +2905,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "expiration": {
+                    "description": "Expiration date of the job opportunity.",
                     "examples": [
                       "2027-05-14T00:00:00Z",
                     ],
@@ -2511,7 +2923,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "rome_codes": {
+                "description": "ROME code(s) of the offer",
                 "items": {
+                  "description": "ROME code",
                   "examples": [
                     "A1401",
                   ],
@@ -2521,6 +2935,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "array",
               },
               "status": {
+                "description": "The status of the offer (life cycle):
+
+- Active: The offer is available on the platform, and applications are open.
+- Filled: The offer has been filled and is no longer available.
+- Cancelled: The offer has been canceled and is no longer available.
+
+Only active offers are returned by the search.",
                 "enum": [
                   "Active",
                   "Filled",
@@ -2532,8 +2953,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "string",
               },
               "target_diploma": {
+                "description": "Targeted diploma level at the end of studies.",
                 "properties": {
                   "european": {
+                    "description": "Targeted diploma level at the end of studies.",
                     "enum": [
                       "3",
                       "4",
@@ -2547,6 +2970,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "string",
                   },
                   "label": {
+                    "description": "The title of the targeted diploma level at the end of studies.",
                     "examples": [
                       "BP, Bac, autres formations niveau (Bac)",
                     ],
@@ -2563,6 +2987,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "title": {
+                "description": "Job offer title.",
                 "examples": [
                   "Développeur / Développeuse web",
                 ],
@@ -2570,7 +2995,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "string",
               },
               "to_be_acquired_skills": {
+                "description": "The skills or qualities to be acquired during the apprenticeship.",
                 "items": {
+                  "description": "The skills or qualities to be acquired during the apprenticeship.",
                   "examples": [
                     "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
                     "Recherche, Innovation : Concevoir et développer une solution digitale",
@@ -2596,8 +3023,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "workplace": {
+            "description": "Workplace is described by :
+
+- The name (brand name or, failing that, the company name) and the SIRET number of the company.
+- The description of the employer and/or the department where the contract will be carried out.
+- The company's workforce range, in terms of the number of employees.
+- The company's website.",
             "properties": {
               "brand": {
+                "description": "Brand name of the establishment",
                 "examples": [
                   "Enseigne (todo)",
                 ],
@@ -2607,6 +3041,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "description": {
+                "description": "Description of the employer and/or the department where the contract will be carried out.",
                 "examples": [
                   "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
                 ],
@@ -2616,8 +3051,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "domain": {
+                "description": "Groups elements that describe the field to which the company's SIRET number is linked:
+
+The French Classification of Activities (NAF). Produced by INSEE, its aim is to facilitate the organization of economic and social information.
+The IDCC number of the collective agreement. Produced by the ministry responsible for labor (Dares and DGT) and the one responsible for agriculture.
+The Competency Operator (OPCO) responsible for managing the funding of the contract.",
                 "properties": {
                   "idcc": {
+                    "description": "Collective agreement number associated with the SIRET number",
                     "examples": [
                       1979,
                     ],
@@ -2627,14 +3068,17 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "naf": {
+                    "description": "NAF (sector of activity) associated with the SIRET number",
                     "properties": {
                       "code": {
+                        "description": "NAF code (sector of activity) associated with the SIRET number",
                         "examples": [
                           "8411Z",
                         ],
                         "type": "string",
                       },
                       "label": {
+                        "description": "Label of the NAF code (sector of activity) associated with the SIRET number",
                         "examples": [
                           "Administration publique générale",
                         ],
@@ -2654,6 +3098,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "opco": {
+                    "description": "Competency Operator (OPCO) associated with the SIRET number",
                     "examples": [
                       "OPCO 2i",
                     ],
@@ -2671,14 +3116,17 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "legal_name": {
+                "description": "Company legal name or school legal name if is_delegated = true",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "location": {
+                "description": "Postal address and geolocation linked to the company's SIRET number",
                 "properties": {
                   "address": {
+                    "description": "Postal address of the job offer location or of the school if is_delegated = true.",
                     "examples": [
                       "20 AVENUE DE SEGUR 75007 PARIS",
                     ],
@@ -2695,6 +3143,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "name": {
+                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
+
+In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
                 "examples": [
                   "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
                 ],
@@ -2704,6 +3155,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "siret": {
+                "description": "SIRET of the contract execution location or of the school if is_delegated = true",
                 "examples": [
                   "13002526500013",
                 ],
@@ -2714,6 +3166,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "size": {
+                "description": "Company workforce range, in number of employees",
                 "examples": [
                   "100-199",
                 ],
@@ -2723,6 +3176,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "website": {
+                "description": "Company website",
                 "examples": [
                   "https://beta.gouv.fr/startups/",
                 ],
@@ -2758,11 +3212,17 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "type": "object",
       },
       "JobOfferWrite": {
+        "description": "Offre d'emploi",
         "properties": {
           "apply": {
+            "description": "Elements for submitting an application:
+
+- Redirect URL
+- Phone number
+- Company email",
             "properties": {
               "email": {
-                "description": "Email de contact",
+                "description": "Recruiter's email adress",
                 "examples": [
                   "jean.dupuis@beta.gouv.fr",
                 ],
@@ -2773,7 +3233,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "phone": {
-                "description": "Téléphone de contact",
+                "description": "Recruiter's phone number or School phone number if is_delegated is true
+
+Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
                 "examples": [
                   "0199000000",
                 ],
@@ -2783,7 +3245,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "url": {
-                "description": "URL pour candidater",
+                "description": "Redirect URL",
                 "examples": [
                   "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
@@ -2797,8 +3259,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "contract": {
+            "description": "Un contrat est décrit par :
+
+- Le type (apprentissage et/ou professionnalisation).
+- La date de début.
+- La durée.
+- Le mode de travail (présentiel, télétravail ou hybride).",
             "properties": {
               "duration": {
+                "description": "Contract duration in months.",
                 "examples": [
                   12,
                 ],
@@ -2809,6 +3278,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "remote": {
+                "description": "Work mode (on-site, remote, or hybrid)",
                 "enum": [
                   "onsite",
                   "remote",
@@ -2825,6 +3295,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "start": {
+                "description": "Date de début du contrat.",
                 "examples": [
                   "2024-09-23T10:00:00.000Z",
                 ],
@@ -2839,7 +3310,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "Apprentissage",
                   "Professionnalisation",
                 ],
+                "description": "Contract type (apprenticeship and/or professionalization)",
                 "items": {
+                  "description": "Contract type (apprenticeship and/or professionalization)",
                   "enum": [
                     "Apprentissage",
                     "Professionnalisation",
@@ -2856,8 +3329,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "identifier": {
+            "description": "This element includes:
+
+- the partner responsible for the job offer
+- the unique identifier of the job offer within the "Cour de cassation" information system",
             "properties": {
               "partner_job_id": {
+                "description": "Offer identifier within the partner's information system.",
                 "examples": [
                   "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
                 ],
@@ -2870,10 +3348,22 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "offer": {
+            "description": "A job offer is described by:
+
+- The title. Example: Web Developer.
+- The description. Example: Designs, develops, and implements a software application project, from the study phase to its integration, for a client or company, according to functional needs and specifications. May lead development projects. May coordinate a team.
+- The targeted diploma level. Example: BP, Bac, other level (Bac) qualifications.
+- The skills or qualities expected for the position. Example: Demonstrate autonomy; Show creativity and inventiveness; Display rigor and precision; Work well in a team.
+- The skills or qualities to be acquired during the apprenticeship. Example: Research, Innovation (Analyze relevant indicators on trends and customer usage; Design and develop a digital solution; Create technical documentation). New technologies (Assemble software components; Design a web application).
+- The conditions for entering the profession. Example: This profession is accessible with a degree from Bac+2 (BTS, DUT) to Master (MIAGE, engineering degree, professional Master, etc.) in computer science. It is also accessible with professional experience in computer science, operating systems, or an application domain. Proficiency in English (technical vocabulary) is required.
+- The number of positions to be filled.
+- List of ROME codes associated to the offer.",
             "properties": {
               "access_conditions": {
                 "default": [],
+                "description": "The conditions for entering the profession",
                 "items": {
+                  "description": "The conditions for entering the profession",
                   "examples": [
                     "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
                     "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -2884,6 +3374,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "array",
               },
               "description": {
+                "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
+
+- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
+
+Toute autre balise ou attribut sera supprimée lors de la validation",
                 "examples": [
                   "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
                 ],
@@ -2892,7 +3387,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "desired_skills": {
                 "default": [],
+                "description": "The skills or qualities expected for the position.",
                 "items": {
+                  "description": "The skills or qualities expected for the position.",
                   "examples": [
                     "Faire preuve d'autonomie",
                     "Faire preuve de créativité, d'inventivité",
@@ -2910,6 +3407,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "opening_count": {
                 "default": 1,
+                "description": "Number of positions available for this job offer",
                 "examples": [
                   1,
                   3,
@@ -2924,8 +3422,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "publication": {
+                "description": "A job opportunity has a life cycle: a creation date and an expiration date.",
                 "properties": {
                   "creation": {
+                    "description": "Creation date of the job opportunity.",
                     "examples": [
                       "2024-07-23T13:23:01.000Z",
                     ],
@@ -2936,6 +3436,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "expiration": {
+                    "description": "Expiration date of the job opportunity.",
                     "examples": [
                       "2027-05-14T00:00:00Z",
                     ],
@@ -2949,7 +3450,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "rome_codes": {
+                "description": "ROME code(s) of the offer
+
+If the published offer does not have a ROME code provided, we deduce the ROME codes from the job offer title.",
                 "items": {
+                  "description": "ROME code",
                   "examples": [
                     "A1401",
                   ],
@@ -2963,6 +3468,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "status": {
                 "default": "Active",
+                "description": "The status of the offer (life cycle):
+
+- Active: The offer is available on the platform, and applications are open.
+- Filled: The offer has been filled and is no longer available.
+- Cancelled: The offer has been canceled and is no longer available.
+
+Only active offers are returned by the search.
+
+When creating an offer, only active offers are accepted. However, during an update, it is possible to cancel or mark an offer as filled.",
                 "enum": [
                   "Active",
                   "Filled",
@@ -2976,8 +3490,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "string",
               },
               "target_diploma": {
+                "description": "Targeted diploma level at the end of studies.",
                 "properties": {
                   "european": {
+                    "description": "Targeted diploma level at the end of studies.",
                     "enum": [
                       "3",
                       "4",
@@ -3000,6 +3516,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "title": {
+                "description": "Job offer title.",
                 "examples": [
                   "Développeur / Développeuse web",
                 ],
@@ -3008,7 +3525,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
               "to_be_acquired_skills": {
                 "default": [],
+                "description": "The skills or qualities to be acquired during the apprenticeship.",
                 "items": {
+                  "description": "The skills or qualities to be acquired during the apprenticeship.",
                   "examples": [
                     "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
                     "Recherche, Innovation : Concevoir et développer une solution digitale",
@@ -3026,8 +3545,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "workplace": {
+            "description": "Workplace is described by :
+
+- The name (brand name or, failing that, the company name) and the SIRET number of the company.
+- The description of the employer and/or the department where the contract will be carried out.
+- The company's workforce range, in terms of the number of employees.
+- The company's website.",
             "properties": {
               "description": {
+                "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
+
+- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
+
+Toute autre balise ou attribut sera supprimée lors de la validation",
                 "examples": [
                   "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
                 ],
@@ -3037,8 +3567,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "location": {
+                "description": "Postal address and geolocation linked to the company's SIRET number",
                 "properties": {
                   "address": {
+                    "description": "Address of the job offer
+
+In the case of job offer publication, a custom address can be provided; otherwise, the establishment's address will be used.
+
+The geopoint field is derived from the address.",
                     "examples": [
                       "20 AVENUE DE SEGUR 75007 PARIS",
                     ],
@@ -3054,6 +3590,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "name": {
+                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
+
+In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
                 "examples": [
                   "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
                 ],
@@ -3063,6 +3602,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "siret": {
+                "description": "SIRET of the contract execution location
+
+The information \`brand\` \`legal_name\` \`size\` \`idcc\` \`opco\` \`naf\` is automatically deduced from the SIRET.",
                 "examples": [
                   "13002526500013",
                 ],
@@ -3070,6 +3612,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "string",
               },
               "website": {
+                "description": "Company website",
                 "examples": [
                   "https://beta.gouv.fr/startups/",
                 ],
@@ -3094,10 +3637,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "type": "object",
       },
       "JobRecruiter": {
+        "description": "Recruteur",
         "properties": {
           "apply": {
+            "description": "This element groups the different means of application offered to candidates.
+
+- URL to redirect the candidate to apply
+- Phone number of the person in charge of recruitment
+- Identifier of the job opportunity to use to allow your users to apply directly from your site using [this additional API](./candidature-offre).",
             "properties": {
               "phone": {
+                "description": "Recruiter's phone number or School phone number if is_delegated is true
+
+Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
                 "examples": [
                   "0199000000",
                 ],
@@ -3107,12 +3659,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "recipient_id": {
+                "description": "Identifier to use for applying to the job offer using /v3/jobs/apply route or to display the apply /postuler widget. If null applying is not available for this offer by apply_route nor by /postuler widget.",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "url": {
+                "description": "Redirect URL to the application form",
                 "examples": [
                   "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
@@ -3127,8 +3681,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "identifier": {
+            "description": "This element includes:
+
+- the partner responsible for the job offer
+- the unique identifier of the job offer within the "Cour de cassation" information system",
             "properties": {
               "id": {
+                "description": "Identifiant unique du recruteur",
                 "examples": [
                   "6687165396d52b5e01b409545",
                 ],
@@ -3141,8 +3700,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "workplace": {
+            "description": "Workplace is described by :
+
+- The name (brand name or, failing that, the company name) and the SIRET number of the company.
+- The description of the employer and/or the department where the contract will be carried out.
+- The company's workforce range, in terms of the number of employees.
+- The company's website.",
             "properties": {
               "brand": {
+                "description": "Brand name of the establishment",
                 "examples": [
                   "Enseigne (todo)",
                 ],
@@ -3152,6 +3718,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "description": {
+                "description": "Description of the employer and/or the department where the contract will be carried out.",
                 "examples": [
                   "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
                 ],
@@ -3161,8 +3728,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "domain": {
+                "description": "Groups elements that describe the field to which the company's SIRET number is linked:
+
+The French Classification of Activities (NAF). Produced by INSEE, its aim is to facilitate the organization of economic and social information.
+The IDCC number of the collective agreement. Produced by the ministry responsible for labor (Dares and DGT) and the one responsible for agriculture.
+The Competency Operator (OPCO) responsible for managing the funding of the contract.",
                 "properties": {
                   "idcc": {
+                    "description": "Collective agreement number associated with the SIRET number",
                     "examples": [
                       1979,
                     ],
@@ -3172,14 +3745,17 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "naf": {
+                    "description": "NAF (sector of activity) associated with the SIRET number",
                     "properties": {
                       "code": {
+                        "description": "NAF code (sector of activity) associated with the SIRET number",
                         "examples": [
                           "8411Z",
                         ],
                         "type": "string",
                       },
                       "label": {
+                        "description": "Label of the NAF code (sector of activity) associated with the SIRET number",
                         "examples": [
                           "Administration publique générale",
                         ],
@@ -3199,6 +3775,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     ],
                   },
                   "opco": {
+                    "description": "Competency Operator (OPCO) associated with the SIRET number",
                     "examples": [
                       "OPCO 2i",
                     ],
@@ -3216,14 +3793,17 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "legal_name": {
+                "description": "Company legal name or school legal name if is_delegated = true",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "location": {
+                "description": "Postal address and geolocation linked to the company's SIRET number",
                 "properties": {
                   "address": {
+                    "description": "Postal address of the job offer location or of the school if is_delegated = true.",
                     "examples": [
                       "20 AVENUE DE SEGUR 75007 PARIS",
                     ],
@@ -3240,6 +3820,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "type": "object",
               },
               "name": {
+                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
+
+In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
                 "examples": [
                   "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
                 ],
@@ -3249,6 +3832,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "siret": {
+                "description": "SIRET of the contract execution location or of the school if is_delegated = true",
                 "examples": [
                   "13002526500013",
                 ],
@@ -3259,6 +3843,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "size": {
+                "description": "Company workforce range, in number of employees",
                 "examples": [
                   "100-199",
                 ],
@@ -3268,6 +3853,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 ],
               },
               "website": {
+                "description": "Company website",
                 "examples": [
                   "https://beta.gouv.fr/startups/",
                 ],
@@ -3301,12 +3887,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "MissionLocale": {
         "additionalProperties": false,
+        "description": "Mission Locale",
         "properties": {
           "code": {
+            "description": "Code de la mission locale",
             "type": "string",
           },
           "contact": {
             "additionalProperties": false,
+            "description": "Contact de la mission locale",
             "properties": {
               "email": {
                 "anyOf": [
@@ -3319,6 +3908,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Email de contact de la mission locale",
               },
               "siteWeb": {
                 "anyOf": [
@@ -3329,6 +3919,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Site web de la mission locale",
               },
               "telephone": {
                 "anyOf": [
@@ -3339,6 +3930,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Téléphone de contact de la mission locale",
               },
             },
             "required": [
@@ -3349,15 +3941,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "id": {
+            "description": "Identifiant de la Mission Locale",
             "type": "number",
           },
           "localisation": {
             "additionalProperties": false,
+            "description": "Localisation de la mission locale",
             "properties": {
               "adresse": {
+                "description": "Adresse de la Mission Locale",
                 "type": "string",
               },
               "cp": {
+                "description": "Code postal de la Mission Locale",
                 "type": "string",
               },
               "geopoint": {
@@ -3369,8 +3965,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Coordonnés GPS au format GeoJSON "Point"",
               },
               "ville": {
+                "description": "Ville de la Mission Locale",
                 "type": "string",
               },
             },
@@ -3383,9 +3981,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "type": "object",
           },
           "nom": {
+            "description": "Nom de la mission locale",
             "type": "string",
           },
           "siret": {
+            "description": "Numéro SIRET de la mission locale",
             "type": "string",
           },
         },
@@ -3403,18 +4003,22 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         "additionalProperties": false,
         "properties": {
           "contacts": {
+            "description": "Contacts de l'organisme",
             "items": {
               "additionalProperties": false,
               "properties": {
                 "confirmation_referentiel": {
+                  "description": "Indique si le contact a un statut "confirmé" sur le référentiel des organismes de formation",
                   "type": "boolean",
                 },
                 "email": {
+                  "description": "Email du contact",
                   "format": "email",
                   "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
                   "type": "string",
                 },
                 "sources": {
+                  "description": "Sources du contact",
                   "items": {
                     "type": "string",
                   },
@@ -3432,6 +4036,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "etablissement": {
             "additionalProperties": false,
+            "description": "Etablissement de l'organisme",
             "properties": {
               "adresse": {
                 "anyOf": [
@@ -3442,8 +4047,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Adresse de l'établissement",
               },
               "creation": {
+                "description": "Date de création de l'établissement",
                 "format": "date-time",
                 "type": "string",
               },
@@ -3457,6 +4064,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Enseigne de l'établissement",
               },
               "fermeture": {
                 "anyOf": [
@@ -3468,6 +4076,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Date de fermeture de l'établissement",
               },
               "geopoint": {
                 "anyOf": [
@@ -3478,11 +4087,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Coordonnées GPS de l'établissement",
               },
               "ouvert": {
+                "description": "Etablissement ouvert",
                 "type": "boolean",
               },
               "siret": {
+                "description": "Numéro SIRET de l'établissement",
                 "pattern": "^\\d{14}$",
                 "type": "string",
               },
@@ -3500,8 +4112,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "identifiant": {
             "additionalProperties": false,
+            "description": "Identifiant de l'organisme",
             "properties": {
               "siret": {
+                "description": "Numéro SIRET de l'organisme",
                 "pattern": "^\\d{14}$",
                 "type": "string",
               },
@@ -3515,6 +4129,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Numéro UAI de l'organisme",
               },
             },
             "required": [
@@ -3525,6 +4140,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "renseignements_specifiques": {
             "additionalProperties": false,
+            "description": "Renseignements spécifiques",
             "properties": {
               "numero_activite": {
                 "anyOf": [
@@ -3535,8 +4151,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Numéro d'activité",
               },
               "qualiopi": {
+                "description": "Qualiopi",
                 "type": "boolean",
               },
             },
@@ -3548,8 +4166,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "statut": {
             "additionalProperties": false,
+            "description": "Statut de l'organisme",
             "properties": {
               "referentiel": {
+                "description": "Statut de l'organisme dans le réferentiel des organismes en apprentissage",
                 "enum": [
                   "présent",
                   "supprimé",
@@ -3564,8 +4184,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           },
           "unite_legale": {
             "additionalProperties": false,
+            "description": "Unité légale de l'organisme",
             "properties": {
               "actif": {
+                "description": "Unité légale active",
                 "type": "boolean",
               },
               "cessation": {
@@ -3578,15 +4200,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     "type": "null",
                   },
                 ],
+                "description": "Date de cessation de l'unité légale",
               },
               "creation": {
+                "description": "Date de création de l'unité légale",
                 "format": "date-time",
                 "type": "string",
               },
               "raison_sociale": {
+                "description": "Raison sociale de l'unité légale",
                 "type": "string",
               },
               "siren": {
+                "description": "Numéro SIREN de l'unité légale",
                 "type": "string",
               },
             },
@@ -3612,16 +4238,20 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
       },
       "Pagination": {
         "additionalProperties": false,
+        "description": "Pagination information",
         "properties": {
           "page_count": {
+            "description": "Total number of pages",
             "minimum": 0,
             "type": "integer",
           },
           "page_index": {
+            "description": "Current page number",
             "minimum": 0,
             "type": "integer",
           },
           "page_size": {
+            "description": "Number of items per page",
             "maximum": 1000,
             "minimum": 1,
             "type": "integer",
@@ -3661,6 +4291,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
   "paths": {
     "/certification/v1": {
       "get": {
+        "description": "Récupère la liste des certifications, filtrée par \`identifiant.cfd\` et \`identifiant.rncp\`",
         "operationId": "get_certification_v1",
         "parameters": [
           {
@@ -3669,6 +4300,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "identifiant.cfd",
             "required": false,
             "schema": {
+              "description": "Filtre la liste des certifications par \`identifiant.cfd\`
+
+- Si la valeur est vide ou \`null\`, filtre avec \`identifiant.cfd = null\`
+
+- Si la valeur est absente, aucun filtre n'est appliqué
+
+- Sinon doit respecter le regex \`/^[A-Z0-9]{3}\\d{3}[A-Z0-9]{2}$/\`",
               "examples": [
                 "46X32402",
                 "",
@@ -3684,6 +4322,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "identifiant.rncp",
             "required": false,
             "schema": {
+              "description": "Filtre la liste des certifications par \`identifiant.rncp\`
+
+- Si la valeur est vide ou \`null\`, filtre avec \`identifiant.rncp = null\`
+
+- Si la valeur est absente, aucun filtre n'est appliqué
+
+- Sinon doit respecter le regex \`/^RNCP\\d{3,5}$/\`",
               "examples": [
                 "RNCP12345",
                 "",
@@ -3699,6 +4344,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Liste des communes correspondant au code INSEE ou postal recherché",
                   "items": {
                     "$ref": "#/components/schemas/Certification",
                   },
@@ -3706,7 +4352,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -3741,6 +4387,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Liste des certifications professionnelles",
         "tags": [
           "Certifications",
         ],
@@ -3748,6 +4395,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/formation/v1/appointment/generate-link": {
       "post": {
+        "description": "Generate links for appointment requests for training via the Cour de cassation service",
         "operationId": "generateFormationAppointmentLink",
         "requestBody": {
           "content": {
@@ -3756,8 +4404,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "anyOf": [
                   {
                     "additionalProperties": false,
+                    "description": "Identifiant Parcoursup de la formation",
                     "properties": {
                       "parcoursup_id": {
+                        "description": "Identifiant Parcoursup de la formation",
                         "type": "string",
                       },
                     },
@@ -3768,8 +4418,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   },
                   {
                     "additionalProperties": false,
+                    "description": "Identifiant ONISEP de la formation",
                     "properties": {
                       "onisep_id": {
+                        "description": "ONISEP identifier of the training",
                         "type": "string",
                       },
                     },
@@ -3780,8 +4432,10 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   },
                   {
                     "additionalProperties": false,
+                    "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                     "properties": {
                       "cle_ministere_educatif": {
+                        "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                         "type": "string",
                       },
                     },
@@ -3794,6 +4448,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
               },
             },
           },
+          "description": "Identifiant de la formation, permettant de générer un lien de prise de rendez-vous pour la formation. Possibilité de fournir 1 paramètre parmi 3 types possibles : cle_ministere_educatif, parcoursup_id, onisep_id",
           "required": true,
         },
         "responses": {
@@ -3804,23 +4459,29 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "anyOf": [
                     {
                       "additionalProperties": false,
+                      "description": "Résultat en cas de succès",
                       "properties": {
                         "cfd": {
+                          "description": "Training course code",
                           "type": "string",
                         },
                         "cle_ministere_educatif": {
+                          "description": "Unique identifier of the training within the Ministry of Education",
                           "type": "string",
                         },
                         "code_postal": {
+                          "description": "Training location postal code",
                           "type": "string",
                         },
                         "etablissement_formateur_entreprise_raison_sociale": {
+                          "description": "Training organism name",
                           "type": [
                             "string",
                             "null",
                           ],
                         },
                         "etablissement_formateur_siret": {
+                          "description": "SIRET number of the training establishment",
                           "examples": [
                             "78424186100011",
                           ],
@@ -3831,15 +4492,19 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           ],
                         },
                         "form_url": {
+                          "description": "Appointment request link Cour de cassation",
                           "type": "string",
                         },
                         "intitule_long": {
+                          "description": "Long title of the training",
                           "type": "string",
                         },
                         "lieu_formation_adresse": {
+                          "description": "Training location address",
                           "type": "string",
                         },
                         "localite": {
+                          "description": "Training location locality",
                           "type": "string",
                         },
                       },
@@ -3857,6 +4522,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                       "type": "object",
                     },
                     {
+                      "description": "Résultat en cas d'erreur",
                       "properties": {
                         "error": {
                           "enum": [
@@ -3874,7 +4540,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Response",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -3909,6 +4575,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Contact a training center via a dedicated link",
         "tags": [
           "Training",
         ],
@@ -3916,6 +4583,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/formation/v1/search": {
       "get": {
+        "description": "Accéder gratuitement à l’ensemble des formations disponibles en apprentissage",
         "operationId": "get_formation_v1_search",
         "parameters": [
           {
@@ -3924,6 +4592,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 100,
+              "description": "Nombre d'éléments par page",
               "examples": [
                 10,
               ],
@@ -3939,6 +4608,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 0,
+              "description": "Numéro de la page actuelle (commence à 0)",
               "examples": [
                 12,
               ],
@@ -3952,6 +4622,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "latitude",
             "required": false,
             "schema": {
+              "description": "Latitude of the GPS coordinate of the search area.
+
+The search will cover the entire France if not specified.
+
+This field should be mandatory when used with the longitude field.",
               "examples": [
                 2.3522,
               ],
@@ -3966,6 +4641,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "longitude",
             "required": false,
             "schema": {
+              "description": "Longitude of the GPS coordinate of the search area.
+
+The search will cover the whole of France if not specified.
+
+This field must be mandatory when used with the longitude field.",
               "examples": [
                 48.8566,
               ],
@@ -3981,6 +4661,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 30,
+              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
               "examples": [
                 30,
               ],
@@ -3994,6 +4675,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "target_diploma_level",
             "required": false,
             "schema": {
+              "description": "Target diploma level at the end of studies.
+
+When filtering by diploma level, we return data :
+
+- where the target diploma level is unknown / not specified / indifferent
+- **and** where the target diploma level matches the requested diploma level
+
+By filtering on \`4\`, only data related to this diploma level, as well as those with unknown/unspecified levels, will be returned to you.",
               "enum": [
                 "1",
                 "2",
@@ -4019,6 +4708,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "romes",
             "required": false,
             "schema": {
+              "description": "ROME code(s) for the research scope
+
+The ROME corresponds to the Operational Reference for Trades and Jobs designed by France Travail.
+
+List of codes separated by commas
+
+The codes must adhere to the ROME formats",
               "examples": [
                 "F1601,F1201,F1106",
                 "M1806",
@@ -4031,6 +4727,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "rncp",
             "required": false,
             "schema": {
+              "description": "RNCP code of the research scope
+
+The RNCP corresponds to the National Directory of Professional Certifications by [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
               "examples": [
                 "RNCP34436",
                 "RNCP183",
@@ -4045,6 +4744,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": "false",
+              "description": "Inclure les formations archivées dans les résultats",
               "enum": [
                 "true",
                 "false",
@@ -4061,6 +4761,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "additionalProperties": false,
                   "properties": {
                     "data": {
+                      "description": "List of training courses matching the search criteria",
                       "items": {
                         "$ref": "#/components/schemas/Formation",
                       },
@@ -4078,7 +4779,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4113,6 +4814,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Search for training courses in apprenticeship",
         "tags": [
           "Training",
         ],
@@ -4120,6 +4822,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/formation/v1/{id}": {
       "get": {
+        "description": "Access the details of a training course from its identifier",
         "operationId": "get_formation_v1__id",
         "parameters": [
           {
@@ -4128,6 +4831,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "id",
             "required": true,
             "schema": {
+              "description": "Identifiant unique de la formation - clé ME",
               "examples": [
                 "049510P01118838776490001178615112600012-49099#L01",
               ],
@@ -4144,7 +4848,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4179,6 +4883,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "View an training course",
         "tags": [
           "Training",
         ],
@@ -4186,6 +4891,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/geographie/v1/commune/search": {
       "get": {
+        "description": "Recherche de communes par code insee ou postal. La recherche par code INSEE, recherche également parmis les anciennes communes fusionnées (déléguées ou associées) et parmis les arrondissements municipaux. Attention, un meme code postal peut-etre associé à plusieurs communes et une commune peut avoir plusieurs code postaux.",
         "operationId": "get_geographie_v1_commune_search",
         "parameters": [
           {
@@ -4193,6 +4899,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "code",
             "required": true,
             "schema": {
+              "description": "Code INSEE ou postal recherché",
               "examples": [
                 "75056",
                 "75000",
@@ -4207,6 +4914,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Liste des communes correspondant au code INSEE ou postal recherché",
                   "items": {
                     "$ref": "#/components/schemas/Commune",
                   },
@@ -4214,7 +4922,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4249,6 +4957,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Recherche de communes",
         "tags": [
           "Geography",
         ],
@@ -4256,12 +4965,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/geographie/v1/departement": {
       "get": {
+        "description": "Récupération des départements français, pour des raisons pratiques les collectivités et territoires d'outre-mer sont inclus et assimilés à des départements",
         "operationId": "get_geographie_v1_departement",
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Liste des départements français",
                   "items": {
                     "$ref": "#/components/schemas/Departement",
                   },
@@ -4269,7 +4980,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4304,6 +5015,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Récupération des départements",
         "tags": [
           "Geography",
         ],
@@ -4311,6 +5023,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/geographie/v1/mission-locale": {
       "get": {
+        "description": "Récupération de la liste des missions locales",
         "operationId": "get_geographie_v1_mission_locale",
         "parameters": [
           {
@@ -4319,6 +5032,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "latitude",
             "required": false,
             "schema": {
+              "description": "Latitude of the GPS coordinate of the search area.
+
+The search will cover the entire France if not specified.
+
+This field should be mandatory when used with the longitude field.",
               "examples": [
                 2.3522,
               ],
@@ -4333,6 +5051,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "longitude",
             "required": false,
             "schema": {
+              "description": "Longitude of the GPS coordinate of the search area.
+
+The search will cover the whole of France if not specified.
+
+This field must be mandatory when used with the longitude field.",
               "examples": [
                 48.8566,
               ],
@@ -4348,6 +5071,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 30,
+              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
               "examples": [
                 30,
               ],
@@ -4362,6 +5086,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Liste des missions locales",
                   "items": {
                     "$ref": "#/components/schemas/MissionLocale",
                   },
@@ -4369,7 +5094,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4404,6 +5129,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Retrieve Mission Locales",
         "tags": [
           "Geography",
         ],
@@ -4483,6 +5209,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/apply": {
       "post": {
+        "description": "To streamline your users' journey, this API allows you to directly transmit your users' applications to recruiters without them having to leave your site.
+
+For this, it only requires the transmission of the candidate's contact information and resume. A cover letter, addressed to the recruiter, can also be optionally submitted. The application is then sent to the recruiter via email.",
         "operationId": "jobApply",
         "requestBody": {
           "content": {
@@ -4501,6 +5230,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "schema": {
                   "properties": {
                     "id": {
+                      "description": "Identifiant de la candidature.",
                       "type": "string",
                     },
                   },
@@ -4511,7 +5241,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4548,6 +5278,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             ],
           },
         ],
+        "summary": "Envoi d’une candidature à une opportunité d’emploi",
         "tags": [
           "Job",
         ],
@@ -4555,6 +5286,8 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/export": {
       "get": {
+        "description": "Lists all job opportunities (job postings and companies to which you can send unsolicited applications).
+<br/>Opportunities are updated once a day at 3:00 AM Paris time.",
         "operationId": "jobsExport",
         "responses": {
           "200": {
@@ -4565,7 +5298,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4600,6 +5333,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Export des offres d'emploi",
         "tags": [
           "Job",
         ],
@@ -4607,6 +5341,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/offer": {
       "post": {
+        "description": "This API allows you to maximize the visibility of your apprenticeship job offers by sharing them with the Cour de cassation service, which then automatically redistributes them to the most relevant candidates on its site as well as its partner sites. <br /><br /> Limit: 1 call per second",
         "operationId": "jobOfferCreate",
         "requestBody": {
           "content": {
@@ -4625,6 +5360,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "schema": {
                   "properties": {
                     "id": {
+                      "description": "Identifier of the created offer",
                       "type": "string",
                     },
                   },
@@ -4635,7 +5371,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4672,6 +5408,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             ],
           },
         ],
+        "summary": "Dépôt d’offres d’emploi",
         "tags": [
           "Job",
         ],
@@ -4679,6 +5416,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/offer/{id}": {
       "get": {
+        "description": "Access the details of an apprenticeship job offer from its identifier.",
         "operationId": "jobSearchById",
         "parameters": [
           {
@@ -4686,6 +5424,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "id",
             "required": true,
             "schema": {
+              "description": "Unique identifier of the job offer",
               "examples": [
                 "6687165396d52b5e01b409545",
               ],
@@ -4702,7 +5441,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4737,11 +5476,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "View an apprenticeship job offer",
         "tags": [
           "Job",
         ],
       },
       "put": {
+        "description": "This API allows you to maximize the visibility of your apprenticeship job offers by sharing them with the service Cour de cassation, which then automatically distributes them closer to candidates on its site and its partner sites.",
         "operationId": "jobOfferUpdate",
         "parameters": [
           {
@@ -4749,6 +5490,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "id",
             "required": true,
             "schema": {
+              "description": "Unique identifier of the job offer",
               "examples": [
                 "6687165396d52b5e01b409545",
               ],
@@ -4768,7 +5510,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
         },
         "responses": {
           "204": {
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4805,6 +5547,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             ],
           },
         ],
+        "summary": "Modify an apprenticeship job offer. Offer must be published and active",
         "tags": [
           "Job",
         ],
@@ -4812,6 +5555,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/offer/{id}/publishing-informations": {
       "get": {
+        "description": "This endpoint gives informations about the state of the last publishing of the offer. Indeed, the publishing of an offer can take up to 10 minutes.",
         "operationId": "jobPublisingInfos",
         "parameters": [
           {
@@ -4819,6 +5563,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "id",
             "required": true,
             "schema": {
+              "description": "Unique identifier of the job offer",
               "examples": [
                 "6687165396d52b5e01b409545",
               ],
@@ -4835,7 +5580,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4870,6 +5615,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Etat de la dernière publication de l'offre",
         "tags": [
           "Job",
         ],
@@ -4877,6 +5623,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/job/v1/search": {
       "get": {
+        "description": "Access in real-time all apprenticeship job opportunities available in France and offer them to your users for free and under a white-label format.",
         "operationId": "jobSearch",
         "parameters": [
           {
@@ -4884,6 +5631,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "longitude",
             "required": false,
             "schema": {
+              "description": "Longitude of the GPS coordinate of the search area.
+
+The search will cover the whole of France if not specified.
+
+This field must be mandatory when used with the longitude field.",
               "examples": [
                 48.8566,
               ],
@@ -4897,6 +5649,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "latitude",
             "required": false,
             "schema": {
+              "description": "Latitude of the GPS coordinate of the search area.
+
+The search will cover the entire France if not specified.
+
+This field should be mandatory when used with the longitude field.",
               "examples": [
                 2.3522,
               ],
@@ -4911,6 +5668,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 30,
+              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
               "examples": [
                 30,
               ],
@@ -4924,6 +5682,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "target_diploma_level",
             "required": false,
             "schema": {
+              "description": "Target diploma level at the end of studies.
+
+When filtering by diploma level, we return data :
+
+- where the target diploma level is unknown / not specified / indifferent
+- **and** where the target diploma level matches the requested diploma level
+
+By filtering on \`4\`, only data related to this diploma level, as well as those with unknown/unspecified levels, will be returned to you.",
               "enum": [
                 "3",
                 "4",
@@ -4946,6 +5712,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "romes",
             "required": false,
             "schema": {
+              "description": "ROME code(s) for the research scope
+
+The ROME corresponds to the Operational Reference for Trades and Jobs designed by France Travail.
+
+List of codes separated by commas
+
+The codes must adhere to the ROME formats",
               "examples": [
                 "F1601,F1201,F1106",
                 "M1806",
@@ -4958,6 +5731,9 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "rncp",
             "required": false,
             "schema": {
+              "description": "RNCP code of the research scope
+
+The RNCP corresponds to the National Directory of Professional Certifications by [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
               "examples": [
                 "RNCP34436",
                 "RNCP183",
@@ -4971,6 +5747,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "opco",
             "required": false,
             "schema": {
+              "description": "Allow filtering job offers by opco name.",
               "enum": [
                 "AFDAS",
                 "AKTO / Opco entreprises et salariés des services à forte intensité de main d'oeuvre",
@@ -4995,6 +5772,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "departements",
             "required": false,
             "schema": {
+              "description": "Allow filtering job offers by department numbers. This parameter accepts an array of department numbers",
               "examples": [
                 "75&departements=06",
                 "06",
@@ -5010,6 +5788,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "name": "partners_to_exclude",
             "required": false,
             "schema": {
+              "description": "List of partners labels to exclude from the search.<br />This list changes regularly. The updated list is available [at this url](http://labonnealternance.courdecassation.beta.gouv.fr/metabase/public/question/70f84c13-6156-4933-9fb3-54c88887d95d)",
               "examples": [
                 "Hellowork&partners_to_exclude=RH Cour de cassation",
                 "Hellowork",
@@ -5028,18 +5807,37 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 "schema": {
                   "properties": {
                     "jobs": {
+                      "description": "List of job offers corresponding to the search.
+
+The offers come from:
+
+- collection on the platform Cour de cassation
+- France Travail
+- publication via API by our partners
+
+Currently, the results are sorted by:
+
+- Source priority (Cour de cassation > France Travail > other partners)
+- Increasing distance (only for a search by location)
+- Decreasing date of creation
+
+The results are limited to 150 for each of the three sources i.e. 450 maximum results, and currently, it is not possible to retrieve all the offers matching the search criteria.",
                       "items": {
                         "$ref": "#/components/schemas/JobOfferRead",
                       },
                       "type": "array",
                     },
                     "recruiters": {
+                      "description": "List of companies that have not posted a job offer but are likely to hire apprentices in the desired field.
+
+The results are limited to 150, and currently, it is not possible to retrieve all recruiters matching the search criteria.",
                       "items": {
                         "$ref": "#/components/schemas/JobRecruiter",
                       },
                       "type": "array",
                     },
                     "warnings": {
+                      "description": "List of warnings related to the search.",
                       "examples": [
                         {
                           "code": "WARNING_CODE",
@@ -5073,7 +5871,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5108,6 +5906,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Search for apprenticeship job opportunities",
         "tags": [
           "Job",
         ],
@@ -5115,6 +5914,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/organisme/v1/export": {
       "get": {
+        "description": "Retrieve the list of all organizations from the Onisep repository historized",
         "operationId": "get_organisme_v1_export",
         "parameters": [
           {
@@ -5123,6 +5923,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 100,
+              "description": "Nombre d'éléments par page",
               "examples": [
                 10,
               ],
@@ -5138,6 +5939,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "required": false,
             "schema": {
               "default": 0,
+              "description": "Numéro de la page actuelle (commence à 0)",
               "examples": [
                 12,
               ],
@@ -5154,6 +5956,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "additionalProperties": false,
                   "properties": {
                     "data": {
+                      "description": "List of organizations",
                       "items": {
                         "$ref": "#/components/schemas/Organisme",
                       },
@@ -5171,7 +5974,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5206,6 +6009,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Récupération des organismes de formation en apprentissage",
         "tags": [
           "Organisms",
         ],
@@ -5213,6 +6017,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
     },
     "/organisme/v1/recherche": {
       "get": {
+        "description": "Récupère la liste des organismes, filtrée par UAI et/ou SIRET fournis",
         "operationId": "get_organisme_v1_recherche",
         "parameters": [
           {
@@ -5229,6 +6034,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "type": "null",
                 },
               ],
+              "description": "UAI de l'organisme à rechercher",
             },
           },
           {
@@ -5245,6 +6051,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "type": "null",
                 },
               ],
+              "description": "SIRET de l'organisme à rechercher",
             },
           },
         ],
@@ -5256,11 +6063,13 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                   "additionalProperties": false,
                   "properties": {
                     "candidats": {
+                      "description": "Liste des organismes candidats correspondant aux critères de recherche",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
                           "correspondances": {
                             "additionalProperties": false,
+                            "description": "Informations sur les correspondances avec les critères de recherche",
                             "properties": {
                               "siret": {
                                 "anyOf": [
@@ -5268,12 +6077,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                     "additionalProperties": false,
                                     "properties": {
                                       "lui_meme": {
+                                        "description": "Le SIRET de l'organisme correspond exactement à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_formateur": {
+                                        "description": "Le SIRET d'un de ces formateurs correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_responsable": {
+                                        "description": "Le SIRET du responsable de l'organisme correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                     },
@@ -5285,9 +6097,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                     "type": "object",
                                   },
                                   {
+                                    "description": "Aucune recherche par SIRET n'a été effectuée",
                                     "type": "null",
                                   },
                                 ],
+                                "description": "Informations sur les correspondances SIRET",
                               },
                               "uai": {
                                 "anyOf": [
@@ -5295,9 +6109,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                     "additionalProperties": false,
                                     "properties": {
                                       "lui_meme": {
+                                        "description": "L'UAI de l'organisme correspond exactement à celui recherché",
                                         "type": "boolean",
                                       },
                                       "son_lieu": {
+                                        "description": "L'UAI d'un de ces lieux correspond à celui recherché",
                                         "type": "boolean",
                                       },
                                     },
@@ -5308,9 +6124,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                     "type": "object",
                                   },
                                   {
+                                    "description": "Aucune recherche par UAI n'a été effectuée",
                                     "type": "null",
                                   },
                                 ],
+                                "description": "Informations sur les correspondances UAI",
                               },
                             },
                             "required": [
@@ -5321,11 +6139,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           },
                           "organisme": {
                             "additionalProperties": false,
+                            "description": "Référence de l'organisme",
                             "properties": {
                               "identifiant": {
                                 "additionalProperties": false,
+                                "description": "Identifiant de l'organisme",
                                 "properties": {
                                   "siret": {
+                                    "description": "Numéro SIRET de l'organisme",
                                     "pattern": "^\\d{14}$",
                                     "type": "string",
                                   },
@@ -5339,6 +6160,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                         "type": "null",
                                       },
                                     ],
+                                    "description": "Numéro UAI de l'organisme",
                                   },
                                 },
                                 "required": [
@@ -5355,14 +6177,18 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           },
                           "status": {
                             "additionalProperties": false,
+                            "description": "Statut référencementiel de l'organisme",
                             "properties": {
                               "declaration_catalogue": {
+                                "description": "Indique si l'organisme est présent dans le "Catalogue des formations en apprentissage"",
                                 "type": "boolean",
                               },
                               "ouvert": {
+                                "description": "Indique si l'organisme est ouvert (état administratif actif)",
                                 "type": "boolean",
                               },
                               "validation_uai": {
+                                "description": "Indique si l'UAI de l'organisme est validée par le Référentiel des Organismes de Formation",
                                 "type": "boolean",
                               },
                             },
@@ -5385,6 +6211,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                     },
                     "metadata": {
                       "additionalProperties": false,
+                      "description": "Métadonnées sur les critères de recherche effectuée",
                       "properties": {
                         "siret": {
                           "anyOf": [
@@ -5409,6 +6236,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Metadata sur le SIRET de recherche",
                         },
                         "uai": {
                           "anyOf": [
@@ -5432,6 +6260,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                               "type": "null",
                             },
                           ],
+                          "description": "Metadata sur l'UAI de recherche",
                         },
                       },
                       "required": [
@@ -5447,6 +6276,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           "properties": {
                             "correspondances": {
                               "additionalProperties": false,
+                              "description": "Informations sur les correspondances avec les critères de recherche",
                               "properties": {
                                 "siret": {
                                   "anyOf": [
@@ -5454,12 +6284,15 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                       "additionalProperties": false,
                                       "properties": {
                                         "lui_meme": {
+                                          "description": "Le SIRET de l'organisme correspond exactement à celui recherché",
                                           "type": "boolean",
                                         },
                                         "son_formateur": {
+                                          "description": "Le SIRET d'un de ces formateurs correspond à celui recherché",
                                           "type": "boolean",
                                         },
                                         "son_responsable": {
+                                          "description": "Le SIRET du responsable de l'organisme correspond à celui recherché",
                                           "type": "boolean",
                                         },
                                       },
@@ -5471,9 +6304,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                       "type": "object",
                                     },
                                     {
+                                      "description": "Aucune recherche par SIRET n'a été effectuée",
                                       "type": "null",
                                     },
                                   ],
+                                  "description": "Informations sur les correspondances SIRET",
                                 },
                                 "uai": {
                                   "anyOf": [
@@ -5481,9 +6316,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                       "additionalProperties": false,
                                       "properties": {
                                         "lui_meme": {
+                                          "description": "L'UAI de l'organisme correspond exactement à celui recherché",
                                           "type": "boolean",
                                         },
                                         "son_lieu": {
+                                          "description": "L'UAI d'un de ces lieux correspond à celui recherché",
                                           "type": "boolean",
                                         },
                                       },
@@ -5494,9 +6331,11 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                       "type": "object",
                                     },
                                     {
+                                      "description": "Aucune recherche par UAI n'a été effectuée",
                                       "type": "null",
                                     },
                                   ],
+                                  "description": "Informations sur les correspondances UAI",
                                 },
                               },
                               "required": [
@@ -5507,11 +6346,14 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             },
                             "organisme": {
                               "additionalProperties": false,
+                              "description": "Référence de l'organisme",
                               "properties": {
                                 "identifiant": {
                                   "additionalProperties": false,
+                                  "description": "Identifiant de l'organisme",
                                   "properties": {
                                     "siret": {
+                                      "description": "Numéro SIRET de l'organisme",
                                       "pattern": "^\\d{14}$",
                                       "type": "string",
                                     },
@@ -5525,6 +6367,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                                           "type": "null",
                                         },
                                       ],
+                                      "description": "Numéro UAI de l'organisme",
                                     },
                                   },
                                   "required": [
@@ -5541,14 +6384,18 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                             },
                             "status": {
                               "additionalProperties": false,
+                              "description": "Statut référencementiel de l'organisme",
                               "properties": {
                                 "declaration_catalogue": {
+                                  "description": "Indique si l'organisme est présent dans le "Catalogue des formations en apprentissage"",
                                   "type": "boolean",
                                 },
                                 "ouvert": {
+                                  "description": "Indique si l'organisme est ouvert (état administratif actif)",
                                   "type": "boolean",
                                 },
                                 "validation_uai": {
+                                  "description": "Indique si l'UAI de l'organisme est validée par le Référentiel des Organismes de Formation",
                                   "type": "boolean",
                                 },
                               },
@@ -5571,6 +6418,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                           "type": "null",
                         },
                       ],
+                      "description": "Meilleur résultat correspondant aux critères de recherche. Peut être null si aucun résultat sastisfaisant n'est trouvé.",
                     },
                   },
                   "required": [
@@ -5582,7 +6430,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                 },
               },
             },
-            "description": "",
+            "description": "Success",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5617,6 +6465,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             "api-key": [],
           },
         ],
+        "summary": "Recherche d'organismes par UAI et/ou SIRET",
         "tags": [
           "Organisms",
         ],
@@ -5631,35 +6480,35 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
   ],
   "tags": [
     {
-      "description": "",
+      "description": "Pour essayer l'API [vous pouvez utiliser le swagger UI](/documentation-technique/try)",
       "name": "Try the API",
     },
     {
-      "description": "",
+      "description": "Opportunités d'emploi",
       "name": "Job",
     },
     {
-      "description": "",
+      "description": "Liste des opérations sur les formations",
       "name": "Training",
     },
     {
-      "description": "",
+      "description": "Liste des opérations sur les certifications.",
       "name": "Certifications",
     },
     {
-      "description": "",
+      "description": "Liste des organismes",
       "name": "Organisms",
     },
     {
-      "description": "",
+      "description": "Référentiel Géographique",
       "name": "Geography",
     },
     {
-      "description": "",
+      "description": "Liste des routes expérimentales. Attention: ces routes peuvent changer sans préavis.",
       "name": "Experimental",
     },
     {
-      "description": "",
+      "description": "Routes système",
       "name": "System",
     },
   ],

@@ -1,337 +1,305 @@
 import type { OpenApiBuilder, OperationObject, ResponseObject } from "openapi3-ts/oas31";
 
 const descriptions = {
-  fr: {
-    data: "Données contextuelles liées à l'erreur" as string,
-    message: "Un message explicatif de l'erreur" as string,
-    name: "Le type générique de l'erreur" as string,
-    statusCode: "Le status code retourné" as string,
-    badRequestResponse: "Requête invalide" as string,
-    unauthorizedResponse: "Clé d’API manquante ou invalide" as string,
-    forbiddenResponse: "Habilitations insuffisantes pour accéder à la ressource" as string,
-    notFoundResponse: "Ressource non trouvée" as string,
-    conflictResponse: "Conflit de ressource" as string,
-    tooManyRequestsResponse: "Limite de volumétrie atteinte pour la clé d’API" as string,
-    internalServerErrorResponse: "Une erreur inattendue s'est produite sur le serveur." as string,
-    badGatewayResponse: "Le service est indisponible." as string,
-    serviceUnavailableResponse: "Le service est en maintenance" as string,
-  },
-  en: {
-    data: "Error context data" as string,
-    message: "An explanatory message of the error" as string,
-    name: "The generic type of the error" as string,
-    statusCode: "The returned status code" as string,
-    badRequestResponse: "Bad Request" as string,
-    unauthorizedResponse: "Unauthorized" as string,
-    forbiddenResponse: "Insufficient permissions to access the resource" as string,
-    notFoundResponse: "Resource not found" as string,
-    conflictResponse: "Resource conflict" as string,
-    tooManyRequestsResponse: "API key rate limit exceeded" as string,
-    internalServerErrorResponse: "An unexpected error occurred on the server." as string,
-    badGatewayResponse: "Service is unavailable." as string,
-    serviceUnavailableResponse: "Service is under maintenance" as string,
-  },
-  null: {
-    data: "" as string,
-    message: "" as string,
-    name: "" as string,
-    statusCode: "" as string,
-    badRequestResponse: "" as string,
-    unauthorizedResponse: "" as string,
-    forbiddenResponse: "" as string,
-    notFoundResponse: "" as string,
-    conflictResponse: "" as string,
-    tooManyRequestsResponse: "" as string,
-    internalServerErrorResponse: "" as string,
-    badGatewayResponse: "" as string,
-    serviceUnavailableResponse: "" as string,
-  },
+  data: "Données contextuelles liées à l'erreur" as string,
+  message: "Un message explicatif de l'erreur" as string,
+  name: "Le type générique de l'erreur" as string,
+  statusCode: "Le status code retourné" as string,
+  badRequestResponse: "Requête invalide" as string,
+  unauthorizedResponse: "Clé d’API manquante ou invalide" as string,
+  forbiddenResponse: "Habilitations insuffisantes pour accéder à la ressource" as string,
+  notFoundResponse: "Ressource non trouvée" as string,
+  conflictResponse: "Conflit de ressource" as string,
+  tooManyRequestsResponse: "Limite de volumétrie atteinte pour la clé d’API" as string,
+  internalServerErrorResponse: "Une erreur inattendue s'est produite sur le serveur." as string,
+  badGatewayResponse: "Le service est indisponible." as string,
+  serviceUnavailableResponse: "Le service est en maintenance" as string,
 } as const;
 
-export function registerOpenApiErrorsSchema(builder: OpenApiBuilder, lang: "en" | "fr" | null): OpenApiBuilder {
+export function registerOpenApiErrorsSchema(builder: OpenApiBuilder): OpenApiBuilder {
   const badRequestResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].badRequestResponse,
+    description: descriptions.badRequestResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               examples: ["Request validation failed"],
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               examples: ["Bad Request"],
             },
             statusCode: {
               type: "number",
               enum: [400],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].badRequestResponse,
+          description: descriptions.badRequestResponse,
         },
       },
     },
   };
 
   const unauthorizedResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].unauthorizedResponse,
+    description: descriptions.unauthorizedResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "Vous devez être connecté pour accéder à cette ressource",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Unauthorized",
             },
             statusCode: {
               type: "number",
               enum: [401],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].unauthorizedResponse,
+          description: descriptions.unauthorizedResponse,
         },
       },
     },
   };
 
   const forbiddenResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].forbiddenResponse,
+    description: descriptions.forbiddenResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "Le jeton d'accès est invalide",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Forbidden",
             },
             statusCode: {
               type: "number",
               enum: [403],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].forbiddenResponse,
+          description: descriptions.forbiddenResponse,
         },
       },
     },
   };
 
   const notFoundResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].notFoundResponse,
+    description: descriptions.notFoundResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "Resource non trouvée",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Not Found",
             },
             statusCode: {
               type: "number",
               enum: [404],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].notFoundResponse,
+          description: descriptions.notFoundResponse,
         },
       },
     },
   };
 
   const conflictResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].conflictResponse,
+    description: descriptions.conflictResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "La ressource exite déjà",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Conflict",
             },
             statusCode: {
               type: "number",
               enum: [409],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].conflictResponse,
+          description: descriptions.conflictResponse,
         },
       },
     },
   };
 
   const tooManyRequestsResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].tooManyRequestsResponse,
+    description: descriptions.tooManyRequestsResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "Limite de requêtes atteinte",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Too Many Requests",
             },
             statusCode: {
               type: "number",
               enum: [419],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].tooManyRequestsResponse,
+          description: descriptions.tooManyRequestsResponse,
         },
       },
     },
   };
 
   const internalServerErrorResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].internalServerErrorResponse,
+    description: descriptions.internalServerErrorResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "The server was unable to complete your request",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Internal Server Error",
             },
             statusCode: {
               type: "number",
               enum: [500],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].internalServerErrorResponse,
+          description: descriptions.internalServerErrorResponse,
         },
       },
     },
   };
 
   const badGatewayResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].badGatewayResponse,
+    description: descriptions.badGatewayResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "The server was unable to complete your request",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Bad Gateway",
             },
             statusCode: {
               type: "number",
               enum: [502],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].badGatewayResponse,
+          description: descriptions.badGatewayResponse,
         },
       },
     },
   };
 
   const serviceUnavailableResponse: ResponseObject = {
-    description: descriptions[lang ?? "null"].serviceUnavailableResponse,
+    description: descriptions.serviceUnavailableResponse,
     content: {
       "application/json": {
         schema: {
           type: "object",
           properties: {
-            data: { description: descriptions[lang ?? "null"].data },
+            data: { description: descriptions.data },
             message: {
               type: "string",
-              description: descriptions[lang ?? "null"].message,
+              description: descriptions.message,
               example: "The server was unable to complete your request",
             },
             name: {
               type: "string",
-              description: descriptions[lang ?? "null"].name,
+              description: descriptions.name,
               example: "Service Unavailable",
             },
             statusCode: {
               type: "number",
               enum: [502],
-              description: descriptions[lang ?? "null"].statusCode,
+              description: descriptions.statusCode,
             },
           },
           required: ["message", "name", "statusCode"],
           additionalProperties: false,
-          description: descriptions[lang ?? "null"].serviceUnavailableResponse,
+          description: descriptions.serviceUnavailableResponse,
         },
       },
     },
