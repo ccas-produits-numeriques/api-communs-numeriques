@@ -63,12 +63,12 @@ function VousEtesSection() {
             maxWidth="720px"
             flexWrap="wrap"
           >
-            <ActeurBadge>un opérateur public</ActeurBadge>
-            <ActeurBadge>un organisme de formation</ActeurBadge>
-            <ActeurBadge>une entreprise</ActeurBadge>
-            <ActeurBadge>un editeur de logiciels</ActeurBadge>
-            <ActeurBadge>un organisme financeur</ActeurBadge>
-            <ActeurBadge>un apprenant / une apprenante</ActeurBadge>
+            <ActeurBadge>une juridiction</ActeurBadge>
+            <ActeurBadge>un magistrat / une magistrate</ActeurBadge>
+            <ActeurBadge>un greffier / une greffière</ActeurBadge>
+            <ActeurBadge>un agent du ministère de la Justice</ActeurBadge>
+            <ActeurBadge>une direction métier</ActeurBadge>
+            <ActeurBadge>une équipe produit ou SI</ActeurBadge>
           </Box>
           <Box textAlign="center">
             <Typography
