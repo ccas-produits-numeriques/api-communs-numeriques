@@ -10,7 +10,6 @@ import identifiantRncpNotes from "./fr/identifiant.rncp.notes.md.js";
 import identiantRncpAnterieur2019Notes from "./fr/identifiant.rncp_anterieur_2019.notes.md.js";
 import intituleNiveauCfdEuropeenNotes from "./fr/intitule.niveau.cfd.europeen.notes.md.js";
 import periodeValiditeRncpActivationNotes from "./fr/periode_validite.rncp.activation.notes.md.js";
-
 export const certificationModelDoc = {
   descriptions: [{ en: null, fr: "Certification" }],
   properties: {

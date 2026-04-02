@@ -1,49 +1,47 @@
 import { recuperationDetailOffrePageSummaryDoc } from "../../internal.js";
 import type { DocRoute } from "../../types.js";
-
 export const jobSearchByIdRouteDoc = {
   summary: recuperationDetailOffrePageSummaryDoc.title,
   description: {
-    en: "Access the details of an apprenticeship job offer from its identifier.",
+    en: null,
     fr: "Accéder au détail d'une opportunité d'emploi à partir de son identifiant.",
   },
   parameters: {
     id: {
-      descriptions: [{ en: "Unique identifier of the job offer", fr: "Identifiant unique de l’opportunité d’emploi" }],
+      descriptions: [{ en: null, fr: "Identifiant unique de l’opportunité d’emploi" }],
       examples: ["6687165396d52b5e01b409545"],
     },
   },
   response: {
-    description: { en: "Success", fr: "Succès" },
+    description: { en: null, fr: "Succès" },
     content: {
       descriptions: [
         {
-          en: "Job offer corresponding to the search.",
+          en: null,
           fr: "Détail de l'offre correspondant à l'identifiant fourni",
         },
       ],
     },
   },
 } as const satisfies DocRoute;
-
 export const jobSearchByIdPublishingRouteDoc = {
-  summary: { fr: "Etat de la dernière publication de l'offre", en: "State of the last publishing of the offer" },
+  summary: { fr: "Etat de la dernière publication de l'offre", en: null },
   description: {
-    en: "This endpoint gives informations about the state of the last publishing of the offer. Indeed, the publishing of an offer can take up to 10 minutes.",
+    en: null,
     fr: "Cette route donne des informations sur l'état de la dernière publication de l'offre. En effet, la publication d'une offre peut prendre jusqu'à 10 minutes.",
   },
   parameters: {
     id: {
-      descriptions: [{ en: "Unique identifier of the job offer", fr: "Identifiant unique de l’opportunité d’emploi" }],
+      descriptions: [{ en: null, fr: "Identifiant unique de l’opportunité d’emploi" }],
       examples: ["6687165396d52b5e01b409545"],
     },
   },
   response: {
-    description: { en: "Success", fr: "Succès" },
+    description: { en: null, fr: "Succès" },
     content: {
       descriptions: [
         {
-          en: "Last publising informations of the offer",
+          en: null,
           fr: "Informations de la dernière publication de l'offre",
         },
       ],

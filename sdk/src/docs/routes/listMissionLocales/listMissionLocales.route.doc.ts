@@ -1,12 +1,11 @@
 import { recuperationMissionLocalePageSummaryDoc } from "../../metier/recuperation-mission-locales/recuperation-mission-locales.doc.js";
 import type { DocRoute } from "../../types.js";
 import { jobSearchRouteDoc } from "../jobSearch/jobSearch.route.doc.js";
-
 export const listMissionLocalesRouteDoc = {
   summary: recuperationMissionLocalePageSummaryDoc.title,
   description: {
     fr: "Récupération de la liste des missions locales",
-    en: "Retrieve the list of mission locales",
+    en: null,
   },
   parameters: {
     longitude: jobSearchRouteDoc.parameters.longitude,
@@ -15,14 +14,14 @@ export const listMissionLocalesRouteDoc = {
   },
   response: {
     description: {
-      en: "Success",
+      en: null,
       fr: "Succès",
     },
     content: {
       descriptions: [
         {
           fr: "Liste des missions locales",
-          en: "List of mission locales",
+          en: null,
         },
       ],
       items: {

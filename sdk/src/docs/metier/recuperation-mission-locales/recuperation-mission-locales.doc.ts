@@ -1,22 +1,23 @@
 import type { DocPage, OpenApiText } from "../../types.js";
 import { rechercheCommunePageDoc } from "../recherche-commune/recherche-commune.doc.js";
-
 export const recuperationMissionLocalePageSummaryDoc = {
   title: {
-    en: "Retrieve Mission Locales",
+    en: null,
     fr: "Récupération des Mission Locales",
   },
   headline: {
-    en: "Consult the list of Mission Locales",
+    en: null,
     fr: "Consulter le référentiel des Missions Locales",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const recuperationMissionLocalesPageDoc = {
   tag: "geographie",
   operationIds: ["get_geographie_v1_mission_locale"],
   habilitation: null,
-  description: [{ en: "Retrieve the Mission Locales", fr: "Récupération des Missions Locales" }],
+  description: [{ en: null, fr: "Récupération des Missions Locales" }],
   frequenceMiseAJour: "daily",
   type: "data",
   sources: [

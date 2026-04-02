@@ -15,7 +15,7 @@ export const zOrganisation = z.object({
     ),
     z.string().check(z.minLength(2), z.maxLength(100))
   ),
-  habilitations: z.array(z.enum(["appointments:write", "applications:write"])),
+  habilitations: z.array(z.enum(["appointments:write"])),
 });
 
 export type IOrganisation = z.output<typeof zOrganisation>;

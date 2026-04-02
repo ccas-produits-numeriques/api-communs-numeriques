@@ -1,16 +1,11 @@
-import contractDescEn from "../../metier/recherche-offre/en/contract.description.md.js";
-import offerDescEn from "../../metier/recherche-offre/en/offer.description.md.js";
-import offerPublicationDescEn from "../../metier/recherche-offre/en/offer.publication.description.md.js";
-import offerStatusDescEn from "../../metier/recherche-offre/en/offer.status.description.md.js";
 import contractDescFr from "../../metier/recherche-offre/fr/contract.description.md.js";
 import offerDescFr from "../../metier/recherche-offre/fr/offer.description.md.js";
 import offerPublicationDescFr from "../../metier/recherche-offre/fr/offer.publication.description.md.js";
 import offerStatusDescFr from "../../metier/recherche-offre/fr/offer.status.description.md.js";
 import type { DocTechnicalField } from "../../types.js";
 import { recruiterModelDoc } from "./recruiter.model.doc.js";
-
 export const offerReadModelDoc = {
-  descriptions: [{ fr: "Offre d'emploi", en: "Job offer" }],
+  descriptions: [{ fr: "Offre d'emploi", en: null }],
   properties: {
     identifier: {
       ...recruiterModelDoc.properties.identifier,
@@ -18,11 +13,11 @@ export const offerReadModelDoc = {
         id: {
           descriptions: [
             {
-              en: "Identifier of the job offer in the Cour de cassation database.",
+              en: null,
               fr: "Identifiant de l'offre d'emploi dans la base de données Cour de cassation.",
             },
             {
-              en: "France Travail offers are not stored in the Cour de cassation database but are retrieved on the fly. They do not have an identifier in the database.",
+              en: null,
               fr: "Les offres France Travail ne sont pas stockées dans la base de données Cour de cassation mais sont récupérées à la volée. Elles n'ont pas d'identifiant dans la base de données.",
             },
           ],
@@ -31,7 +26,7 @@ export const offerReadModelDoc = {
         partner_job_id: {
           descriptions: [
             {
-              en: "Offer identifier within the partner's information system.",
+              en: null,
               fr: "Identifiant de l'offre dans le système d'information du partenaire.",
             },
           ],
@@ -39,9 +34,9 @@ export const offerReadModelDoc = {
         },
         partner_label: {
           descriptions: [
-            { en: "Partner originating the job offer.", fr: "Partenaire à l'origine de l'offre d'emploi." },
+            { en: null, fr: "Partenaire à l'origine de l'offre d'emploi." },
             {
-              en: 'In the case of offers collected by Cour de cassation, the partner_label is: "offres_emploi_lba".<br />In the case of companies identified with a high potential to recruit, the partner_label is: "recruteurs_lba".',
+              en: null,
               fr: 'Dans le cas des offres collectées par Cour de cassation, le partner_label est : "offres_emploi_lba".<br />Dans le cas des entreprises identifiées comme ayant un fort potentiel d’embauche, le partner_label est : "recruteurs_lba".',
             },
           ],
@@ -50,27 +45,27 @@ export const offerReadModelDoc = {
       },
     },
     contract: {
-      descriptions: [{ en: contractDescEn, fr: contractDescFr }],
+      descriptions: [{ en: null, fr: contractDescFr }],
       properties: {
         duration: {
-          descriptions: [{ en: "Contract duration in months.", fr: "Durée du contrat en mois." }],
+          descriptions: [{ en: null, fr: "Durée du contrat en mois." }],
           examples: [12],
         },
         start: {
-          descriptions: [{ fr: "Date de début du contrat.", en: "Start date of the contract." }],
+          descriptions: [{ fr: "Date de début du contrat.", en: null }],
           examples: ["2024-09-23T10:00:00.000Z"],
         },
         type: {
           descriptions: [
             {
-              en: "Contract type (apprenticeship and/or professionalization)",
+              en: null,
               fr: "Type de contrat (apprentissage et/ou professionnalisation)",
             },
           ],
           items: {
             descriptions: [
               {
-                en: "Contract type (apprenticeship and/or professionalization)",
+                en: null,
                 fr: "Type de contrat (apprentissage et/ou professionnalisation)",
               },
             ],
@@ -78,22 +73,18 @@ export const offerReadModelDoc = {
           },
         },
         remote: {
-          descriptions: [
-            { en: "Work mode (on-site, remote, or hybrid)", fr: "Mode de travail (sur site, à distance ou hybride)" },
-          ],
+          descriptions: [{ en: null, fr: "Mode de travail (sur site, à distance ou hybride)" }],
           examples: ["onsite", "remote", "hybrid"],
         },
       },
     },
     offer: {
-      descriptions: [{ en: offerDescEn, fr: offerDescFr }],
+      descriptions: [{ en: null, fr: offerDescFr }],
       properties: {
         access_conditions: {
-          descriptions: [{ en: "The conditions for entering the profession", fr: "Les conditions d'accès au métier" }],
+          descriptions: [{ en: null, fr: "Les conditions d'accès au métier" }],
           items: {
-            descriptions: [
-              { en: "The conditions for entering the profession", fr: "Les conditions d'accès au métier" },
-            ],
+            descriptions: [{ en: null, fr: "Les conditions d'accès au métier" }],
             examples: [
               "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
               "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -102,7 +93,7 @@ export const offerReadModelDoc = {
           },
         },
         description: {
-          descriptions: [{ en: "Job offer description.", fr: "Description de l'offre d'emploi." }],
+          descriptions: [{ en: null, fr: "Description de l'offre d'emploi." }],
           examples: [
             "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
           ],
@@ -110,14 +101,14 @@ export const offerReadModelDoc = {
         desired_skills: {
           descriptions: [
             {
-              en: "The skills or qualities expected for the position.",
+              en: null,
               fr: "Les compétences ou qualités attendues pour le poste.",
             },
           ],
           items: {
             descriptions: [
               {
-                en: "The skills or qualities expected for the position.",
+                en: null,
                 fr: "Les compétences ou qualités attendues pour le poste.",
               },
             ],
@@ -132,44 +123,40 @@ export const offerReadModelDoc = {
         opening_count: {
           descriptions: [
             {
-              en: "Number of positions available for this job offer",
+              en: null,
               fr: "Nombre de postes disponibles pour cette offre d'emploi",
             },
           ],
           examples: [1, 3],
         },
         rome_codes: {
-          descriptions: [{ en: "ROME code(s) of the offer", fr: "Code(s) ROME de l'offre" }],
+          descriptions: [{ en: null, fr: "Code(s) ROME de l'offre" }],
           items: {
-            descriptions: [{ en: "ROME code", fr: "Code ROME" }],
+            descriptions: [{ en: null, fr: "Code ROME" }],
             examples: ["A1401"],
           },
         },
         status: {
           descriptions: [
-            { en: offerStatusDescEn, fr: offerStatusDescFr },
+            { en: null, fr: offerStatusDescFr },
             {
-              en: "Only active offers are returned by the search.",
+              en: null,
               fr: "Seules les offres actives sont retournées par la recherche.",
             },
           ],
           examples: ["Active"],
         },
         target_diploma: {
-          descriptions: [
-            { en: "Targeted diploma level at the end of studies.", fr: "Diplôme visé à l'issue des études." },
-          ],
+          descriptions: [{ en: null, fr: "Diplôme visé à l'issue des études." }],
           properties: {
             european: {
-              descriptions: [
-                { en: "Targeted diploma level at the end of studies.", fr: "Diplôme visé à l'issue des études." },
-              ],
+              descriptions: [{ en: null, fr: "Diplôme visé à l'issue des études." }],
               examples: ["3"],
             },
             label: {
               descriptions: [
                 {
-                  en: "The title of the targeted diploma level at the end of studies.",
+                  en: null,
                   fr: "Le nom du diplôme visé à l'issue des études.",
                 },
               ],
@@ -178,20 +165,20 @@ export const offerReadModelDoc = {
           },
         },
         title: {
-          descriptions: [{ en: "Job offer title.", fr: "Intitulé de l'offre d'emploi." }],
+          descriptions: [{ en: null, fr: "Intitulé de l'offre d'emploi." }],
           examples: ["Développeur / Développeuse web"],
         },
         to_be_acquired_skills: {
           descriptions: [
             {
-              en: "The skills or qualities to be acquired during the apprenticeship.",
+              en: null,
               fr: "Les compétences ou qualités à acquérir durant l'apprentissage.",
             },
           ],
           items: {
             descriptions: [
               {
-                en: "The skills or qualities to be acquired during the apprenticeship.",
+                en: null,
                 fr: "Les compétences ou qualités à acquérir durant l'apprentissage.",
               },
             ],
@@ -203,18 +190,14 @@ export const offerReadModelDoc = {
           },
         },
         publication: {
-          descriptions: [{ en: offerPublicationDescEn, fr: offerPublicationDescFr }],
+          descriptions: [{ en: null, fr: offerPublicationDescFr }],
           properties: {
             creation: {
-              descriptions: [
-                { en: "Creation date of the job opportunity.", fr: "Date de création de l'opportunité d'emploi." },
-              ],
+              descriptions: [{ en: null, fr: "Date de création de l'opportunité d'emploi." }],
               examples: ["2024-07-23T13:23:01.000Z"],
             },
             expiration: {
-              descriptions: [
-                { en: "Expiration date of the job opportunity.", fr: "Date d'expiration de l'opportunité d'emploi." },
-              ],
+              descriptions: [{ en: null, fr: "Date d'expiration de l'opportunité d'emploi." }],
               examples: ["2027-05-14T00:00:00Z"],
             },
           },
@@ -226,7 +209,7 @@ export const offerReadModelDoc = {
     is_delegated: {
       descriptions: [
         {
-          en: "true if offer management is delegated to a partner school. false otherwise",
+          en: null,
           fr: "Indique si la gestion de l'offre est déléguée à un CFA partenaire. valeurs true | false",
         },
       ],

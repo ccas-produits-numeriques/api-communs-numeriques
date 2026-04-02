@@ -4329,7 +4329,6 @@ exports[`zodToMongoSchema > should convert organisations schema 1`] = `
         "bsonType": "string",
         "enum": [
           "appointments:write",
-          "applications:write",
         ],
       },
     },

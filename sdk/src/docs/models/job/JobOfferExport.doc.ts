@@ -1,9 +1,8 @@
 import type { DocTechnicalField } from "../../types.js";
-
 export const offerExportModelDoc = {
   descriptions: [
     {
-      en: "Informations relative to the export of the all the offers.",
+      en: null,
       fr: "Informations concernant l'export de toutes les offres.",
     },
   ],
@@ -11,7 +10,7 @@ export const offerExportModelDoc = {
     url: {
       descriptions: [
         {
-          en: "URL of the export. Provided URL is valid for 2 minutes. \n\nOffers are returned using the JSON format. The data structure of the offers is identical to the response of the [search route](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
+          en: null,
           fr: "URL de l'export. le lien de téléchargement est valable pendant 2 minutes. \n\nLes offres sont au format JSON. La structure de données des offres est identique à la réponse de la [route de recherche](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
         },
       ],
@@ -20,7 +19,7 @@ export const offerExportModelDoc = {
       ],
     },
     lastUpdate: {
-      descriptions: [{ en: "Export date", fr: "Date de l'export" }],
+      descriptions: [{ en: null, fr: "Date de l'export" }],
       examples: ["2025-06-26T08:28:05.000Z"],
     },
   },

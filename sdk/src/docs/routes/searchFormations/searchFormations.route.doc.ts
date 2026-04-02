@@ -2,7 +2,6 @@ import { rechercheFormationPageSummaryDoc } from "../../metier/recherche-formati
 import { paginationQueryParameterDoc } from "../../models/pagination/pagination.model.doc.js";
 import type { DocRoute } from "../../types.js";
 import { jobSearchRouteDoc } from "../jobSearch/jobSearch.route.doc.js";
-
 export const searchFormationsRouteDoc = {
   summary: rechercheFormationPageSummaryDoc.title,
   description: rechercheFormationPageSummaryDoc.headline,
@@ -18,14 +17,14 @@ export const searchFormationsRouteDoc = {
       descriptions: [
         {
           fr: "Inclure les formations archivées dans les résultats",
-          en: "Include archived training courses in the results",
+          en: null,
         },
       ],
     },
   },
   response: {
     description: {
-      en: "Success",
+      en: null,
       fr: "Succès",
     },
     content: {
@@ -34,7 +33,7 @@ export const searchFormationsRouteDoc = {
         data: {
           descriptions: [
             {
-              en: "List of training courses matching the search criteria",
+              en: null,
               fr: "Liste des formations correspondant aux critères de recherche",
             },
           ],

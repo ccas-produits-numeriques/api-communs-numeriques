@@ -89,8 +89,6 @@ export function isAuthorizedUser(
       return resources.users.every((r) => canAccessUser(user, r));
     case "admin":
       return user.is_admin;
-    case "applications:write":
-      return true;
     case "appointments:write":
       return true;
     default:

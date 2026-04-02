@@ -1,7 +1,6 @@
 import type { SchemaObject } from "openapi3-ts/oas31";
 
 import { z } from "zod/v4-mini";
-import { applicationModelDoc } from "../../docs/models/job/application.model.doc.js";
 import { offerReadModelDoc } from "../../docs/models/job/offer_read.model.doc.js";
 import { recruiterModelDoc } from "../../docs/models/job/recruiter.model.doc.js";
 import type { OpenapiModel } from "../../openapi/types.js";
@@ -240,57 +239,6 @@ const offerReadSchema = {
   required: ["identifier", "workplace", "apply", "contract", "offer", "is_delegated"],
 } as const satisfies SchemaObject;
 
-const applicationWriteSchema = {
-  type: "object",
-  properties: {
-    applicant_first_name: {
-      type: "string",
-      minLength: 1,
-      maxLength: 50,
-    },
-    applicant_last_name: {
-      type: "string",
-      minLength: 1,
-      maxLength: 50,
-    },
-    applicant_email: {
-      type: "string",
-      format: "email",
-    },
-    applicant_phone: {
-      type: "string",
-    },
-    applicant_attachment_name: {
-      type: "string",
-      minLength: 1,
-      pattern: "((.*?))(\\.)+([Dd][Oo][Cc][Xx]|[Pp][Dd][Ff])$",
-    },
-    applicant_message: {
-      type: ["string", "null"],
-    },
-    applicant_attachment_content: {
-      type: "string",
-      maxLength: 4215276,
-      format: "byte",
-    },
-    recipient_id: {
-      type: "string",
-      description:
-        "Identifiant unique de la ressource vers laquelle la candidature est faite, préfixé par le nom de la collection",
-    },
-  },
-  required: [
-    "applicant_first_name",
-    "applicant_last_name",
-    "applicant_email",
-    "applicant_phone",
-    "applicant_attachment_name",
-    "applicant_attachment_content",
-    "recipient_id",
-  ],
-  additionalProperties: false,
-} as const satisfies SchemaObject;
-
 export const recruiterModelOpenapi: OpenapiModel<"JobRecruiter"> = {
   name: "JobRecruiter",
   schema: recruiterSchema,
@@ -302,12 +250,5 @@ export const offerReadModelOpenapi: OpenapiModel<"JobOfferRead"> = {
   name: "JobOfferRead",
   schema: offerReadSchema,
   doc: offerReadModelDoc,
-  zod: z.unknown(),
-};
-
-export const applicationWriteModelOpenapi: OpenapiModel<"JobApplicationWrite"> = {
-  name: "JobApplicationWrite",
-  schema: applicationWriteSchema,
-  doc: applicationModelDoc,
   zod: z.unknown(),
 };

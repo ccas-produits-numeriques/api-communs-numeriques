@@ -1,5 +1,4 @@
 import {
-  candidatureOffrePageSummaryDoc,
   certificationsPageSummaryDoc,
   generationLienPriseRdvFormationPageSummaryDoc,
   getTextOpenAPI,
@@ -104,11 +103,6 @@ export const PAGES = {
       getPath: () => `/explorer/recuperation-organismes` as string,
       index: true,
       getTitle: () => getTextOpenAPI(recuperationOrganismesPageSummaryDoc.title, "fr"),
-    },
-    candidatureOffre: {
-      getPath: () => `/explorer/candidature-offre` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(candidatureOffrePageSummaryDoc.title, "fr"),
     },
     mentionsLegales: {
       getPath: () => `/mentions-legales` as string,

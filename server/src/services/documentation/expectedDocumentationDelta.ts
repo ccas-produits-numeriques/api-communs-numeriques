@@ -269,16 +269,6 @@ export const expectedDocumentationDelta: Record<string, StructureDiff<"sij_api",
       },
     },
   },
-  "post:/job/v1/apply": {
-    source: "sij_api",
-    result: "api",
-    diff: {
-      "requestBody.content.application/json.schema.properties.applicant_attachment_content.format": {
-        type: "added",
-        result: "byte",
-      },
-    },
-  },
   "get:/job/v1/offer/{id}/publishing-informations": {
     source: "sij_api",
     result: "api",

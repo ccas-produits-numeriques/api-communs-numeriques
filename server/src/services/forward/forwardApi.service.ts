@@ -28,7 +28,6 @@ export async function createAuthToken(
       email: user.email,
       organisation: user.organisation,
       habilitations: {
-        "applications:write": hasHabilitation(organisation, "applications:write"),
         "appointments:write": hasHabilitation(organisation, "appointments:write"),
       },
     },

@@ -1,8 +1,7 @@
 import type { DocTechnicalField } from "../../types.js";
 import { communeModelDoc } from "../commune/commune.model.doc.js";
-
 export const departementModelDoc = {
-  descriptions: [{ fr: "Département", en: "Department" }],
+  descriptions: [{ fr: "Département", en: null }],
   properties: {
     ...communeModelDoc.properties.departement.properties,
     region: communeModelDoc.properties.region,
