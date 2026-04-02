@@ -2,7 +2,6 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import house from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/house.svg";
 import school from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/school.svg";
-import internet from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/internet.svg";
 import search from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/search.svg";
 import contract from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/document/contract.svg";
 import book from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/book.svg";
@@ -14,7 +13,6 @@ import { Box, Container, Typography } from "@mui/material";
 import {
   candidatureOffrePageSummaryDoc,
   certificationsPageSummaryDoc,
-  depotOffrePageSummaryDoc,
   generationLienPriseRdvFormationPageSummaryDoc,
   getTextOpenAPI,
   rechercheCommunePageSummaryDoc,
@@ -94,15 +92,6 @@ export default async function ExplorerApiPage() {
           enlargeLinkOrButton
           start={<TagDsfr>Jeu de données</TagDsfr>}
           linkProps={{ href: PAGES.static.recuperationDetailOffre.getPath() }}
-        />
-        <Tile
-          title={getTextOpenAPI(depotOffrePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(depotOffrePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={internet.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.depotOffre.getPath() }}
-          start={<TagDsfr>Outil</TagDsfr>}
         />
         <Tile
           title={getTextOpenAPI(candidatureOffrePageSummaryDoc.title, "fr")}

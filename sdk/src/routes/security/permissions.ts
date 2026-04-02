@@ -1,6 +1,6 @@
 import type { IOrganisation } from "../../models/index.js";
 
-export type Permission = "admin" | "user:manage" | "jobs:write" | "appointments:write" | "applications:write";
+export type Permission = "admin" | "user:manage" | "appointments:write" | "applications:write";
 
 export type RoleNames = "none" | "org" | "admin";
 
@@ -25,7 +25,7 @@ export function getBaseRole(organisation: IOrganisation | null): Role {
 
 export const AdminRole = {
   name: "admin",
-  permissions: ["admin", "user:manage", "jobs:write"],
+  permissions: ["admin", "user:manage"],
 } satisfies Role;
 
 export type AccessPermission = Permission;

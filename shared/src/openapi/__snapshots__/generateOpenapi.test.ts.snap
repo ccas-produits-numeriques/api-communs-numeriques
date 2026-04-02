@@ -9,23 +9,23 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Le service est indisponible.",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "The server was unable to complete your request",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Bad Gateway",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     502,
                   ],
@@ -41,34 +41,34 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Le service est indisponible.",
       },
       "BadRequest": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Requête invalide",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "examples": [
                     "Request validation failed",
                   ],
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "examples": [
                     "Bad Request",
                   ],
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     400,
                   ],
@@ -84,30 +84,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Requête invalide",
       },
       "Conflict": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Conflit de ressource",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "La ressource exite déjà",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Conflict",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     409,
                   ],
@@ -123,30 +123,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Conflit de ressource",
       },
       "Forbidden": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Habilitations insuffisantes pour accéder à la ressource",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "Le jeton d'accès est invalide",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Forbidden",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     403,
                   ],
@@ -162,30 +162,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Habilitations insuffisantes pour accéder à la ressource",
       },
       "InternalServerError": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Une erreur inattendue s'est produite sur le serveur.",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "The server was unable to complete your request",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Internal Server Error",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     500,
                   ],
@@ -201,30 +201,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Une erreur inattendue s'est produite sur le serveur.",
       },
       "NotFound": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Ressource non trouvée",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "Resource non trouvée",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Not Found",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     404,
                   ],
@@ -240,30 +240,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Ressource non trouvée",
       },
       "ServiceUnavailable": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Le service est en maintenance",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "The server was unable to complete your request",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Service Unavailable",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     502,
                   ],
@@ -279,30 +279,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Le service est en maintenance",
       },
       "TooManyRequests": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Limite de volumétrie atteinte pour la clé d’API",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "Limite de requêtes atteinte",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Too Many Requests",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     419,
                   ],
@@ -318,30 +318,30 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Limite de volumétrie atteinte pour la clé d’API",
       },
       "Unauthorized": {
         "content": {
           "application/json": {
             "schema": {
               "additionalProperties": false,
-              "description": "",
+              "description": "Clé d’API manquante ou invalide",
               "properties": {
                 "data": {
-                  "description": "",
+                  "description": "Données contextuelles liées à l'erreur",
                 },
                 "message": {
-                  "description": "",
+                  "description": "Un message explicatif de l'erreur",
                   "example": "Vous devez être connecté pour accéder à cette ressource",
                   "type": "string",
                 },
                 "name": {
-                  "description": "",
+                  "description": "Le type générique de l'erreur",
                   "example": "Unauthorized",
                   "type": "string",
                 },
                 "statusCode": {
-                  "description": "",
+                  "description": "Le status code retourné",
                   "enum": [
                     401,
                   ],
@@ -357,7 +357,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
             },
           },
         },
-        "description": "",
+        "description": "Clé d’API manquante ou invalide",
       },
     },
     "schemas": {
@@ -1900,12 +1900,12 @@ Une commune peut avoir plusieurs code postaux, et un code postal peut correspond
           },
           "localisation": {
             "additionalProperties": false,
-            "description": "The location information consists of:
+            "description": "Les informations de localisations sont composés du:
 
-- The \`center\` of the municipality
-- The bounding box (\`bbox\`) that defines the area of the municipality.
+- Du \`centre\` de la commune
+- De la boite englobante (\`bbox\`) qui délimite la zone de la commune.
 
-The \`center\` and \`bbox\` fields are both in [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format.",
+Les champs \`centre\` et \`bbox\` sont tous les deux au format [GeoJSON](https://fr.wikipedia.org/wiki/GeoJSON)",
             "properties": {
               "bbox": {
                 "$ref": "#/components/schemas/GeoJsonPolygon",
@@ -2034,7 +2034,7 @@ The \`center\` and \`bbox\` fields are both in [GeoJSON](https://en.wikipedia.or
       },
       "Formation": {
         "additionalProperties": false,
-        "description": "Training",
+        "description": "Formation",
         "properties": {
           "certification": {
             "additionalProperties": false,
@@ -2452,7 +2452,7 @@ L'organisme est connu lorsqu'il est présent dans [le référentiel des organism
                 "type": "number",
               },
               {
-                "description": "Latiude",
+                "description": "Latitude",
                 "examples": [
                   2.308628,
                 ],
@@ -2491,7 +2491,7 @@ L'organisme est connu lorsqu'il est présent dans [le référentiel des organism
                     "type": "number",
                   },
                   {
-                    "description": "Latiude",
+                    "description": "Latitude",
                     "examples": [
                       2.308628,
                     ],
@@ -2519,50 +2519,50 @@ L'organisme est connu lorsqu'il est présent dans [le référentiel des organism
       },
       "JobApplicationWrite": {
         "additionalProperties": false,
-        "description": "Application",
+        "description": "Candidature",
         "properties": {
           "applicant_attachment_content": {
-            "description": "Resume file",
+            "description": "CV du candidat",
             "format": "byte",
             "maxLength": 4215276,
             "type": "string",
           },
           "applicant_attachment_name": {
-            "description": "Resume file name",
+            "description": "Nom du CV",
             "minLength": 1,
             "pattern": "((.*?))(\\.)+([Dd][Oo][Cc][Xx]|[Pp][Dd][Ff])$",
             "type": "string",
           },
           "applicant_email": {
-            "description": "Applicant's email",
+            "description": "Email du candidat",
             "format": "email",
             "type": "string",
           },
           "applicant_first_name": {
-            "description": "Applicant's firstname",
+            "description": "Prénom du candidat",
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
           },
           "applicant_last_name": {
-            "description": "Applicant's lastname",
+            "description": "Nom du candidat",
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
           },
           "applicant_message": {
-            "description": "Applicant's message",
+            "description": "Message du candidat",
             "type": [
               "string",
               "null",
             ],
           },
           "applicant_phone": {
-            "description": "Applicant's phone",
+            "description": "Numéro de téléphone du candidat",
             "type": "string",
           },
           "recipient_id": {
-            "description": "Recipient identifier retrieved from \`apply.recipient_id\` from search route.",
+            "description": "Identifiant du destinataire récupéré de \`apply.recipient_id\` depuis les resultas de la route de recherche.",
             "type": "string",
           },
         },
@@ -2578,10 +2578,10 @@ L'organisme est connu lorsqu'il est présent dans [le référentiel des organism
         "type": "object",
       },
       "JobOfferExport": {
-        "description": "Informations relative to the export of the all the offers.",
+        "description": "Informations concernant l'export de toutes les offres.",
         "properties": {
           "lastUpdate": {
-            "description": "Export date",
+            "description": "Date de l'export",
             "examples": [
               "2025-06-26T08:28:05.000Z",
             ],
@@ -2589,9 +2589,9 @@ L'organisme est connu lorsqu'il est présent dans [le référentiel des organism
             "type": "string",
           },
           "url": {
-            "description": "URL of the export. Provided URL is valid for 2 minutes. 
+            "description": "URL de l'export. le lien de téléchargement est valable pendant 2 minutes. 
 
-Offers are returned using the JSON format. The data structure of the offers is identical to the response of the [search route](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
+Les offres sont au format JSON. La structure de données des offres est identique à la réponse de la [route de recherche](/fr/documentation-technique#tag/Offre-Emploi/operation/jobSearch)",
             "examples": [
               "https://s3.rbx.io.cloud.ovh.net/bucket/file.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD",
             ],
@@ -2605,16 +2605,16 @@ Offers are returned using the JSON format. The data structure of the offers is i
         "type": "object",
       },
       "JobOfferPublishing": {
-        "description": "Publishing informations of the offer",
+        "description": "Informations sur la publication de l'offre d'emploi",
         "properties": {
           "publishing": {
-            "description": "Publishing informations of the offer",
+            "description": "Informations sur la publication de l'offre d'emploi",
             "properties": {
               "error": {
-                "description": "Object containing the error",
+                "description": "Objet contenant l'erreur",
                 "properties": {
                   "code": {
-                    "description": "Code of the error. This code will not change.",
+                    "description": "Code de l'erreur. Ce code ne changera pas.",
                     "examples": [
                       "CLOSED_COMPANY",
                       "DUPLICATE",
@@ -2628,7 +2628,7 @@ Offers are returned using the JSON format. The data structure of the offers is i
                     "type": "string",
                   },
                   "label": {
-                    "description": "Error description",
+                    "description": "Description de l'erreur",
                     "examples": [
                       "WILL_BE_PUBLISHED",
                       "PUBLISHED",
@@ -2644,7 +2644,7 @@ Offers are returned using the JSON format. The data structure of the offers is i
                 "type": "object",
               },
               "status": {
-                "description": "State of the publishing. If the value is WILL_NOT_BE_PUBLISHED, the offer will not be published.",
+                "description": "Etat de la publication. Si la valeur vaut WILL_NOT_BE_PUBLISHED, l'offre ne sera pas publiée.",
                 "enum": [
                   "WILL_BE_PUBLISHED",
                   "PUBLISHED",
@@ -2673,16 +2673,16 @@ Offers are returned using the JSON format. The data structure of the offers is i
         "description": "Offre d'emploi",
         "properties": {
           "apply": {
-            "description": "This element groups the different means of application offered to candidates.
+            "description": "Cet élément regroupe les différents moyens de candidature proposés aux candidats.
 
-- URL to redirect the candidate to apply
-- Phone number of the person in charge of recruitment
-- Identifier of the job opportunity to use to allow your users to apply directly from your site using [this additional API](./candidature-offre).",
+- URL vers laquelle rediriger le candidat pour qu’il postule
+- Numéro de téléphone de la personne chargée du recrutement
+- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
             "properties": {
               "phone": {
-                "description": "Recruiter's phone number or School phone number if is_delegated is true
+                "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
 
-Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
+Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
                 "examples": [
                   "0199000000",
                 ],
@@ -2692,14 +2692,14 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "recipient_id": {
-                "description": "Identifier to use for applying to the job offer using /v3/jobs/apply route or to display the apply /postuler widget. If null applying is not available for this offer by apply_route nor by /postuler widget.",
+                "description": "Identifiant à utiliser pour postuler à l'offre d'emploi via la route /v3/jobs/apply ou pour afficher le widget postuler. Si null, la candidature n'est pas disponible pour cette offre par la route apply_route ni par le widget /postuler.",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "url": {
-                "description": "Redirect URL to the application form",
+                "description": "URL de redirection vers le formulaire de candidature",
                 "examples": [
                   "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
@@ -2722,7 +2722,7 @@ Only European phone numbers are allowed. There is also a check on the nature of 
 - Le mode de travail (présentiel, télétravail ou hybride).",
             "properties": {
               "duration": {
-                "description": "Contract duration in months.",
+                "description": "Durée du contrat en mois.",
                 "examples": [
                   12,
                 ],
@@ -2733,7 +2733,7 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "remote": {
-                "description": "Work mode (on-site, remote, or hybrid)",
+                "description": "Mode de travail (sur site, à distance ou hybride)",
                 "enum": [
                   "onsite",
                   "remote",
@@ -2761,9 +2761,9 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "type": {
-                "description": "Contract type (apprenticeship and/or professionalization)",
+                "description": "Type de contrat (apprentissage et/ou professionnalisation)",
                 "items": {
-                  "description": "Contract type (apprenticeship and/or professionalization)",
+                  "description": "Type de contrat (apprentissage et/ou professionnalisation)",
                   "enum": [
                     "Apprentissage",
                     "Professionnalisation",
@@ -2786,15 +2786,15 @@ Only European phone numbers are allowed. There is also a check on the nature of 
             "type": "object",
           },
           "identifier": {
-            "description": "This element includes:
+            "description": "Cet élément regroupe :
 
-- the partner responsible for the job offer
-- the unique identifier of the job offer within the "Cour de cassation" information system",
+- le partenaire à l'origine de l'offre d'emploi
+- l'identifiant unique de l'offre d'emploi au sein du système d'information Cour de cassation",
             "properties": {
               "id": {
-                "description": "Identifier of the job offer in the Cour de cassation database.
+                "description": "Identifiant de l'offre d'emploi dans la base de données Cour de cassation.
 
-France Travail offers are not stored in the Cour de cassation database but are retrieved on the fly. They do not have an identifier in the database.",
+Les offres France Travail ne sont pas stockées dans la base de données Cour de cassation mais sont récupérées à la volée. Elles n'ont pas d'identifiant dans la base de données.",
                 "examples": [
                   "6687165396d52b5e01b409545",
                 ],
@@ -2804,16 +2804,16 @@ France Travail offers are not stored in the Cour de cassation database but are r
                 ],
               },
               "partner_job_id": {
-                "description": "Offer identifier within the partner's information system.",
+                "description": "Identifiant de l'offre dans le système d'information du partenaire.",
                 "examples": [
                   "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
                 ],
                 "type": "string",
               },
               "partner_label": {
-                "description": "Partner originating the job offer.
+                "description": "Partenaire à l'origine de l'offre d'emploi.
 
-In the case of offers collected by Cour de cassation, the partner_label is: "offres_emploi_lba".<br />In the case of companies identified with a high potential to recruit, the partner_label is: "recruteurs_lba".",
+Dans le cas des offres collectées par Cour de cassation, le partner_label est : "offres_emploi_lba".<br />Dans le cas des entreprises identifiées comme ayant un fort potentiel d’embauche, le partner_label est : "recruteurs_lba".",
                 "examples": [
                   "France Travail",
                   "offres_emploi_lba",
@@ -2830,28 +2830,28 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
           },
           "is_delegated": {
             "default": false,
-            "description": "true if offer management is delegated to a partner school. false otherwise",
+            "description": "Indique si la gestion de l'offre est déléguée à un CFA partenaire. valeurs true | false",
             "examples": [
               true,
             ],
             "type": "boolean",
           },
           "offer": {
-            "description": "A job offer is described by:
+            "description": "Une offre d’emploi est décrite par :
 
-- The title. Example: Web Developer.
-- The description. Example: Designs, develops, and implements a software application project, from the study phase to its integration, for a client or company, according to functional needs and specifications. May lead development projects. May coordinate a team.
-- The targeted diploma level. Example: BP, Bac, other level (Bac) qualifications.
-- The skills or qualities expected for the position. Example: Demonstrate autonomy; Show creativity and inventiveness; Display rigor and precision; Work well in a team.
-- The skills or qualities to be acquired during the apprenticeship. Example: Research, Innovation (Analyze relevant indicators on trends and customer usage; Design and develop a digital solution; Create technical documentation). New technologies (Assemble software components; Design a web application).
-- The conditions for entering the profession. Example: This profession is accessible with a degree from Bac+2 (BTS, DUT) to Master (MIAGE, engineering degree, professional Master, etc.) in computer science. It is also accessible with professional experience in computer science, operating systems, or an application domain. Proficiency in English (technical vocabulary) is required.
-- The number of positions to be filled.
-- List of ROME codes associated to the offer.",
+- L’intitulé. Exemple : Développeur / Développeuse web.
+- La description. Exemple : Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.
+- Le niveau de diplôme visé. Exemple : BP, Bac, autres formations niveau (Bac)
+- Les compétences ou qualités attendues pour le poste. Exemple : Faire preuve d'autonomie ; Faire preuve de créativité, d'inventivité ; Faire preuve de rigueur et de précision ; Travailler en équipe
+- Les compétences ou qualités à acquérir durant la formation. Exemple : Recherche, Innovation (Analyser les indicateurs pertinents sur les tendances et les usages des clients ; Concevoir et développer une solution digitale ; Créer une documentation technique). Nouvelles technologies (Assembler des composants logiciels ; Concevoir une application web)
+- Les conditions d’accès au métier. Exemple : Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique. Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif. La pratique de l'anglais (vocabulaire technique) est requise.
+- Le nombre de postes à pourvoir.
+- Le ou les codes ROME associés. Exemple : M1805, M1806, M1807",
             "properties": {
               "access_conditions": {
-                "description": "The conditions for entering the profession",
+                "description": "Les conditions d'accès au métier",
                 "items": {
-                  "description": "The conditions for entering the profession",
+                  "description": "Les conditions d'accès au métier",
                   "examples": [
                     "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
                     "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
@@ -2862,16 +2862,16 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                 "type": "array",
               },
               "description": {
-                "description": "Job offer description.",
+                "description": "Description de l'offre d'emploi.",
                 "examples": [
                   "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
                 ],
                 "type": "string",
               },
               "desired_skills": {
-                "description": "The skills or qualities expected for the position.",
+                "description": "Les compétences ou qualités attendues pour le poste.",
                 "items": {
-                  "description": "The skills or qualities expected for the position.",
+                  "description": "Les compétences ou qualités attendues pour le poste.",
                   "examples": [
                     "Faire preuve d'autonomie",
                     "Faire preuve de créativité, d'inventivité",
@@ -2883,7 +2883,7 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                 "type": "array",
               },
               "opening_count": {
-                "description": "Number of positions available for this job offer",
+                "description": "Nombre de postes disponibles pour cette offre d'emploi",
                 "examples": [
                   1,
                   3,
@@ -2891,10 +2891,10 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                 "type": "number",
               },
               "publication": {
-                "description": "A job opportunity has a life cycle: a creation date and an expiration date.",
+                "description": "Une opportunité d’emploi possède un cycle de vie : une date de création et une date d'expiration.",
                 "properties": {
                   "creation": {
-                    "description": "Creation date of the job opportunity.",
+                    "description": "Date de création de l'opportunité d'emploi.",
                     "examples": [
                       "2024-07-23T13:23:01.000Z",
                     ],
@@ -2905,7 +2905,7 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                     ],
                   },
                   "expiration": {
-                    "description": "Expiration date of the job opportunity.",
+                    "description": "Date d'expiration de l'opportunité d'emploi.",
                     "examples": [
                       "2027-05-14T00:00:00Z",
                     ],
@@ -2923,9 +2923,9 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                 "type": "object",
               },
               "rome_codes": {
-                "description": "ROME code(s) of the offer",
+                "description": "Code(s) ROME de l'offre",
                 "items": {
-                  "description": "ROME code",
+                  "description": "Code ROME",
                   "examples": [
                     "A1401",
                   ],
@@ -2935,13 +2935,13 @@ In the case of offers collected by Cour de cassation, the partner_label is: "off
                 "type": "array",
               },
               "status": {
-                "description": "The status of the offer (life cycle):
+                "description": "Le statut de l'offre (cycle de vie) :
 
-- Active: The offer is available on the platform, and applications are open.
-- Filled: The offer has been filled and is no longer available.
-- Cancelled: The offer has been canceled and is no longer available.
+- Active : L'offre est disponible sur la plateforme et il est possible d'y postuler.
+- Filled : L'offre a été pourvue et n'est donc plus disponible.
+- Cancelled : L'offre a été annulée et n'est donc plus disponible.
 
-Only active offers are returned by the search.",
+Seules les offres actives sont retournées par la recherche.",
                 "enum": [
                   "Active",
                   "Filled",
@@ -2953,10 +2953,10 @@ Only active offers are returned by the search.",
                 "type": "string",
               },
               "target_diploma": {
-                "description": "Targeted diploma level at the end of studies.",
+                "description": "Diplôme visé à l'issue des études.",
                 "properties": {
                   "european": {
-                    "description": "Targeted diploma level at the end of studies.",
+                    "description": "Diplôme visé à l'issue des études.",
                     "enum": [
                       "3",
                       "4",
@@ -2970,7 +2970,7 @@ Only active offers are returned by the search.",
                     "type": "string",
                   },
                   "label": {
-                    "description": "The title of the targeted diploma level at the end of studies.",
+                    "description": "Le nom du diplôme visé à l'issue des études.",
                     "examples": [
                       "BP, Bac, autres formations niveau (Bac)",
                     ],
@@ -2987,7 +2987,7 @@ Only active offers are returned by the search.",
                 ],
               },
               "title": {
-                "description": "Job offer title.",
+                "description": "Intitulé de l'offre d'emploi.",
                 "examples": [
                   "Développeur / Développeuse web",
                 ],
@@ -2995,9 +2995,9 @@ Only active offers are returned by the search.",
                 "type": "string",
               },
               "to_be_acquired_skills": {
-                "description": "The skills or qualities to be acquired during the apprenticeship.",
+                "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
                 "items": {
-                  "description": "The skills or qualities to be acquired during the apprenticeship.",
+                  "description": "Les compétences ou qualités à acquérir durant l'apprentissage.",
                   "examples": [
                     "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
                     "Recherche, Innovation : Concevoir et développer une solution digitale",
@@ -3023,15 +3023,15 @@ Only active offers are returned by the search.",
             "type": "object",
           },
           "workplace": {
-            "description": "Workplace is described by :
+            "description": "Le lieu d’exécution du contrat est décrit par :
 
-- The name (brand name or, failing that, the company name) and the SIRET number of the company.
-- The description of the employer and/or the department where the contract will be carried out.
-- The company's workforce range, in terms of the number of employees.
-- The company's website.",
+- Le nom (enseigne ou à défaut, raison sociale) et le numéro SIRET de l’entreprise.
+- La description de l’employeur et/ou du service où s’exécutera le contrat.
+- La tranche effectif de l’entreprise, en nombre de salariés.
+- Le site web de l’entreprise.",
             "properties": {
               "brand": {
-                "description": "Brand name of the establishment",
+                "description": "Enseigne de l'établissement",
                 "examples": [
                   "Enseigne (todo)",
                 ],
@@ -3041,7 +3041,7 @@ Only active offers are returned by the search.",
                 ],
               },
               "description": {
-                "description": "Description of the employer and/or the department where the contract will be carried out.",
+                "description": "Description de l'employeur et/ou du département où sera exécuté le contrat.",
                 "examples": [
                   "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
                 ],
@@ -3051,14 +3051,14 @@ Only active offers are returned by the search.",
                 ],
               },
               "domain": {
-                "description": "Groups elements that describe the field to which the company's SIRET number is linked:
+                "description": "Regroupe des éléments qui décrivent le domaine auquel est rattaché le numéro SIRET de l’entreprise :
 
-The French Classification of Activities (NAF). Produced by INSEE, its aim is to facilitate the organization of economic and social information.
-The IDCC number of the collective agreement. Produced by the ministry responsible for labor (Dares and DGT) and the one responsible for agriculture.
-The Competency Operator (OPCO) responsible for managing the funding of the contract.",
+- La Nomenclature d’Activité Française (NAF). Produite par l’INSEE, elle a pour objectif de faciliter l'organisation de l'information économique et sociale.
+- Le numéro IDCC de la convention collective. Produit par le ministère chargé du travail (Dares et DGT) et celui chargé de l’agriculture.
+- L’Opérateur de Compétence (OPCO) de rattachement pouvant prendre en charge le financement du contrat.",
                 "properties": {
                   "idcc": {
-                    "description": "Collective agreement number associated with the SIRET number",
+                    "description": "Numéro de convention collective associé au SIRET",
                     "examples": [
                       1979,
                     ],
@@ -3068,17 +3068,17 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                     ],
                   },
                   "naf": {
-                    "description": "NAF (sector of activity) associated with the SIRET number",
+                    "description": "Code NAF (secteur d'activité) associé au SIRET",
                     "properties": {
                       "code": {
-                        "description": "NAF code (sector of activity) associated with the SIRET number",
+                        "description": "Code NAF (secteur d'activité) associé au SIRET",
                         "examples": [
                           "8411Z",
                         ],
                         "type": "string",
                       },
                       "label": {
-                        "description": "Label of the NAF code (sector of activity) associated with the SIRET number",
+                        "description": "Libellé du code NAF (secteur d'activité) associé au SIRET",
                         "examples": [
                           "Administration publique générale",
                         ],
@@ -3098,7 +3098,7 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                     ],
                   },
                   "opco": {
-                    "description": "Competency Operator (OPCO) associated with the SIRET number",
+                    "description": "OPérateur de Compétences (OPCO) associé au SIRET",
                     "examples": [
                       "OPCO 2i",
                     ],
@@ -3116,17 +3116,17 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                 "type": "object",
               },
               "legal_name": {
-                "description": "Company legal name or school legal name if is_delegated = true",
+                "description": "Raison sociale de l'entreprise ou raison sociale du CFA si is_delegated = true",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "location": {
-                "description": "Postal address and geolocation linked to the company's SIRET number",
+                "description": "Adresse postale et géolocalisation rattachées au numéro SIRET de l’entreprise",
                 "properties": {
                   "address": {
-                    "description": "Postal address of the job offer location or of the school if is_delegated = true.",
+                    "description": "Adresse postale du lieu de l'offre d'emploi ou du CFA si is_delegated = true.",
                     "examples": [
                       "20 AVENUE DE SEGUR 75007 PARIS",
                     ],
@@ -3143,9 +3143,9 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                 "type": "object",
               },
               "name": {
-                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
+                "description": "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true
 
-In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
+Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
                 "examples": [
                   "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
                 ],
@@ -3155,7 +3155,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "siret": {
-                "description": "SIRET of the contract execution location or of the school if is_delegated = true",
+                "description": "SIRET du lieu d'exécution du contrat ou du CFA si is_delegated = true",
                 "examples": [
                   "13002526500013",
                 ],
@@ -3166,7 +3166,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "size": {
-                "description": "Company workforce range, in number of employees",
+                "description": "Effectif de l'entreprise, en nombre d'employés",
                 "examples": [
                   "100-199",
                 ],
@@ -3176,7 +3176,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "website": {
-                "description": "Company website",
+                "description": "Site web de l'entreprise",
                 "examples": [
                   "https://beta.gouv.fr/startups/",
                 ],
@@ -3211,445 +3211,20 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
         ],
         "type": "object",
       },
-      "JobOfferWrite": {
-        "description": "Offre d'emploi",
-        "properties": {
-          "apply": {
-            "description": "Elements for submitting an application:
-
-- Redirect URL
-- Phone number
-- Company email",
-            "properties": {
-              "email": {
-                "description": "Recruiter's email adress",
-                "examples": [
-                  "jean.dupuis@beta.gouv.fr",
-                ],
-                "format": "email",
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "phone": {
-                "description": "Recruiter's phone number or School phone number if is_delegated is true
-
-Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
-                "examples": [
-                  "0199000000",
-                ],
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "url": {
-                "description": "Redirect URL",
-                "examples": [
-                  "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
-                ],
-                "format": "uri",
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-            },
-            "type": "object",
-          },
-          "contract": {
-            "description": "Un contrat est décrit par :
-
-- Le type (apprentissage et/ou professionnalisation).
-- La date de début.
-- La durée.
-- Le mode de travail (présentiel, télétravail ou hybride).",
-            "properties": {
-              "duration": {
-                "description": "Contract duration in months.",
-                "examples": [
-                  12,
-                ],
-                "minimum": 0,
-                "type": [
-                  "integer",
-                  "null",
-                ],
-              },
-              "remote": {
-                "description": "Work mode (on-site, remote, or hybrid)",
-                "enum": [
-                  "onsite",
-                  "remote",
-                  "hybrid",
-                ],
-                "examples": [
-                  "onsite",
-                  "remote",
-                  "hybrid",
-                ],
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "start": {
-                "description": "Date de début du contrat.",
-                "examples": [
-                  "2024-09-23T10:00:00.000Z",
-                ],
-                "format": "date-time",
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "type": {
-                "default": [
-                  "Apprentissage",
-                  "Professionnalisation",
-                ],
-                "description": "Contract type (apprenticeship and/or professionalization)",
-                "items": {
-                  "description": "Contract type (apprenticeship and/or professionalization)",
-                  "enum": [
-                    "Apprentissage",
-                    "Professionnalisation",
-                  ],
-                  "examples": [
-                    "Apprentissage",
-                    "Professionnalisation",
-                  ],
-                  "type": "string",
-                },
-                "type": "array",
-              },
-            },
-            "type": "object",
-          },
-          "identifier": {
-            "description": "This element includes:
-
-- the partner responsible for the job offer
-- the unique identifier of the job offer within the "Cour de cassation" information system",
-            "properties": {
-              "partner_job_id": {
-                "description": "Offer identifier within the partner's information system.",
-                "examples": [
-                  "b16a546a-e61f-4028-b5a3-1a7bbfaa4e3d",
-                ],
-                "type": "string",
-              },
-            },
-            "required": [
-              "partner_job_id",
-            ],
-            "type": "object",
-          },
-          "offer": {
-            "description": "A job offer is described by:
-
-- The title. Example: Web Developer.
-- The description. Example: Designs, develops, and implements a software application project, from the study phase to its integration, for a client or company, according to functional needs and specifications. May lead development projects. May coordinate a team.
-- The targeted diploma level. Example: BP, Bac, other level (Bac) qualifications.
-- The skills or qualities expected for the position. Example: Demonstrate autonomy; Show creativity and inventiveness; Display rigor and precision; Work well in a team.
-- The skills or qualities to be acquired during the apprenticeship. Example: Research, Innovation (Analyze relevant indicators on trends and customer usage; Design and develop a digital solution; Create technical documentation). New technologies (Assemble software components; Design a web application).
-- The conditions for entering the profession. Example: This profession is accessible with a degree from Bac+2 (BTS, DUT) to Master (MIAGE, engineering degree, professional Master, etc.) in computer science. It is also accessible with professional experience in computer science, operating systems, or an application domain. Proficiency in English (technical vocabulary) is required.
-- The number of positions to be filled.
-- List of ROME codes associated to the offer.",
-            "properties": {
-              "access_conditions": {
-                "default": [],
-                "description": "The conditions for entering the profession",
-                "items": {
-                  "description": "The conditions for entering the profession",
-                  "examples": [
-                    "Ce métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.",
-                    "Il est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.",
-                    "La pratique de l'anglais (vocabulaire technique) est requise.",
-                  ],
-                  "type": "string",
-                },
-                "type": "array",
-              },
-              "description": {
-                "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
-
-- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
-
-Toute autre balise ou attribut sera supprimée lors de la validation",
-                "examples": [
-                  "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges. Peut conduire des projets de développement. Peut coordonner une équipe.",
-                ],
-                "minLength": 30,
-                "type": "string",
-              },
-              "desired_skills": {
-                "default": [],
-                "description": "The skills or qualities expected for the position.",
-                "items": {
-                  "description": "The skills or qualities expected for the position.",
-                  "examples": [
-                    "Faire preuve d'autonomie",
-                    "Faire preuve de créativité, d'inventivité",
-                    "Faire preuve de rigueur et de précision",
-                    "Travailler en équipe",
-                  ],
-                  "type": "string",
-                },
-                "type": "array",
-              },
-              "multicast": {
-                "default": true,
-                "description": "Si l'offre peut être diffusé sur l'ensemble des plateformes partenaires",
-                "type": "boolean",
-              },
-              "opening_count": {
-                "default": 1,
-                "description": "Number of positions available for this job offer",
-                "examples": [
-                  1,
-                  3,
-                ],
-                "type": "number",
-              },
-              "origin": {
-                "description": "Origine de l'offre provenant d'un aggregateur",
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "publication": {
-                "description": "A job opportunity has a life cycle: a creation date and an expiration date.",
-                "properties": {
-                  "creation": {
-                    "description": "Creation date of the job opportunity.",
-                    "examples": [
-                      "2024-07-23T13:23:01.000Z",
-                    ],
-                    "format": "date-time",
-                    "type": [
-                      "string",
-                      "null",
-                    ],
-                  },
-                  "expiration": {
-                    "description": "Expiration date of the job opportunity.",
-                    "examples": [
-                      "2027-05-14T00:00:00Z",
-                    ],
-                    "format": "date-time",
-                    "type": [
-                      "string",
-                      "null",
-                    ],
-                  },
-                },
-                "type": "object",
-              },
-              "rome_codes": {
-                "description": "ROME code(s) of the offer
-
-If the published offer does not have a ROME code provided, we deduce the ROME codes from the job offer title.",
-                "items": {
-                  "description": "ROME code",
-                  "examples": [
-                    "A1401",
-                  ],
-                  "pattern": "^[A-Z]\\d{4}$",
-                  "type": "string",
-                },
-                "type": [
-                  "array",
-                  "null",
-                ],
-              },
-              "status": {
-                "default": "Active",
-                "description": "The status of the offer (life cycle):
-
-- Active: The offer is available on the platform, and applications are open.
-- Filled: The offer has been filled and is no longer available.
-- Cancelled: The offer has been canceled and is no longer available.
-
-Only active offers are returned by the search.
-
-When creating an offer, only active offers are accepted. However, during an update, it is possible to cancel or mark an offer as filled.",
-                "enum": [
-                  "Active",
-                  "Filled",
-                  "Cancelled",
-                ],
-                "examples": [
-                  "Active",
-                  "Filled",
-                  "Cancelled",
-                ],
-                "type": "string",
-              },
-              "target_diploma": {
-                "description": "Targeted diploma level at the end of studies.",
-                "properties": {
-                  "european": {
-                    "description": "Targeted diploma level at the end of studies.",
-                    "enum": [
-                      "3",
-                      "4",
-                      "5",
-                      "6",
-                      "7",
-                    ],
-                    "examples": [
-                      "3",
-                    ],
-                    "type": [
-                      "string",
-                      "null",
-                    ],
-                  },
-                },
-                "type": [
-                  "object",
-                  "null",
-                ],
-              },
-              "title": {
-                "description": "Job offer title.",
-                "examples": [
-                  "Développeur / Développeuse web",
-                ],
-                "minLength": 3,
-                "type": "string",
-              },
-              "to_be_acquired_skills": {
-                "default": [],
-                "description": "The skills or qualities to be acquired during the apprenticeship.",
-                "items": {
-                  "description": "The skills or qualities to be acquired during the apprenticeship.",
-                  "examples": [
-                    "Recherche, Innovation : Analyser les indicateurs pertinents sur les tendances et les usages des clients",
-                    "Recherche, Innovation : Concevoir et développer une solution digitale",
-                    "Nouvelles technologies : Assembler des composants logiciels",
-                  ],
-                  "type": "string",
-                },
-                "type": "array",
-              },
-            },
-            "required": [
-              "title",
-              "description",
-            ],
-            "type": "object",
-          },
-          "workplace": {
-            "description": "Workplace is described by :
-
-- The name (brand name or, failing that, the company name) and the SIRET number of the company.
-- The description of the employer and/or the department where the contract will be carried out.
-- The company's workforce range, in terms of the number of employees.
-- The company's website.",
-            "properties": {
-              "description": {
-                "description": "Texte pouvant contenir des balises HTML limitées aux suivantes :
-
-- \`<b>\`, \`<i>\`, \`<em>\`, \`<strong>\`, \`<p>\`, \`<br>\`, \`<ul>\`, \`<li>\`.
-
-Toute autre balise ou attribut sera supprimée lors de la validation",
-                "examples": [
-                  "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
-                ],
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "location": {
-                "description": "Postal address and geolocation linked to the company's SIRET number",
-                "properties": {
-                  "address": {
-                    "description": "Address of the job offer
-
-In the case of job offer publication, a custom address can be provided; otherwise, the establishment's address will be used.
-
-The geopoint field is derived from the address.",
-                    "examples": [
-                      "20 AVENUE DE SEGUR 75007 PARIS",
-                    ],
-                    "type": [
-                      "string",
-                      "null",
-                    ],
-                  },
-                },
-                "type": [
-                  "object",
-                  "null",
-                ],
-              },
-              "name": {
-                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
-
-In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
-                "examples": [
-                  "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
-                ],
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-              "siret": {
-                "description": "SIRET of the contract execution location
-
-The information \`brand\` \`legal_name\` \`size\` \`idcc\` \`opco\` \`naf\` is automatically deduced from the SIRET.",
-                "examples": [
-                  "13002526500013",
-                ],
-                "pattern": "^\\d{14}$",
-                "type": "string",
-              },
-              "website": {
-                "description": "Company website",
-                "examples": [
-                  "https://beta.gouv.fr/startups/",
-                ],
-                "format": "uri",
-                "type": [
-                  "string",
-                  "null",
-                ],
-              },
-            },
-            "required": [
-              "siret",
-            ],
-            "type": "object",
-          },
-        },
-        "required": [
-          "workplace",
-          "apply",
-          "offer",
-        ],
-        "type": "object",
-      },
       "JobRecruiter": {
         "description": "Recruteur",
         "properties": {
           "apply": {
-            "description": "This element groups the different means of application offered to candidates.
+            "description": "Cet élément regroupe les différents moyens de candidature proposés aux candidats.
 
-- URL to redirect the candidate to apply
-- Phone number of the person in charge of recruitment
-- Identifier of the job opportunity to use to allow your users to apply directly from your site using [this additional API](./candidature-offre).",
+- URL vers laquelle rediriger le candidat pour qu’il postule
+- Numéro de téléphone de la personne chargée du recrutement
+- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
             "properties": {
               "phone": {
-                "description": "Recruiter's phone number or School phone number if is_delegated is true
+                "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
 
-Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
+Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
                 "examples": [
                   "0199000000",
                 ],
@@ -3659,14 +3234,14 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "recipient_id": {
-                "description": "Identifier to use for applying to the job offer using /v3/jobs/apply route or to display the apply /postuler widget. If null applying is not available for this offer by apply_route nor by /postuler widget.",
+                "description": "Identifiant à utiliser pour postuler à l'offre d'emploi via la route /v3/jobs/apply ou pour afficher le widget postuler. Si null, la candidature n'est pas disponible pour cette offre par la route apply_route ni par le widget /postuler.",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "url": {
-                "description": "Redirect URL to the application form",
+                "description": "URL de redirection vers le formulaire de candidature",
                 "examples": [
                   "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
                 ],
@@ -3681,10 +3256,10 @@ Only European phone numbers are allowed. There is also a check on the nature of 
             "type": "object",
           },
           "identifier": {
-            "description": "This element includes:
+            "description": "Cet élément regroupe :
 
-- the partner responsible for the job offer
-- the unique identifier of the job offer within the "Cour de cassation" information system",
+- le partenaire à l'origine de l'offre d'emploi
+- l'identifiant unique de l'offre d'emploi au sein du système d'information Cour de cassation",
             "properties": {
               "id": {
                 "description": "Identifiant unique du recruteur",
@@ -3700,15 +3275,15 @@ Only European phone numbers are allowed. There is also a check on the nature of 
             "type": "object",
           },
           "workplace": {
-            "description": "Workplace is described by :
+            "description": "Le lieu d’exécution du contrat est décrit par :
 
-- The name (brand name or, failing that, the company name) and the SIRET number of the company.
-- The description of the employer and/or the department where the contract will be carried out.
-- The company's workforce range, in terms of the number of employees.
-- The company's website.",
+- Le nom (enseigne ou à défaut, raison sociale) et le numéro SIRET de l’entreprise.
+- La description de l’employeur et/ou du service où s’exécutera le contrat.
+- La tranche effectif de l’entreprise, en nombre de salariés.
+- Le site web de l’entreprise.",
             "properties": {
               "brand": {
-                "description": "Brand name of the establishment",
+                "description": "Enseigne de l'établissement",
                 "examples": [
                   "Enseigne (todo)",
                 ],
@@ -3718,7 +3293,7 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "description": {
-                "description": "Description of the employer and/or the department where the contract will be carried out.",
+                "description": "Description de l'employeur et/ou du département où sera exécuté le contrat.",
                 "examples": [
                   "Service du Premier ministre, placé sous l’autorité du ministre de la Transformation et de la Fonction publiques, la direction interministérielle du numérique (DINUM) a pour mission d’élaborer la stratégie numérique de l’État et de piloter sa mise en œuvre. Notre objectif : un État plus efficace, plus simple et plus souverain grâce au numérique.",
                 ],
@@ -3728,14 +3303,14 @@ Only European phone numbers are allowed. There is also a check on the nature of 
                 ],
               },
               "domain": {
-                "description": "Groups elements that describe the field to which the company's SIRET number is linked:
+                "description": "Regroupe des éléments qui décrivent le domaine auquel est rattaché le numéro SIRET de l’entreprise :
 
-The French Classification of Activities (NAF). Produced by INSEE, its aim is to facilitate the organization of economic and social information.
-The IDCC number of the collective agreement. Produced by the ministry responsible for labor (Dares and DGT) and the one responsible for agriculture.
-The Competency Operator (OPCO) responsible for managing the funding of the contract.",
+- La Nomenclature d’Activité Française (NAF). Produite par l’INSEE, elle a pour objectif de faciliter l'organisation de l'information économique et sociale.
+- Le numéro IDCC de la convention collective. Produit par le ministère chargé du travail (Dares et DGT) et celui chargé de l’agriculture.
+- L’Opérateur de Compétence (OPCO) de rattachement pouvant prendre en charge le financement du contrat.",
                 "properties": {
                   "idcc": {
-                    "description": "Collective agreement number associated with the SIRET number",
+                    "description": "Numéro de convention collective associé au SIRET",
                     "examples": [
                       1979,
                     ],
@@ -3745,17 +3320,17 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                     ],
                   },
                   "naf": {
-                    "description": "NAF (sector of activity) associated with the SIRET number",
+                    "description": "Code NAF (secteur d'activité) associé au SIRET",
                     "properties": {
                       "code": {
-                        "description": "NAF code (sector of activity) associated with the SIRET number",
+                        "description": "Code NAF (secteur d'activité) associé au SIRET",
                         "examples": [
                           "8411Z",
                         ],
                         "type": "string",
                       },
                       "label": {
-                        "description": "Label of the NAF code (sector of activity) associated with the SIRET number",
+                        "description": "Libellé du code NAF (secteur d'activité) associé au SIRET",
                         "examples": [
                           "Administration publique générale",
                         ],
@@ -3775,7 +3350,7 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                     ],
                   },
                   "opco": {
-                    "description": "Competency Operator (OPCO) associated with the SIRET number",
+                    "description": "OPérateur de Compétences (OPCO) associé au SIRET",
                     "examples": [
                       "OPCO 2i",
                     ],
@@ -3793,17 +3368,17 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                 "type": "object",
               },
               "legal_name": {
-                "description": "Company legal name or school legal name if is_delegated = true",
+                "description": "Raison sociale de l'entreprise ou raison sociale du CFA si is_delegated = true",
                 "type": [
                   "string",
                   "null",
                 ],
               },
               "location": {
-                "description": "Postal address and geolocation linked to the company's SIRET number",
+                "description": "Adresse postale et géolocalisation rattachées au numéro SIRET de l’entreprise",
                 "properties": {
                   "address": {
-                    "description": "Postal address of the job offer location or of the school if is_delegated = true.",
+                    "description": "Adresse postale du lieu de l'offre d'emploi ou du CFA si is_delegated = true.",
                     "examples": [
                       "20 AVENUE DE SEGUR 75007 PARIS",
                     ],
@@ -3820,9 +3395,9 @@ The Competency Operator (OPCO) responsible for managing the funding of the contr
                 "type": "object",
               },
               "name": {
-                "description": "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true
+                "description": "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true
 
-In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
+Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
                 "examples": [
                   "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
                 ],
@@ -3832,7 +3407,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "siret": {
-                "description": "SIRET of the contract execution location or of the school if is_delegated = true",
+                "description": "SIRET du lieu d'exécution du contrat ou du CFA si is_delegated = true",
                 "examples": [
                   "13002526500013",
                 ],
@@ -3843,7 +3418,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "size": {
-                "description": "Company workforce range, in number of employees",
+                "description": "Effectif de l'entreprise, en nombre d'employés",
                 "examples": [
                   "100-199",
                 ],
@@ -3853,7 +3428,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 ],
               },
               "website": {
-                "description": "Company website",
+                "description": "Site web de l'entreprise",
                 "examples": [
                   "https://beta.gouv.fr/startups/",
                 ],
@@ -4238,20 +3813,20 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
       },
       "Pagination": {
         "additionalProperties": false,
-        "description": "Pagination information",
+        "description": "Informations de pagination",
         "properties": {
           "page_count": {
-            "description": "Total number of pages",
+            "description": "Nombre total de pages",
             "minimum": 0,
             "type": "integer",
           },
           "page_index": {
-            "description": "Current page number",
+            "description": "Numéro de la page actuelle",
             "minimum": 0,
             "type": "integer",
           },
           "page_size": {
-            "description": "Number of items per page",
+            "description": "Nombre d'éléments par page",
             "maximum": 1000,
             "minimum": 1,
             "type": "integer",
@@ -4268,7 +3843,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
     "securitySchemes": {
       "api-key": {
         "bearerFormat": "Bearer",
-        "description": "",
+        "description": "Clé d'API à fournir dans le header \`Authorization\`. Si la route nécessite une habilitation particulière veuillez contacter le support pour en faire la demande à [api-communs-numeriques@courdecassation.fr](mailto:api-communs-numeriques@courdecassation.fr)",
         "scheme": "bearer",
         "type": "http",
       },
@@ -4277,14 +3852,14 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
   "info": {
     "contact": {
       "email": "api-communs-numeriques@courdecassation.fr",
-      "name": "",
+      "name": "Équipe API Communs numériques",
     },
     "license": {
       "name": "Etalab-2.0",
       "url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
     },
     "termsOfService": "https://api.courdecassation.beta.gouv.fr/cgu",
-    "title": "",
+    "title": "Documentation technique",
     "version": "V1.0",
   },
   "openapi": "3.1.0",
@@ -4352,7 +3927,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4395,7 +3970,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
     },
     "/formation/v1/appointment/generate-link": {
       "post": {
-        "description": "Generate links for appointment requests for training via the Cour de cassation service",
+        "description": "Obtenir un lien d’accès à un formulaire de prise de rendez-vous auprès d’un centre de formation",
         "operationId": "generateFormationAppointmentLink",
         "requestBody": {
           "content": {
@@ -4421,7 +3996,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                     "description": "Identifiant ONISEP de la formation",
                     "properties": {
                       "onisep_id": {
-                        "description": "ONISEP identifier of the training",
+                        "description": "Identifiant ONISEP utilisé avec le mapping de la collection referentielonisep",
                         "type": "string",
                       },
                     },
@@ -4462,26 +4037,26 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                       "description": "Résultat en cas de succès",
                       "properties": {
                         "cfd": {
-                          "description": "Training course code",
+                          "description": "Code formation diplôme de la formation",
                           "type": "string",
                         },
                         "cle_ministere_educatif": {
-                          "description": "Unique identifier of the training within the Ministry of Education",
+                          "description": "Identifiant unique de la formation au sein du ministère de l'éducation",
                           "type": "string",
                         },
                         "code_postal": {
-                          "description": "Training location postal code",
+                          "description": "Code postal du lieu de formation",
                           "type": "string",
                         },
                         "etablissement_formateur_entreprise_raison_sociale": {
-                          "description": "Training organism name",
+                          "description": "Raison social de l'établissement formateur",
                           "type": [
                             "string",
                             "null",
                           ],
                         },
                         "etablissement_formateur_siret": {
-                          "description": "SIRET number of the training establishment",
+                          "description": "Le numéro de SIRET de l'établissement",
                           "examples": [
                             "78424186100011",
                           ],
@@ -4492,19 +4067,19 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                           ],
                         },
                         "form_url": {
-                          "description": "Appointment request link Cour de cassation",
+                          "description": "Lien de prise de rendez-vous Cour de cassation",
                           "type": "string",
                         },
                         "intitule_long": {
-                          "description": "Long title of the training",
+                          "description": "Intitulé long de la formation",
                           "type": "string",
                         },
                         "lieu_formation_adresse": {
-                          "description": "Training location address",
+                          "description": "Adresse du lieu de formation",
                           "type": "string",
                         },
                         "localite": {
-                          "description": "Training location locality",
+                          "description": "Localité du lieu de formation",
                           "type": "string",
                         },
                       },
@@ -4540,7 +4115,7 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
                 },
               },
             },
-            "description": "Response",
+            "description": "Réponse",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4575,9 +4150,9 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
             "api-key": [],
           },
         ],
-        "summary": "Contact a training center via a dedicated link",
+        "summary": "Contacter un centre de formation via un lien dédié",
         "tags": [
-          "Training",
+          "Formation",
         ],
       },
     },
@@ -4622,11 +4197,11 @@ In the case of publishing a job offer, it is possible to use a custom name; othe
             "name": "latitude",
             "required": false,
             "schema": {
-              "description": "Latitude of the GPS coordinate of the search area.
+              "description": "Latitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the entire France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field should be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
               "examples": [
                 2.3522,
               ],
@@ -4641,11 +4216,11 @@ This field should be mandatory when used with the longitude field.",
             "name": "longitude",
             "required": false,
             "schema": {
-              "description": "Longitude of the GPS coordinate of the search area.
+              "description": "Longitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the whole of France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field must be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
               "examples": [
                 48.8566,
               ],
@@ -4661,7 +4236,7 @@ This field must be mandatory when used with the longitude field.",
             "required": false,
             "schema": {
               "default": 30,
-              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
+              "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
               "examples": [
                 30,
               ],
@@ -4675,14 +4250,14 @@ This field must be mandatory when used with the longitude field.",
             "name": "target_diploma_level",
             "required": false,
             "schema": {
-              "description": "Target diploma level at the end of studies.
+              "description": "Niveau de diplôme cible à la fin des études.
 
-When filtering by diploma level, we return data :
+Lors du filtrage par niveau de diplôme, nous retournons les données :
 
-- where the target diploma level is unknown / not specified / indifferent
-- **and** where the target diploma level matches the requested diploma level
+- où le niveau de diplôme cible est inconnu / non précisé / indifférent
+- **et** lorsque le niveau de diplôme cible correspond au niveau de diplôme demandé
 
-By filtering on \`4\`, only data related to this diploma level, as well as those with unknown/unspecified levels, will be returned to you.",
+En filtrant sur le « 4 », seules les données relatives à ce niveau de diplôme, ainsi que celles avec des niveaux inconnus ou non précisés, vous seront renvoyées.",
               "enum": [
                 "1",
                 "2",
@@ -4708,13 +4283,13 @@ By filtering on \`4\`, only data related to this diploma level, as well as those
             "name": "romes",
             "required": false,
             "schema": {
-              "description": "ROME code(s) for the research scope
+              "description": "Code(s) ROME pour le champ de recherche
 
-The ROME corresponds to the Operational Reference for Trades and Jobs designed by France Travail.
+Le ROME correspond à la référence opérationnelle pour les métiers et les emplois conçue par France Travail.
 
-List of codes separated by commas
+Liste des codes séparés par des virgules
 
-The codes must adhere to the ROME formats",
+Les codes doivent respecter les formats ROME",
               "examples": [
                 "F1601,F1201,F1106",
                 "M1806",
@@ -4727,9 +4302,9 @@ The codes must adhere to the ROME formats",
             "name": "rncp",
             "required": false,
             "schema": {
-              "description": "RNCP code of the research scope
+              "description": "Code RNCP du périmètre de recherche
 
-The RNCP corresponds to the National Directory of Professional Certifications by [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
+Le RNCP correspond au Répertoire national des certifications professionnelles de [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
               "examples": [
                 "RNCP34436",
                 "RNCP183",
@@ -4761,7 +4336,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                   "additionalProperties": false,
                   "properties": {
                     "data": {
-                      "description": "List of training courses matching the search criteria",
+                      "description": "Liste des formations correspondant aux critères de recherche",
                       "items": {
                         "$ref": "#/components/schemas/Formation",
                       },
@@ -4779,7 +4354,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4814,15 +4389,15 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "api-key": [],
           },
         ],
-        "summary": "Search for training courses in apprenticeship",
+        "summary": "Recherche de formations en apprentissage",
         "tags": [
-          "Training",
+          "Formation",
         ],
       },
     },
     "/formation/v1/{id}": {
       "get": {
-        "description": "Access the details of a training course from its identifier",
+        "description": "Accéder au détail d'une formation en apprentissage à partir de son identifiant",
         "operationId": "get_formation_v1__id",
         "parameters": [
           {
@@ -4848,7 +4423,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4883,9 +4458,9 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "api-key": [],
           },
         ],
-        "summary": "View an training course",
+        "summary": "Consulter le détail d'une formation",
         "tags": [
-          "Training",
+          "Formation",
         ],
       },
     },
@@ -4922,7 +4497,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -4959,7 +4534,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
         ],
         "summary": "Recherche de communes",
         "tags": [
-          "Geography",
+          "Géographie",
         ],
       },
     },
@@ -4980,7 +4555,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5017,7 +4592,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
         ],
         "summary": "Récupération des départements",
         "tags": [
-          "Geography",
+          "Géographie",
         ],
       },
     },
@@ -5032,11 +4607,11 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "name": "latitude",
             "required": false,
             "schema": {
-              "description": "Latitude of the GPS coordinate of the search area.
+              "description": "Latitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the entire France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field should be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
               "examples": [
                 2.3522,
               ],
@@ -5051,11 +4626,11 @@ This field should be mandatory when used with the longitude field.",
             "name": "longitude",
             "required": false,
             "schema": {
-              "description": "Longitude of the GPS coordinate of the search area.
+              "description": "Longitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the whole of France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field must be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
               "examples": [
                 48.8566,
               ],
@@ -5071,7 +4646,7 @@ This field must be mandatory when used with the longitude field.",
             "required": false,
             "schema": {
               "default": 30,
-              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
+              "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
               "examples": [
                 30,
               ],
@@ -5094,7 +4669,7 @@ This field must be mandatory when used with the longitude field.",
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5129,9 +4704,9 @@ This field must be mandatory when used with the longitude field.",
             "api-key": [],
           },
         ],
-        "summary": "Retrieve Mission Locales",
+        "summary": "Récupération des Mission Locales",
         "tags": [
-          "Geography",
+          "Géographie",
         ],
       },
     },
@@ -5203,15 +4778,15 @@ This field must be mandatory when used with the longitude field.",
         },
         "security": [],
         "tags": [
-          "System",
+          "Système",
         ],
       },
     },
     "/job/v1/apply": {
       "post": {
-        "description": "To streamline your users' journey, this API allows you to directly transmit your users' applications to recruiters without them having to leave your site.
+        "description": "Afin de fluidifier le parcours de vos utilisateurs, cette API vous permet de transmettre directement aux recruteurs les candidatures de vos usagers, sans que ces derniers n’aient à quitter votre site.
 
-For this, it only requires the transmission of the candidate's contact information and resume. A cover letter, addressed to the recruiter, can also be optionally submitted. The application is then sent to the recruiter via email.",
+Pour cela, elle requiert seulement la transmission des coordonnées ainsi que du CV du candidat. Un message de motivation, à destination du recruteur, peut également être transmis de manière facultative. La candidature est ensuite envoyée au recruteur par email.",
         "operationId": "jobApply",
         "requestBody": {
           "content": {
@@ -5241,7 +4816,7 @@ For this, it only requires the transmission of the candidate's contact informati
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5280,14 +4855,14 @@ For this, it only requires the transmission of the candidate's contact informati
         ],
         "summary": "Envoi d’une candidature à une opportunité d’emploi",
         "tags": [
-          "Job",
+          "Offre Emploi",
         ],
       },
     },
     "/job/v1/export": {
       "get": {
-        "description": "Lists all job opportunities (job postings and companies to which you can send unsolicited applications).
-<br/>Opportunities are updated once a day at 3:00 AM Paris time.",
+        "description": "Expose la totalité des opportunités d'emploi (offres et entreprises auprès desquelles adresser des candidatures spontanées).
+<br/>Les opportunités sont mises à jour une fois par jour à 3h du matin heure de Paris.",
         "operationId": "jobsExport",
         "responses": {
           "200": {
@@ -5298,7 +4873,7 @@ For this, it only requires the transmission of the candidate's contact informati
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5335,88 +4910,13 @@ For this, it only requires the transmission of the candidate's contact informati
         ],
         "summary": "Export des offres d'emploi",
         "tags": [
-          "Job",
-        ],
-      },
-    },
-    "/job/v1/offer": {
-      "post": {
-        "description": "This API allows you to maximize the visibility of your apprenticeship job offers by sharing them with the Cour de cassation service, which then automatically redistributes them to the most relevant candidates on its site as well as its partner sites. <br /><br /> Limit: 1 call per second",
-        "operationId": "jobOfferCreate",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JobOfferWrite",
-              },
-            },
-          },
-          "required": true,
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "description": "Identifier of the created offer",
-                      "type": "string",
-                    },
-                  },
-                  "required": [
-                    "id",
-                  ],
-                  "type": "object",
-                },
-              },
-            },
-            "description": "Success",
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest",
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized",
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden",
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound",
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict",
-          },
-          "419": {
-            "$ref": "#/components/responses/TooManyRequests",
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError",
-          },
-          "502": {
-            "$ref": "#/components/responses/BadGateway",
-          },
-          "503": {
-            "$ref": "#/components/responses/ServiceUnavailable",
-          },
-        },
-        "security": [
-          {
-            "api-key": [
-              "jobs:write",
-            ],
-          },
-        ],
-        "summary": "Dépôt d’offres d’emploi",
-        "tags": [
-          "Job",
+          "Offre Emploi",
         ],
       },
     },
     "/job/v1/offer/{id}": {
       "get": {
-        "description": "Access the details of an apprenticeship job offer from its identifier.",
+        "description": "Accéder au détail d'une opportunité d'emploi à partir de son identifiant.",
         "operationId": "jobSearchById",
         "parameters": [
           {
@@ -5424,7 +4924,7 @@ For this, it only requires the transmission of the candidate's contact informati
             "name": "id",
             "required": true,
             "schema": {
-              "description": "Unique identifier of the job offer",
+              "description": "Identifiant unique de l’opportunité d’emploi",
               "examples": [
                 "6687165396d52b5e01b409545",
               ],
@@ -5441,7 +4941,7 @@ For this, it only requires the transmission of the candidate's contact informati
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5476,86 +4976,15 @@ For this, it only requires the transmission of the candidate's contact informati
             "api-key": [],
           },
         ],
-        "summary": "View an apprenticeship job offer",
+        "summary": "Consulter une opportunité d'emploi",
         "tags": [
-          "Job",
-        ],
-      },
-      "put": {
-        "description": "This API allows you to maximize the visibility of your apprenticeship job offers by sharing them with the service Cour de cassation, which then automatically distributes them closer to candidates on its site and its partner sites.",
-        "operationId": "jobOfferUpdate",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "description": "Unique identifier of the job offer",
-              "examples": [
-                "6687165396d52b5e01b409545",
-              ],
-              "type": "string",
-            },
-          },
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JobOfferWrite",
-              },
-            },
-          },
-          "required": true,
-        },
-        "responses": {
-          "204": {
-            "description": "Success",
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest",
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized",
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden",
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound",
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict",
-          },
-          "419": {
-            "$ref": "#/components/responses/TooManyRequests",
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError",
-          },
-          "502": {
-            "$ref": "#/components/responses/BadGateway",
-          },
-          "503": {
-            "$ref": "#/components/responses/ServiceUnavailable",
-          },
-        },
-        "security": [
-          {
-            "api-key": [
-              "jobs:write",
-            ],
-          },
-        ],
-        "summary": "Modify an apprenticeship job offer. Offer must be published and active",
-        "tags": [
-          "Job",
+          "Offre Emploi",
         ],
       },
     },
     "/job/v1/offer/{id}/publishing-informations": {
       "get": {
-        "description": "This endpoint gives informations about the state of the last publishing of the offer. Indeed, the publishing of an offer can take up to 10 minutes.",
+        "description": "Cette route donne des informations sur l'état de la dernière publication de l'offre. En effet, la publication d'une offre peut prendre jusqu'à 10 minutes.",
         "operationId": "jobPublisingInfos",
         "parameters": [
           {
@@ -5563,7 +4992,7 @@ For this, it only requires the transmission of the candidate's contact informati
             "name": "id",
             "required": true,
             "schema": {
-              "description": "Unique identifier of the job offer",
+              "description": "Identifiant unique de l’opportunité d’emploi",
               "examples": [
                 "6687165396d52b5e01b409545",
               ],
@@ -5580,7 +5009,7 @@ For this, it only requires the transmission of the candidate's contact informati
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5617,13 +5046,13 @@ For this, it only requires the transmission of the candidate's contact informati
         ],
         "summary": "Etat de la dernière publication de l'offre",
         "tags": [
-          "Job",
+          "Offre Emploi",
         ],
       },
     },
     "/job/v1/search": {
       "get": {
-        "description": "Access in real-time all apprenticeship job opportunities available in France and offer them to your users for free and under a white-label format.",
+        "description": "Accéder en temps réel à toutes les opportunités d'emploi en apprentissage disponibles en France et proposez-les à vos utilisateurs gratuitement et sous un format white-label.",
         "operationId": "jobSearch",
         "parameters": [
           {
@@ -5631,11 +5060,11 @@ For this, it only requires the transmission of the candidate's contact informati
             "name": "longitude",
             "required": false,
             "schema": {
-              "description": "Longitude of the GPS coordinate of the search area.
+              "description": "Longitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the whole of France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field must be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de latitude.",
               "examples": [
                 48.8566,
               ],
@@ -5649,11 +5078,11 @@ This field must be mandatory when used with the longitude field.",
             "name": "latitude",
             "required": false,
             "schema": {
-              "description": "Latitude of the GPS coordinate of the search area.
+              "description": "Latitude de la coordonnée GPS de la zone de recherche.
 
-The search will cover the entire France if not specified.
+La recherche couvrira l’ensemble de la France si elle n’est pas spécifiée.
 
-This field should be mandatory when used with the longitude field.",
+Ce champ est obligatoire lorsqu’il est utilisé avec le champ de longitude.",
               "examples": [
                 2.3522,
               ],
@@ -5668,7 +5097,7 @@ This field should be mandatory when used with the longitude field.",
             "required": false,
             "schema": {
               "default": 30,
-              "description": "Search radius in km, useful if a latitude and longitude are provided. The value must be between 0 and 200 and will default to 30.",
+              "description": "Rayon de recherche en km, utile si une latitude et une longitude sont fournies. La valeur doit être comprise entre 0 et 200 et sera par défaut 30.",
               "examples": [
                 30,
               ],
@@ -5682,14 +5111,14 @@ This field should be mandatory when used with the longitude field.",
             "name": "target_diploma_level",
             "required": false,
             "schema": {
-              "description": "Target diploma level at the end of studies.
+              "description": "Niveau de diplôme cible à la fin des études.
 
-When filtering by diploma level, we return data :
+Lors du filtrage par niveau de diplôme, nous retournons les données :
 
-- where the target diploma level is unknown / not specified / indifferent
-- **and** where the target diploma level matches the requested diploma level
+- où le niveau de diplôme cible est inconnu / non précisé / indifférent
+- **et** lorsque le niveau de diplôme cible correspond au niveau de diplôme demandé
 
-By filtering on \`4\`, only data related to this diploma level, as well as those with unknown/unspecified levels, will be returned to you.",
+En filtrant sur le « 4 », seules les données relatives à ce niveau de diplôme, ainsi que celles avec des niveaux inconnus ou non précisés, vous seront renvoyées.",
               "enum": [
                 "3",
                 "4",
@@ -5712,13 +5141,13 @@ By filtering on \`4\`, only data related to this diploma level, as well as those
             "name": "romes",
             "required": false,
             "schema": {
-              "description": "ROME code(s) for the research scope
+              "description": "Code(s) ROME pour le champ de recherche
 
-The ROME corresponds to the Operational Reference for Trades and Jobs designed by France Travail.
+Le ROME correspond à la référence opérationnelle pour les métiers et les emplois conçue par France Travail.
 
-List of codes separated by commas
+Liste des codes séparés par des virgules
 
-The codes must adhere to the ROME formats",
+Les codes doivent respecter les formats ROME",
               "examples": [
                 "F1601,F1201,F1106",
                 "M1806",
@@ -5731,9 +5160,9 @@ The codes must adhere to the ROME formats",
             "name": "rncp",
             "required": false,
             "schema": {
-              "description": "RNCP code of the research scope
+              "description": "Code RNCP du périmètre de recherche
 
-The RNCP corresponds to the National Directory of Professional Certifications by [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
+Le RNCP correspond au Répertoire national des certifications professionnelles de [France Compétences](https://www.francecompetences.fr/reguler-le-marche/certification-professionnelle/)",
               "examples": [
                 "RNCP34436",
                 "RNCP183",
@@ -5747,7 +5176,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "name": "opco",
             "required": false,
             "schema": {
-              "description": "Allow filtering job offers by opco name.",
+              "description": "Filtrer les offres d’emploi par opco. voir la liste des valeurs possibles.",
               "enum": [
                 "AFDAS",
                 "AKTO / Opco entreprises et salariés des services à forte intensité de main d'oeuvre",
@@ -5772,7 +5201,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "name": "departements",
             "required": false,
             "schema": {
-              "description": "Allow filtering job offers by department numbers. This parameter accepts an array of department numbers",
+              "description": "Filtrer les offres d’emploi par département. Ce paramètre accepte un tableau de numéros de départements",
               "examples": [
                 "75&departements=06",
                 "06",
@@ -5788,7 +5217,7 @@ The RNCP corresponds to the National Directory of Professional Certifications by
             "name": "partners_to_exclude",
             "required": false,
             "schema": {
-              "description": "List of partners labels to exclude from the search.<br />This list changes regularly. The updated list is available [at this url](http://labonnealternance.courdecassation.beta.gouv.fr/metabase/public/question/70f84c13-6156-4933-9fb3-54c88887d95d)",
+              "description": "Liste des labels de partenaires à exclure de la recherche.<br />Cette liste change régulièrement. La liste mise à jour est disponible [à cette adresse](http://labonnealternance.courdecassation.beta.gouv.fr/metabase/public/question/70f84c13-6156-4933-9fb3-54c88887d95d)",
               "examples": [
                 "Hellowork&partners_to_exclude=RH Cour de cassation",
                 "Hellowork",
@@ -5807,37 +5236,38 @@ The RNCP corresponds to the National Directory of Professional Certifications by
                 "schema": {
                   "properties": {
                     "jobs": {
-                      "description": "List of job offers corresponding to the search.
+                      "description": "Liste des offres d’emploi correspondant à la recherche.
 
-The offers come from:
+Les offres proviennent de:
 
-- collection on the platform Cour de cassation
+- collection sur la plateforme Cour de cassation
 - France Travail
-- publication via API by our partners
+- publication via API par nos partenaires
+- partenaire via flux spécifique.
 
-Currently, the results are sorted by:
+Actuellement, les résultats sont triés par :
 
-- Source priority (Cour de cassation > France Travail > other partners)
-- Increasing distance (only for a search by location)
-- Decreasing date of creation
+- Priorité source (Cour de cassation > France Travail > autres partenaires)
+- Augmentation de la distance (uniquement pour une recherche par emplacement)
+- Date de création décroissante
 
-The results are limited to 150 for each of the three sources i.e. 450 maximum results, and currently, it is not possible to retrieve all the offers matching the search criteria.",
+Les résultats sont limités à 150 par source, et actuellement, il n’est pas possible de récupérer toutes les offres correspondant aux critères de recherche.",
                       "items": {
                         "$ref": "#/components/schemas/JobOfferRead",
                       },
                       "type": "array",
                     },
                     "recruiters": {
-                      "description": "List of companies that have not posted a job offer but are likely to hire apprentices in the desired field.
+                      "description": "Liste des entreprises qui n’ont pas publié d’offre d’emploi mais qui sont susceptibles d’embaucher des apprentis dans le domaine souhaité.
 
-The results are limited to 150, and currently, it is not possible to retrieve all recruiters matching the search criteria.",
+Les résultats sont limités à 150, et actuellement, il n’est pas possible de retrouver tous les recruteurs correspondant aux critères de recherche.",
                       "items": {
                         "$ref": "#/components/schemas/JobRecruiter",
                       },
                       "type": "array",
                     },
                     "warnings": {
-                      "description": "List of warnings related to the search.",
+                      "description": "Liste des avertissements liés à la recherche.",
                       "examples": [
                         {
                           "code": "WARNING_CODE",
@@ -5871,7 +5301,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -5906,15 +5336,15 @@ The results are limited to 150, and currently, it is not possible to retrieve al
             "api-key": [],
           },
         ],
-        "summary": "Search for apprenticeship job opportunities",
+        "summary": "Recherche d'opportunités d'emploi",
         "tags": [
-          "Job",
+          "Offre Emploi",
         ],
       },
     },
     "/organisme/v1/export": {
       "get": {
-        "description": "Retrieve the list of all organizations from the Onisep repository historized",
+        "description": "Récupérer la liste de tous les organismes issus du référentiel Onisep historisé",
         "operationId": "get_organisme_v1_export",
         "parameters": [
           {
@@ -5956,7 +5386,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
                   "additionalProperties": false,
                   "properties": {
                     "data": {
-                      "description": "List of organizations",
+                      "description": "Liste des organismes",
                       "items": {
                         "$ref": "#/components/schemas/Organisme",
                       },
@@ -5974,7 +5404,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -6011,7 +5441,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
         ],
         "summary": "Récupération des organismes de formation en apprentissage",
         "tags": [
-          "Organisms",
+          "Organismes",
         ],
       },
     },
@@ -6430,7 +5860,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
                 },
               },
             },
-            "description": "Success",
+            "description": "Succès",
           },
           "400": {
             "$ref": "#/components/responses/BadRequest",
@@ -6467,7 +5897,7 @@ The results are limited to 150, and currently, it is not possible to retrieve al
         ],
         "summary": "Recherche d'organismes par UAI et/ou SIRET",
         "tags": [
-          "Organisms",
+          "Organismes",
         ],
       },
     },
@@ -6481,15 +5911,15 @@ The results are limited to 150, and currently, it is not possible to retrieve al
   "tags": [
     {
       "description": "Pour essayer l'API [vous pouvez utiliser le swagger UI](/documentation-technique/try)",
-      "name": "Try the API",
+      "name": "Essayer l'API",
     },
     {
       "description": "Opportunités d'emploi",
-      "name": "Job",
+      "name": "Offre Emploi",
     },
     {
       "description": "Liste des opérations sur les formations",
-      "name": "Training",
+      "name": "Formation",
     },
     {
       "description": "Liste des opérations sur les certifications.",
@@ -6497,19 +5927,19 @@ The results are limited to 150, and currently, it is not possible to retrieve al
     },
     {
       "description": "Liste des organismes",
-      "name": "Organisms",
+      "name": "Organismes",
     },
     {
       "description": "Référentiel Géographique",
-      "name": "Geography",
+      "name": "Géographie",
     },
     {
       "description": "Liste des routes expérimentales. Attention: ces routes peuvent changer sans préavis.",
-      "name": "Experimental",
+      "name": "Expérimental",
     },
     {
       "description": "Routes système",
-      "name": "System",
+      "name": "Système",
     },
   ],
 }

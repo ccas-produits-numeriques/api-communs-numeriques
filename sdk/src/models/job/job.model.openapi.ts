@@ -3,10 +3,8 @@ import type { SchemaObject } from "openapi3-ts/oas31";
 import { z } from "zod/v4-mini";
 import { applicationModelDoc } from "../../docs/models/job/application.model.doc.js";
 import { offerReadModelDoc } from "../../docs/models/job/offer_read.model.doc.js";
-import { offerWriteModelDoc } from "../../docs/models/job/offer_write.model.doc.js";
 import { recruiterModelDoc } from "../../docs/models/job/recruiter.model.doc.js";
 import type { OpenapiModel } from "../../openapi/types.js";
-import { pickPropertiesOpenAPI } from "../../openapi/utils/zodWithOpenApi.js";
 
 const recruiterSchema = {
   type: "object",
@@ -242,133 +240,6 @@ const offerReadSchema = {
   required: ["identifier", "workplace", "apply", "contract", "offer", "is_delegated"],
 } as const satisfies SchemaObject;
 
-const offerWriteSchema = {
-  type: "object",
-  properties: {
-    identifier: {
-      type: "object",
-      properties: {
-        partner_job_id: {
-          type: "string",
-        },
-      },
-      required: ["partner_job_id"],
-    },
-    workplace: {
-      type: "object",
-      properties: {
-        ...pickPropertiesOpenAPI(offerReadSchema.properties.workplace.properties, ["name", "description", "website"]),
-        siret: {
-          type: "string",
-          pattern: "^\\d{14}$",
-        },
-        location: {
-          type: ["object", "null"],
-          properties: {
-            address: {
-              type: ["string", "null"],
-            },
-          },
-        },
-      },
-      required: ["siret"],
-    },
-    apply: {
-      type: "object",
-      properties: {
-        email: {
-          type: ["string", "null"],
-          format: "email",
-          description: "Email de contact",
-        },
-        url: {
-          type: ["string", "null"],
-          format: "uri",
-          description: "URL pour candidater",
-        },
-        phone: {
-          type: ["string", "null"],
-          description: "Téléphone de contact",
-        },
-      },
-    },
-    contract: {
-      type: "object",
-      properties: {
-        ...pickPropertiesOpenAPI(offerReadSchema.properties.contract.properties, ["duration", "start", "remote"]),
-        type: {
-          ...offerReadSchema.properties.contract.properties.type,
-          default: ["Apprentissage", "Professionnalisation"],
-        },
-      },
-    },
-    offer: {
-      type: "object",
-      properties: {
-        title: offerReadSchema.properties.offer.properties.title,
-        desired_skills: {
-          ...offerReadSchema.properties.offer.properties.desired_skills,
-          default: [],
-        },
-        to_be_acquired_skills: {
-          ...offerReadSchema.properties.offer.properties.to_be_acquired_skills,
-          default: [],
-        },
-        access_conditions: {
-          ...offerReadSchema.properties.offer.properties.access_conditions,
-          default: [],
-        },
-        opening_count: {
-          ...offerReadSchema.properties.offer.properties.opening_count,
-          default: 1,
-        },
-        description: {
-          type: "string",
-          minLength: 30,
-        },
-        rome_codes: {
-          type: ["array", "null"],
-          items: {
-            type: "string",
-            pattern: "^[A-Z]\\d{4}$",
-          },
-        },
-        target_diploma: {
-          type: ["object", "null"],
-          properties: {
-            european: {
-              type: ["string", "null"],
-              enum: ["3", "4", "5", "6", "7"],
-            },
-          },
-        },
-        publication: {
-          type: "object",
-          properties: pickPropertiesOpenAPI(offerReadSchema.properties.offer.properties.publication.properties, [
-            "creation",
-            "expiration",
-          ]),
-        },
-        multicast: {
-          type: "boolean",
-          description: "Si l'offre peut être diffusé sur l'ensemble des plateformes partenaires",
-          default: true,
-        },
-        origin: {
-          type: ["string", "null"],
-          description: "Origine de l'offre provenant d'un aggregateur",
-        },
-        status: {
-          ...offerReadSchema.properties.offer.properties.status,
-          default: "Active",
-        },
-      },
-      required: ["title", "description"],
-    },
-  },
-  required: ["workplace", "apply", "offer"],
-} as const satisfies SchemaObject;
-
 const applicationWriteSchema = {
   type: "object",
   properties: {
@@ -431,13 +302,6 @@ export const offerReadModelOpenapi: OpenapiModel<"JobOfferRead"> = {
   name: "JobOfferRead",
   schema: offerReadSchema,
   doc: offerReadModelDoc,
-  zod: z.unknown(),
-};
-
-export const offerWriteModelOpenapi: OpenapiModel<"JobOfferWrite"> = {
-  name: "JobOfferWrite",
-  schema: offerWriteSchema,
-  doc: offerWriteModelDoc,
   zod: z.unknown(),
 };
 

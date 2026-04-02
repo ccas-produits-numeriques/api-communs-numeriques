@@ -1,7 +1,6 @@
 import {
   candidatureOffrePageSummaryDoc,
   certificationsPageSummaryDoc,
-  depotOffrePageSummaryDoc,
   generationLienPriseRdvFormationPageSummaryDoc,
   getTextOpenAPI,
   rechercheCommunePageSummaryDoc,
@@ -105,11 +104,6 @@ export const PAGES = {
       getPath: () => `/explorer/recuperation-organismes` as string,
       index: true,
       getTitle: () => getTextOpenAPI(recuperationOrganismesPageSummaryDoc.title, "fr"),
-    },
-    depotOffre: {
-      getPath: () => `/explorer/depot-offre` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(depotOffrePageSummaryDoc.title, "fr"),
     },
     candidatureOffre: {
       getPath: () => `/explorer/candidature-offre` as string,

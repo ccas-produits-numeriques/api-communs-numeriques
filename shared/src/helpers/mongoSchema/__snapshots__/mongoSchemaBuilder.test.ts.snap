@@ -3859,7 +3859,7 @@ exports[`zodToMongoSchema > should convert import.meta schema 1`] = `
           "bsonType": "string",
           "enum": [
             "bcn",
-            "kit_apprentissage",
+            "kit_communs_numeriques",
             "acce",
             "kali_ccn",
             "communes",
@@ -3922,7 +3922,7 @@ exports[`zodToMongoSchema > should convert import.meta schema 1`] = `
                 "oldest_date_publication",
               ],
             },
-            "kit_apprentissage": {
+            "kit_communs_numeriques": {
               "additionalProperties": false,
               "bsonType": "object",
               "properties": {
@@ -3938,7 +3938,7 @@ exports[`zodToMongoSchema > should convert import.meta schema 1`] = `
           "required": [
             "bcn",
             "france_competence",
-            "kit_apprentissage",
+            "kit_communs_numeriques",
           ],
         },
         "status": {
@@ -4230,7 +4230,7 @@ exports[`zodToMongoSchema > should convert import.meta schema 1`] = `
 }
 `;
 
-exports[`zodToMongoSchema > should convert indicateurs.source_kit_apprentissage schema 1`] = `
+exports[`zodToMongoSchema > should convert indicateurs.source_kit_communs_numeriques schema 1`] = `
 {
   "additionalProperties": false,
   "bsonType": "object",
@@ -4328,7 +4328,6 @@ exports[`zodToMongoSchema > should convert organisations schema 1`] = `
       "items": {
         "bsonType": "string",
         "enum": [
-          "jobs:write",
           "appointments:write",
           "applications:write",
         ],
@@ -8517,7 +8516,7 @@ exports[`zodToMongoSchema > should convert source.kali.ccn schema 1`] = `
 }
 `;
 
-exports[`zodToMongoSchema > should convert source.kit_apprentissage schema 1`] = `
+exports[`zodToMongoSchema > should convert source.kit_communs_numeriques schema 1`] = `
 {
   "additionalProperties": false,
   "bsonType": "object",
@@ -9512,7 +9511,7 @@ exports[`zodToMongoSchema > should convert users schema 1`] = `
         "editeur_logiciel",
         "organisme_financeur",
         "apprenant",
-        "mission_apprentissage",
+        "cour_de_cassation",
         "autre",
       ],
     },

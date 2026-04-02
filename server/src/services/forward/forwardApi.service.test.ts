@@ -30,7 +30,7 @@ describe("forwardApi.service", () => {
 
   const basicUser = generateUserFixture({ email: "basic@exemple.fr", is_admin: false, organisation: null });
 
-  const org = generateOrganisationFixture({ nom: "Org", habilitations: ["jobs:write"] });
+  const org = generateOrganisationFixture({ nom: "Org", habilitations: ["applications:write"] });
 
   const orgUser = generateUserFixture({ email: "user@exemple.fr", is_admin: false, organisation: org.nom });
 
@@ -48,7 +48,7 @@ describe("forwardApi.service", () => {
           .resolves.toEqual({
             data: {
               email: "basic@exemple.fr",
-              habilitations: { "applications:write": false, "appointments:write": false, "jobs:write": false },
+              habilitations: { "applications:write": false, "appointments:write": false },
               organisation: null,
             },
             success: true,
@@ -71,7 +71,7 @@ describe("forwardApi.service", () => {
           .resolves.toEqual({
             data: {
               email: "user@exemple.fr",
-              habilitations: { "applications:write": false, "appointments:write": false, "jobs:write": true },
+              habilitations: { "applications:write": true, "appointments:write": false },
               organisation: "Org",
             },
             success: true,
