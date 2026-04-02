@@ -4,11 +4,22 @@ import { Header as DSFRHeader, HeaderQuickAccessItem } from "@codegouvfr/react-d
 import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-
+import { Badge } from "@codegouvfr/react-dsfr/Badge";
+import { styled } from "@mui/material";
+import { Notice } from "@codegouvfr/react-dsfr/Notice";
 import { useNavigationItems } from "./header.utils";
 import { MonCompteQuickAccess } from "./MonCompteQuickAccess";
 import { publicConfig } from "@/config.public";
 import { useAuth } from "@/context/AuthContext";
+
+const StyledDSFRHeader = styled(DSFRHeader)({
+  "& .fr-header__logo": {
+    display: "none",
+  },
+  "& .fr-nav__item": {
+    marginLeft: "0 !important",
+  },
+});
 
 export const Header = () => {
   // Force light mode
@@ -27,7 +38,11 @@ export const Header = () => {
 
   return (
     <>
-      <DSFRHeader
+      <Notice
+        severity="info"
+        title={`Ce site est en version beta, des ajustements sont en cours. Merci de votre compréhension.`}
+      />
+      <StyledDSFRHeader
         brandTop={
           <>
             République
@@ -55,11 +70,23 @@ export const Header = () => {
           <MonCompteQuickAccess key="mon-compte-quick-access" />,
         ]}
         operatorLogo={{
-          alt: "Retour à l'accueil",
-          imgUrl: "/images/logo_gouvernement.svg",
+          alt: "Logo Cour de cassation",
+          imgUrl: "/images/logo_courdecassation_vertical.svg",
           orientation: "horizontal",
+          linkProps: {
+            href: "/",
+            title: `Accueil - ${publicConfig.productMeta.brandName} - République Française`,
+          },
         }}
-        serviceTitle={<>API Communs numériques</>}
+        serviceTitle={
+          <>
+            API Communs numériques{" "}
+            <Badge as="span" noIcon severity="new">
+              Beta
+            </Badge>
+          </>
+        }
+        serviceTagline="Données de référence et communs numériques"
         navigation={navigation}
       />
     </>
