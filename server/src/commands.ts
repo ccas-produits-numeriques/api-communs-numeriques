@@ -277,12 +277,11 @@ program
   .argument("<sourceFile>", "Source Openapi SchemaObject file")
   .argument("<outputDocFile>", "Output doc file")
   .argument("<outputSchemaFile>", "Output spec file")
-  .option("--lang <string>", "Source language", "fr")
-  .action(async (sourceFile, outputDocFile, outputSchemaFile, { lang }) => {
+  .action(async (sourceFile, outputDocFile, outputSchemaFile) => {
     const sourceRaw = await readFile(join(process.cwd(), "..", sourceFile), "utf-8");
     const source: SchemaObject = JSON.parse(sourceRaw);
 
-    const { schema, doc } = initModelTechnicalDocFromSource(source, lang);
+    const { schema, doc } = initModelTechnicalDocFromSource(source, "fr");
 
     await writeFile(join(process.cwd(), "..", outputDocFile), JSON.stringify(doc, null, 2));
     await writeFile(join(process.cwd(), "..", outputSchemaFile), JSON.stringify(schema, null, 2));
@@ -294,12 +293,11 @@ program
   .argument("<sourceFile>", "Source Openapi OperationObject file")
   .argument("<outputDocFile>", "Output doc file")
   .argument("<outputOperationFile>", "Output spec file")
-  .option("--lang <string>", "Source language", "fr")
-  .action(async (sourceFile, outputDocFile, outputOperationFile, { lang }) => {
+  .action(async (sourceFile, outputDocFile, outputOperationFile) => {
     const sourceRaw = await readFile(join(process.cwd(), "..", sourceFile), "utf-8");
     const source: OperationObject = JSON.parse(sourceRaw);
 
-    const { operation, doc } = initRouteTechnicalDocFromSource(source, lang);
+    const { operation, doc } = initRouteTechnicalDocFromSource(source, "fr");
 
     await writeFile(join(process.cwd(), "..", outputDocFile), JSON.stringify(doc, null, 2));
     await writeFile(join(process.cwd(), "..", outputOperationFile), JSON.stringify(operation, null, 2));

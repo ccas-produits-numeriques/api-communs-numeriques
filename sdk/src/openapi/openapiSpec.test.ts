@@ -194,7 +194,7 @@ describe("openapiSpec#models", () => {
     if (model.doc === null) {
       return;
     }
-    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr", null);
+    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr");
     const doc = builder.getSpec();
 
     if (doc.openapi !== "3.1.0") {
@@ -207,7 +207,7 @@ describe("openapiSpec#models", () => {
   });
 
   it.each(Object.entries(openapiSpec.models))("should generate proper schema %s", (modelName) => {
-    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr", null);
+    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr");
     const doc = builder.getSpec();
 
     if (doc.openapi !== "3.1.0") {
@@ -224,7 +224,7 @@ describe("openapiSpec#routes", () => {
       if (operation?.doc == null) {
         return;
       }
-      const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr", null);
+      const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr");
       const doc = builder.getSpec();
 
       if (doc.openapi !== "3.1.0") {
@@ -240,7 +240,7 @@ describe("openapiSpec#routes", () => {
   });
 
   it("should generate schema in sync with zod definition", async () => {
-    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr", null);
+    const builder = buildOpenApiSchema("0.0.0", "test", "https://api-test.apprentissage.beta.houv.fr");
     const doc = builder.getSpec();
 
     if (doc.openapi !== "3.1.0") {

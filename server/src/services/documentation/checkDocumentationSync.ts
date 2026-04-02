@@ -46,7 +46,7 @@ async function fetchSijApiOperations(): Promise<Record<string, OpenapiOperation>
 }
 
 async function buildApiOpenapiPathItems(): Promise<Record<string, OpenapiOperation>> {
-  const data = generateOpenApiSchema(config.version, config.env, config.apiPublicUrl, "fr");
+  const data = generateOpenApiSchema(config.version, config.env, config.apiPublicUrl);
 
   const doc = await dereferenceOpenapiSchema(data);
 

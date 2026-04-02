@@ -40,7 +40,7 @@ fileignoreconfig:
 - filename: sdk/src/openapi/__snapshots__/openapiSpec.test.ts.snap
   checksum: 80902da01cc5cfbe5f6be6fe3a0e0f2792b9326713701b9d74ae48aeb152fd80
 - filename: sdk/src/openapi/builder/openapi.builder.ts
-  checksum: 809a69e535ff0feafb766767cbe12835bedc25903adabde1732e8ad31f04456d
+  checksum: d2ceb232506c8a62438b9424e1dfbc4b8acf1e6492754817a0d967142fba59fa
 - filename: server/.env.test
   checksum: 65357f150bfedfebea511b1007eed941983484abf990d87e91fd7477360ad280
 - filename: server/src/config.ts
@@ -85,7 +85,7 @@ allowed_patterns:
 - '@mail.com'
 - '@exemple.fr'
 - '@mail.fr'
-- '@apprentissage.beta.gouv.fr'
-- '@alternance.beta.gouv.fr'
+- '@courdecassation.beta.gouv.fr'
+- '@courdecassation.fr'
 threshold: medium
 version: "1.0"
