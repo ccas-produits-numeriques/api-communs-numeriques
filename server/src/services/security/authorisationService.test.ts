@@ -131,7 +131,7 @@ describe("isAuthorizedUser", () => {
   const orgWrite = generateOrganisationFixture({
     nom: "Write Organisation",
     slug: "write-org",
-    habilitations: ["applications:write"],
+    habilitations: ["appointments:write"],
   });
   const orgRo = generateOrganisationFixture({ nom: "ReadOnly Organisation", slug: "ro-org", habilitations: [] });
 
@@ -155,21 +155,21 @@ describe("isAuthorizedUser", () => {
     });
   });
 
-  describe("applications:write", () => {
+  describe("appointments:write", () => {
     it("admin user should be allowed", () => {
-      expect(isAuthorizedUser("applications:write", admin1, { users: [] }, null)).toBe(false);
+      expect(isAuthorizedUser("appointments:write", admin1, { users: [] }, null)).toBe(false);
     });
 
     it("no org user should be denied", () => {
-      expect(isAuthorizedUser("applications:write", user1, { users: [] }, null)).toBe(false);
+      expect(isAuthorizedUser("appointments:write", user1, { users: [] }, null)).toBe(false);
     });
 
     it("ReadOnly org user should be denied", () => {
-      expect(isAuthorizedUser("applications:write", userOrgRo, { users: [] }, orgRo)).toBe(false);
+      expect(isAuthorizedUser("appointments:write", userOrgRo, { users: [] }, orgRo)).toBe(false);
     });
 
     it("Write org user should be allowed", () => {
-      expect(isAuthorizedUser("applications:write", userOrgWrite, { users: [] }, orgWrite)).toBe(true);
+      expect(isAuthorizedUser("appointments:write", userOrgWrite, { users: [] }, orgWrite)).toBe(true);
     });
   });
 });

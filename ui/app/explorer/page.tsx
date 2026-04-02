@@ -3,7 +3,6 @@ import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import house from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/house.svg";
 import school from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/school.svg";
 import search from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/search.svg";
-import contract from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/document/contract.svg";
 import book from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/book.svg";
 import community from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/community.svg";
 import locationFrance from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/map/location-france.svg";
@@ -11,7 +10,6 @@ import { Tag as TagDsfr } from "@codegouvfr/react-dsfr/Tag";
 import { Tile } from "@codegouvfr/react-dsfr/Tile";
 import { Box, Container, Typography } from "@mui/material";
 import {
-  candidatureOffrePageSummaryDoc,
   certificationsPageSummaryDoc,
   generationLienPriseRdvFormationPageSummaryDoc,
   getTextOpenAPI,
@@ -92,15 +90,6 @@ export default async function ExplorerApiPage() {
           enlargeLinkOrButton
           start={<TagDsfr>Jeu de données</TagDsfr>}
           linkProps={{ href: PAGES.static.recuperationDetailOffre.getPath() }}
-        />
-        <Tile
-          title={getTextOpenAPI(candidatureOffrePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(candidatureOffrePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={contract.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.candidatureOffre.getPath() }}
-          start={<TagDsfr>Outil</TagDsfr>}
         />
         <Tile
           title={getTextOpenAPI(rechercheFormationPageSummaryDoc.title, "fr")}

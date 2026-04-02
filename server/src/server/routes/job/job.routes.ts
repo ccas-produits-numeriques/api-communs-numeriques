@@ -29,32 +29,6 @@ export const jobRoutes = ({ server }: { server: Server }) => {
     }
   );
 
-  server.post(
-    "/job/v1/apply",
-    {
-      schema: zRoutes.post["/job/v1/apply"],
-      onRequest: [server.auth(zRoutes.post["/job/v1/apply"])],
-      bodyLimit: 5 * 1024 ** 2, // 5MB
-    },
-    async (request, response) => {
-      const user = getUserFromRequest(request, zRoutes.post["/job/v1/apply"]);
-
-      return forwardApiRequest(
-        {
-          endpoint: config.api.sij_api.endpoint,
-          path: "/v2/application",
-          requestInit: {
-            method: "POST",
-            body: JSON.stringify(request.body),
-            headers: { "Content-Type": "application/json" },
-          },
-        },
-        response,
-        { user, organisation: request.organisation ?? null }
-      );
-    }
-  );
-
   server.get(
     "/job/v1/offer/:id",
     {

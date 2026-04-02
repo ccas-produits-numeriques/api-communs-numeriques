@@ -1,34 +1,28 @@
-import applyDescEn from "../../metier/recherche-offre/en/apply.description.md.js";
-import identifierDescEn from "../../metier/recherche-offre/en/identifier.description.md.js";
-import workplaceDescEn from "../../metier/recherche-offre/en/workplace.description.md.js";
-import workplaceDomainDescEn from "../../metier/recherche-offre/en/workplace.domain.description.md.js";
-import workplaceLocationDescEn from "../../metier/recherche-offre/en/workplace.location.description.md.js";
 import applyDescFr from "../../metier/recherche-offre/fr/apply.description.md.js";
 import identifierDescFr from "../../metier/recherche-offre/fr/identifier.description.md.js";
 import workplaceDescFr from "../../metier/recherche-offre/fr/workplace.description.md.js";
 import workplaceDomainDescFr from "../../metier/recherche-offre/fr/workplace.domain.description.md.js";
 import workplaceLocationDescFr from "../../metier/recherche-offre/fr/workplace.location.description.md.js";
 import type { DocTechnicalField } from "../../types.js";
-
 export const recruiterModelDoc = {
-  descriptions: [{ fr: "Recruteur", en: "Recruiter" }],
+  descriptions: [{ fr: "Recruteur", en: null }],
   properties: {
     identifier: {
-      descriptions: [{ en: identifierDescEn, fr: identifierDescFr }],
+      descriptions: [{ en: null, fr: identifierDescFr }],
       properties: {
         id: {
-          descriptions: [{ fr: "Identifiant unique du recruteur", en: "Unique identifier of the recruiter" }],
+          descriptions: [{ fr: "Identifiant unique du recruteur", en: null }],
           examples: ["6687165396d52b5e01b409545"],
         },
       },
     },
     workplace: {
-      descriptions: [{ en: workplaceDescEn, fr: workplaceDescFr }],
+      descriptions: [{ en: null, fr: workplaceDescFr }],
       properties: {
         siret: {
           descriptions: [
             {
-              en: "SIRET of the contract execution location or of the school if is_delegated = true",
+              en: null,
               fr: "SIRET du lieu d'exécution du contrat ou du CFA si is_delegated = true",
             },
           ],
@@ -37,11 +31,11 @@ export const recruiterModelDoc = {
         name: {
           descriptions: [
             {
-              en: "Name of the establishment (brand name or, failing that, legal name) or school legal name if is_delegated = true",
+              en: null,
               fr: "Nom de l'établissement (enseigne ou, à défaut, nom légal) ou nom légal du CFA si is_delegated = true",
             },
             {
-              en: "In the case of publishing a job offer, it is possible to use a custom name; otherwise, it will take the value of the brand name, or failing that, the legal name.",
+              en: null,
               fr: "Dans le cas de la publication d'une offre d'emploi, il est possible d'utiliser un nom personnalisé ; sinon, il prendra la valeur de l'enseigne, ou à défaut, du nom légal.",
             },
           ],
@@ -50,7 +44,7 @@ export const recruiterModelDoc = {
         description: {
           descriptions: [
             {
-              en: "Description of the employer and/or the department where the contract will be carried out.",
+              en: null,
               fr: "Description de l'employeur et/ou du département où sera exécuté le contrat.",
             },
           ],
@@ -59,13 +53,13 @@ export const recruiterModelDoc = {
           ],
         },
         brand: {
-          descriptions: [{ en: "Brand name of the establishment", fr: "Enseigne de l'établissement" }],
+          descriptions: [{ en: null, fr: "Enseigne de l'établissement" }],
           examples: ["Enseigne (todo)"],
         },
         legal_name: {
           descriptions: [
             {
-              en: "Company legal name or school legal name if is_delegated = true",
+              en: null,
               fr: "Raison sociale de l'entreprise ou raison sociale du CFA si is_delegated = true",
             },
           ],
@@ -73,23 +67,23 @@ export const recruiterModelDoc = {
         size: {
           descriptions: [
             {
-              en: "Company workforce range, in number of employees",
+              en: null,
               fr: "Effectif de l'entreprise, en nombre d'employés",
             },
           ],
           examples: ["100-199"],
         },
         website: {
-          descriptions: [{ en: "Company website", fr: "Site web de l'entreprise" }],
+          descriptions: [{ en: null, fr: "Site web de l'entreprise" }],
           examples: ["https://beta.gouv.fr/startups/"],
         },
         location: {
-          descriptions: [{ en: workplaceLocationDescEn, fr: workplaceLocationDescFr }],
+          descriptions: [{ en: null, fr: workplaceLocationDescFr }],
           properties: {
             address: {
               descriptions: [
                 {
-                  en: "Postal address of the job offer location or of the school if is_delegated = true.",
+                  en: null,
                   fr: "Adresse postale du lieu de l'offre d'emploi ou du CFA si is_delegated = true.",
                 },
               ],
@@ -97,19 +91,19 @@ export const recruiterModelDoc = {
             },
             geopoint: {
               descriptions: [
-                { en: "Geolocation linked to the address", fr: "Localisation géographique liée à l'adresse" },
-                { en: "Derived from the address.", fr: "Déduite de l'adresse." },
+                { en: null, fr: "Localisation géographique liée à l'adresse" },
+                { en: null, fr: "Déduite de l'adresse." },
               ],
             },
           },
         },
         domain: {
-          descriptions: [{ en: workplaceDomainDescEn, fr: workplaceDomainDescFr }],
+          descriptions: [{ en: null, fr: workplaceDomainDescFr }],
           properties: {
             idcc: {
               descriptions: [
                 {
-                  en: "Collective agreement number associated with the SIRET number",
+                  en: null,
                   fr: "Numéro de convention collective associé au SIRET",
                 },
               ],
@@ -118,7 +112,7 @@ export const recruiterModelDoc = {
             naf: {
               descriptions: [
                 {
-                  en: "NAF (sector of activity) associated with the SIRET number",
+                  en: null,
                   fr: "Code NAF (secteur d'activité) associé au SIRET",
                 },
               ],
@@ -126,7 +120,7 @@ export const recruiterModelDoc = {
                 code: {
                   descriptions: [
                     {
-                      en: "NAF code (sector of activity) associated with the SIRET number",
+                      en: null,
                       fr: "Code NAF (secteur d'activité) associé au SIRET",
                     },
                   ],
@@ -135,7 +129,7 @@ export const recruiterModelDoc = {
                 label: {
                   descriptions: [
                     {
-                      en: "Label of the NAF code (sector of activity) associated with the SIRET number",
+                      en: null,
                       fr: "Libellé du code NAF (secteur d'activité) associé au SIRET",
                     },
                   ],
@@ -146,7 +140,7 @@ export const recruiterModelDoc = {
             opco: {
               descriptions: [
                 {
-                  en: "Competency Operator (OPCO) associated with the SIRET number",
+                  en: null,
                   fr: "OPérateur de Compétences (OPCO) associé au SIRET",
                 },
               ],
@@ -157,12 +151,12 @@ export const recruiterModelDoc = {
       },
     },
     apply: {
-      descriptions: [{ en: applyDescEn, fr: applyDescFr }],
+      descriptions: [{ en: null, fr: applyDescFr }],
       properties: {
         recipient_id: {
           descriptions: [
             {
-              en: "Identifier to use for applying to the job offer using /v3/jobs/apply route or to display the apply /postuler widget. If null applying is not available for this offer by apply_route nor by /postuler widget.",
+              en: null,
               fr: "Identifiant à utiliser pour postuler à l'offre d'emploi via la route /v3/jobs/apply ou pour afficher le widget postuler. Si null, la candidature n'est pas disponible pour cette offre par la route apply_route ni par le widget /postuler.",
             },
           ],
@@ -170,20 +164,18 @@ export const recruiterModelDoc = {
         phone: {
           descriptions: [
             {
-              en: "Recruiter's phone number or School phone number if is_delegated is true",
+              en: null,
               fr: "Numéro de téléphone du recruteur ou du CFA si is_delegated = true",
             },
             {
-              en: "Only European phone numbers are allowed. There is also a check on the nature of the number: only mobile and landline phones are allowed.",
+              en: null,
               fr: "Seuls les numéros de téléphone européens sont autorisés. Il y a également une vérification sur la nature du numéro : seuls les téléphones mobiles et fixes sont autorisés.",
             },
           ],
           examples: ["0199000000"],
         },
         url: {
-          descriptions: [
-            { en: "Redirect URL to the application form", fr: "URL de redirection vers le formulaire de candidature" },
-          ],
+          descriptions: [{ en: null, fr: "URL de redirection vers le formulaire de candidature" }],
           examples: [
             "https://labonnealternance.courdecassation.beta.gouv.fr/recherche-apprentissage?display=list&page=fiche&type=matcha&itemId=664752a2ebe24062b758c641",
           ],

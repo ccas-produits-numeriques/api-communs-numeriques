@@ -8,25 +8,26 @@ import intituleNiveauTipFr from "./fr/intitule.niveau.tip.md.js";
 import periodeValiditeCfdDescFr from "./fr/periode_validite.cfd.description.md.js";
 import periodeValiditeRncpDescFr from "./fr/periode_validite.rncp.description.md.js";
 import typeDesc from "./fr/type.description.md.js";
-
 export const certificationsPageSummaryDoc = {
   title: {
     fr: "Liste des certifications professionnelles",
-    en: "List of professional certifications",
+    en: null,
   },
   headline: {
-    en: "Consult the data model and search the list of certifications",
+    en: null,
     fr: "Consulter le modèle de données et effectuer une recherche dans la liste des certifications",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const certificationsPageDoc = {
   tag: "certifications",
   operationIds: ["get_certification_v1"],
   habilitation: null,
   description: [
     {
-      en: "**Use a reliable and enriched dataset for your project:** coding, validity period, title, fields, continuity, type, and legal basis.",
+      en: null,
       fr: "**Utilisez un jeu de données fiable et enrichi pour votre projet :** codification, période de validité, intitulé, domaines, continuité, type et base légale.",
     },
   ],
@@ -55,7 +56,7 @@ export const certificationsPageDoc = {
   data: [
     {
       name: {
-        en: "Certification",
+        en: null,
         fr: "Certification",
       },
       sections: {

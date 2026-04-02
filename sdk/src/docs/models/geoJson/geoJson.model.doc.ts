@@ -1,5 +1,4 @@
 import type { DocTechnicalField } from "../../types.js";
-
 export const geoJsonPointModelDoc = {
   descriptions: null,
   properties: {
@@ -9,13 +8,12 @@ export const geoJsonPointModelDoc = {
     coordinates: {
       descriptions: null,
       prefixItems: [
-        { descriptions: [{ en: "Longitude", fr: "Longitude" }], examples: [48.850699] },
-        { descriptions: [{ en: "Latiude", fr: "Latitude" }], examples: [2.308628] },
+        { descriptions: [{ en: null, fr: "Longitude" }], examples: [48.850699] },
+        { descriptions: [{ en: null, fr: "Latitude" }], examples: [2.308628] },
       ],
     },
   },
 } as const satisfies DocTechnicalField;
-
 export const geoJsonPolygonModelDoc = {
   descriptions: null,
   properties: {
@@ -29,26 +27,25 @@ export const geoJsonPolygonModelDoc = {
         items: {
           descriptions: null,
           prefixItems: [
-            { descriptions: [{ en: "Longitude", fr: "Longitude" }], examples: [48.850699] },
-            { descriptions: [{ en: "Latiude", fr: "Latitude" }], examples: [2.308628] },
+            { descriptions: [{ en: null, fr: "Longitude" }], examples: [48.850699] },
+            { descriptions: [{ en: null, fr: "Latitude" }], examples: [2.308628] },
           ],
         },
       },
     },
   },
 } as const satisfies DocTechnicalField;
-
 export const adresseModelDoc = {
-  descriptions: [{ fr: "Adresse", en: "Address" }],
+  descriptions: [{ fr: "Adresse", en: null }],
   properties: {
     academie: {
-      descriptions: [{ fr: "Académie", en: "Academy" }],
+      descriptions: [{ fr: "Académie", en: null }],
       properties: {
         code: {
           descriptions: [
             {
               fr: "Code de l'académie",
-              en: "Code of the academy",
+              en: null,
             },
           ],
           examples: ["A1"],
@@ -57,7 +54,7 @@ export const adresseModelDoc = {
           descriptions: [
             {
               fr: "Identifiant de l'académie",
-              en: "Identifier of the academy",
+              en: null,
             },
           ],
           examples: ["1"],
@@ -66,7 +63,7 @@ export const adresseModelDoc = {
           descriptions: [
             {
               fr: "Nom de l'académie",
-              en: "Name of the academy",
+              en: null,
             },
           ],
           examples: ["Académie de Paris"],
@@ -74,33 +71,33 @@ export const adresseModelDoc = {
       },
     },
     code_postal: {
-      descriptions: [{ fr: "Code postal", en: "Postal code" }],
+      descriptions: [{ fr: "Code postal", en: null }],
       anyOf: [{ descriptions: null }, { descriptions: null }],
     },
     commune: {
-      descriptions: [{ fr: "Ville", en: "City" }],
+      descriptions: [{ fr: "Ville", en: null }],
       properties: {
         code_insee: {
           descriptions: [
             {
               fr: "Code INSEE de la ville",
-              en: "INSEE code of the city",
+              en: null,
             },
           ],
         },
         nom: {
-          descriptions: [{ fr: "Nom de la ville", en: "Name of the city" }],
+          descriptions: [{ fr: "Nom de la ville", en: null }],
         },
       },
     },
     departement: {
-      descriptions: [{ fr: "Département", en: "Department" }],
+      descriptions: [{ fr: "Département", en: null }],
       properties: {
         code_insee: {
           descriptions: [
             {
               fr: "Code INSEE du département",
-              en: "INSEE code of the department",
+              en: null,
             },
           ],
         },
@@ -108,29 +105,29 @@ export const adresseModelDoc = {
           descriptions: [
             {
               fr: "Nom du département",
-              en: "Name of the department",
+              en: null,
             },
           ],
         },
       },
     },
     label: {
-      descriptions: [{ fr: "Libellé de l'adresse", en: "address label" }],
+      descriptions: [{ fr: "Libellé de l'adresse", en: null }],
       anyOf: [{ descriptions: null }, { descriptions: null }],
     },
     region: {
-      descriptions: [{ fr: "Région", en: "Region" }],
+      descriptions: [{ fr: "Région", en: null }],
       properties: {
         code_insee: {
           descriptions: [
             {
               fr: "Code INSEE de la région",
-              en: "INSEE code of the region",
+              en: null,
             },
           ],
         },
         nom: {
-          descriptions: [{ fr: "Nom de la région", en: "Name of the region" }],
+          descriptions: [{ fr: "Nom de la région", en: null }],
         },
       },
     },

@@ -11,7 +11,7 @@ import type { DocRoute, DocTechnicalField } from "../../docs/types.js";
 
 export function initRouteTechnicalDocFromSource(
   operation: OperationObject,
-  sourceLang: "en" | "fr"
+  sourceLang: "fr" = "fr"
 ): { operation: OperationObject; doc: DocRoute } {
   const {
     tags: _tags,
@@ -27,10 +27,10 @@ export function initRouteTechnicalDocFromSource(
   const result: { operation: OperationObject; doc: DocRoute } = {
     operation: rest,
     doc: {
-      summary: { en: "", fr: "" },
-      description: { en: "", fr: "" },
+      summary: { en: null, fr: "" },
+      description: { en: null, fr: "" },
       response: {
-        description: { en: "", fr: "" },
+        description: { en: null, fr: "" },
       },
     },
   };
@@ -83,7 +83,7 @@ export function initRouteTechnicalDocFromSource(
       };
 
       result.doc.body = {
-        description: { en: "", fr: "", [sourceLang]: description },
+        description: { en: null, fr: description },
         content: contentResult.doc,
       };
     }
@@ -122,7 +122,7 @@ export function initRouteTechnicalDocFromSource(
 
 function initContentObjectTechnicalDoc(
   source: ContentObject,
-  sourceLang: "en" | "fr"
+  sourceLang: "fr"
 ): { content: ContentObject; doc: DocTechnicalField | undefined } {
   const result: { content: ContentObject; doc: DocTechnicalField | undefined } = {
     content: {},
@@ -151,7 +151,7 @@ function initContentObjectTechnicalDoc(
 
 export function initModelTechnicalDocFromSource(
   source: SchemaObject | ReferenceObject,
-  sourceLang: "en" | "fr"
+  sourceLang: "fr" = "fr"
 ): { schema: SchemaObject | ReferenceObject; doc: DocTechnicalField } {
   const result: { schema: SchemaObject | ReferenceObject; doc: DocTechnicalField } = {
     schema: {},
@@ -161,7 +161,7 @@ export function initModelTechnicalDocFromSource(
   };
 
   if (source.description) {
-    result.doc.descriptions = [{ en: "", fr: "", [sourceLang]: source.description }];
+    result.doc.descriptions = [{ en: null, fr: source.description }];
   }
 
   if ("$ref" in source) {
@@ -256,7 +256,7 @@ export function initModelTechnicalDocFromSource(
 
 function initModelTechnicalDocList(
   source: Array<SchemaObject | ReferenceObject>,
-  sourceLang: "en" | "fr"
+  sourceLang: "fr"
 ): { schema: Array<SchemaObject | ReferenceObject>; doc: DocTechnicalField[] } {
   const specs: Array<SchemaObject | ReferenceObject> = [];
   const docs: DocTechnicalField[] = [];

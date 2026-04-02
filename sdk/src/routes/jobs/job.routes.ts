@@ -56,20 +56,6 @@ export const zApiJobRoutes = {
       },
     },
   },
-  post: {
-    "/job/v1/apply": {
-      method: "post",
-      path: "/job/v1/apply",
-      body: z.unknown(),
-      response: {
-        "200": z.unknown(),
-      },
-      securityScheme: {
-        auth: "api-key",
-        access: "applications:write",
-        ressources: {},
-      },
-    },
-  },
+  post: {},
   put: {},
 } as const satisfies IApiRoutesDef;

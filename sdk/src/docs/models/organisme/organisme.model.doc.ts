@@ -1,10 +1,9 @@
 import type { DocTechnicalField } from "../../types.js";
-
 export const organismeModelDoc = {
   descriptions: null,
   properties: {
     contacts: {
-      descriptions: [{ fr: "Contacts de l'organisme", en: "Organism's contacts" }],
+      descriptions: [{ fr: "Contacts de l'organisme", en: null }],
       items: {
         descriptions: null,
         properties: {
@@ -12,15 +11,15 @@ export const organismeModelDoc = {
             descriptions: [
               {
                 fr: 'Indique si le contact a un statut "confirmé" sur le référentiel des organismes de formation',
-                en: 'Indicates if the contact has a "confirmed" status on the training organizations repository',
+                en: null,
               },
             ],
           },
           email: {
-            descriptions: [{ fr: "Email du contact", en: "Contact's email" }],
+            descriptions: [{ fr: "Email du contact", en: null }],
           },
           sources: {
-            descriptions: [{ fr: "Sources du contact", en: "Contact's sources" }],
+            descriptions: [{ fr: "Sources du contact", en: null }],
             items: {
               descriptions: null,
             },
@@ -29,90 +28,90 @@ export const organismeModelDoc = {
       },
     },
     etablissement: {
-      descriptions: [{ fr: "Etablissement de l'organisme", en: "Organism's establishment" }],
+      descriptions: [{ fr: "Etablissement de l'organisme", en: null }],
       properties: {
         adresse: {
-          descriptions: [{ fr: "Adresse de l'établissement", en: "Establishment's address" }],
+          descriptions: [{ fr: "Adresse de l'établissement", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         geopoint: {
-          descriptions: [{ fr: "Coordonnées GPS de l'établissement", en: "GPS coordinates of the establishment" }],
+          descriptions: [{ fr: "Coordonnées GPS de l'établissement", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         creation: {
-          descriptions: [{ fr: "Date de création de l'établissement", en: "Establishment's creation date" }],
+          descriptions: [{ fr: "Date de création de l'établissement", en: null }],
         },
         enseigne: {
-          descriptions: [{ fr: "Enseigne de l'établissement", en: "Establishment's brand" }],
+          descriptions: [{ fr: "Enseigne de l'établissement", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         fermeture: {
-          descriptions: [{ fr: "Date de fermeture de l'établissement", en: "Establishment's closing date" }],
+          descriptions: [{ fr: "Date de fermeture de l'établissement", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         ouvert: {
-          descriptions: [{ fr: "Etablissement ouvert", en: "Establishment open" }],
+          descriptions: [{ fr: "Etablissement ouvert", en: null }],
         },
         siret: {
-          descriptions: [{ fr: "Numéro SIRET de l'établissement", en: "Establishment's SIRET number" }],
+          descriptions: [{ fr: "Numéro SIRET de l'établissement", en: null }],
         },
       },
     },
     identifiant: {
-      descriptions: [{ fr: "Identifiant de l'organisme", en: "Organism's identifier" }],
+      descriptions: [{ fr: "Identifiant de l'organisme", en: null }],
       properties: {
         siret: {
-          descriptions: [{ fr: "Numéro SIRET de l'organisme", en: "Organism's SIRET number" }],
+          descriptions: [{ fr: "Numéro SIRET de l'organisme", en: null }],
         },
         uai: {
-          descriptions: [{ fr: "Numéro UAI de l'organisme", en: "Organism's UAI number" }],
+          descriptions: [{ fr: "Numéro UAI de l'organisme", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
       },
     },
     renseignements_specifiques: {
-      descriptions: [{ fr: "Renseignements spécifiques", en: "Specific information" }],
+      descriptions: [{ fr: "Renseignements spécifiques", en: null }],
       properties: {
         numero_activite: {
-          descriptions: [{ fr: "Numéro d'activité", en: "Activity number" }],
+          descriptions: [{ fr: "Numéro d'activité", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         qualiopi: {
-          descriptions: [{ fr: "Qualiopi", en: "Qualiopi" }],
+          descriptions: [{ fr: "Qualiopi", en: null }],
         },
       },
     },
     statut: {
-      descriptions: [{ fr: "Statut de l'organisme", en: "Organism's status" }],
+      descriptions: [{ fr: "Statut de l'organisme", en: null }],
       properties: {
         referentiel: {
           descriptions: [
             {
               fr: "Statut de l'organisme dans le réferentiel des organismes en apprentissage",
-              en: "Organism's status in the training organizations repository",
+              en: null,
             },
           ],
         },
       },
     },
     unite_legale: {
-      descriptions: [{ fr: "Unité légale de l'organisme", en: "Organism's legal unit" }],
+      descriptions: [{ fr: "Unité légale de l'organisme", en: null }],
       properties: {
         actif: {
-          descriptions: [{ fr: "Unité légale active", en: "Legal unit active" }],
+          descriptions: [{ fr: "Unité légale active", en: null }],
         },
         cessation: {
-          descriptions: [{ fr: "Date de cessation de l'unité légale", en: "Legal unit cessation date" }],
+          descriptions: [{ fr: "Date de cessation de l'unité légale", en: null }],
           anyOf: [{ descriptions: null }, { descriptions: null }],
         },
         creation: {
-          descriptions: [{ fr: "Date de création de l'unité légale", en: "Legal unit creation date" }],
+          descriptions: [{ fr: "Date de création de l'unité légale", en: null }],
         },
         raison_sociale: {
-          descriptions: [{ fr: "Raison sociale de l'unité légale", en: "Legal unit name" }],
+          descriptions: [{ fr: "Raison sociale de l'unité légale", en: null }],
         },
         siren: {
-          descriptions: [{ fr: "Numéro SIREN de l'unité légale", en: "Legal unit's SIREN number" }],
+          descriptions: [{ fr: "Numéro SIREN de l'unité légale", en: null }],
         },
       },
     },

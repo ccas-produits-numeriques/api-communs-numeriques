@@ -32,11 +32,6 @@ beforeAll(async () => {
 }, 15_000);
 
 const organisations = {
-  applicationWrite: generateOrganisationFixture({
-    nom: "Org Application Write",
-    slug: "org-application-write",
-    habilitations: ["applications:write"],
-  }),
   read: generateOrganisationFixture({
     nom: "Org Read",
     slug: "org-read",
@@ -60,11 +55,6 @@ const users = {
     is_admin: false,
     organisation: organisations.read.nom,
   }),
-  applicationWrite: generateUserFixture({
-    email: "application-write@exemple.fr",
-    is_admin: false,
-    organisation: organisations.applicationWrite.nom,
-  }),
   appointmentsWrite: generateUserFixture({
     email: "appointments-write@exemple.fr",
     is_admin: false,
@@ -75,7 +65,6 @@ const users = {
 const tokens = {
   basic: "",
   read: "",
-  applicationWrite: "",
   appointmentsWrite: "",
 };
 
@@ -99,7 +88,6 @@ const nockMatchUserAuthorization = (u: IUser, habilitations: string[]) => {
           data: {
             email: u.email,
             habilitations: habilitations.reduce((acc, h) => ({ ...acc, [h]: true }), {
-              "applications:write": false,
               "appointments:write": false,
             }),
             organisation: u.organisation,
@@ -116,7 +104,6 @@ beforeEach(async () => {
   await getDbCollection("organisations").insertMany(Object.values(organisations));
   tokens.basic = (await generateApiKey("", users.basic)).value;
   tokens.read = (await generateApiKey("", users.read)).value;
-  tokens.applicationWrite = (await generateApiKey("", users.applicationWrite)).value;
   tokens.appointmentsWrite = (await generateApiKey("", users.appointmentsWrite)).value;
 });
 
@@ -204,115 +191,6 @@ describe("GET /job/v1/search", () => {
     expect.soft(response.statusCode).toBe(200);
     const result = response.json();
     expect(result).toEqual(data);
-  });
-});
-
-describe("POST /job/v1/apply", () => {
-  const applicationTestFile = "data:application/pdf;base64,";
-
-  const body = {
-    applicant_attachment_name: "cv.pdf",
-    applicant_attachment_content: applicationTestFile,
-    applicant_email: "jeam.dupont@mail.com",
-    applicant_first_name: "Jean",
-    applicant_last_name: "Dupont",
-    applicant_phone: "0101010101",
-    recipient_id: "2093",
-  };
-
-  it("should returns 401 if api key is not provided", async () => {
-    const response = await app.inject({
-      method: "POST",
-      url: "/api/job/v1/apply",
-      body: body,
-    });
-
-    expect(response.statusCode).toBe(401);
-    expect(response.json()).toEqual({
-      statusCode: 401,
-      name: "Unauthorized",
-      message: "Vous devez fournir une clé d'API valide pour accéder à cette ressource",
-    });
-  });
-
-  it("should returns 401 if api key is invalid", async () => {
-    const response = await app.inject({
-      method: "POST",
-      url: "/api/job/v1/apply",
-      body: body,
-      headers: {
-        Authorization: `Bearer ${tokens.basic}invalid`,
-      },
-    });
-    expect(response.statusCode).toBe(401);
-    expect(response.json()).toEqual({
-      statusCode: 401,
-      name: "Unauthorized",
-      message: "Impossible de déchiffrer la clé d'API",
-    });
-  });
-
-  it("should returns 403 if user doesn't have organisation", async () => {
-    const response = await app.inject({
-      method: "POST",
-      url: "/api/job/v1/apply",
-      body: body,
-      headers: {
-        Authorization: `Bearer ${tokens.basic}`,
-      },
-    });
-    expect(response.statusCode).toBe(403);
-    expect(response.json()).toEqual({
-      statusCode: 403,
-      message: "Vous n'êtes pas autorisé à accéder à cette ressource",
-      name: "Forbidden",
-    });
-  });
-
-  it.each<[keyof typeof tokens]>([["read"], ["appointmentsWrite"]])(
-    "should returns 403 if organisation doesn't have habilitation applications:write",
-    async (name) => {
-      const response = await app.inject({
-        method: "POST",
-        url: "/api/job/v1/apply",
-        body: body,
-        headers: {
-          Authorization: `Bearer ${tokens[name]}`,
-        },
-      });
-      expect(response.statusCode).toBe(403);
-      expect(response.json()).toEqual({
-        statusCode: 403,
-        message: "Vous n'êtes pas autorisé à accéder à cette ressource",
-        name: "Forbidden",
-      });
-    }
-  );
-
-  it("should support valid request", async () => {
-    const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.applicationWrite, ["applications:write"]);
-
-    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
-      .post("/v2/application", (b) => {
-        expect.soft(b).toEqual(body);
-        return true;
-      })
-      .matchHeader("authorization", matchHeader)
-      .reply(200, { id: "1" });
-
-    const response = await app.inject({
-      method: "POST",
-      url: `/api/job/v1/apply`,
-      body,
-      headers: {
-        Authorization: `Bearer ${tokens.applicationWrite}`,
-      },
-    });
-
-    await expectAuth();
-    expect.soft(response.statusCode).toBe(200);
-    const result = response.json();
-    expect(result).toEqual({ id: "1" });
   });
 });
 

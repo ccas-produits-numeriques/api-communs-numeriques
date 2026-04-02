@@ -1,46 +1,45 @@
 import type { OpenApiText } from "../docs/types.js";
-
 export const tagsOpenapi = {
   try: {
-    name: { fr: "Essayer l'API", en: "Try the API" },
+    name: { fr: "Essayer l'API", en: null },
     description: {
       fr: "Pour essayer l'API [vous pouvez utiliser le swagger UI](/documentation-technique/try)",
-      en: "To try the API [you can use the swagger UI](/documentation-technique/try)",
+      en: null,
     },
   },
   job: {
-    name: { fr: "Offre Emploi", en: "Job" },
-    description: { fr: "Opportunités d'emploi", en: "Job opportunities" },
+    name: { fr: "Offre Emploi", en: null },
+    description: { fr: "Opportunités d'emploi", en: null },
   },
   formation: {
-    name: { fr: "Formation", en: "Training" },
+    name: { fr: "Formation", en: null },
     description: {
       fr: "Liste des opérations sur les formations",
-      en: "List of operations on training",
+      en: null,
     },
   },
   certifications: {
-    name: { fr: "Certifications", en: "Certifications" },
-    description: { fr: "Liste des opérations sur les certifications.", en: "List of operations on certifications." },
+    name: { fr: "Certifications", en: null },
+    description: { fr: "Liste des opérations sur les certifications.", en: null },
   },
   organismes: {
-    name: { fr: "Organismes", en: "Organisms" },
-    description: { fr: "Liste des organismes", en: "List of organisms" },
+    name: { fr: "Organismes", en: null },
+    description: { fr: "Liste des organismes", en: null },
   },
   geographie: {
-    name: { fr: "Géographie", en: "Geography" },
-    description: { fr: "Référentiel Géographique", en: "Geographical Referential" },
+    name: { fr: "Géographie", en: null },
+    description: { fr: "Référentiel Géographique", en: null },
   },
   exprimental: {
-    name: { fr: "Expérimental", en: "Experimental" },
+    name: { fr: "Expérimental", en: null },
     description: {
       fr: "Liste des routes expérimentales. Attention: ces routes peuvent changer sans préavis.",
-      en: "List of experimental routes. Warning: these routes may change without notice.",
+      en: null,
     },
   },
   system: {
-    name: { fr: "Système", en: "System" },
-    description: { fr: "Routes système", en: "System routes" },
+    name: { fr: "Système", en: null },
+    description: { fr: "Routes système", en: null },
   },
 } as const satisfies Record<
   string,
@@ -49,5 +48,4 @@ export const tagsOpenapi = {
     description: OpenApiText;
   }
 >;
-
 export type TagOpenapi = keyof typeof tagsOpenapi;

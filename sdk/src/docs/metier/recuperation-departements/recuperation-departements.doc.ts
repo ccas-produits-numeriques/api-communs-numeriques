@@ -1,22 +1,23 @@
 import type { DocPage, OpenApiText } from "../../types.js";
 import { rechercheCommunePageDoc } from "../recherche-commune/recherche-commune.doc.js";
-
 export const recuperationDepartementsPageSummaryDoc = {
   title: {
     fr: "Récupération des départements",
-    en: "Retrieve departments",
+    en: null,
   },
   headline: {
-    en: "Consult the list of departments in France",
+    en: null,
     fr: "Consulter le référentiel des départements de France",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const recuperationDepartementsPageDoc = {
   tag: "geographie",
   operationIds: ["get_geographie_v1_departement"],
   habilitation: null,
-  description: [{ en: "Retrieve the departments of France", fr: "Récupération des départements de France" }],
+  description: [{ en: null, fr: "Récupération des départements de France" }],
   frequenceMiseAJour: "daily",
   type: "data",
   sources: [

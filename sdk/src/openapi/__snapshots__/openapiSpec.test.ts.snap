@@ -2177,69 +2177,6 @@ exports[`openapiSpec#models > should generate proper schema GeoJsonPolygon 1`] =
 }
 `;
 
-exports[`openapiSpec#models > should generate proper schema JobApplicationWrite 1`] = `
-{
-  "additionalProperties": false,
-  "description": "Candidature",
-  "properties": {
-    "applicant_attachment_content": {
-      "description": "CV du candidat",
-      "format": "byte",
-      "maxLength": 4215276,
-      "type": "string",
-    },
-    "applicant_attachment_name": {
-      "description": "Nom du CV",
-      "minLength": 1,
-      "pattern": "((.*?))(\\.)+([Dd][Oo][Cc][Xx]|[Pp][Dd][Ff])$",
-      "type": "string",
-    },
-    "applicant_email": {
-      "description": "Email du candidat",
-      "format": "email",
-      "type": "string",
-    },
-    "applicant_first_name": {
-      "description": "Prénom du candidat",
-      "maxLength": 50,
-      "minLength": 1,
-      "type": "string",
-    },
-    "applicant_last_name": {
-      "description": "Nom du candidat",
-      "maxLength": 50,
-      "minLength": 1,
-      "type": "string",
-    },
-    "applicant_message": {
-      "description": "Message du candidat",
-      "type": [
-        "string",
-        "null",
-      ],
-    },
-    "applicant_phone": {
-      "description": "Numéro de téléphone du candidat",
-      "type": "string",
-    },
-    "recipient_id": {
-      "description": "Identifiant du destinataire récupéré de \`apply.recipient_id\` depuis les resultas de la route de recherche.",
-      "type": "string",
-    },
-  },
-  "required": [
-    "applicant_first_name",
-    "applicant_last_name",
-    "applicant_email",
-    "applicant_phone",
-    "applicant_attachment_name",
-    "applicant_attachment_content",
-    "recipient_id",
-  ],
-  "type": "object",
-}
-`;
-
 exports[`openapiSpec#models > should generate proper schema JobOfferExport 1`] = `
 {
   "description": "Informations concernant l'export de toutes les offres.",
@@ -2347,7 +2284,7 @@ exports[`openapiSpec#models > should generate proper schema JobOfferRead 1`] = `
 
 - URL vers laquelle rediriger le candidat pour qu’il postule
 - Numéro de téléphone de la personne chargée du recrutement
-- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
+- Identifiant de l’opportunité d’emploi, utile pour référencer l’offre et pour l'utilisation du widget de candidature /postuler",
       "properties": {
         "phone": {
           "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
@@ -2892,7 +2829,7 @@ exports[`openapiSpec#models > should generate proper schema JobRecruiter 1`] = `
 
 - URL vers laquelle rediriger le candidat pour qu’il postule
 - Numéro de téléphone de la personne chargée du recrutement
-- Identifiant de l’opportunité d’emploi à utiliser pour permettre à vos usagers de candidater directement depuis votre site grâce à [cette API complémentaire](./candidature-offre). Cet identifiant peut également servir et est obligatoire pour l'utilisation du widget de candidature /postuler",
+- Identifiant de l’opportunité d’emploi, utile pour référencer l’offre et pour l'utilisation du widget de candidature /postuler",
       "properties": {
         "phone": {
           "description": "Numéro de téléphone du recruteur ou du CFA si is_delegated = true
@@ -5526,86 +5463,6 @@ Les résultats sont limités à 150, et actuellement, il n’est pas possible de
       ],
     },
     "path": "/formation/v1/appointment/generate-link",
-  },
-  "post:/job/v1/apply": {
-    "id": "post:/job/v1/apply",
-    "method": "post",
-    "operation": {
-      "description": "Afin de fluidifier le parcours de vos utilisateurs, cette API vous permet de transmettre directement aux recruteurs les candidatures de vos usagers, sans que ces derniers n’aient à quitter votre site.
-
-Pour cela, elle requiert seulement la transmission des coordonnées ainsi que du CV du candidat. Un message de motivation, à destination du recruteur, peut également être transmis de manière facultative. La candidature est ensuite envoyée au recruteur par email.",
-      "operationId": "jobApply",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/JobApplicationWrite",
-            },
-          },
-        },
-        "required": true,
-      },
-      "responses": {
-        "202": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "id": {
-                    "description": "Identifiant de la candidature.",
-                    "type": "string",
-                  },
-                },
-                "required": [
-                  "id",
-                ],
-                "type": "object",
-              },
-            },
-          },
-          "description": "Succès",
-        },
-        "400": {
-          "$ref": "#/components/responses/BadRequest",
-        },
-        "401": {
-          "$ref": "#/components/responses/Unauthorized",
-        },
-        "403": {
-          "$ref": "#/components/responses/Forbidden",
-        },
-        "404": {
-          "$ref": "#/components/responses/NotFound",
-        },
-        "409": {
-          "$ref": "#/components/responses/Conflict",
-        },
-        "419": {
-          "$ref": "#/components/responses/TooManyRequests",
-        },
-        "500": {
-          "$ref": "#/components/responses/InternalServerError",
-        },
-        "502": {
-          "$ref": "#/components/responses/BadGateway",
-        },
-        "503": {
-          "$ref": "#/components/responses/ServiceUnavailable",
-        },
-      },
-      "security": [
-        {
-          "api-key": [
-            "applications:write",
-          ],
-        },
-      ],
-      "summary": "Envoi d’une candidature à une opportunité d’emploi",
-      "tags": [
-        "Offre Emploi",
-      ],
-    },
-    "path": "/job/v1/apply",
   },
 }
 `;

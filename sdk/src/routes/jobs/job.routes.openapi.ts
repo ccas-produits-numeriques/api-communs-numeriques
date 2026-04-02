@@ -1,4 +1,3 @@
-import { jobApplyRouteDoc } from "../../docs/routes/jobApply/jobApply.route.doc.js";
 import { jobSearchRouteDoc } from "../../docs/routes/jobSearch/jobSearch.route.doc.js";
 import {
   jobSearchByIdPublishingRouteDoc,
@@ -214,41 +213,6 @@ export const jobRoutesOpenapi: OpenapiRoutes = {
               "application/json": {
                 schema: {
                   $ref: "#/components/schemas/JobOfferPublishing",
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  "/job/v1/apply": {
-    post: {
-      tag: "job",
-      doc: jobApplyRouteDoc,
-      schema: {
-        operationId: "jobApply",
-        security: [{ "api-key": ["applications:write"] }],
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/JobApplicationWrite",
-              },
-            },
-          },
-        },
-        responses: {
-          "202": {
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    id: { type: "string" },
-                  },
-                  required: ["id"],
                 },
               },
             },

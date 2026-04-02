@@ -21,7 +21,7 @@ type Props = {
   organisation: Jsonify<IOrganisationInternal>;
 };
 
-const HABILITATIONS = ["appointments:write", "applications:write"] as const; // shared/src/security/permissions.ts#L3 ?
+const HABILITATIONS = ["appointments:write"] as const; // shared/src/security/permissions.ts#L3 ?
 
 type FormData = {
   [key in (typeof HABILITATIONS)[number]]: boolean;
@@ -43,7 +43,6 @@ export function OrganisationView({ organisation }: Props) {
   const defaultValues: FormData = useMemo(() => {
     const values: FormData = {
       "appointments:write": false,
-      "applications:write": false,
     };
 
     for (const habilitation of organisation.habilitations) {

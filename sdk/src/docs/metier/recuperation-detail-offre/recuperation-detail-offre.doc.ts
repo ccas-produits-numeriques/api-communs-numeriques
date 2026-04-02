@@ -1,13 +1,4 @@
 import type { DocPage, OpenApiText } from "../../types.js";
-import applyDescEn from "./en/apply.description.md.js";
-import contractDescEn from "./en/contract.description.md.js";
-import descriptionEn from "./en/description.md.js";
-import identifierDescEn from "./en/identifier.description.md.js";
-import offerDescEn from "./en/offer.description.md.js";
-import offerPublicationDescEn from "./en/offer.publication.description.md.js";
-import workplaceDescEn from "./en/workplace.description.md.js";
-import workplaceDomainDescEn from "./en/workplace.domain.description.md.js";
-import workplaceLocationDescEn from "./en/workplace.location.description.md.js";
 import applyDescFr from "./fr/apply.description.md.js";
 import contractDescFr from "./fr/contract.description.md.js";
 import descriptionFr from "./fr/description.md.js";
@@ -17,54 +8,54 @@ import offerPublicationDescFr from "./fr/offer.publication.description.md.js";
 import workplaceDescFr from "./fr/workplace.description.md.js";
 import workplaceDomainDescFr from "./fr/workplace.domain.description.md.js";
 import workplaceLocationDescFr from "./fr/workplace.location.description.md.js";
-
 const recruiterSections = {
   workplace: {
-    name: { en: "Workplace", fr: "Lieu de travail" },
+    name: { en: null, fr: "Lieu de travail" },
     rows: {
       workplace: {
-        description: { en: workplaceDescEn, fr: workplaceDescFr },
+        description: { en: null, fr: workplaceDescFr },
         tags: [".siret", ".name", ".description", ".brand", ".legal_name", ".size", ".website"],
       },
       location: {
-        description: { en: workplaceLocationDescEn, fr: workplaceLocationDescFr },
+        description: { en: null, fr: workplaceLocationDescFr },
         tags: [".address", ".geopoint"],
       },
       domain: {
-        description: { en: workplaceDomainDescEn, fr: workplaceDomainDescFr },
+        description: { en: null, fr: workplaceDomainDescFr },
         tags: [".idcc", ".naf", ".opco"],
       },
     },
   },
   apply: {
-    name: { en: "Apply", fr: "Postuler" },
+    name: { en: null, fr: "Postuler" },
     rows: {
       apply: {
-        description: { en: applyDescEn, fr: applyDescFr },
+        description: { en: null, fr: applyDescFr },
         tags: [".recipient_id", ".phone", ".url"],
       },
     },
   },
 };
-
 export const recuperationDetailOffrePageSummaryDoc = {
   title: {
-    en: "View an apprenticeship job offer",
+    en: null,
     fr: "Consulter une opportunité d'emploi",
   },
   headline: {
-    en: "Access the details of an apprenticeship job offer from its identifier",
+    en: null,
     fr: "Accéder au détail d'une opportunité d'emploi à partir de son identifiant",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const recuperationDetailOffrePageDoc = {
   tag: "job",
   operationIds: ["jobSearch"],
   habilitation: null,
   description: [
     {
-      en: descriptionEn,
+      en: null,
       fr: descriptionFr,
     },
   ],
@@ -80,33 +71,33 @@ export const recuperationDetailOffrePageDoc = {
   ],
   data: [
     {
-      name: { en: "Job Offer", fr: "Offre d'emploi" },
+      name: { en: null, fr: "Offre d'emploi" },
       sections: {
         identifier: {
-          name: { en: "Identifier", fr: "Identifiant" },
+          name: { en: null, fr: "Identifiant" },
           rows: {
             identifier: {
-              description: { en: identifierDescEn, fr: identifierDescFr },
+              description: { en: null, fr: identifierDescFr },
               tags: [".id", ".partner_job_id", ".partner_label"],
             },
           },
         },
         contract: {
-          name: { en: "Contract", fr: "Contrat" },
+          name: { en: null, fr: "Contrat" },
           rows: {
             contract: {
-              description: { en: contractDescEn, fr: contractDescFr },
+              description: { en: null, fr: contractDescFr },
               tags: [".duration", ".start", ".type", ".remote"],
             },
           },
         },
         offer: {
-          name: { en: "Offer", fr: "Offre" },
+          name: { en: null, fr: "Offre" },
           rows: {
             offer: {
-              description: { en: offerDescEn, fr: offerDescFr },
+              description: { en: null, fr: offerDescFr },
               information: {
-                en: "The ROME corresponds to the Operational Reference for Jobs and Occupations. Designed by France Travail (formerly Pôle Emploi), this reference system presents all professions grouped into profiles, organized by professional fields.",
+                en: null,
                 fr: "Le ROME correspond au Référentiel Opérationnel des Métiers et des Emplois. Conçu par France Travail (anciennement Pôle Emploi), ce référentiel présente l'ensemble des métiers regroupés par fiches, organisées par domaines professionnels.",
               },
               tags: [
@@ -122,7 +113,7 @@ export const recuperationDetailOffrePageDoc = {
               ],
             },
             publication: {
-              description: { en: offerPublicationDescEn, fr: offerPublicationDescFr },
+              description: { en: null, fr: offerPublicationDescFr },
               tags: [".creation", ".expiration"],
             },
           },

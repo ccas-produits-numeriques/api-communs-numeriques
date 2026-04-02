@@ -7,7 +7,7 @@ import type { OpenapiRoute } from "../types.js";
 
 function getTextOpenAPI<T extends OpenApiText | null | undefined>(
   value: T,
-  lang: "fr" | "en" | null = "fr"
+  lang: "fr" | null = "fr"
 ): T extends null | undefined ? null : string {
   if (value == null) {
     return null as T extends null | undefined ? null : string;
@@ -32,7 +32,7 @@ function getTextOpenAPI<T extends OpenApiText | null | undefined>(
 
 function getTextOpenAPIArray<T extends OpenApiText[] | null | undefined>(
   value: T,
-  lang: "fr" | "en" | null = "fr"
+  lang: "fr" | null = "fr"
 ): T extends null | undefined ? null : string {
   if (Array.isArray(value)) {
     return value

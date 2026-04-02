@@ -1,34 +1,31 @@
 import { generationLienPriseRdvFormationPageSummaryDoc } from "../../metier/generation-lien-prise-rdv-formation/generation-lien-prise-rdv-formation.doc.js";
 import type { DocRoute } from "../../types.js";
-
 export const generateFormationAppointmentLinkRouteDoc = {
   summary: generationLienPriseRdvFormationPageSummaryDoc.title,
   description: generationLienPriseRdvFormationPageSummaryDoc.headline,
   body: {
     description: {
       fr: "Identifiant de la formation, permettant de générer un lien de prise de rendez-vous pour la formation. Possibilité de fournir 1 paramètre parmi 3 types possibles : cle_ministere_educatif, parcoursup_id, onisep_id",
-      en: "Training identifier, allowing to generate an appointment request link for the training. Possibility to provide 1 parameter among 3 possible types: parcoursup_id, onisep_id, cle_ministere_educatif",
+      en: null,
     },
     content: {
       descriptions: null,
       anyOf: [
         {
-          descriptions: [{ fr: "Identifiant Parcoursup de la formation", en: "Parcoursup identifier of the training" }],
+          descriptions: [{ fr: "Identifiant Parcoursup de la formation", en: null }],
           properties: {
             parcoursup_id: {
-              descriptions: [
-                { fr: "Identifiant Parcoursup de la formation", en: "Parcoursup identifier of the training" },
-              ],
+              descriptions: [{ fr: "Identifiant Parcoursup de la formation", en: null }],
             },
           },
         },
         {
-          descriptions: [{ fr: "Identifiant ONISEP de la formation", en: "ONISEP identifier of the training" }],
+          descriptions: [{ fr: "Identifiant ONISEP de la formation", en: null }],
           properties: {
             onisep_id: {
               descriptions: [
                 {
-                  en: "ONISEP identifier of the training",
+                  en: null,
                   fr: "Identifiant ONISEP utilisé avec le mapping de la collection referentielonisep",
                 },
               ],
@@ -39,7 +36,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
           descriptions: [
             {
               fr: "Identifiant unique de la formation au sein du ministère de l'éducation",
-              en: "Unique identifier of the training within the Ministry of Education",
+              en: null,
             },
           ],
           properties: {
@@ -47,7 +44,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
               descriptions: [
                 {
                   fr: "Identifiant unique de la formation au sein du ministère de l'éducation",
-                  en: "Unique identifier of the training within the Ministry of Education",
+                  en: null,
                 },
               ],
             },
@@ -58,19 +55,19 @@ export const generateFormationAppointmentLinkRouteDoc = {
   },
   response: {
     description: {
-      en: "Response",
+      en: null,
       fr: "Réponse",
     },
     content: {
       descriptions: null,
       anyOf: [
         {
-          descriptions: [{ fr: "Résultat en cas de succès", en: "Success result" }],
+          descriptions: [{ fr: "Résultat en cas de succès", en: null }],
           properties: {
             etablissement_formateur_entreprise_raison_sociale: {
               descriptions: [
                 {
-                  en: "Training organism name",
+                  en: null,
                   fr: "Raison social de l'établissement formateur",
                 },
               ],
@@ -78,7 +75,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             intitule_long: {
               descriptions: [
                 {
-                  en: "Long title of the training",
+                  en: null,
                   fr: "Intitulé long de la formation",
                 },
               ],
@@ -86,7 +83,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             lieu_formation_adresse: {
               descriptions: [
                 {
-                  en: "Training location address",
+                  en: null,
                   fr: "Adresse du lieu de formation",
                 },
               ],
@@ -94,7 +91,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             code_postal: {
               descriptions: [
                 {
-                  en: "Training location postal code",
+                  en: null,
                   fr: "Code postal du lieu de formation",
                 },
               ],
@@ -102,7 +99,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             etablissement_formateur_siret: {
               descriptions: [
                 {
-                  en: "SIRET number of the training establishment",
+                  en: null,
                   fr: "Le numéro de SIRET de l'établissement",
                 },
               ],
@@ -111,7 +108,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             cfd: {
               descriptions: [
                 {
-                  en: "Training course code",
+                  en: null,
                   fr: "Code formation diplôme de la formation",
                 },
               ],
@@ -119,7 +116,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             localite: {
               descriptions: [
                 {
-                  en: "Training location locality",
+                  en: null,
                   fr: "Localité du lieu de formation",
                 },
               ],
@@ -127,7 +124,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             cle_ministere_educatif: {
               descriptions: [
                 {
-                  en: "Unique identifier of the training within the Ministry of Education",
+                  en: null,
                   fr: "Identifiant unique de la formation au sein du ministère de l'éducation",
                 },
               ],
@@ -135,7 +132,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
             form_url: {
               descriptions: [
                 {
-                  en: "Appointment request link Cour de cassation",
+                  en: null,
                   fr: "Lien de prise de rendez-vous Cour de cassation",
                 },
               ],
@@ -146,7 +143,7 @@ export const generateFormationAppointmentLinkRouteDoc = {
           descriptions: [
             {
               fr: "Résultat en cas d'erreur",
-              en: "Error result",
+              en: null,
             },
           ],
           properties: {

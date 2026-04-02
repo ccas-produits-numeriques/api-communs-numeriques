@@ -9,11 +9,7 @@ import {
 } from "../models/geographie/geoJson.model.openapi.js";
 import { missionLocaleModelOpenapi } from "../models/geographie/mission-locale.model.openapi.js";
 import { offerExportModelOpenapi } from "../models/job/job.export.model.openapi.js";
-import {
-  applicationWriteModelOpenapi,
-  offerReadModelOpenapi,
-  recruiterModelOpenapi,
-} from "../models/job/job.model.openapi.js";
+import { offerReadModelOpenapi, recruiterModelOpenapi } from "../models/job/job.model.openapi.js";
 import { offerPublishingModelOpenapi } from "../models/job/job.publishing.model.openapi.js";
 import { organismeModelOpenapi } from "../models/organisme/organisme.model.openapi.js";
 import { paginationModelOpenapi } from "../models/pagination/pagination.model.openapi.js";
@@ -24,7 +20,6 @@ import { jobRoutesOpenapi } from "../routes/jobs/job.routes.openapi.js";
 import { organismeRoutesOpenapi } from "../routes/organisme/organisme.routes.openapi.js";
 import { tagsOpenapi } from "./tags.openapi.js";
 import type { OpenapiSpec } from "./types.js";
-
 export const openapiSpec: OpenapiSpec = {
   models: {
     [certificationModelOpenapi.name]: certificationModelOpenapi,
@@ -35,7 +30,6 @@ export const openapiSpec: OpenapiSpec = {
     [offerReadModelOpenapi.name]: offerReadModelOpenapi,
     [offerPublishingModelOpenapi.name]: offerPublishingModelOpenapi,
     [offerExportModelOpenapi.name]: offerExportModelOpenapi,
-    [applicationWriteModelOpenapi.name]: applicationWriteModelOpenapi,
     [formationModelOpenapi.name]: formationModelOpenapi,
     [organismeModelOpenapi.name]: organismeModelOpenapi,
     [geoJsonPointModelOpenapi.name]: geoJsonPointModelOpenapi,
@@ -52,23 +46,13 @@ export const openapiSpec: OpenapiSpec = {
   },
   tags: tagsOpenapi,
   demandeHabilitations: {
-    "applications:write": {
-      subject: {
-        en: "Request for authorization to send applications to apprenticeship job opportunities",
-        fr: "Demande d'habilitation pour l'envoi de candidatures aux opportunités d'emploi",
-      },
-      body: {
-        en: "Hello, I would like to obtain authorization to send applications to job opportunities published through the Cour de cassation platform.",
-        fr: "Bonjour, je souhaite obtenir une habilitation pour envoyer des candidatures à des offres d'emploi publiées via la plateforme de la Cour de cassation.",
-      },
-    },
     "appointments:write": {
       subject: {
-        en: "Request for authorization to generate appointment links with training centers",
+        en: null,
         fr: "Demande d'habilitation pour la génération de lien de rendez-vous avec les centres de formation",
       },
       body: {
-        en: "Hello, I would like to obtain authorization to generate appointment links with training centers on the Cour de cassation platform.",
+        en: null,
         fr: "Bonjour, je souhaite obtenir une habilitation pour générer des liens de rendez-vous avec les centres de formation sur la plateforme de la Cour de cassation.",
       },
     },

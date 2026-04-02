@@ -1,19 +1,14 @@
 import type { DocTechnicalField } from "../../types.js";
-
 export const offerPublishingModelDoc = {
-  descriptions: [
-    { en: "Publishing informations of the offer", fr: "Informations sur la publication de l'offre d'emploi" },
-  ],
+  descriptions: [{ en: null, fr: "Informations sur la publication de l'offre d'emploi" }],
   properties: {
     publishing: {
-      descriptions: [
-        { en: "Publishing informations of the offer", fr: "Informations sur la publication de l'offre d'emploi" },
-      ],
+      descriptions: [{ en: null, fr: "Informations sur la publication de l'offre d'emploi" }],
       properties: {
         status: {
           descriptions: [
             {
-              en: "State of the publishing. If the value is WILL_NOT_BE_PUBLISHED, the offer will not be published.",
+              en: null,
               fr: "Etat de la publication. Si la valeur vaut WILL_NOT_BE_PUBLISHED, l'offre ne sera pas publiée.",
             },
           ],
@@ -22,7 +17,7 @@ export const offerPublishingModelDoc = {
         error: {
           descriptions: [
             {
-              en: "Object containing the error",
+              en: null,
               fr: "Objet contenant l'erreur",
             },
           ],
@@ -30,7 +25,7 @@ export const offerPublishingModelDoc = {
             code: {
               descriptions: [
                 {
-                  en: "Code of the error. This code will not change.",
+                  en: null,
                   fr: "Code de l'erreur. Ce code ne changera pas.",
                 },
               ],
@@ -46,7 +41,7 @@ export const offerPublishingModelDoc = {
               ],
             },
             label: {
-              descriptions: [{ en: "Error description", fr: "Description de l'erreur" }],
+              descriptions: [{ en: null, fr: "Description de l'erreur" }],
               examples: ["WILL_BE_PUBLISHED", "PUBLISHED", "WILL_NOT_BE_PUBLISHED"],
             },
           },

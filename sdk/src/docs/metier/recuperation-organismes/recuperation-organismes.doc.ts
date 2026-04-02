@@ -1,16 +1,17 @@
 import type { DocPage, OpenApiText } from "../../types.js";
-
 export const recuperationOrganismesPageSummaryDoc = {
   title: {
     fr: "Récupération des organismes de formation en apprentissage",
-    en: "Retrieve all training organizations in apprenticeship",
+    en: null,
   },
   headline: {
-    en: "Retrieve the list of all organizations from the Onisep repository historized",
+    en: null,
     fr: "Récupérer la liste de tous les organismes issus du référentiel Onisep historisé",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const recuperationOrganismesPageDoc = {
   tag: "organismes",
   operationIds: ["get_organisme_v1_export"],
@@ -34,7 +35,7 @@ export const recuperationOrganismesPageDoc = {
   ],
   data: [
     {
-      name: { fr: "Organisme", en: "Organism" },
+      name: { fr: "Organisme", en: null },
       sections: {
         global: {
           name: null,
@@ -43,20 +44,20 @@ export const recuperationOrganismesPageDoc = {
               description: [
                 {
                   fr: "L'identifiant unique d'un organisme de formation est constitué du couple UAI-SIRET.",
-                  en: "The unique identifier of a training organization is made up of the UAI-SIRET pair",
+                  en: null,
                 },
                 {
                   fr: "Un UAI peut être associé à plusieurs SIRET.",
-                  en: "A UAI can be associated with several SIRET.",
+                  en: null,
                 },
                 {
                   fr: "Un SIRET peut être associé à plusieurs UAI. Mais à un instant donné un SIRET est associé à un seul UAI dans le référentiel.",
-                  en: "A SIRET can be associated with several UAI. But at a given time a SIRET is associated with only one UAI in the repository.",
+                  en: null,
                 },
               ],
               information: {
                 fr: "Bien que les organismes soient uniques par SIRET dans le [référentiel](https://referentiel.apprentissage.onisep.fr/organismes), l'historisation peut conduire à des situations où un SIRET est associé à plusieurs UAI. **L'unicité d'un organisme est ainsi garantie par le couple UAI-SIRET.**",
-                en: "Although the organism are unique by SIRET in the [repository](https://referentiel.apprentissage.onisep.fr/organismes), the historization can lead to situations where a SIRET is associated with several UAI. **The uniqueness of an organization is thus guaranteed by the UAI-SIRET pair.**",
+                en: null,
               },
               tags: ["uai", "siret"],
             },
@@ -64,26 +65,26 @@ export const recuperationOrganismesPageDoc = {
               description: [
                 {
                   fr: "Statut de l'organisme dans le référentiel des organismes de formation.",
-                  en: "Status of the organization in the training organizations repository",
+                  en: null,
                 },
-                { fr: "Les valeurs possibles sont : ", en: "Possible values are :" },
+                { fr: "Les valeurs possibles sont : ", en: null },
                 {
                   fr: "- `présent` pour les organismes présents dans le référentiel.",
-                  en: "- `présent` for organism present in the repository",
+                  en: null,
                 },
                 {
                   fr: "- `supprimé` pour les organismes supprimés du référentiel.",
-                  en: "- `supprimé` for organism deleted from the repository",
+                  en: null,
                 },
               ],
               tags: ["referentiel"],
             },
             renseignements_specifiques: {
               description: [
-                { fr: "Renseignements spécifiques de l'organisme.", en: "Specific information of the organization" },
+                { fr: "Renseignements spécifiques de l'organisme.", en: null },
                 {
                   fr: "Les informations spécifiques sont des informations propres à l'organisme de formation.",
-                  en: "Specific information are information specific to the training organization.",
+                  en: null,
                 },
               ],
               tags: ["qualiopi", "numero_activite"],
@@ -92,71 +93,69 @@ export const recuperationOrganismesPageDoc = {
               description: [
                 {
                   fr: "Liste des e-mails de contact de l'organisme de formation.",
-                  en: "List of contact emails of the training organization.",
+                  en: null,
                 },
               ],
               information: {
                 fr: "Les contacts sont issus de différentes sources, nous ne sommes pas en mesure de garantir la validité des e-mails.",
-                en: "The contacts come from different sources, we are not able to guarantee the validity of the emails.",
+                en: null,
               },
               tags: ["email", "sources", "confirmation_referentiel"],
             },
           },
         },
         etablissement: {
-          name: { fr: "Établissement", en: "Establishment" },
+          name: { fr: "Établissement", en: null },
           rows: {
             siret: {
-              description: [{ fr: "Numéro SIRET de l'établissement.", en: "Establishment SIRET number" }],
+              description: [{ fr: "Numéro SIRET de l'établissement.", en: null }],
             },
             adresse: {
               description: [
-                { fr: "Adresse de l'établissement.", en: "Establishment address" },
+                { fr: "Adresse de l'établissement.", en: null },
                 {
                   fr: "En plus de l'adresse postale, le découpage géographique est également fourni (département, région, académie).",
-                  en: "In addition to the postal address, the geographical breakdown is also provided (department, region, academy).",
+                  en: null,
                 },
               ],
               tags: ["label", "code_postal", "commune", "departement", "region", "academie"],
             },
             geopoint: {
-              description: [{ fr: "Coordonnées GPS de l'établissement.", en: "Establishment's GPS coordinates" }],
+              description: [{ fr: "Coordonnées GPS de l'établissement.", en: null }],
             },
             ouvert: {
               description: [
                 {
                   fr: "Indique si l'établissement est ouvert ou fermé.",
-                  en: "Indicates if the establishment is open or closed",
+                  en: null,
                 },
               ],
             },
             creation: {
-              description: { fr: "Date de création de l'établissement.", en: "Establishment creation date" },
+              description: { fr: "Date de création de l'établissement.", en: null },
             },
             fermeture: {
-              description: [{ fr: "Date de fermeture de l'établissement.", en: "Establishment closure date" }],
+              description: [{ fr: "Date de fermeture de l'établissement.", en: null }],
             },
           },
         },
         unite_legale: {
-          name: { fr: "Unité légale", en: "Legal unit" },
+          name: { fr: "Unité légale", en: null },
           rows: {
             siren: {
-              description: [{ fr: "Numéro SIREN de l'unité légale.", en: "Legal unit SIREN number" }],
+              description: [{ fr: "Numéro SIREN de l'unité légale.", en: null }],
             },
             actif: {
-              description: [
-                { fr: "Indique si l'unité légale est active.", en: "Indicates if the legal unit is active" },
-              ],
+              description: [{ fr: "Indique si l'unité légale est active.", en: null }],
             },
             raison_sociale: {
-              description: [{ fr: "Raison sociale de l'entreprise.", en: "Company name" }],
+              description: [{ fr: "Raison sociale de l'entreprise.", en: null }],
             },
             creation: {
-              description: [{ fr: "Date de création de l'entreprise.", en: "Company creation date" }],
+              description: [{ fr: "Date de création de l'entreprise.", en: null }],
             },
             cessation: {
-              description: [{ fr: "Date de cessation de l'entreprise.", en: "Company cessation date" }],
+              description: [{ fr: "Date de cessation de l'entreprise.", en: null }],
             },
           },
         },

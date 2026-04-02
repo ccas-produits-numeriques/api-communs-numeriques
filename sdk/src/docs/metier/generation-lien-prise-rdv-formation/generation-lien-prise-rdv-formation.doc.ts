@@ -1,16 +1,17 @@
 import type { DocPage, OpenApiText } from "../../types.js";
-
 export const generationLienPriseRdvFormationPageSummaryDoc = {
   title: {
-    en: "Contact a training center via a dedicated link",
+    en: null,
     fr: "Contacter un centre de formation via un lien dédié",
   },
   headline: {
-    en: "Generate links for appointment requests for training via the Cour de cassation service",
+    en: null,
     fr: "Obtenir un lien d’accès à un formulaire de prise de rendez-vous auprès d’un centre de formation",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const generationLienPriseRdvFormationPageDoc = {
   tag: "formation",
   operationIds: ["generateFormationAppointmentLink"],
@@ -18,19 +19,19 @@ export const generationLienPriseRdvFormationPageDoc = {
   description: [
     {
       fr: "Récupère un lien d’accès à un formulaire de prise de rendez-vous auprès d’un centre de formation.",
-      en: "Generate a training appointment request link",
+      en: null,
     },
     {
       fr: "Le lien récupéré est à mettre à disposition de vos usagers pour leur permettre de contacter le centre de formation proposant des formations qui les intéressent.",
-      en: "The retrieved link should be made available to your users so they can contact the training center offering the courses they are interested in.",
+      en: null,
     },
     {
       fr: "**Vous devez fournir un identifiant de formation**, qui peut être un identifiant Parcoursup, ONISEP ou une clé ministère éducatif.",
-      en: "**You must provide a training identifier**, which can be a Parcoursup, ONISEP or Ministry of Education key",
+      en: null,
     },
     {
       fr: "La clé ministère éducatif peut être récupérée via la route de [recherche de formations en apprentissage](./recherche-formation).",
-      en: "The Ministry of Education key can be retrieved via the [search for apprenticeship training](./recherche-formation) route",
+      en: null,
     },
   ],
   frequenceMiseAJour: null,
@@ -45,28 +46,28 @@ export const generationLienPriseRdvFormationPageDoc = {
   ],
   data: [
     {
-      name: { fr: "Résultat", en: "Result" },
+      name: { fr: "Résultat", en: null },
       sections: {
         success: {
-          name: { fr: "Succès", en: "Success" },
+          name: { fr: "Succès", en: null },
           rows: {
             form_url: {
               description: [
                 {
                   fr: "Lien vers le formulaire de prise de rendez-vous pour la formation sur le service Cour de cassation.",
-                  en: "Appointment request link for the training on the Cour de cassation service",
+                  en: null,
                 },
               ],
               information: {
                 fr: "Le lien est généré uniquement si l'établissement permet la prise de rendez-vous en ligne. Sinon, une erreur est retournée.",
-                en: "The link is generated only if the establishment allows online appointment scheduling. Otherwise, the result will be an error.",
+                en: null,
               },
             },
             formation: {
               description: [
                 {
                   fr: "Informations liées à la formation.",
-                  en: "Various information about the training",
+                  en: null,
                 },
               ],
               tags: ["intitule_long", "cfd", "cle_ministere_educatif"],
@@ -75,7 +76,7 @@ export const generationLienPriseRdvFormationPageDoc = {
               description: [
                 {
                   fr: "Informations liées à l'établissement formateur.",
-                  en: "Various information about the training establishment",
+                  en: null,
                 },
               ],
               tags: ["etablissement_formateur_entreprise_raison_sociale", "etablissement_formateur_siret"],
@@ -84,7 +85,7 @@ export const generationLienPriseRdvFormationPageDoc = {
               description: [
                 {
                   fr: "Informations liées au lieu de formation.",
-                  en: "Various information about the training location",
+                  en: null,
                 },
               ],
               tags: ["lieu_formation_adresse", "code_postal", "localite"],
@@ -92,10 +93,10 @@ export const generationLienPriseRdvFormationPageDoc = {
           },
         },
         error: {
-          name: { fr: "Erreur", en: "Error" },
+          name: { fr: "Erreur", en: null },
           rows: {
             error: {
-              description: [{ fr: "Détail du message d'erreur s'il est présent.", en: "The error message" }],
+              description: [{ fr: "Détail du message d'erreur s'il est présent.", en: null }],
             },
           },
         },

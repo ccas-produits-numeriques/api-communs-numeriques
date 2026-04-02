@@ -1,25 +1,25 @@
 import type { DocPage, OpenApiText } from "../../types.js";
-import localisationDescriptionEn from "./en/localisation.description.md.js";
 import localisationDescriptionFr from "./fr/localisation.description.md.js";
-
 export const rechercheCommunePageSummaryDoc = {
   title: {
     fr: "Recherche de communes",
-    en: "Search for municipalities",
+    en: null,
   },
   headline: {
-    en: "Consult the list of municipalities in France",
+    en: null,
     fr: "Consulter le référentiel des communes de France",
   },
-} as const satisfies { title: OpenApiText; headline: OpenApiText };
-
+} as const satisfies {
+  title: OpenApiText;
+  headline: OpenApiText;
+};
 export const rechercheCommunePageDoc = {
   tag: "geographie",
   operationIds: ["get_geographie_v1_commune_search"],
   habilitation: null,
   description: [
     {
-      en: "Search for a municipality by INSEE code or postal code.",
+      en: null,
       fr: "Rechercher une commune par code INSEE ou code postal.",
     },
   ],
@@ -83,7 +83,7 @@ export const rechercheCommunePageDoc = {
               tags: [".arrondissements[].nom", ".arrondissements[].codeInsee"],
             },
             localisation: {
-              description: { en: localisationDescriptionEn, fr: localisationDescriptionFr },
+              description: { en: null, fr: localisationDescriptionFr },
               tags: [".localisation.centre", ".localisation.bbox"],
             },
           },
@@ -102,7 +102,7 @@ export const rechercheCommunePageDoc = {
           },
         },
         departement: {
-          name: { fr: "Département", en: "Department" },
+          name: { fr: "Département", en: null },
           rows: {
             departement: {
               description: { en: null, fr: "Département de la commune" },
@@ -128,7 +128,7 @@ export const rechercheCommunePageDoc = {
           },
         },
         mission_locale: {
-          name: { en: "Mission locale", fr: "Mission locale" },
+          name: { en: null, fr: "Mission locale" },
           rows: {
             identification: {
               description: { en: null, fr: "Mission locale dont relève la commune" },

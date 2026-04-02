@@ -37,11 +37,6 @@ beforeAll(async () => {
 }, 15_000);
 
 const organisations = {
-  applicationWrite: generateOrganisationFixture({
-    nom: "Org Application Write",
-    slug: "org-application-write",
-    habilitations: ["applications:write"],
-  }),
   read: generateOrganisationFixture({
     nom: "Org Read",
     slug: "org-read",
@@ -65,11 +60,6 @@ const users = {
     is_admin: false,
     organisation: organisations.read.nom,
   }),
-  applicationWrite: generateUserFixture({
-    email: "application-write@exemple.fr",
-    is_admin: false,
-    organisation: organisations.applicationWrite.nom,
-  }),
   appointmentsWrite: generateUserFixture({
     email: "appointments-write@exemple.fr",
     is_admin: false,
@@ -80,7 +70,6 @@ const users = {
 const tokens = {
   basic: "",
   read: "",
-  applicationWrite: "",
   appointmentsWrite: "",
 };
 
@@ -248,7 +237,6 @@ const nockMatchUserAuthorization = (u: IUser, habilitations: string[]) => {
           data: {
             email: u.email,
             habilitations: habilitations.reduce((acc, h) => ({ ...acc, [h]: true }), {
-              "applications:write": false,
               "appointments:write": false,
             }),
             organisation: u.organisation,
@@ -264,7 +252,6 @@ beforeEach(async () => {
   await getDbCollection("organisations").insertMany(Object.values(organisations));
   tokens.basic = (await generateApiKey("", users.basic)).value;
   tokens.read = (await generateApiKey("", users.read)).value;
-  tokens.applicationWrite = (await generateApiKey("", users.applicationWrite)).value;
   tokens.appointmentsWrite = (await generateApiKey("", users.appointmentsWrite)).value;
 });
 
@@ -320,7 +307,7 @@ describe("POST /formation/v1/appointment/generate-link", () => {
     });
   });
 
-  it.each<[keyof typeof tokens]>([["read"], ["applicationWrite"], ["basic"]])(
+  it.each<[keyof typeof tokens]>([["read"], ["basic"]])(
     "should returns 403 if organisation doesn't have habilitation appointment:write (%s)",
     async (name) => {
       const response = await app.inject({

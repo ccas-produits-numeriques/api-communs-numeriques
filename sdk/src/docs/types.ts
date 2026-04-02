@@ -1,11 +1,9 @@
 import type { TagOpenapi } from "../openapi/tags.openapi.js";
 import type { OpenapiSpec } from "../openapi/types.js";
-
 export type OpenApiText = {
   fr: string;
-  en: string | null;
+  en?: string | null;
 };
-
 export interface DocTechnicalField {
   descriptions: OpenApiText[] | null;
   examples?: ReadonlyArray<unknown>;
@@ -19,14 +17,14 @@ export interface DocTechnicalField {
   propertyNames?: DocTechnicalField;
   prefixItems?: DocTechnicalField[];
 }
-
 export type DataSource = {
   name: string;
-  logo: { href: string };
+  logo: {
+    href: string;
+  };
   providers: string[];
   href: string;
 };
-
 export type DocModelRow = {
   readonly description: OpenApiText | ReadonlyArray<OpenApiText> | null;
   readonly examples?: ReadonlyArray<unknown>;
@@ -38,17 +36,14 @@ export type DocModelRow = {
     readonly content: OpenApiText;
   };
 };
-
 export type DocModelSection = {
   name: OpenApiText | null;
   rows: Record<string, DocModelRow>;
 };
-
 export type DocDatum = {
   readonly name: OpenApiText;
   readonly sections: Record<string, DocModelSection>;
 };
-
 export type DocPage = {
   tag: TagOpenapi;
   operationIds: string[];
@@ -59,17 +54,16 @@ export type DocPage = {
   sources: DataSource[];
   data: DocDatum[];
 };
-
 export type DocRoute = {
-  summary: { en: string; fr: string };
-  description: { en: string; fr: string };
+  summary: OpenApiText;
+  description: OpenApiText;
   parameters?: Record<string, DocTechnicalField>;
   body?: {
-    description: { en: string; fr: string } | null;
+    description: OpenApiText | null;
     content?: DocTechnicalField;
   };
   response: {
-    description: { en: string; fr: string };
+    description: OpenApiText;
     content?: DocTechnicalField;
   };
 };
