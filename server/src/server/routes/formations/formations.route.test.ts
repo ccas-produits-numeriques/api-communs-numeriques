@@ -37,11 +37,6 @@ beforeAll(async () => {
 }, 15_000);
 
 const organisations = {
-  jobWrite: generateOrganisationFixture({
-    nom: "Org Job Write",
-    slug: "org-job-write",
-    habilitations: ["jobs:write"],
-  }),
   applicationWrite: generateOrganisationFixture({
     nom: "Org Application Write",
     slug: "org-application-write",
@@ -70,11 +65,6 @@ const users = {
     is_admin: false,
     organisation: organisations.read.nom,
   }),
-  jobWrite: generateUserFixture({
-    email: "job-write@exemple.fr",
-    is_admin: false,
-    organisation: organisations.jobWrite.nom,
-  }),
   applicationWrite: generateUserFixture({
     email: "application-write@exemple.fr",
     is_admin: false,
@@ -90,7 +80,6 @@ const users = {
 const tokens = {
   basic: "",
   read: "",
-  jobWrite: "",
   applicationWrite: "",
   appointmentsWrite: "",
 };
@@ -261,7 +250,6 @@ const nockMatchUserAuthorization = (u: IUser, habilitations: string[]) => {
             habilitations: habilitations.reduce((acc, h) => ({ ...acc, [h]: true }), {
               "applications:write": false,
               "appointments:write": false,
-              "jobs:write": false,
             }),
             organisation: u.organisation,
           },
@@ -276,7 +264,6 @@ beforeEach(async () => {
   await getDbCollection("organisations").insertMany(Object.values(organisations));
   tokens.basic = (await generateApiKey("", users.basic)).value;
   tokens.read = (await generateApiKey("", users.read)).value;
-  tokens.jobWrite = (await generateApiKey("", users.jobWrite)).value;
   tokens.applicationWrite = (await generateApiKey("", users.applicationWrite)).value;
   tokens.appointmentsWrite = (await generateApiKey("", users.appointmentsWrite)).value;
 });
@@ -333,7 +320,7 @@ describe("POST /formation/v1/appointment/generate-link", () => {
     });
   });
 
-  it.each<[keyof typeof tokens]>([["read"], ["applicationWrite"], ["jobWrite"]])(
+  it.each<[keyof typeof tokens]>([["read"], ["applicationWrite"], ["basic"]])(
     "should returns 403 if organisation doesn't have habilitation appointment:write (%s)",
     async (name) => {
       const response = await app.inject({

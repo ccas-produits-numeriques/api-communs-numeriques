@@ -1,6 +1,4 @@
 import { jobApplyRouteDoc } from "../../docs/routes/jobApply/jobApply.route.doc.js";
-import { jobOfferCreateRouteDoc } from "../../docs/routes/jobOfferCreate/jobOfferCreate.route.doc.js";
-import { jobOfferUpdateRouteDoc } from "../../docs/routes/jobOfferUpdate/jobOfferUpdate.route.doc.js";
 import { jobSearchRouteDoc } from "../../docs/routes/jobSearch/jobSearch.route.doc.js";
 import {
   jobSearchByIdPublishingRouteDoc,
@@ -164,71 +162,7 @@ export const jobRoutesOpenapi: OpenapiRoutes = {
       },
     },
   },
-  "/job/v1/offer": {
-    post: {
-      tag: "job",
-      doc: jobOfferCreateRouteDoc,
-      schema: {
-        operationId: "jobOfferCreate",
-        security: [{ "api-key": ["jobs:write"] }],
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/JobOfferWrite",
-              },
-            },
-          },
-        },
-        responses: {
-          "200": {
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    id: { type: "string" },
-                  },
-                  required: ["id"],
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
   "/job/v1/offer/{id}": {
-    put: {
-      tag: "job",
-      doc: jobOfferUpdateRouteDoc,
-      schema: {
-        operationId: "jobOfferUpdate",
-        security: [{ "api-key": ["jobs:write"] }],
-        parameters: [
-          {
-            schema: { type: "string" },
-            required: true,
-            name: "id",
-            in: "path",
-          },
-        ],
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/JobOfferWrite",
-              },
-            },
-          },
-        },
-        responses: {
-          "204": {},
-        },
-      },
-    },
     get: {
       tag: "job",
       doc: jobSearchByIdRouteDoc,

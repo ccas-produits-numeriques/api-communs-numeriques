@@ -12,7 +12,6 @@ import { offerExportModelOpenapi } from "../models/job/job.export.model.openapi.
 import {
   applicationWriteModelOpenapi,
   offerReadModelOpenapi,
-  offerWriteModelOpenapi,
   recruiterModelOpenapi,
 } from "../models/job/job.model.openapi.js";
 import { offerPublishingModelOpenapi } from "../models/job/job.publishing.model.openapi.js";
@@ -36,7 +35,6 @@ export const openapiSpec: OpenapiSpec = {
     [offerReadModelOpenapi.name]: offerReadModelOpenapi,
     [offerPublishingModelOpenapi.name]: offerPublishingModelOpenapi,
     [offerExportModelOpenapi.name]: offerExportModelOpenapi,
-    [offerWriteModelOpenapi.name]: offerWriteModelOpenapi,
     [applicationWriteModelOpenapi.name]: applicationWriteModelOpenapi,
     [formationModelOpenapi.name]: formationModelOpenapi,
     [organismeModelOpenapi.name]: organismeModelOpenapi,
@@ -62,16 +60,6 @@ export const openapiSpec: OpenapiSpec = {
       body: {
         en: "Hello, I would like to obtain authorization to send applications to job opportunities published through the Cour de cassation platform.",
         fr: "Bonjour, je souhaite obtenir une habilitation pour envoyer des candidatures à des offres d'emploi publiées via la plateforme de la Cour de cassation.",
-      },
-    },
-    "jobs:write": {
-      subject: {
-        en: "Request for authorization to post apprenticeship job offers",
-        fr: "Demande d'habilitation pour le dépôt d'offres d'emploi",
-      },
-      body: {
-        en: "Hello, I would like to obtain authorization to post job offers on the Cour de cassation platform.",
-        fr: "Bonjour, je souhaite obtenir une habilitation pour déposer des offres d'emploi sur la plateforme de la Cour de cassation.",
       },
     },
     "appointments:write": {
