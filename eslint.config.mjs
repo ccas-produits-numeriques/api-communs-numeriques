@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import reactHooks from "eslint-plugin-react-hooks";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig } from "eslint/config";
 import { includeIgnoreFile } from "@eslint/compat";
 import globals from "globals";
 import js from "@eslint/js";
@@ -20,8 +20,6 @@ const TS_FILES = "**/*.{ts,tsx}";
 
 export default defineConfig([
   includeIgnoreFile(gitignorePath),
-
-  globalIgnores([".yarn"]),
 
   nodePlugin.configs["flat/recommended"],
   js.configs.recommended,

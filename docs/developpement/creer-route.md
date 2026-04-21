@@ -16,9 +16,9 @@ De plus la création d'une route consiste en la mise à disposition:
 - Avoir suivi la [documentation de développement](./developpement.md)
 
 > [!CAUTION]
-> Le code de l'API a une structure spéciale due à la publication de la librairie. Ainsi les packages `sdk` & `shared` doivent etre build (`yarn typecheck`) pour répercuter les changements sur le server et l'ui.
-> Cependant, la commande `yarn dev` watch egalement les changements de ces packages.
-> Par contre, pour lancer les tests `yarn test` veuillez build les packages `sdk` & `shared` avant.
+> Le code de l'API a une structure spéciale due à la publication de la librairie. Ainsi les packages `sdk` & `shared` doivent etre build (`pnpm typecheck`) pour répercuter les changements sur le server et l'ui.
+> Cependant, la commande `pnpm dev` watch egalement les changements de ces packages.
+> Par contre, pour lancer les tests `pnpm test` veuillez build les packages `sdk` & `shared` avant.
 
 ## Structure du code
 
@@ -31,7 +31,7 @@ Le code relatif à la définition des routes, et de la documentation se trouve d
     - `models/*/*.model.doc.ts`: Contient les descriptions textuels des champs des modeles
     - `routes/*/*.route.doc.ts`: Contient les contenu textuels métier des routes
     - `**/*.md`: Un contenu markdown pour etre utilisé dans la documentation
-    - `**/*.md.ts`: Le code généré contenant le markdown associé (`yarn workspace api-communs-numerique-sdk markdown:transpile`)
+    - `**/*.md.ts`: Le code généré contenant le markdown associé (`pnpm --filter api-communs-numerique-sdk markdown:transpile`)
   - `models/`: Contient les définitions des modèles
     - `*/*.model.ts`: Schema zod et type typescript
     - `*/*.model.openapi.ts`: Schema openapi (sans le contenu textuel) et méthode de création du schema par langue
@@ -65,7 +65,7 @@ Le code relatif à la définition des routes, et de la documentation se trouve d
    1. Pour la structure partir de page existante
    2. Pour du contenu markdown plus complex
       1. Créer des fichier `.md`
-      2. Exécuter `yarn workspace api-communs-numerique-sdk markdown:transpile`
+      2. Exécuter `pnpm --filter api-communs-numerique-sdk markdown:transpile`
       3. Importer le contenu du fichier `.ts` genéré.
    3. Les liens `href` des logos pointent vers des fichiers dans le dossier `ui/public/` et doivent donc etre créé en consequence.
    4. Exporter le fichier dans `sdk/src/docs/metier/internal.ts`
@@ -85,8 +85,8 @@ La documentation technique est plus complexe à maintenir car:
 
 1. Générer le schema openapi et la doc technique à partir de la specification de l'API externe
    1. Copier le contenu de type `SchemaObject` depuis la doc openapi de l'API externe dans un fichier `./tmp/source.json`
-   2. Lancer le build `yarn typecheck && yarn build:dev`
-   3. Lancer la commande `yarn cli dev:doc:init:external:model ./tmp/source.json ./tmp/out.model.doc.json ./tmp/out.model.openapi.json`
+   2. Lancer le build `pnpm typecheck && pnpm --filter server build:dev`
+   3. Lancer la commande `pnpm cli dev:doc:init:external:model ./tmp/source.json ./tmp/out.model.doc.json ./tmp/out.model.openapi.json`
    4. La command génère 2 fichiers:
       1. `./tmp/out.model.doc.json`: Contient la documentation technique des champs du model (à copier dans le fichier `sdk/src/docs/models/<nom>/<nom>.model.doc.ts`)
       2. `./tmp/out.model.openapi.json`: Contient la définition du model openapi (à utiliser pour la propriété `schema` du model dans le fichier `sdk/src/models/<nom>/<nom>.model.openapi.ts`)
@@ -95,15 +95,15 @@ La documentation technique est plus complexe à maintenir car:
    2. Veuiller référencer le model zod pour la bonne exécution des tests `zodOpenApi.unknown().openapi(<nom>)`
 3. Exporter ce fichier dans `sdk/src/models/internal.ts`
 4. Référencer le model dans la variable `openapiSpec` du fichier `sdk/src/openapi/openapiSpec.ts`
-5. Vérifier que la documentation technique est correcte en lançant les tests `yarn typecheck && yarn test sdk/src/openapi`
-6. Mettez à jour le snapshot `openapi` en lançant les tests `yarn typecheck && yarn test shared/src/openapi`
+5. Vérifier que la documentation technique est correcte en lançant les tests `pnpm typecheck && pnpm test sdk/src/openapi`
+6. Mettez à jour le snapshot `openapi` en lançant les tests `pnpm typecheck && pnpm test shared/src/openapi`
 
 #### Création de la documentation technique des routes
 
 1. Générer le schema openapi et la doc technique à partir de la specification de l'API externe
    1. Copier le contenu de type `OperationObject` depuis la doc openapi de l'API externe dans un fichier `./tmp/source.json`
-   2. Lancer le build `yarn typecheck && yarn build:dev`
-   3. Lancer la commande `yarn cli dev:doc:init:external:route ./tmp/source.json ./tmp/out.route.doc.json ./tmp/out.route.openapi.json`
+   2. Lancer le build `pnpm typecheck && pnpm --filter server build:dev`
+   3. Lancer la commande `pnpm cli dev:doc:init:external:route ./tmp/source.json ./tmp/out.route.doc.json ./tmp/out.route.openapi.json`
    4. La command génère 2 fichiers:
       1. `./tmp/out.route.doc.json`: Contient la documentation technique de la route (à copier dans le fichier `sdk/src/docs/routes/<nom>/<nom>.route.doc.ts`)
       2. `./tmp/out.route.openapi.json`: Contient la définition de la route openapi (à utiliser pour la propriété `schema` de la route dans le fichier `sdk/src/routes/<nom>/<nom>.routes.openapi.ts`)
@@ -111,7 +111,7 @@ La documentation technique est plus complexe à maintenir car:
 3. Créer les spécifications des routes utilisés dans la spec openapi dans un fichier `sdk/src/routes/<nom>/<nom>.route.openapi.ts`
 4. Exporter ce fichier dans `sdk/src/routes/internal.ts`
 5. Référencer la route dans la variable `openapiSpec` du fichier `sdk/src/openapi/openapiSpec.ts`
-6. Vérifier que la documentation technique est correcte en lançant les tests `yarn typecheck && yarn test sdk/src/openapi`
+6. Vérifier que la documentation technique est correcte en lançant les tests `pnpm typecheck && pnpm test sdk/src/openapi`
 
 #### Modification de la documentation technique
 
@@ -126,7 +126,7 @@ Ce controle est effectué par le fichier `server/src/services/documentation/chec
 Étant donné que la documentation de l'API distante peut être modifié, il est possible de mettre à jour la documentation technique en utilisant le fichier `server/src/services/documentation/expectedDocumentationDelta.ts`.
 
 1. Mettre à jour la variable `OPERATION_MAPPING` avec le mapping de la nouvelle route dans le fichier `server/src/services/documentation/checkDocumentationSync.ts`
-2. Lancer la commande `yarn cli job:run -n doc:check_sync` pour vérifier la cohérence de la documentation technique.
+2. Lancer la commande `pnpm cli job:run -n doc:check_sync` pour vérifier la cohérence de la documentation technique.
 3. En cas d'erreur de synchronisation, la commande va afficher 2 variables:
    1. `delta`: La liste des différences entre la delta attendu et la delta actuel
    2. `result`: La liste des differences entre la documentation technique et la documentation de l'API distante actuel.

@@ -5,17 +5,10 @@
   "author": "MNA",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@3.6.1",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
-    "node": ">=24",
-    "npm": "please-use-yarn"
+    "node": ">=24"
   },
-  "workspaces": [
-    "sdk",
-    "shared",
-    "ui",
-    "server"
-  ],
   "dependencies": {
     "@sentry/cli": "^2.52.0",
     "dotenv": "^17.2.1",
@@ -25,36 +18,36 @@
   "scripts": {
     "setup": ".bin/mna-api env:init",
     "setup:mongodb": "docker compose exec -it mongodb mongosh --eval \"try { rs.status().ok } catch (e) { if (e.code === 94) {rs.initiate();} else {throw e} }\" --quiet",
-    "dev": "yarn services:start; yarn foreach:parallel run dev",
-    "cli": "yarn workspace server cli",
+    "dev": "pnpm services:start; pnpm foreach:parallel run dev",
+    "cli": "pnpm --filter server cli",
     "seed": ".bin/mna-api seed:apply",
     "deploy": ".bin/mna-api app:deploy",
-    "build": "yarn foreach:seq run build",
-    "migrations:status": "yarn cli migrations:status",
-    "migrations:up": "yarn cli migrations:up",
-    "migrations:create": "yarn cli migrations:create",
-    "server:dev": "yarn workspace server dev",
-    "ui:dev": "yarn workspace ui dev",
+    "build": "pnpm foreach:seq run build",
+    "migrations:status": "pnpm cli migrations:status",
+    "migrations:up": "pnpm cli migrations:up",
+    "migrations:create": "pnpm cli migrations:create",
+    "server:dev": "pnpm --filter server dev",
+    "ui:dev": "pnpm --filter ui dev",
     "services:start": "docker compose up --build --remove-orphans -d --wait",
     "services:stop": "docker compose down",
-    "services:clean": "yarn services:stop; docker system prune --volumes",
+    "services:clean": "pnpm services:stop; docker system prune --volumes",
     "seed:update": ".bin/mna-api seed:update",
     "lint": "eslint --cache .",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "pnpm lint --fix",
     "prettier:fix": "prettier --write -u .",
     "prettier:check": "prettier --check -u .",
     "postinstall": "husky",
-    "talisman:add-exception": "yarn node-talisman --githook pre-commit -i",
+    "talisman:add-exception": "pnpm node-talisman --githook pre-commit -i",
     "test": "vitest",
-    "test:ci": "yarn test --run",
-    "test:ci:coverage": "yarn test:ci --coverage.include='ui' --coverage.include='server/src' --coverage.include='shared' --coverage.provider='v8' --coverage.enabled --coverage.all --coverage.exclude='**/tests' --coverage.exclude='**/.next'",
+    "test:ci": "pnpm test --run",
+    "test:ci:coverage": "pnpm test:ci --coverage.include='ui' --coverage.include='server/src' --coverage.include='shared' --coverage.provider='v8' --coverage.enabled --coverage.all --coverage.exclude='**/tests' --coverage.exclude='**/.next'",
     "test:watch": "vitest --watch",
     "typecheck": "tsc -b ui/tsconfig.json server/tsconfig.json shared/tsconfig.json sdk/tsconfig.json",
     "vault:edit": ".bin/mna-api vault:edit",
     "product:access:update": ".bin/mna-api product:access:update",
-    "foreach:seq": "yarn workspaces foreach -Av --exclude mna",
-    "foreach:parallel": "yarn foreach:seq -pi",
-    "foreach:ci": "yarn foreach:seq -p"
+    "foreach:seq": "pnpm -r --workspace-concurrency=1",
+    "foreach:parallel": "pnpm -r --parallel",
+    "foreach:ci": "pnpm -r --workspace-concurrency=1"
   },
   "devDependencies": {
     "@dword-design/eslint-plugin-import-alias": "^6.0.3",
@@ -91,12 +84,24 @@
     ],
     "!(*.{js,jsx,ts,tsx,mjs,cjs})": [
       "prettier --write -u"
-    ],
-    "yarn.lock": [
-      "yarn dedupe"
     ]
   },
-  "resolutions": {
-    "exceljs@^4.4.0": "patch:exceljs@npm%3A4.4.0#./.yarn/patches/exceljs-npm-4.4.0-15bcfdd142.patch"
+  "pnpm": {
+    "patchedDependencies": {
+      "exceljs@4.4.0": "patches/exceljs@4.4.0.patch"
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@sentry-internal/node-cpu-profiler",
+      "@sentry/cli",
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ],
+    "overrides": {
+      "@types/mjml-core": "4.15.2",
+      "react-dom": "19.2.3",
+      "zod": "4.0.17"
+    }
   }
 }

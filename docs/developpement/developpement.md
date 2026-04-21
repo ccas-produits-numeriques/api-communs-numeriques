@@ -23,9 +23,10 @@
 Avant de lancer l'application, assurez-vous d'installer toutes les dépendances nécessaires en exécutant la commande suivante :
 
 ```bash
-yarn
-yarn typecheck
-yarn setup
+corepack enable
+pnpm install
+pnpm typecheck
+pnpm setup
 ```
 
 Cette commande mettra à jour les dépendances du projet.
@@ -37,8 +38,8 @@ Il est possible que vous rencontriez un problème avec le fichier `.infra/local/
 Si c'est le cas, vérifiez que les droits du ficher sont bien `440` pour MacOS et `400` pour Linux et que le fichier appartient à l'utilisateur lançant `docker`.
 
 ```bash
-yarn seed
-yarn dev
+pnpm seed
+pnpm dev
 ```
 
 Vous pouvez maintenant accéder à l'application via l'URL [http://localhost:3002](http://localhost:3002)
@@ -54,7 +55,7 @@ Les principales opérations sont regroupées dans le `package.json`.
 ### Initialisation de l'environnment
 
 ```bash
-  yarn setup
+  pnpm setup
 ```
 
 installation ou mise à jour de vos fichiers d'environnement de développement depuis le vault.yml (`server/.env` et `ui/.env`)
@@ -64,7 +65,7 @@ installation ou mise à jour de vos fichiers d'environnement de développement d
 Pour démarrer l'application en mode local, exécutez la commande suivante :
 
 ```bash
-  yarn dev
+  pnpm dev
 ```
 
 Lance la stack local de développement (server, ui, services)
@@ -80,22 +81,22 @@ La `cli` du server s'éxécute sur le fichier compilé `server/dist/index.js` ai
 
 Commandes:
 
-- `yarn cli --help`: List l'ensemble des commandes disponibles
-- `yarn cli seed`: Seed de la database
-- `yarn cli migrations:status`: Vérification du status des migrations
-- `yarn cli migrations:up`: Execution des migrations
-- `yarn cli migrations:create`: Creation d'une nouvelle migration
+- `pnpm cli --help`: List l'ensemble des commandes disponibles
+- `pnpm cli seed`: Seed de la database
+- `pnpm cli migrations:status`: Vérification du status des migrations
+- `pnpm cli migrations:up`: Execution des migrations
+- `pnpm cli migrations:create`: Creation d'une nouvelle migration
 
 ### Lancement de l'application
 
 ```bash
-  yarn workspace server dev
+  pnpm --filter server dev
 ```
 
 Lance le server en dev indépendamment de la stack
 
 ```bash
-  yarn workspace ui dev
+  pnpm --filter ui dev
 ```
 
 Lance l'ui en dev indépendamment de la stack
@@ -105,7 +106,7 @@ Lance l'ui en dev indépendamment de la stack
 Lance les services docker en local
 
 ```bash
-  yarn services:start
+  pnpm services:start
 ```
 
 ---
@@ -113,7 +114,7 @@ Lance les services docker en local
 Stopper les services docker en local
 
 ```bash
-  yarn services:stop
+  pnpm services:stop
 ```
 
 ---
@@ -121,13 +122,13 @@ Stopper les services docker en local
 Supprimer les services docker en local
 
 ```bash
-  yarn services:clean
+  pnpm services:clean
 ```
 
 ### Hydratation du projet en local
 
 ```bash
-  yarn seed <OPTIONAL:DB_URL>
+  pnpm seed <OPTIONAL:DB_URL>
 ```
 
 Pour créer des jeux de test facilement il suffit de lancer les commandes suivante.
@@ -138,7 +139,7 @@ Applique la base de données seed sur la base de données cible (par défaut la 
 Mise à jour de la base de données seed depuis votre local
 
 ```bash
-  yarn seed:update
+  pnpm seed:update
 ```
 
 ### Deploiement depuis l'environnement local
@@ -146,7 +147,7 @@ Mise à jour de la base de données seed depuis votre local
 Deploie l'application sur l'environnement cible
 
 ```bash
-  yarn deploy <environnement> <OPTIONAL:--user USERNAME>
+  pnpm run deploy <environnement> <OPTIONAL:--user USERNAME>
 ```
 
 > Optionel si vous avez [configuré 1password](./1password.md#automatisation-de-ansible)
@@ -156,7 +157,7 @@ Deploie l'application sur l'environnement cible
 Cli pour créer une migration
 
 ```bash
-  yarn migration:create -d <name>
+  pnpm migrations:create -d <name>
 ```
 
 ### Talisman
@@ -164,7 +165,7 @@ Cli pour créer une migration
 Ajouter une exception à talisman
 
 ```bash
-  yarn talisman:add-exception
+  pnpm talisman:add-exception
 ```
 
 ### Vault
@@ -172,7 +173,7 @@ Ajouter une exception à talisman
 Édition du vault ansible
 
 ```bash
-  yarn vault:edit
+  pnpm vault:edit
 ```
 
 ### Linter
@@ -180,7 +181,7 @@ Ajouter une exception à talisman
 Un linter (via ESLint) est mis en place dans le projet, pour le lancer :
 
 ```bash
-yarn lint
+pnpm lint
 ```
 
 **Note:** eslint est run automatiquement à chaque commit
@@ -190,7 +191,7 @@ yarn lint
 Prettier est mis en place dans le projet, pour le lancer :
 
 ```bash
-yarn prettier:fix
+pnpm prettier:fix
 ```
 
 **Note:** eslint est run automatiquement à chaque commit
@@ -200,7 +201,7 @@ yarn prettier:fix
 L'application utilise TypeScript, pour vérifier que les erreurs liés au type veuillez lancer:
 
 ```bash
-yarn typecheck
+pnpm typecheck
 ```
 
 ### Release depuis l'environnement local
@@ -208,7 +209,7 @@ yarn typecheck
 Création d'une release
 
 ```bash
-  yarn release:interactive
+  pnpm release:interactive
 ```
 
 ### Exécution des tests
@@ -216,14 +217,14 @@ Création d'une release
 Pour exécuter les tests localement, utilisez la commande suivante :
 
 ```bash
-yarn test
+pnpm test
 ```
 
 Cette commande exécutera tous les tests du projet et vous affichera les résultats.
 
 **Assurez-vous:**
 
-1. D'avoir installé toutes les dépendances via la commande `yarn install` avant de lancer les tests
+1. D'avoir installé toutes les dépendances via la commande `pnpm install` avant de lancer les tests
 
 2. D'avoir lancé l'application car les tests utilisent la base de donnée.
 
@@ -232,7 +233,7 @@ Cette commande exécutera tous les tests du projet et vous affichera les résult
 Pour mettre à jour les snapshots, utilisez la commande suivante
 
 ```bash
-yarn test --update
+pnpm test --update
 ```
 
 ## Emails

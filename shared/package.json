@@ -19,8 +19,7 @@
     }
   },
   "engines": {
-    "node": ">=24",
-    "npm": "please-use-yarn"
+    "node": ">=24"
   },
   "scripts": {
     "typecheck": "tsc -b",

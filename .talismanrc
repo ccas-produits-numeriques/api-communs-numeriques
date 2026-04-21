@@ -87,5 +87,6 @@ allowed_patterns:
 - '@mail.fr'
 - '@courdecassation.beta.gouv.fr'
 - '@courdecassation.fr'
+- 'patches/[a-zA-Z0-9@._/-]+\.patch'
 threshold: medium
 version: "1.0"

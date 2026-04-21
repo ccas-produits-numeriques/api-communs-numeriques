@@ -6,12 +6,6 @@
 .pnp.js
 
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
 # testing
 /coverage
@@ -81,9 +75,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 
@@ -148,7 +139,6 @@ yarn-error.log
 dist
 build
 sdk/lib
-.npmrc
 
 # Local History for Visual Studio Code
 .history/
@@ -162,8 +152,6 @@ SEED_PASSPHRASE.txt
 seed.gz
 
 tsconfig.tsbuildinfo
-
-.yarn/versions/
 
 .tmp/
 venv
