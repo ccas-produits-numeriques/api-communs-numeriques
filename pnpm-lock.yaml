@@ -177,7 +177,7 @@ importers:
         specifier: workspace:^
         version: link:../sdk
       axios:
-        specifier: ^1.12.2
+        specifier: ^1.15.1
         version: 1.15.1
       axios-retry:
         specifier: ^4.5.0
