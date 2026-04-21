@@ -1,4 +1,4 @@
-.yarn
+pnpm-lock.yaml
 .talismanrc
 .infra/files/configs/mongodb/seed.gpg
 .infra/.env_server
