@@ -21,6 +21,8 @@ const TS_FILES = "**/*.{ts,tsx}";
 export default defineConfig([
   includeIgnoreFile(gitignorePath),
 
+  { ignores: [".yarn/**"] },
+
   nodePlugin.configs["flat/recommended"],
   js.configs.recommended,
   importX.flatConfigs.recommended,
