@@ -342,7 +342,7 @@ describe("POST /formation/v1/appointment/generate-link", () => {
     };
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.appointmentsWrite, ["appointments:write"]);
-    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
+    nock(config.api.sij_api.endpoint)
       .post("/v2/appointment", (b) => {
         expect.soft(b).toEqual(body);
         return true;
