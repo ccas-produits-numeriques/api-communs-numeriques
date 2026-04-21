@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@types/mjml-core': 4.15.2
+  nock: 14.0.10
   react-dom: 19.2.3
   zod: 4.0.17
 
@@ -129,8 +130,8 @@ importers:
         specifier: ^24.2.1
         version: 24.12.2
       nock:
-        specifier: ^14.0.10
-        version: 14.0.13
+        specifier: 14.0.10
+        version: 14.0.10
       type-fest:
         specifier: ^4.41.0
         version: 4.41.0
@@ -325,8 +326,8 @@ importers:
         specifier: ^6.6.0
         version: 6.7.0
       nock:
-        specifier: ^14.0.10
-        version: 14.0.13
+        specifier: 14.0.10
+        version: 14.0.10
       tsup:
         specifier: ^8.5.0
         version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
@@ -1184,8 +1185,8 @@ packages:
   '@mongodb-js/saslprep@1.4.8':
     resolution: {integrity: sha512-kpjr2jy2w71w0oqAMI8oibBmiF9lXxWkEQs5gMkW4hVE48bsqINGLxnCSYW62ck/NHXJQpQEfA9WlJ1sY0eqBg==}
 
-  '@mswjs/interceptors@0.41.4':
-    resolution: {integrity: sha512-3B9EinUkrdOUGYzHRzRWSXunQ4YFGboJnyLNRwEJWEde+j8fNhPUHvrN1E3g1DU/iS/s8JQrMNVe+S7AHHVs0w==}
+  '@mswjs/interceptors@0.39.8':
+    resolution: {integrity: sha512-2+BzZbjRO7Ct61k8fMNHEtoKjeWI9pIlHFTqBwZ5icHpqszIgEZbjb1MW5Z0+bITTCTl3gk4PDBxs9tA/csXvA==}
     engines: {node: '>=18'}
 
   '@mui/core-downloads-tracker@7.3.10':
@@ -5046,8 +5047,8 @@ packages:
   no-case@2.3.2:
     resolution: {integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==}
 
-  nock@14.0.13:
-    resolution: {integrity: sha512-SCPsQmGVNY8h1rfS3aU0MzOGYY+wKIFukHEsoSIwPRCYocZkya7MFIlWIEYPWQZj+Gaksg6EyUaY255ZDqpQuA==}
+  nock@14.0.10:
+    resolution: {integrity: sha512-Q7HjkpyPeLa0ZVZC5qpxBt5EyLczFJ91MEewQiIi9taWuA0KB/MDJlUWtON+7dGouVdADTQsf9RA7TZk6D8VMw==}
     engines: {node: '>=18.20.0 <20 || >=20.12.1'}
 
   node-abi@3.89.0:
@@ -7546,7 +7547,7 @@ snapshots:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  '@mswjs/interceptors@0.41.4':
+  '@mswjs/interceptors@0.39.8':
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/logger': 0.3.0
@@ -12444,9 +12445,9 @@ snapshots:
     dependencies:
       lower-case: 1.1.4
 
-  nock@14.0.13:
+  nock@14.0.10:
     dependencies:
-      '@mswjs/interceptors': 0.41.4
+      '@mswjs/interceptors': 0.39.8
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
 
