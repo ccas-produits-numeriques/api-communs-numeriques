@@ -4,12 +4,11 @@
   "license": "MIT",
   "author": "Cour de cassation",
   "engines": {
-    "node": ">=24",
-    "npm": "please-use-yarn"
+    "node": ">=24"
   },
   "scripts": {
-    "dev": "yarn predev && next dev -p 3002",
-    "build": "yarn prebuild && next build --no-lint",
+    "dev": "pnpm predev && next dev -p 3002",
+    "build": "pnpm prebuild && next build --no-lint",
     "typecheck": "tsc -b",
     "predev": "only-include-used-icons",
     "prebuild": "only-include-used-icons"
@@ -62,6 +61,7 @@
     "@tsconfig/next": "^2.0.3",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/swagger-ui-react": "^5.18.0",
+    "bson": "^6.10.4",
     "dotenv": "^17.2.1",
     "notion-types": "^7.4.3",
     "type-fest": "^4.41.0",

@@ -166,7 +166,7 @@ describe("GET /job/v1/search", () => {
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.basic, []);
 
-    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
+    nock(config.api.sij_api.endpoint)
       .get("/v3/jobs/search")
       .query({
         longitude: -4.6,
@@ -242,10 +242,7 @@ describe("GET /job/v1/offer/:id", () => {
 
     const { matchHeader, expectAuth } = nockMatchUserAuthorization(users.basic, []);
 
-    nock("https://labonnealternance-recette.courdecassation.beta.gouv.fr/api")
-      .get("/v3/jobs/44")
-      .matchHeader("authorization", matchHeader)
-      .reply(200, data);
+    nock(config.api.sij_api.endpoint).get("/v3/jobs/44").matchHeader("authorization", matchHeader).reply(200, data);
 
     const response = await app.inject({
       method: "GET",

@@ -13,7 +13,7 @@ Le code relatif à la définition des routes, et de la documentation se trouve d
     - `models/*/*.model.doc.ts`: Contient les descriptions textuels des champs des modeles
     - `routes/*/*.route.doc.ts`: Contient les contenu textuels métier des routes
     - `**/*.md`: Un contenu markdown pour etre utilisé dans la documentation
-    - `**/*.md.ts`: Le code généré contenant le markdown associé (`yarn workspace api-communs-numerique-sdk markdown:transpile`)
+    - `**/*.md.ts`: Le code généré contenant le markdown associé (`pnpm --filter api-communs-numerique-sdk markdown:transpile`)
 
 ## Modifier le contenu
 

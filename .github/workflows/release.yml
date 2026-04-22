@@ -18,24 +18,17 @@ jobs:
           token: ${{ secrets.TOKEN_MNA_SHARED }}
           submodules: recursive
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           token: ${{ secrets.NPM_TOKEN }}
           registry-url: "https://registry.npmjs.org"
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-            .yarn/install-state.gz
-            .yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: yarn-
-          save-always: true
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Build & publish NPM release
         run: .bin/mna-api sdk:release "${{ github.event.release.tag_name }}"

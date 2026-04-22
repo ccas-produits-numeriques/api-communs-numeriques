@@ -64,22 +64,15 @@ jobs:
       - name: Setup SOPS
         uses: nhedger/setup-sops@v2
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-            .yarn/install-state.gz
-            .yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: yarn-
-          save-always: true
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
