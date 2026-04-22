@@ -1,0 +1,42 @@
+name: Create App Commit
+description: Create and push a commit through the GitHub App token without local git signing setup.
+
+inputs:
+  github-token:
+    description: GitHub App installation token.
+    required: true
+  branch:
+    description: Branch to update.
+    required: true
+  commit-message:
+    description: Commit message to use.
+    required: true
+  files:
+    description: Newline-separated repository-relative file paths to include in the commit.
+    required: true
+  base-branch:
+    description: Optional branch to use as the parent commit instead of the target branch head.
+    required: false
+  force-update:
+    description: Whether to force-update the target ref when it already exists.
+    required: false
+    default: "false"
+
+outputs:
+  changed:
+    description: Whether a commit was created.
+    value: ${{ steps.commit.outputs.changed }}
+
+runs:
+  using: composite
+  steps:
+    - id: commit
+      shell: bash
+      env:
+        APP_COMMIT_TOKEN: ${{ inputs.github-token }}
+        APP_COMMIT_BRANCH: ${{ inputs.branch }}
+        APP_COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        APP_COMMIT_FILES: ${{ inputs.files }}
+        APP_COMMIT_BASE_BRANCH: ${{ inputs.base-branch }}
+        APP_COMMIT_FORCE_UPDATE: ${{ inputs.force-update }}
+      run: node "$GITHUB_ACTION_PATH/create_commit.mjs"
