@@ -15,5 +15,5 @@ docker run \
   --entrypoint /bin/bash \
   -e SENTRY_AUTH_TOKEN="${SENTRY_AUTH_TOKEN}" \
   -e SENTRY_DSN="${SENTRY_DSN}" \
-  ghcr.io/mission-apprentissage/mna_${PRODUCT_NAME}_server:${VERSION} \
+  ghcr.io/ccas-produits-numeriques/ccas_${PRODUCT_NAME}_server:${VERSION} \
   /app/server/sentry-deploy-server.sh "${ENVIRONMENT}" 

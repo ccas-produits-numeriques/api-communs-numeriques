@@ -4,7 +4,7 @@ set -euo pipefail
 
 if [ ! -f "${ROOT_DIR}/.bin/shared/commands.sh" ]; then
 
-  echo "Mise à jour du sous-module mna-shared-bin"
+  echo "Mise a jour du sous-module ccas-shared-bin"
 
   git submodule update --init "${ROOT_DIR}/.bin/shared"
 

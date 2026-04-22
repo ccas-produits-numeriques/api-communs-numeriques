@@ -95,7 +95,7 @@ const config = {
       key: env.get("API_ENTREPRISE_KEY").required().asString(),
       defaultRecipient: "13002526500013", // Siret DINUM
       object: "Consolidation des données",
-      context: "MNA",
+      context: "CCAS",
     },
     bal: {
       baseurl: env.get("API_BAL_URL").required().asString(),

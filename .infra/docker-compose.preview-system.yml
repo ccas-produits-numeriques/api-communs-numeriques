@@ -5,7 +5,7 @@ x-default: &default
         memory: 1g
   restart: always
   networks:
-    - mna_network
+    - ccas_network
 
 name: "{{product_name}}_preview_system"
 
@@ -35,7 +35,7 @@ services:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - DEFAULT_EMAIL=misson.apprentissage.devops@gmail.com
+      - DEFAULT_EMAIL=github-actions[bot]@users.noreply.github.com
     volumes_from:
       - reverse_proxy
 
@@ -79,7 +79,7 @@ services:
       - VIRTUAL_PATH=/
       - VIRTUAL_PORT=8025
       - LETSENCRYPT_HOST=smtp.{{dns_name}}
-      - LETSENCRYPT_EMAIL=misson.apprentissage.devops@gmail.com
+      - LETSENCRYPT_EMAIL=github-actions[bot]@users.noreply.github.com
 
   nodeexporter:
     <<: *default
@@ -103,7 +103,7 @@ services:
       - VIRTUAL_PATH=/_monitoring/nodeexporter
       - VIRTUAL_PORT=9100
       - LETSENCRYPT_HOST={{dns_name}}
-      - LETSENCRYPT_EMAIL=misson.apprentissage.devops@gmail.com
+      - LETSENCRYPT_EMAIL=github-actions[bot]@users.noreply.github.com
 
   cadvisor:
     <<: *default
@@ -124,7 +124,7 @@ services:
       - VIRTUAL_PATH=/_monitoring/cadvisor
       - VIRTUAL_PORT=8080
       - LETSENCRYPT_HOST={{dns_name}}
-      - LETSENCRYPT_EMAIL=misson.apprentissage.devops@gmail.com
+      - LETSENCRYPT_EMAIL=github-actions[bot]@users.noreply.github.com
 
   autoheal:
     <<: *default
@@ -141,6 +141,6 @@ volumes:
   acme:
 
 networks:
-  mna_network:
-    name: mna_network
+  ccas_network:
+    name: ccas_network
     external: true
