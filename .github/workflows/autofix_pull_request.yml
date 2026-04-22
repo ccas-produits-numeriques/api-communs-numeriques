@@ -1,0 +1,72 @@
+name: Autofix Pull Request
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.AUTOFIX_APP_ID }}
+          private-key: ${{ secrets.AUTOFIX_APP_PRIVATE_KEY }}
+
+      - name: Checkout project
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: false
+          token: ${{ steps.app-token.outputs.token }}
+
+      - uses: pnpm/action-setup@v5
+        with:
+          version: 10.15.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        name: Install Node.js
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Dedupe dependencies
+        run: pnpm dedupe
+
+      - name: Prettier Fix
+        run: pnpm prettier:fix
+
+      - name: Lint Fix
+        run: pnpm lint:fix
+        continue-on-error: true
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only --relative HEAD)
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          {
+            echo "files<<EOF"
+            printf '%s\n' "$CHANGED_FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Commit changes if any
+        id: commit
+        if: steps.changes.outputs.changed == 'true'
+        uses: ./.github/actions/create-app-commit
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          branch: ${{ github.head_ref }}
+          commit-message: "chore: action autofix"
+          files: ${{ steps.changes.outputs.files }}
