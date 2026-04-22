@@ -12,5 +12,5 @@ Utiliser la Github action deployement puis renseigner les informations demandée
 ### Déploiement Manuel
 
 ```bash
-yarn deploy <nom-de-lenvironnement>
+pnpm run deploy <nom-de-lenvironnement>
 ```

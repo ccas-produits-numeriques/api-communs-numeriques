@@ -8,8 +8,7 @@
   "sideEffects": false,
   "private": true,
   "engines": {
-    "node": ">=24",
-    "npm": "please-use-yarn"
+    "node": ">=24"
   },
   "scripts": {
     "cli": "node dist/index.js",
@@ -30,7 +29,7 @@
     "@sentry/node": "^9.46.0",
     "@sentry/profiling-node": "^9.46.0",
     "api-communs-numerique-sdk": "workspace:^",
-    "axios": "^1.12.2",
+    "axios": "^1.15.1",
     "axios-retry": "^4.5.0",
     "commander": "^14.0.0",
     "csv-parse": "^5.6.0",

@@ -18,33 +18,27 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-            .yarn/install-state.gz
-            .yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: yarn-
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Transpile markdown
-        run: yarn workspace api-communs-numerique-sdk markdown:transpile
+        run: pnpm --filter api-communs-numerique-sdk markdown:transpile
 
       - name: Run Prettier
-        run: yarn prettier:fix
+        run: pnpm prettier:fix
 
       - name: typecheck
-        run: yarn typecheck
+        run: pnpm typecheck
 
       - name: Run Lint with fix
-        run: yarn lint --fix
+        run: pnpm lint --fix
 
       - name: Commit changes if any
         run: |
