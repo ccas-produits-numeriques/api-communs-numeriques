@@ -49,7 +49,7 @@
     "mjml": "^4.15.3",
     "mongodb": "^6.18.0",
     "node-html-parser": "^7.0.1",
-    "nodemailer": "^7.0.5",
+    "nodemailer": "^8.0.5",
     "nodemailer-html-to-text": "^3.2.0",
     "oleoduc": "^0.9.1",
     "openapi3-ts": "^4.5.0",
