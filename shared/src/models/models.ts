@@ -2,6 +2,7 @@ import type { z } from "zod/v4-mini";
 
 import cacheAdresseModelDescriptor from "./cache/cache.adresse.model.js";
 import cacheEntrepriseModelDescriptor from "./cache/cache.entreprise.model.js";
+import { cabinetAvocatModelDescriptor } from "./cabinet_avocat.model.js";
 import { certificationsModelDescriptor } from "./certification.model.js";
 import type { IModelDescriptorGeneric } from "./common.js";
 import { communeModelDescriptor } from "./commune.model.js";
@@ -30,6 +31,7 @@ import usersModelDescriptor from "./user.model.js";
 
 export const modelDescriptorMap = {
   [certificationsModelDescriptor.collectionName]: certificationsModelDescriptor,
+  [cabinetAvocatModelDescriptor.collectionName]: cabinetAvocatModelDescriptor,
   [communeModelDescriptor.collectionName]: communeModelDescriptor,
   [emailDeniedModelDescriptor.collectionName]: emailDeniedModelDescriptor,
   [emailEventsModelDescriptor.collectionName]: emailEventsModelDescriptor,

@@ -12,7 +12,7 @@ environement=${1:?"Veuillez spécifier l'environnement à build (production, rec
 shift 1
 
 set +e
-docker buildx create --name "mna-${PRODUCT_NAME}" --driver docker-container --config "$SCRIPT_DIR/buildkitd.toml" 2> /dev/null
+docker buildx create --name "ccas-${PRODUCT_NAME}" --driver docker-container --config "$SCRIPT_DIR/buildkitd.toml" 2> /dev/null
 set -e
 
 if [[ ! -z "${CI:-}" ]]; then
@@ -28,6 +28,6 @@ else
 fi
 
 # "$@" is the list of environements
-docker buildx bake --builder "mna-${PRODUCT_NAME}" --file "$ROOT_DIR/docker-bake.json" --${mode} "$environement"
-docker builder prune --builder "mna-${PRODUCT_NAME}" --keep-storage 20GB --force
-docker buildx stop --builder "mna-${PRODUCT_NAME}"
+docker buildx bake --builder "ccas-${PRODUCT_NAME}" --file "$ROOT_DIR/docker-bake.json" --${mode} "$environement"
+docker builder prune --builder "ccas-${PRODUCT_NAME}" --keep-storage 20GB --force
+docker buildx stop --builder "ccas-${PRODUCT_NAME}"

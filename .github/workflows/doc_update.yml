@@ -42,8 +42,8 @@ jobs:
 
       - name: Commit changes if any
         run: |
-          git config user.name "mna-devops[bot]"
-          git config user.email "71841503+mna-devops@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet ./sdk/src/docs; then
             echo "No changes to commit"
             exit 0

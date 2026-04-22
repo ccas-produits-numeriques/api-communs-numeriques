@@ -38,8 +38,8 @@ jobs:
         uses: docker/scout-action@v1
         with:
           command: quickview,cves,recommendations,compare
-          image: ghcr.io/mission-apprentissage/mna_api_server:${{ env.VERSION }}
-          to: ghcr.io/mission-apprentissage/mna_api_server:latest
+          image: ghcr.io/ccas-produits-numeriques/ccas_api_server:${{ env.VERSION }}
+          to: ghcr.io/ccas-produits-numeriques/ccas_api_server:latest
           only-fixed: true
           sarif-file: sarif-server.output.json
 
@@ -53,8 +53,8 @@ jobs:
         uses: docker/scout-action@v1
         with:
           command: quickview,cves,recommendations,compare
-          image: ghcr.io/mission-apprentissage/mna_api_ui:${{ env.VERSION }}-recette
-          to: ghcr.io/mission-apprentissage/mna_api_ui:latest-production
+          image: ghcr.io/ccas-produits-numeriques/ccas_api_ui:${{ env.VERSION }}-recette
+          to: ghcr.io/ccas-produits-numeriques/ccas_api_ui:latest-production
           only-fixed: true
           sarif-file: sarif-ui.output.json
 
