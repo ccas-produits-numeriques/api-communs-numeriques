@@ -203,25 +203,9 @@ program
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:kit_communs_numeriques"));
 program
-  .command("import:formation")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:formation"));
-program
   .command("import:organismes")
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:organismes"));
-program
-  .command("import:communes")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:communes"));
-program
-  .command("import:certifications")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:certifications"));
-program
-  .command("import:catalogue")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:catalogue"));
 program
   .command("import:referentiel")
   .option("-q, --queued", "Run job asynchronously", false)

@@ -1,17 +1,12 @@
 import { getAcceeImporterStatus, runAcceImporter } from "./acce/acce.js";
 import { getBcnImporterStatus, runBcnImporter } from "./bcn/bcn.importer.js";
-import { getCatalogueImporterStatus, runCatalogueImporter } from "./catalogue/catalogue.importer.js";
-import { getCertificationImporterStatus, importCertifications } from "./certifications/certifications.importer.js";
-import { getCommuneImporterStatus, runCommuneImporter } from "./commune/commune.importer.js";
 import { getDaresCcnImporterStatus, runDaresConventionCollectivesImporter } from "./dares/ccn/dares.ccn.importer.js";
-import { getFormationsImporterStatus, importFormations } from "./formation/formation.importer.js";
 import { getFranceCompetencesImporterStatus, runRncpImporter } from "./france_competence/france_competence.importer.js";
 import { getKaliImporterStatus, runKaliConventionCollectivesImporter } from "./kali/kali.ccn.importer.js";
 import {
   getKitCommunsNumeriquesImporterStatus,
   runKitCommunsNumeriquesImporter,
 } from "./kit/kitCommunsNumeriques.importer.js";
-import { getMissionLocaleImporterStatus, runMissionLocaleImporter } from "./mission_locale/mission_locale.importer.js";
 import { getOrganismesImporterStatus, importOrganismes } from "./organisme/organisme.importer.js";
 import { getReferentielImporterStatus, runReferentielImporter } from "./referentiel/referentiel.js";
 import type { Importer } from "./types.js";
@@ -56,14 +51,6 @@ export const importers: Record<string, Importer> = {
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
-  "Import des données Catalogue": {
-    cron_string: timings.import_source_main,
-    handler: runCatalogueImporter,
-    resumable: true,
-    getStatus: getCatalogueImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
   "Import des données France Compétences": {
     cron_string: timings.import_source,
     handler: runRncpImporter,
@@ -72,27 +59,11 @@ export const importers: Record<string, Importer> = {
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
-  "Import des certifications": {
-    cron_string: timings.import_compute_step_1,
-    handler: async () => importCertifications(),
-    resumable: true,
-    getStatus: getCertificationImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
   "Import des organismes": {
     cron_string: timings.import_compute_step_1,
     handler: async () => importOrganismes(false),
     resumable: true,
     getStatus: getOrganismesImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
-  "Import des formations": {
-    cron_string: timings.import_compute_step_2,
-    handler: importFormations,
-    resumable: true,
-    getStatus: getFormationsImporterStatus,
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
@@ -120,20 +91,4 @@ export const importers: Record<string, Importer> = {
   //   checkinMargin: 60, // 1h
   //   maxRuntimeInMinutes: 30,
   // },
-  "Import des Missions Locales": {
-    cron_string: timings.import_source,
-    handler: runMissionLocaleImporter,
-    resumable: true,
-    getStatus: getMissionLocaleImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
-  "Import des Communes": {
-    cron_string: timings.import_source,
-    handler: runCommuneImporter,
-    resumable: true,
-    getStatus: getCommuneImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
 };

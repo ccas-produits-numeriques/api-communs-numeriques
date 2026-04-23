@@ -3,41 +3,23 @@ import type { z } from "zod/v4-mini";
 
 import type { $ZodType } from "zod/v4/core";
 import { zApiCabinetAvocatRoutes } from "./cabinet_avocat/cabinet_avocat.routes.js";
-import { zApiCertificationsRoutes } from "./certification/certification.routes.js";
 import type { IApiRouteSchema, IApiRouteSchemaWrite } from "./common.routes.js";
-import { zApiFormationRoutes } from "./formation/formation.routes.js";
-import { zApiGeographieRoutes } from "./geographie/geographie.routes.js";
-import { zApiJobRoutes } from "./jobs/job.routes.js";
 import { zApiOrganismesRoutes } from "./organisme/organisme.routes.js";
 import { zCoreRoutes } from "./healthcheck.routes.js";
 
 export * from "./common.routes.js";
 export * from "./cabinet_avocat/cabinet_avocat.routes.js";
-export * from "./certification/certification.routes.js";
-export * from "./geographie/geographie.routes.js";
-export * from "./formation/formation.routes.js";
-export * from "./jobs/job.routes.js";
 export * from "./organisme/organisme.routes.js";
 
 export const zApiRoutesGet = {
   ...zApiOrganismesRoutes.get,
   ...zApiCabinetAvocatRoutes.get,
-  ...zApiCertificationsRoutes.get,
-  ...zApiFormationRoutes.get,
-  ...zApiJobRoutes.get,
-  ...zApiGeographieRoutes.get,
-  ...zApiFormationRoutes.get,
   ...zCoreRoutes.get,
 } as const;
 
-export const zApiRoutesPost = {
-  ...zApiJobRoutes.post,
-  ...zApiFormationRoutes.post,
-} as const;
+export const zApiRoutesPost = {} as const;
 
-export const zApiRoutesPut = {
-  ...zApiJobRoutes.put,
-} as const;
+export const zApiRoutesPut = {} as const;
 
 export const zApiRoutesDelete = {} as const;
 

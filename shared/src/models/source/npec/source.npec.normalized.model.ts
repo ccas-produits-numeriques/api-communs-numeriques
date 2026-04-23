@@ -1,10 +1,10 @@
-import { zRncp } from "api-communs-numerique-sdk/internal";
 import { z } from "zod/v4-mini";
 
 import type { IModelDescriptorGeneric } from "../../common.js";
 import { zObjectIdMini } from "../../common.js";
 
 const collectionName = "source.npec.normalized" as const;
+const zRncp = z.string().check(z.regex(/^(RNCP)\d+$/));
 
 const indexes: IModelDescriptorGeneric["indexes"] = [
   [{ import_id: 1 }, {}],
