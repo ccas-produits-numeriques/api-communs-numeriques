@@ -46,16 +46,7 @@ export const zImportMetaNpec = z.object({
 export const zImportMetaSimple = z.object({
   _id: zObjectIdMini,
   import_date: z.date(),
-  type: z.enum([
-    "bcn",
-    "kit_communs_numeriques",
-    "acce",
-    "kali_ccn",
-    "communes",
-    "referentiel",
-    "catalogue",
-    "mission_locale",
-  ]),
+  type: z.enum(["bcn", "kit_communs_numeriques", "acce", "kali_ccn", "communes", "referentiel", "mission_locale"]),
   status: z.enum(["pending", "done", "failed"]),
 });
 
@@ -105,7 +96,6 @@ export const zImportMetaFormations = z.object({
   type: z.literal("formations"),
   source: z.object({
     organismes: z.object({ import_date: z.date() }),
-    catalogue: z.object({ import_date: z.date() }),
     certifications: z.object({ import_date: z.date() }),
     communes: z.object({ import_date: z.date() }),
   }),

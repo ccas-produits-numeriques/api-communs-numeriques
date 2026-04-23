@@ -10,7 +10,6 @@ Ce document décrit tous les jobs d'import et de traitement de données de l'API
 - [import:acce](#importacce) - Import des données ACCE (établissements éducatifs)
 - [import:kit_apprentissage](#importkit_apprentissage) - Import des correspondances CFD/RNCP
 - [import:referentiel](#importreferentiel) - Import des organismes depuis le Référentiel ONISEP
-- [import:catalogue](#importcatalogue) - Import du catalogue des formations en apprentissage
 - [import:france_competence](#importfrance_competence) - Import des certifications RNCP/RS
 - [import:communes](#importcommunes) - Import des communes françaises
 - [import:mission_locale](#importmission_locale) - Import des missions locales
@@ -246,51 +245,6 @@ Importe les données des organismes de formation depuis le Référentiel Apprent
 | Job                 | Description                                                |
 | ------------------- | ---------------------------------------------------------- |
 | `import:organismes` | Utilise les données du référentiel comme source principale |
-
-#### Planification
-
-- **Cron** : `0 */4 * * *` (toutes les 4 heures)
-- **Durée max** : 30 minutes
-
----
-
-### import:catalogue
-
-#### Description
-
-Importe les données du Catalogue des formations en apprentissage maintenu par le réseau Carif-Oref. Ce catalogue contient toutes les formations publiées et leurs caractéristiques.
-
-#### Source de données
-
-| Propriété  | Valeur                                                                             |
-| ---------- | ---------------------------------------------------------------------------------- |
-| **Source** | Catalogue Apprentissage (Carif-Oref)                                               |
-| **URL**    | `https://catalogue-apprentissage.intercariforef.org/api/v1/entity/formations.json` |
-| **Format** | ZIP contenant des JSON Lines                                                       |
-
-#### Collection de destination
-
-| Collection         | Description                                |
-| ------------------ | ------------------------------------------ |
-| `source.catalogue` | Données brutes des formations du catalogue |
-
-#### Étapes du job
-
-1. **Comptage** : Récupération du nombre total de formations publiées
-2. **Téléchargement** : Stream du fichier ZIP
-3. **Filtrage** : Exclusion des formations jamais publiées (`tags.length === 0`)
-4. **Insertion** : Insertion par lots de 100
-5. **Nettoyage** : Suppression des anciennes données
-
-#### Pré-requis
-
-**Aucun** - Ce job peut s'exécuter de manière indépendante.
-
-#### Jobs dépendants
-
-| Job                | Description                                                     |
-| ------------------ | --------------------------------------------------------------- |
-| `import:formation` | Utilise les données du catalogue pour construire les formations |
 
 #### Planification
 
@@ -751,12 +705,11 @@ Agrège les données de formation en combinant les informations du Catalogue ave
 
 #### Sources de données internes
 
-| Collection source  | Job d'alimentation      | Description                   |
-| ------------------ | ----------------------- | ----------------------------- |
-| `source.catalogue` | `import:catalogue`      | Données brutes des formations |
-| `certifications`   | `import:certifications` | Informations de certification |
-| `organisme`        | `import:organismes`     | Informations des organismes   |
-| `commune`          | `import:communes`       | Contexte géographique         |
+| Collection source | Job d'alimentation      | Description                   |
+| ----------------- | ----------------------- | ----------------------------- |
+| `certifications`  | `import:certifications` | Informations de certification |
+| `organisme`       | `import:organismes`     | Informations des organismes   |
+| `commune`         | `import:communes`       | Contexte géographique         |
 
 #### Collection de destination
 
@@ -768,7 +721,6 @@ Agrège les données de formation en combinant les informations du Catalogue ave
 
 1. **Vérification des pré-requis** : Validation que toutes les sources sont à jour
 2. **Traitement en streaming** :
-   - Lecture des données du catalogue
    - Enrichissement avec certification (CFD, RNCP)
    - Enrichissement avec organismes (formateur, responsable)
    - Enrichissement géographique (commune, département, région, académie)
@@ -780,7 +732,6 @@ Agrège les données de formation en combinant les informations du Catalogue ave
 
 | Job pré-requis          | Description                   |
 | ----------------------- | ----------------------------- |
-| `import:catalogue`      | Doit être terminé avec succès |
 | `import:certifications` | Doit être terminé avec succès |
 | `import:organismes`     | Doit être terminé avec succès |
 | `import:communes`       | Doit être terminé avec succès |
@@ -936,9 +887,6 @@ Supprime automatiquement les comptes utilisateurs inactifs depuis plus de 2 ans.
 │                 │ import:organismes        │                                 │
 │                 └──────────────────────────┘                                 │
 │                              │                                               │
-│  ┌──────────────────┐        │                                               │
-│  │ import:catalogue │────────┼                                               │
-│  └──────────────────┘        │                                               │
 │                              ▼                                               │
 │                 ┌──────────────────────────┐                                 │
 │                 │ import:formation         │                                 │
@@ -954,6 +902,6 @@ Supprime automatiquement les comptes utilisateurs inactifs depuis plus de 2 ans.
 | Timing                    | Cron                      | Jobs                                                                   |
 | ------------------------- | ------------------------- | ---------------------------------------------------------------------- |
 | **import_source**         | `0 4 * * *`               | acce, france_competence, kali_ccn, dares_ccn, mission_locale, communes |
-| **import_source_main**    | `0 */4 * * *`             | bcn, kit_apprentissage, referentiel, catalogue                         |
+| **import_source_main**    | `0 */4 * * *`             | bcn, kit_apprentissage, referentiel                                    |
 | **import_compute_step_1** | `0 1,5,9,13,17,21 * * *`  | certifications, organismes                                             |
 | **import_compute_step_2** | `0 2,6,10,14,18,22 * * *` | formation                                                              |
