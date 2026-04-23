@@ -15,6 +15,7 @@ const kitClient = apiRateLimiter("kit_communs_numeriques", {
   client: axios.create({
     baseURL: config.api.kit_communs_numeriques.endpoint,
     timeout: 120_000,
+    proxy: false,
   }),
   timeout: 900_000, // 15 minutes
   maxQueueSize: 100,

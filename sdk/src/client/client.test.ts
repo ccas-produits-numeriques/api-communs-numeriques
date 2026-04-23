@@ -99,8 +99,8 @@ describe("get", () => {
     const scope = nock("https://api.courdecassation.beta.gouv.fr/api", {
       reqheaders: { authorization: "Bearer api-key" },
     })
-      .get("/certification/v1")
-      .query({ "identifiant.rncp": "RNP28704" })
+      .get("/organisme/v1/recherche")
+      .query({ uai: "NOT_A_VALID_UAI" })
       .reply(400, {
         statusCode: 400,
         name: "Bad Request",
@@ -108,7 +108,7 @@ describe("get", () => {
         data: {
           validationError: {
             errors: [],
-            "identifiant.rncp": {
+            uai: {
               errors: ["Invalid"],
             },
           },
@@ -117,8 +117,8 @@ describe("get", () => {
 
     const apiClient = new ApiClient({ key: "api-key" });
     const err = await apiClient
-      .get("/certification/v1", {
-        querystring: { "identifiant.rncp": "RNP28704" },
+      .get("/organisme/v1/recherche", {
+        querystring: { uai: "NOT_A_VALID_UAI" },
       })
       .then(() => {
         expect.unreachable("should throw an error");
@@ -134,7 +134,7 @@ describe("get", () => {
       errorData: {
         validationError: {
           errors: [],
-          "identifiant.rncp": {
+          uai: {
             errors: ["Invalid"],
           },
         },
@@ -142,9 +142,9 @@ describe("get", () => {
       message: "Request validation failed",
       name: "Bad Request",
       params: {},
-      path: "/certification/v1",
+      path: "/organisme/v1/recherche",
       querystring: {
-        "identifiant.rncp": "RNP28704",
+        uai: "NOT_A_VALID_UAI",
       },
       requestHeaders: {
         authorization: "Bearer api-key",

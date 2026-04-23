@@ -1,5 +1,6 @@
 import { addJob } from "job-processor";
 
 export const up = async () => {
-  await addJob({ name: "import:certifications", payload: { force: true }, queued: false });
+  // Certification import pipeline has been decommissioned.
+  await addJob({ name: "indexes:recreate", queued: false });
 };

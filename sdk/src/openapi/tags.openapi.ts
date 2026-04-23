@@ -30,6 +30,10 @@ export const tagsOpenapi = {
     name: { fr: "Géographie", en: null },
     description: { fr: "Référentiel Géographique", en: null },
   },
+  cabinet_avocat: {
+    name: { fr: "Cabinet Avocat", en: null },
+    description: { fr: "Liste des cabinets d'avocats", en: null },
+  },
   exprimental: {
     name: { fr: "Expérimental", en: null },
     description: {

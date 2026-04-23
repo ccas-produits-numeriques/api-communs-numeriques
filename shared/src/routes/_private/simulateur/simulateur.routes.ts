@@ -1,9 +1,10 @@
 import type { IApiRoutesDef } from "api-communs-numerique-sdk";
-import { zRncp } from "api-communs-numerique-sdk/internal";
 import { z } from "zod/v4-mini";
 
 import { zSourceNpecNormalizedData } from "../../../models/source/npec/source.npec.normalized.model.js";
 import { zParisLocalDate } from "../../../zod/date.primitives.js";
+
+const zRncp = z.string().check(z.regex(/^(RNCP)\d+$/));
 
 const zSimulateurContext = z.object({
   rncps: z.array(z.object({ intitule: z.string(), code: zRncp })),

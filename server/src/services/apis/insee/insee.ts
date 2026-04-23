@@ -16,6 +16,7 @@ const rawClient = axios.create({
     Authorization: `Bearer ${config.api.insee.token}`,
   },
   timeout: 60_000,
+  proxy: false,
 });
 
 axiosRetry(rawClient as AxiosInstance, {
