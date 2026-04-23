@@ -12,14 +12,8 @@ import type {
   IApiResponse,
 } from "../routes/index.js";
 import { ApiError } from "./internal/apiError.js";
-import type { CertificationModule } from "./internal/certification/certification.module.js";
-import { buildCertificationModule } from "./internal/certification/certification.module.js";
-import type { FormationModule } from "./internal/formation/formation.module.js";
-import { buildFormationModule } from "./internal/formation/formation.module.js";
 import type { WithQueryStringAndPathParam } from "./internal/generateUri/generateUri.js";
 import { generateUri } from "./internal/generateUri/generateUri.js";
-import type { GeographieModule } from "./internal/geographie/geographie.module.js";
-import { buildGeographieModule } from "./internal/geographie/geographie.module.js";
 import type { OrganismeModule } from "./internal/organisme/organisme.module.js";
 import { buildOrganismeModule } from "./internal/organisme/organisme.module.js";
 
@@ -56,19 +50,13 @@ class ApiClient {
   endpoint: string;
   key: string;
 
-  certification: CertificationModule;
-  geographie: GeographieModule;
   organisme: OrganismeModule;
-  formation: FormationModule;
 
   constructor(config: ApiClientConfig) {
     this.endpoint = removeAtEnd(config.endpoint ?? "https://api.courdecassation.beta.gouv.fr/api", "/");
     this.key = config.key ?? throwError("api-communs-numerique-sdk: api key is required");
 
-    this.certification = buildCertificationModule(this);
-    this.geographie = buildGeographieModule(this);
     this.organisme = buildOrganismeModule(this);
-    this.formation = buildFormationModule(this);
   }
 
   private buildRequestInit(

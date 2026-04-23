@@ -17,5 +17,5 @@ docker run \
   --entrypoint /bin/bash \
   -e SENTRY_AUTH_TOKEN="${SENTRY_AUTH_TOKEN}" \
   -e SENTRY_DSN="${SENTRY_DSN}" \
-  ghcr.io/mission-apprentissage/mna_${PRODUCT_NAME}_server:${VERSION} \
-  /app/server/sentry-release-server.sh "mission-apprentissage/${REPO_NAME}" "${COMMIT_ID}" "${PREV_COMMIT_ID}"
+  ghcr.io/ccas-produits-numeriques/ccas_${PRODUCT_NAME}_server:${VERSION} \
+  /app/server/sentry-release-server.sh "ccas-produits-numeriques/${REPO_NAME}" "${COMMIT_ID}" "${PREV_COMMIT_ID}"

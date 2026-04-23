@@ -12,6 +12,7 @@ const apiEnseignementSup = apiRateLimiter("insee", {
   client: axios.create({
     baseURL: config.api.enseignementSup.endpoint,
     timeout: 300_000,
+    proxy: false,
   }),
   timeout: 900_000, // 15 minutes
   maxQueueSize: 100,

@@ -1,27 +1,10 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import house from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/house.svg";
 import school from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/school.svg";
-import search from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/search.svg";
-import book from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/book.svg";
-import community from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/community.svg";
-import locationFrance from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/map/location-france.svg";
 import { Tag as TagDsfr } from "@codegouvfr/react-dsfr/Tag";
 import { Tile } from "@codegouvfr/react-dsfr/Tile";
 import { Box, Container, Typography } from "@mui/material";
-import {
-  certificationsPageSummaryDoc,
-  generationLienPriseRdvFormationPageSummaryDoc,
-  getTextOpenAPI,
-  rechercheCommunePageSummaryDoc,
-  rechercheFormationPageSummaryDoc,
-  rechercheOffrePageSummaryDoc,
-  recuperationDepartementsPageSummaryDoc,
-  recuperationDetailOffrePageSummaryDoc,
-  recuperationFormationPageSummaryDoc,
-  recuperationMissionLocalePageSummaryDoc,
-  recuperationOrganismesPageSummaryDoc,
-} from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI, recuperationOrganismesPageSummaryDoc } from "api-communs-numerique-sdk/internal";
 
 import { Artwork } from "@/components/artwork/Artwork";
 import { DsfrLink } from "@/components/link/DsfrLink";
@@ -74,96 +57,12 @@ export default async function ExplorerApiPage() {
         gap={fr.spacing("2w")}
       >
         <Tile
-          title={getTextOpenAPI(rechercheOffrePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(rechercheOffrePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={search.src}
-          enlargeLinkOrButton
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-          linkProps={{ href: PAGES.static.rechercheOffre.getPath() }}
-        />
-        <Tile
-          title={getTextOpenAPI(recuperationDetailOffrePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(recuperationDetailOffrePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={search.src}
-          enlargeLinkOrButton
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-          linkProps={{ href: PAGES.static.recuperationDetailOffre.getPath() }}
-        />
-        <Tile
-          title={getTextOpenAPI(rechercheFormationPageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(rechercheFormationPageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={search.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.rechercheFormation.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(recuperationFormationPageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(recuperationFormationPageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={search.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.recuperationFormation.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(generationLienPriseRdvFormationPageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(generationLienPriseRdvFormationPageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={community.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.generationLienPriseRdvFormation.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(certificationsPageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(certificationsPageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={book.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.catalogueDesDonneesCertification.getPath() }}
-          style={{
-            color: fr.colors.decisions.text.title.grey.default,
-          }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
           title={getTextOpenAPI(recuperationOrganismesPageSummaryDoc.title, "fr")}
           desc={getTextOpenAPI(recuperationOrganismesPageSummaryDoc.headline, "fr")}
           imageSvg
           imageUrl={school.src}
           enlargeLinkOrButton
           linkProps={{ href: PAGES.static.recuperationOrganismes.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(rechercheCommunePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(rechercheCommunePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={search.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.rechercheCommune.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(recuperationDepartementsPageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(recuperationDepartementsPageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={locationFrance.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.recuperationDepartements.getPath() }}
-          start={<TagDsfr>Jeu de données</TagDsfr>}
-        />
-        <Tile
-          title={getTextOpenAPI(recuperationMissionLocalePageSummaryDoc.title, "fr")}
-          desc={getTextOpenAPI(recuperationMissionLocalePageSummaryDoc.headline, "fr")}
-          imageSvg
-          imageUrl={house.src}
-          enlargeLinkOrButton
-          linkProps={{ href: PAGES.static.recuperationMissionLocales.getPath() }}
           start={<TagDsfr>Jeu de données</TagDsfr>}
         />
       </Box>

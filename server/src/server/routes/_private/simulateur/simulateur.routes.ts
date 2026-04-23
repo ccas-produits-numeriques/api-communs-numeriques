@@ -19,10 +19,10 @@ export const simulateurRoutes = ({ server }: { server: Server }) => {
         conventions_collectives_dares,
         conventions_collectives_dares_ape_idcc,
       ] = await Promise.all([
-        getDbCollection("certifications")
+        getDbCollection("source.france_competence")
           .aggregate<{ code: string; intitule: string }>([
-            { $match: { "identifiant.rncp": { $ne: null } } },
-            { $group: { _id: "$identifiant.rncp", intitule: { $first: "$intitule.rncp" } } },
+            { $match: { numero_fiche: { $ne: null } } },
+            { $group: { _id: "$numero_fiche", intitule: { $first: "$data.standard.Intitule" } } },
             { $sort: { numero: 1 } },
             { $project: { _id: 0, code: "$_id", intitule: 1 } },
           ])

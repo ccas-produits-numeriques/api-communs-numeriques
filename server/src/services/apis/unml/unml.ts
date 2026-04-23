@@ -13,6 +13,7 @@ const unmlClient = apiRateLimiter("unml", {
   client: axios.create({
     timeout: 30_000,
     baseURL: config.api.unml.endpoint,
+    proxy: false,
   }),
   timeout: 900_000, // 15 minutes
   maxQueueSize: 100,

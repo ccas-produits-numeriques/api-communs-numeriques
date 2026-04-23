@@ -7,12 +7,8 @@ import { notifyUsersAboutExpiringApiKeys } from "./apiKey/apiKeyExpiration.notif
 import { validateModels } from "./db/schemaValidation.js";
 import { runAcceImporter } from "./importer/acce/acce.js";
 import { runBcnImporter } from "./importer/bcn/bcn.importer.js";
-import { runCatalogueImporter } from "./importer/catalogue/catalogue.importer.js";
-import { importCertifications } from "./importer/certifications/certifications.importer.js";
-import { runCommuneImporter } from "./importer/commune/commune.importer.js";
 import { runDaresApeIdccImporter } from "./importer/dares/ape_idcc/dares.ape_idcc.importer.js";
 import { runDaresConventionCollectivesImporter } from "./importer/dares/ccn/dares.ccn.importer.js";
-import { importFormations } from "./importer/formation/formation.importer.js";
 import {
   importRncpArchive,
   onImportRncpArchiveFailure,
@@ -21,7 +17,6 @@ import {
 import { importers } from "./importer/importers.js";
 import { runKaliConventionCollectivesImporter } from "./importer/kali/kali.ccn.importer.js";
 import { runKitCommunsNumeriquesImporter } from "./importer/kit/kitCommunsNumeriques.importer.js";
-import { runMissionLocaleImporter } from "./importer/mission_locale/mission_locale.importer.js";
 import { importNpecResource, onImportNpecResourceFailure, runNpecImporter } from "./importer/npec/npec.importer.js";
 import { importOrganismes } from "./importer/organisme/organisme.importer.js";
 import { runReferentielImporter } from "./importer/referentiel/referentiel.js";
@@ -100,20 +95,8 @@ export async function setupJobProcessor() {
       "import:referentiel": {
         handler: runReferentielImporter,
       },
-      "import:catalogue": {
-        handler: runCatalogueImporter,
-      },
-      "import:formation": {
-        handler: importFormations,
-      },
-      "import:communes": {
-        handler: runCommuneImporter,
-      },
       "import:france_competence": {
         handler: runRncpImporter,
-      },
-      "import:mission_locale": {
-        handler: runMissionLocaleImporter,
       },
       "import:kali_ccn": {
         handler: async (_job, signal) => runKaliConventionCollectivesImporter(signal),
@@ -146,20 +129,6 @@ export async function setupJobProcessor() {
             await onImportNpecResourceFailure(zImportMetaNpec.parse(job.payload));
           }
         },
-        resumable: true,
-      },
-      "import:certifications": {
-        handler: async (job) =>
-          importCertifications(
-            z.parse(
-              z.nullish(
-                z.object({
-                  force: z.optional(z.boolean()),
-                })
-              ),
-              job.payload
-            )
-          ),
         resumable: true,
       },
       "import:organismes": {

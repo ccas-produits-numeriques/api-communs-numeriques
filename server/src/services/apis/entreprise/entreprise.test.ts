@@ -75,7 +75,7 @@ describe("getEtablissementDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(200, { data: etablissement });
 
@@ -127,7 +127,7 @@ describe("getEtablissementDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -149,7 +149,7 @@ describe("getEtablissementDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -232,7 +232,7 @@ describe("getEtablissementDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -254,7 +254,7 @@ describe("getEtablissementDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(200, { data: etablissementPrivate });
 
@@ -341,7 +341,7 @@ describe("getEtablissementDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(451, {
         errors: [
@@ -386,7 +386,7 @@ describe("getEtablissementDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(422, {
         errors: [
@@ -452,7 +452,7 @@ describe("getUniteLegaleDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(200, { data: uniteLegale });
 
@@ -501,7 +501,7 @@ describe("getUniteLegaleDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -523,7 +523,7 @@ describe("getUniteLegaleDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -591,7 +591,7 @@ describe("getUniteLegaleDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(404, {
           errors: [
@@ -613,7 +613,7 @@ describe("getUniteLegaleDiffusible", () => {
           token: "key",
           recipient: "13002526500013",
           object: "Consolidation des données",
-          context: "MNA",
+          context: "CCAS",
         })
         .reply(200, { data: uniteLegalePrivate });
 
@@ -677,7 +677,7 @@ describe("getUniteLegaleDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(451, {
         errors: [
@@ -717,7 +717,7 @@ describe("getUniteLegaleDiffusible", () => {
         token: "key",
         recipient: "13002526500013",
         object: "Consolidation des données",
-        context: "MNA",
+        context: "CCAS",
       })
       .reply(422, {
         errors: [

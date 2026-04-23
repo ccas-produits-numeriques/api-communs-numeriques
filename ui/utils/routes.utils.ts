@@ -1,16 +1,4 @@
-import {
-  certificationsPageSummaryDoc,
-  generationLienPriseRdvFormationPageSummaryDoc,
-  getTextOpenAPI,
-  rechercheCommunePageSummaryDoc,
-  rechercheFormationPageSummaryDoc,
-  rechercheOffrePageSummaryDoc,
-  recuperationDepartementsPageSummaryDoc,
-  recuperationDetailOffrePageSummaryDoc,
-  recuperationFormationPageSummaryDoc,
-  recuperationMissionLocalePageSummaryDoc,
-  recuperationOrganismesPageSummaryDoc,
-} from "api-communs-numerique-sdk/internal";
+import { getTextOpenAPI, recuperationOrganismesPageSummaryDoc } from "api-communs-numerique-sdk/internal";
 import type { MetadataRoute } from "next";
 
 import { publicConfig } from "@/config.public";
@@ -53,51 +41,6 @@ export const PAGES = {
       getPath: () => `/explorer` as string,
       index: true,
       getTitle: () => "Explorer les API",
-    },
-    catalogueDesDonneesCertification: {
-      getPath: () => `/explorer/certifications` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(certificationsPageSummaryDoc.title, "fr"),
-    },
-    rechercheOffre: {
-      getPath: () => `/explorer/recherche-offre` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(rechercheOffrePageSummaryDoc.title, "fr"),
-    },
-    recuperationDetailOffre: {
-      getPath: () => `/explorer/recuperation-detail-offre` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(recuperationDetailOffrePageSummaryDoc.title, "fr"),
-    },
-    rechercheCommune: {
-      getPath: () => `/explorer/recherche-commune` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(rechercheCommunePageSummaryDoc.title, "fr"),
-    },
-    rechercheFormation: {
-      getPath: () => `/explorer/recherche-formation` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(rechercheFormationPageSummaryDoc.title, "fr"),
-    },
-    recuperationFormation: {
-      getPath: () => `/explorer/recuperation-formation` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(recuperationFormationPageSummaryDoc.title, "fr"),
-    },
-    generationLienPriseRdvFormation: {
-      getPath: () => `/explorer/generation-lien-prise-rdv-formation` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(generationLienPriseRdvFormationPageSummaryDoc.title, "fr"),
-    },
-    recuperationDepartements: {
-      getPath: () => `/explorer/recuperation-departements` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(recuperationDepartementsPageSummaryDoc.title, "fr"),
-    },
-    recuperationMissionLocales: {
-      getPath: () => `/explorer/recuperation-mission-locales` as string,
-      index: true,
-      getTitle: () => getTextOpenAPI(recuperationMissionLocalePageSummaryDoc.title, "fr"),
     },
     recuperationOrganismes: {
       getPath: () => `/explorer/recuperation-organismes` as string,

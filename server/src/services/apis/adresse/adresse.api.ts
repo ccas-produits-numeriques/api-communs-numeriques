@@ -16,6 +16,7 @@ const ONE_YEAR = 365 * ONE_DAY;
 const rawClient = axios.create({
   baseURL: config.api.adresse.endpoint,
   timeout: 60_000,
+  proxy: false,
 });
 const SAFE_HTTP_METHODS: Array<string | undefined> = ["get", "head", "options"];
 

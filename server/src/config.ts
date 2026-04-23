@@ -82,20 +82,12 @@ const config = {
     enseignementSup: {
       endpoint: "https://data.enseignementsup-recherche.gouv.fr",
     },
-    catalogue: {
-      baseurl: "https://catalogue-apprentissage.intercariforef.org",
-    },
-    catalogueEducatif: {
-      baseurl: "https://catalogue.apprentissage.education.gouv.fr",
-      username: env.get("API_CATALOGUE_EDUCATIF_USERNAME").required().asString(),
-      password: env.get("API_CATALOGUE_EDUCATIF_PASSWORD").required().asString(),
-    },
     entreprise: {
       baseurl: "https://entreprise.api.gouv.fr/v3",
       key: env.get("API_ENTREPRISE_KEY").required().asString(),
       defaultRecipient: "13002526500013", // Siret DINUM
       object: "Consolidation des données",
-      context: "MNA",
+      context: "CCAS",
     },
     bal: {
       baseurl: env.get("API_BAL_URL").required().asString(),

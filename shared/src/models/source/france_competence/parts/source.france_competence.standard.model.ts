@@ -1,5 +1,6 @@
-import { zTypeEnregistrement } from "api-communs-numerique-sdk/internal";
 import { z } from "zod/v4-mini";
+
+const zTypeEnregistrement = z.enum(["Enregistrement de droit", "Enregistrement sur demande"]);
 
 export const zSourceFcStandard = z.object({
   Id_Fiche: z.string(),

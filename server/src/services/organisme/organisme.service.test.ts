@@ -1397,7 +1397,7 @@ describe("searchOrganismeMetadata", () => {
             .get(`/insee/sirene/etablissements/diffusibles/${siret3}`)
             .query({
               token: "key",
-              context: "MNA",
+              context: "CCAS",
               recipient: "13002526500013",
               object: "Consolidation des données",
             })
@@ -1520,7 +1520,7 @@ describe("searchOrganismeMetadata", () => {
             .get(`/insee/sirene/etablissements/diffusibles/${siret4}`)
             .query({
               token: "key",
-              context: "MNA",
+              context: "CCAS",
               recipient: "13002526500013",
               object: "Consolidation des données",
             })
@@ -1643,7 +1643,7 @@ describe("searchOrganismeMetadata", () => {
             .get(`/insee/sirene/etablissements/diffusibles/8030051560004`)
             .query({
               token: "key",
-              context: "MNA",
+              context: "CCAS",
               recipient: "13002526500013",
               object: "Consolidation des données",
             })
