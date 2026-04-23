@@ -13,6 +13,7 @@ import { downloadFileAsStream } from "@/utils/apiUtils.js";
 const client = axios.create({
   baseURL: "https://www.data.gouv.fr/api/1",
   timeout: 300_000,
+  proxy: false,
 });
 
 export async function fetchDataGouvDataSet(datasetId: string): Promise<IDataGouvDataset> {

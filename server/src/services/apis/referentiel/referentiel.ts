@@ -11,6 +11,7 @@ import { withCause } from "@/services/errors/withCause.js";
 const referentielClient = axios.create({
   timeout: 5000,
   baseURL: config.api.referentielOnisep.endpoint,
+  proxy: false,
 });
 
 const ITEMS_PAR_PAGES = 60_000;

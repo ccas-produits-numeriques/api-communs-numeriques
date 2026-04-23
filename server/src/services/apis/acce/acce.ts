@@ -22,6 +22,7 @@ const acceClient = apiRateLimiter("acce", {
   client: axios.create({
     baseURL: "https://acce.depp.education.fr/acce",
     timeout: 900_000,
+    proxy: false,
   }),
   timeout: 1_800_000, // 30 minutes
   maxQueueSize: 100,

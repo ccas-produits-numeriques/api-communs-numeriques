@@ -10,6 +10,7 @@ import { downloadFileAsStream } from "@/utils/apiUtils.js";
 const bcnClient = axios.create({
   baseURL: "https://bcn.depp.education.fr/bcn",
   timeout: 90_000,
+  proxy: false,
 });
 
 export async function fetchBcnData(table: ISourceBcn["source"]): Promise<ReadStream> {

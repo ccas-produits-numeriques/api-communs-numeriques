@@ -115,7 +115,7 @@ describe("runDaresApeIdccImporter", () => {
       .reply(200, await readFile(join(fixtureDir, "article.html"), "utf-8"));
     scope
       .head("/sites/default/files/2034d039cf1e7fed7eac52c2cae984b9/IDCC2021_passageAPEIDCC_diff_version_web.xlsx")
-      .reply(200, "", { "last-modified": lastMonth.toString() });
+      .reply(200, "", { "last-modified": lastMonth.toUTCString() });
 
     const initialImport: IImportMetaDares = {
       _id: new ObjectId(),
@@ -175,11 +175,11 @@ describe("runDaresApeIdccImporter", () => {
       .reply(200, await readFile(join(fixtureDir, "article.html"), "utf-8"));
     scope
       .head("/sites/default/files/2034d039cf1e7fed7eac52c2cae984b9/IDCC2021_passageAPEIDCC_diff_version_web.xlsx")
-      .reply(200, "", { "last-modified": yesterday.toString() });
+      .reply(200, "", { "last-modified": yesterday.toUTCString() });
     scope
       .get("/sites/default/files/2034d039cf1e7fed7eac52c2cae984b9/IDCC2021_passageAPEIDCC_diff_version_web.xlsx")
       .reply(200, createReadStream(join(fixtureDir, "sample.xlsx")), {
-        "last-modified": yesterday.toString(),
+        "last-modified": yesterday.toUTCString(),
       });
 
     const initialImport: IImportMetaDares = {

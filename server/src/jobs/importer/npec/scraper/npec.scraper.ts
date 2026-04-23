@@ -15,6 +15,7 @@ import { getStaticFilePath } from "@/utils/getStaticFilePath.js";
 
 const client = axios.create({
   baseURL: "https://www.francecompetences.fr/referentiels-et-bases-de-donnees",
+  proxy: false,
   timeout: 300_000,
 });
 

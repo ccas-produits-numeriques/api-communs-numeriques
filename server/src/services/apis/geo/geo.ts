@@ -14,6 +14,7 @@ const geoClient = apiRateLimiter("geo", {
   client: axios.create({
     baseURL: config.api.geo.endpoint,
     timeout: 30_000,
+    proxy: false,
   }),
   timeout: 900_000, // 15 minutes
   maxQueueSize: 100,
