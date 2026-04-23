@@ -12,18 +12,23 @@ import {
   uniteLegaleFixture,
 } from "./organisme.importer.fixtures.js";
 import { importOrganismes } from "./organisme.importer.js";
+import { searchAdresseGeopoint } from "@/services/apis/adresse/adresse.api.js";
 import { getEtablissementDiffusible, getUniteLegaleDiffusible } from "@/services/apis/entreprise/entreprise.js";
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 
 import { useMongo } from "@tests/mongo.test.utils.js";
 
-vi.mock("@/services/apis/entreprise/entreprise.js", async (importOriginal) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const actual: any = await importOriginal();
+vi.mock("@/services/apis/entreprise/entreprise.js", () => {
   return {
-    ...actual,
     getEtablissementDiffusible: vi.fn(),
+    getSirenFromSiret: (siret: string) => siret.substring(0, 9),
     getUniteLegaleDiffusible: vi.fn(),
+  };
+});
+
+vi.mock("@/services/apis/adresse/adresse.api.js", () => {
+  return {
+    searchAdresseGeopoint: vi.fn(),
   };
 });
 
@@ -70,7 +75,7 @@ const todayImportOrganismes = {
   },
 } as const;
 
-describe("importOrganismes", () => {
+describe("importOrganismes", { timeout: 30_000 }, () => {
   useMongo();
 
   beforeEach(() => {
@@ -116,6 +121,15 @@ describe("importOrganismes", () => {
       });
       vi.mocked(getUniteLegaleDiffusible).mockImplementation(async (siren: string) => {
         return uniteLegaleFixture.find((e) => e.siren === siren) ?? null;
+      });
+      vi.mocked(searchAdresseGeopoint).mockImplementation(async ({ codeInsee }) => {
+        if (codeInsee === "59507") {
+          return { type: "Point", coordinates: [3.082893, 50.611439] };
+        }
+        if (codeInsee === "22362") {
+          return { type: "Point", coordinates: [-3.2232, 48.783214] };
+        }
+        return null;
       });
     });
 

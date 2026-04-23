@@ -9,6 +9,7 @@ import { downloadFileAsStream } from "@/utils/apiUtils.js";
 
 const client = axios.create({
   baseURL: "https://travail-emploi.gouv.fr",
+  proxy: false,
   timeout: 300_000,
 });
 

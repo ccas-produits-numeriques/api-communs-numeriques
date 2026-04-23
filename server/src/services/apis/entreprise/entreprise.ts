@@ -16,6 +16,7 @@ import { apiRateLimiter } from "@/utils/apiUtils.js";
 const rawClient = axios.create({
   timeout: 5000,
   baseURL: config.api.entreprise.baseurl,
+  proxy: false,
 });
 
 const SAFE_HTTP_METHODS: Array<string | undefined> = ["get", "head", "options"];

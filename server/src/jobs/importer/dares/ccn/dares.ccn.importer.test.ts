@@ -110,11 +110,11 @@ describe("runConventionCollectivesImporter", () => {
       .head(
         "/sites/travail-emploi/files/2024-10/Liste%20des%20conventions%20collectives%20et%20de%20leur%20code%20IDCC%20-%20octobre%202024.xlsx"
       )
-      .reply(200, "", { "last-modified": lastMonth.toString() });
+      .reply(200, "", { "last-modified": lastMonth.toUTCString() });
     // scope
     //   .get("/sites/travail-emploi/files/2024-10/Liste%20des%20conventions%20collectives%20et%20de%20leur%20code%20IDCC%20-%20octobre%202024.xlsxx")
     //   .reply(200, createReadStream(join(fixtureDir, "sample.xlsx")), {
-    //     "last-modified": lastMonth.toString()
+    //     "last-modified": lastMonth.toUTCString()
     //   });
 
     const initialImport: IImportMetaDares = {
@@ -174,13 +174,13 @@ describe("runConventionCollectivesImporter", () => {
       .head(
         "/sites/travail-emploi/files/2024-10/Liste%20des%20conventions%20collectives%20et%20de%20leur%20code%20IDCC%20-%20octobre%202024.xlsx"
       )
-      .reply(200, "", { "last-modified": yesterday.toString() });
+      .reply(200, "", { "last-modified": yesterday.toUTCString() });
     scope
       .get(
         "/sites/travail-emploi/files/2024-10/Liste%20des%20conventions%20collectives%20et%20de%20leur%20code%20IDCC%20-%20octobre%202024.xlsx"
       )
       .reply(200, createReadStream(join(fixtureDir, "sample.xlsx")), {
-        "last-modified": yesterday.toString(),
+        "last-modified": yesterday.toUTCString(),
       });
 
     const initialImport: IImportMetaDares = {
