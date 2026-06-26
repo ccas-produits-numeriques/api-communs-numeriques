@@ -8,7 +8,7 @@ export const cabinetAvocatRoutes = ({ server }: { server: Server }) => {
     "/cabinet-avocat/v1/recherche",
     {
       schema: zRoutes.get["/cabinet-avocat/v1/recherche"],
-      onRequest: [server.auth(zRoutes.get["/cabinet-avocat/v1/recherche"])],
+      // onRequest: [server.auth(zRoutes.get["/cabinet-avocat/v1/recherche"])], // TODO
     },
     async (request, response) => {
       const result = await searchCabinetAvocat(request.query);
