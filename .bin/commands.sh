@@ -4,7 +4,7 @@ set -euo pipefail
 
 if [ ! -f "${ROOT_DIR}/.bin/shared/commands.sh" ]; then
 
-  echo "Mise a jour du sous-module ccas-shared-bin"
+  echo "Mise à jour du sous-module shared-bin"
 
   git submodule update --init "${ROOT_DIR}/.bin/shared"
 
@@ -13,36 +13,44 @@ fi
 . "${ROOT_DIR}/.bin/shared/commands.sh"
 
 ################################################################################
-# Non-shared commands
+# Shared commands
 ################################################################################
 
-_meta_help["app:build"]="Build Ui & Server Docker images"
+_register "dev:dependencies:check"
+_register "dev:setup"
+_register "vault:edit"
+_register "app:deploy"
+_register "app:deploy:log:encrypt"
+_register "app:deploy:log:decrypt"
 
-function app:build() {
-  "${SCRIPT_DIR}/app-build.sh" "$@"
-}
+################################################################################
+# Local commands
+################################################################################
 
-_meta_help["env:init"]="Update local env files using values from SOPS files"
+_local_app_build__help="Build Ui & Server Docker images"
+_register "app:build" "_local_app_build"
+function _local_app_build() { "${SCRIPTS_DIR}/app-build.sh" "$@"; }
 
-function env:init() {
-  "${SCRIPT_DIR}/env-init.sh" "$@"
-}
+_local_env_init__help="Update local env files using values from SOPS files"
+_register "env:init" "_local_env_init"
+function _local_env_init() { "${SCRIPTS_DIR}/env-init.sh" "$@"; }
 
-_meta_help["sdk:release"]="Release SDK version"
+_local_sdk_release__help="Release SDK version"
+_register "sdk:release" "_local_sdk_release"
+function _local_sdk_release() { "${SCRIPTS_DIR}/sdk-release.sh" "$@"; }
 
-function sdk:release() {
-  "${SCRIPT_DIR}/sdk-release.sh" "$@"
-}
+_local_sentry_deploy__help="Notify deployment to sentry for existing sentry release"
+_register "sentry:deploy" "_local_sentry_deploy"
+function _local_sentry_deploy() { "${SCRIPTS_DIR}/sentry-deploy.sh" "$@"; }
 
-_meta_help["sentry:deploy"]="Notify deployment to sentry for existing sentry release"
+_local_sentry_release__help="Create sentry release for existing Docker image"
+_register "sentry:release" "_local_sentry_release"
+function _local_sentry_release() { "${SCRIPTS_DIR}/sentry-release.sh" "$@"; }
 
-function sentry:deploy() {
-  "${SCRIPT_DIR}/sentry-deploy.sh" "$@"
-}
+_local_seed_apply__help="Apply seed to a database"
+_register "seed:apply" "_local_seed_apply"
+function _local_seed_apply() { "${SCRIPTS_DIR}/seed-apply.sh" "$@"; }
 
-_meta_help["sentry:release"]="Create sentry release for existing Docker image"
-
-function sentry:release() {
-  "${SCRIPT_DIR}/sentry-release.sh" "$@"
-}
-
+_local_seed_update__help="Update seed using a database"
+_register "seed:update" "_local_seed_update"
+function _local_seed_update() { "${SCRIPTS_DIR}/seed-update.sh" "$@"; }
