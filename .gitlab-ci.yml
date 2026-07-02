@@ -1,0 +1,53 @@
+workflow:
+  name: "Déploiement API Communs Numériques"
+  auto_cancel:
+    on_new_commit: conservative
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+variables:
+  ANSIBLE_REMOTE_USER: "deploy"
+  GIT_SUBMODULE_STRATEGY: recursive
+  GIT_SUBMODULE_FORCE_HTTPS: "true"
+  GIT_SSL_NO_VERIFY: "true"
+
+stages:
+  - deploy
+
+default:
+  image: alpine/ansible:2.18.6
+  before_script:
+    - |
+      export http_proxy="$http_proxy"
+      export https_proxy="$http_proxy"
+      export HTTP_PROXY="$http_proxy"
+      export HTTPS_PROXY="$http_proxy"
+      export no_proxy="$no_proxy"
+      export NO_PROXY="$no_proxy"
+      apk update && apk add corkscrew curl gpg gpg-agent sops
+
+      mkdir -p ~/.ssh
+      echo "$DEPLOY_SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/gitlab-runner
+      chmod 600 ~/.ssh/gitlab-runner
+      echo "$SSH_KNOWN_HOSTS" | base64 -d > ~/.ssh/known_hosts
+
+      cat >> ~/.ssh/config <<EOF
+      Host *
+        IdentityFile ~/.ssh/gitlab-runner
+        StrictHostKeyChecking yes
+      EOF
+
+      echo "$OPENPGP_PRIVATE_SUBKEY" | base64 -d | gpg --import
+
+  interruptible: false
+
+deploy_recette:
+  stage: deploy
+  resource_group: recette
+  variables:
+    ANSIBLE_BECOME_PASS: "$BECOME_PASS_API_RECETTE"
+  script:
+    - .bin/product app:deploy recette
+  environment:
+    name: recette
+    deployment_tier: staging
