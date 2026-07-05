@@ -132,9 +132,13 @@ src/**/*.css.map
 setEnv.sh
 **/.vagrant/
 **/node_modules/
-yarn-error.log
+pnpm-debug.log
 
-scripts/ovh/ovh-nodejs-client/.yarn/
+
+**/.vault-password.gpg
+**/habilitations.yml
+
+scripts/ovh/ovh-nodejs-client/.pnpm/
 # /app/tools is managed by infra
 files/tools
 files/system

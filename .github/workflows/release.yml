@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build & publish NPM release
-        run: .bin/ccas-api sdk:release "${{ github.event.release.tag_name }}"
+        run: .bin/product sdk:release "${{ github.event.release.tag_name }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
