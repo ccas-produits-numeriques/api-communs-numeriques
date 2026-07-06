@@ -17,7 +17,7 @@ x-deploy-default: &deploy-default
 
 x-default: &default
   networks:
-    - ccas_network
+    - sij_network
 
 services:
   server:
@@ -127,3 +127,7 @@ services:
         fluentd-address: localhost:24224
         tag: docker.json.{{product_name}}.{{env_type}}.metabase
         fluentd-async: "true"
+
+networks:
+  sij_network:
+    external: true
