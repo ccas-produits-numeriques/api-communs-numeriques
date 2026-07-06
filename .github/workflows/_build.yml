@@ -44,7 +44,7 @@ jobs:
     if: ${{ success() }}
     needs: ["npm-packages-check"]
     concurrency:
-      group: "build-${{ github.workflow }}-${{ github.ref }}"
+      group: "build-${{ inputs.environment }}-${{ github.workflow }}-${{ github.ref }}"
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
