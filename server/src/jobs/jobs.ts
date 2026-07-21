@@ -1,11 +1,9 @@
 import { addJob, initJobProcessor } from "job-processor";
 import { zImportMetaFranceCompetence, zImportMetaNpec } from "shared/models/import.meta.model";
-import { z } from "zod/v4-mini";
 
 import { removeInactiveAccounts } from "../services/inactiveAccounts/inactiveAccounts.service.js";
 import { notifyUsersAboutExpiringApiKeys } from "./apiKey/apiKeyExpiration.notifier.js";
 import { validateModels } from "./db/schemaValidation.js";
-import { runAcceImporter } from "./importer/acce/acce.js";
 import { runBcnImporter } from "./importer/bcn/bcn.importer.js";
 import { runDaresApeIdccImporter } from "./importer/dares/ape_idcc/dares.ape_idcc.importer.js";
 import { runDaresConventionCollectivesImporter } from "./importer/dares/ccn/dares.ccn.importer.js";
@@ -16,11 +14,8 @@ import {
 } from "./importer/france_competence/france_competence.importer.js";
 import { importers } from "./importer/importers.js";
 import { runKaliConventionCollectivesImporter } from "./importer/kali/kali.ccn.importer.js";
-import { runKitCommunsNumeriquesImporter } from "./importer/kit/kitCommunsNumeriques.importer.js";
 import { importNpecResource, onImportNpecResourceFailure, runNpecImporter } from "./importer/npec/npec.importer.js";
-import { importOrganismes } from "./importer/organisme/organisme.importer.js";
 import { runReferentielImporter } from "./importer/referentiel/referentiel.js";
-import { updateKitCommunsNumeriquesIndicateurSource } from "./indicateurs/source/kitCommunsNumeriques.source.indicateur.js";
 import { create as createMigration, status as statusMigration, up as upMigration } from "./migrations/migrations.js";
 import { createIndexes, getDatabase } from "@/services/mongodb/mongodbService.js";
 import logger, { createJobProcessorLogger } from "@/services/logger.js";
@@ -83,14 +78,8 @@ export async function setupJobProcessor() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         handler: async (job) => createMigration(job.payload as any),
       },
-      "import:acce": {
-        handler: runAcceImporter,
-      },
       "import:bcn": {
         handler: runBcnImporter,
-      },
-      "import:kit_communs_numeriques": {
-        handler: runKitCommunsNumeriquesImporter,
       },
       "import:referentiel": {
         handler: runReferentielImporter,
@@ -129,17 +118,6 @@ export async function setupJobProcessor() {
             await onImportNpecResourceFailure(zImportMetaNpec.parse(job.payload));
           }
         },
-        resumable: true,
-      },
-      "import:organismes": {
-        handler: async (job) => {
-          const options = z.parse(z.nullish(z.object({ force: z.optional(z.boolean()) })), job.payload);
-          return importOrganismes(options?.force ?? false);
-        },
-        resumable: true,
-      },
-      "indicateurs:source_kit_communs_numeriques:update": {
-        handler: updateKitCommunsNumeriquesIndicateurSource,
         resumable: true,
       },
       "doc:check_sync": {

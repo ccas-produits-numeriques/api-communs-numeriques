@@ -59,10 +59,6 @@ const config = {
       public_cert: env.get("API_TOKEN_PUBLIC_KEY").required().asString(),
       private_key: env.get("API_TOKEN_PRIVATE_KEY").required().asString(),
     },
-    acce: {
-      username: env.get("API_ACCE_USERNAME").required().asString(),
-      password: env.get("API_ACCE_PASSWORD").required().asString(),
-    },
     referentielOnisep: {
       endpoint: "https://referentiel.apprentissage.onisep.fr/api/v1",
     },
@@ -75,38 +71,11 @@ const config = {
     unml: {
       endpoint: "https://api.unml.info",
     },
-    insee: {
-      endpoint: "https://api.insee.fr",
-      token: env.get("API_INSEE_TOKEN").required().asString(),
-    },
     enseignementSup: {
       endpoint: "https://data.enseignementsup-recherche.gouv.fr",
     },
-    entreprise: {
-      baseurl: "https://entreprise.api.gouv.fr/v3",
-      key: env.get("API_ENTREPRISE_KEY").required().asString(),
-      defaultRecipient: "13002526500013", // Siret DINUM
-      object: "Consolidation des données",
-      context: "CCAS",
-    },
-    bal: {
-      baseurl: env.get("API_BAL_URL").required().asString(),
-      apiKey: env.get("API_BAL_API_KEY").required().asString(),
-    },
     sij_api: {
-      endpoint: env
-        .get("SIJ_API_ENDPOINT")
-        .default(process.env.LBA_API_ENDPOINT ?? "")
-        .required()
-        .asString(),
-    },
-    kit_communs_numeriques: {
-      endpoint: "https://api-kit-apprentissage.intercariforef.org",
-      token: env
-        .get("API_KIT_COMMUNS_NUMERIQUES_TOKEN")
-        .default(process.env.API_KIT_APPRENTISSAGE_TOKEN ?? "")
-        .required()
-        .asString(),
+      endpoint: env.get("SIJ_API_ENDPOINT").required().asString(),
     },
   },
 };

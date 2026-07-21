@@ -199,14 +199,6 @@ program
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("indexes:recreate"));
 program
-  .command("import:kit_communs_numeriques")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:kit_communs_numeriques"));
-program
-  .command("import:organismes")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:organismes"));
-program
   .command("import:referentiel")
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:referentiel"));
@@ -214,10 +206,6 @@ program
   .command("import:bcn")
   .option("-q, --queued", "Run job asynchronously", false)
   .action(createJobAction("import:bcn"));
-program
-  .command("import:acce")
-  .option("-q, --queued", "Run job asynchronously", false)
-  .action(createJobAction("import:acce"));
 program
   .command("import:france_competence")
   .option("-q, --queued", "Run job asynchronously", false)

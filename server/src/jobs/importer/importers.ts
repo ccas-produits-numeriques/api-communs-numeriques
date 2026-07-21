@@ -1,13 +1,7 @@
-import { getAcceeImporterStatus, runAcceImporter } from "./acce/acce.js";
 import { getBcnImporterStatus, runBcnImporter } from "./bcn/bcn.importer.js";
 import { getDaresCcnImporterStatus, runDaresConventionCollectivesImporter } from "./dares/ccn/dares.ccn.importer.js";
 import { getFranceCompetencesImporterStatus, runRncpImporter } from "./france_competence/france_competence.importer.js";
 import { getKaliImporterStatus, runKaliConventionCollectivesImporter } from "./kali/kali.ccn.importer.js";
-import {
-  getKitCommunsNumeriquesImporterStatus,
-  runKitCommunsNumeriquesImporter,
-} from "./kit/kitCommunsNumeriques.importer.js";
-import { getOrganismesImporterStatus, importOrganismes } from "./organisme/organisme.importer.js";
 import { getReferentielImporterStatus, runReferentielImporter } from "./referentiel/referentiel.js";
 import type { Importer } from "./types.js";
 
@@ -19,27 +13,11 @@ const timings = {
 };
 
 export const importers: Record<string, Importer> = {
-  "Mise à jour acce": {
-    cron_string: timings.import_source,
-    handler: runAcceImporter,
-    resumable: true,
-    getStatus: getAcceeImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
   "Import des données BCN": {
     cron_string: timings.import_source_main,
     handler: runBcnImporter,
     resumable: true,
     getStatus: getBcnImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
-  "Import des données Kit Communs numériques": {
-    cron_string: timings.import_source_main,
-    handler: runKitCommunsNumeriquesImporter,
-    resumable: true,
-    getStatus: getKitCommunsNumeriquesImporterStatus,
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
@@ -56,14 +34,6 @@ export const importers: Record<string, Importer> = {
     handler: runRncpImporter,
     resumable: true,
     getStatus: getFranceCompetencesImporterStatus,
-    checkinMargin: 60, // 1h
-    maxRuntimeInMinutes: 30,
-  },
-  "Import des organismes": {
-    cron_string: timings.import_compute_step_1,
-    handler: async () => importOrganismes(false),
-    resumable: true,
-    getStatus: getOrganismesImporterStatus,
     checkinMargin: 60, // 1h
     maxRuntimeInMinutes: 30,
   },
