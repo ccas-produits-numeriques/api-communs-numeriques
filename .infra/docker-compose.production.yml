@@ -91,6 +91,35 @@ services:
         tag: docker.txt.{{product_name}}.{{env_type}}.ui
         fluentd-async: "true"
 
+  postgres:
+    <<: *default
+    image: postgres:15.5
+    deploy:
+      <<: *deploy-default
+      resources:
+        limits:
+          memory: 2g
+      replicas: 1
+    ports:
+      - "5432:5432"
+    volumes:
+      - /opt/app/data/postgres:/var/lib/postgresql/data:z
+      - /opt/app/configs/postgres/init-metabase.sql:/docker-entrypoint-initdb.d/init-metabase.sql:ro
+    environment:
+      - POSTGRES_PASSWORD={{ PSQL_PWD }}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.json.{{product_name}}.{{env_type}}.postgres
+        fluentd-async: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
   metabase:
     <<: *default
     image: metabase/metabase:v0.57.13
@@ -115,6 +144,8 @@ services:
       MB_EMAIL_SMTP_USERNAME: "{{SMTP_AUTH_USER}}"
       MB_EMAIL_SMTP_PASSWORD: "{{SMTP_AUTH_PASS}}"
       MB_EMAIL_SMTP_SECURITY: tls
+    depends_on:
+      - postgres
     healthcheck:
       test: curl --fail -I http://localhost:3000/api/health || exit 1
       interval: 15s

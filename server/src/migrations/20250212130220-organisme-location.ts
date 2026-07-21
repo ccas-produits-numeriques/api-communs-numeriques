@@ -1,5 +1,3 @@
-import { addJob } from "job-processor";
-
 import { getDbCollection } from "@/services/mongodb/mongodbService.js";
 
 export const up = async () => {
@@ -10,12 +8,6 @@ export const up = async () => {
     { $set: { "etablissement.geopoint": null } },
     { bypassDocumentValidation: true }
   );
-
-  await addJob({
-    name: "import:organismes",
-    payload: {},
-    queued: true,
-  });
 };
 
 export const requireShutdown: boolean = true;

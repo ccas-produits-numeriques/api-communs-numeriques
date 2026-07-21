@@ -1,4 +1,16 @@
 fileignoreconfig:
+- filename: .infra/env.global.yml
+  ignore_detectors:
+  - filecontent
+- filename: .infra/env.local.yml
+  ignore_detectors:
+  - filecontent
+- filename: .infra/env.preproduction.yml
+  ignore_detectors:
+  - filecontent
+- filename: .infra/env.recette.yml
+  ignore_detectors:
+  - filecontent
 - filename: .infra/files/configs/mongodb/seed.gpg
   checksum: 2b50edfd731f38552bb0c428ada1095ee73e1058736a12b228a72b5d529193b6
 - filename: .yarn/patches/exceljs-npm-4.4.0-15bcfdd142.patch
@@ -42,7 +54,7 @@ fileignoreconfig:
 - filename: sdk/src/openapi/builder/openapi.builder.ts
   checksum: d2ceb232506c8a62438b9424e1dfbc4b8acf1e6492754817a0d967142fba59fa
 - filename: server/.env.test
-  checksum: 65357f150bfedfebea511b1007eed941983484abf990d87e91fd7477360ad280
+  checksum: 5f26836bc8a6f20400e5ff16fdaa4502baa3179a4fa9293dfc6c6e7a78f89bab
 - filename: server/src/config.ts
   checksum: 4d43ea50fe7d511a1e2a7f6c0187ae2fb81afa414ddceb90449117fa70199192
 - filename: server/src/jobs/importer/catalogue/fixtures/sample.ts

@@ -9,7 +9,6 @@ import { userRoutes } from "./_private/user.routes.js";
 import { cabinetAvocatRoutes } from "./cabinet-avocat.routes.js";
 import { sourceAcceRoutes } from "./experimental/sources/acce.routes.js";
 import { healthcheckRoutes } from "./healthcheck.routes.js";
-import { organismeRoutes } from "./organisme.routes.js";
 import type { Server } from "@/server/server.js";
 
 type RegisterRoutes = (opts: { server: Server }) => void;
@@ -22,7 +21,6 @@ export const registerRoutes: RegisterRoutes = ({ server }) => {
   userAdminRoutes({ server });
   organisationAdminRoutes({ server });
   processorAdminRoutes({ server });
-  organismeRoutes({ server });
   cabinetAvocatRoutes({ server });
   sourceAcceRoutes({ server });
   simulateurRoutes({ server });
