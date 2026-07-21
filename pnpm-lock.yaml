@@ -225,9 +225,15 @@ importers:
       lru-cache:
         specifier: ^11.1.0
         version: 11.3.5
+      luhn:
+        specifier: ^2.4.1
+        version: 2.4.1
       luxon:
         specifier: ^3.7.1
         version: 3.7.2
+      microdiff:
+        specifier: ^1.5.0
+        version: 1.5.0
       mjml:
         specifier: ^4.15.3
         version: 4.18.0
