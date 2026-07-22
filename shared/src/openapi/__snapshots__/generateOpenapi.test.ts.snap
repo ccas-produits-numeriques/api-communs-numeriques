@@ -1020,6 +1020,7 @@ exports[`generateOpenApiSchema > should generate proper schema 1`] = `
                       "enum": [
                         "local",
                         "recette",
+                        "preproduction",
                         "production",
                         "preview",
                         "test",

@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["./**/*.mts"],
+  "exclude": ["**/node_modules", "dist"]
+}

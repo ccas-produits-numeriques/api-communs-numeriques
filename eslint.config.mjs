@@ -129,6 +129,14 @@ export default defineConfig([
     },
   },
   {
+    name: "release-tools-files",
+    files: [".bin/scripts/release/**/*.mts"],
+    rules: {
+      "n/no-missing-import": "off",
+      "n/no-extraneous-import": "off",
+    },
+  },
+  {
     name: "server-only-files",
     plugins: importAlias.configs.recommended.plugins,
     files: [["server", ALL_FILES]],
