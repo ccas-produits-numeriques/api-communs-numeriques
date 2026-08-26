@@ -104,6 +104,7 @@
       shell:
         chdir: /opt/app
         cmd: "sudo /opt/app/tools/ssl/renew-certificate.sh {{dns_name}}"
+      when: provider != 'internal'
 
     - name: "Setup de la Metabase"
       shell:
