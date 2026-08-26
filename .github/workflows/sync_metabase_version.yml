@@ -1,0 +1,109 @@
+name: Sync Metabase production version
+
+on:
+  registry_package:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Metabase version to sync (e.g. "v0.48.4")'
+        required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+
+concurrency:
+  group: metabase-version-pr
+  cancel-in-progress: false
+
+jobs:
+  sync-version-pr:
+    if: >
+      github.event_name != 'registry_package' ||
+      github.event.registry_package.name == 'ccas_api-communs-numeriques_metabase'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve published Metabase tag
+        id: resolve
+        env:
+          WORKFLOW_INPUT_VERSION: ${{ inputs.version }}
+        run: node .github/workflows/scripts/resolve_metabase_version.mjs
+
+      - name: Update env.ini
+        id: update_env
+        env:
+          METABASE_VERSION: ${{ steps.resolve.outputs.version }}
+        run: |
+          CURRENT_VERSION=$(sed -n 's/^metabase_version=//p' .infra/env.ini)
+
+          if [ -z "$CURRENT_VERSION" ]; then
+            echo "metabase_version was not found in .infra/env.ini" >&2
+            exit 1
+          fi
+
+          if [ "$CURRENT_VERSION" = "$METABASE_VERSION" ]; then
+            echo "No env.ini update needed."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          sed -i.bak "s/^metabase_version=.*/metabase_version=${METABASE_VERSION}/" .infra/env.ini
+          rm .infra/env.ini.bak
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Push version branch with a verified commit
+        if: steps.update_env.outputs.changed == 'true'
+        uses: ./.github/actions/create-app-commit
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bot/metabase-version
+          base-branch: main
+          force-update: true
+          commit-message: "chore: update metabase production version to ${{ steps.resolve.outputs.version }}"
+          files: |
+            .infra/env.ini
+
+      - name: Create or update rollout PR
+        if: steps.update_env.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          METABASE_VERSION: ${{ steps.resolve.outputs.version }}
+          PR_BRANCH: bot/metabase-version
+        run: |
+          PR_TITLE="chore: update metabase production version to ${METABASE_VERSION}"
+          PR_BODY=$(cat <<EOF
+          Update \`metabase_version\` in \`.infra/env.ini\` after a new Metabase image was published to GHCR.
+
+          This PR is intentionally separate from the image build so rollout remains explicit and reviewable.
+          EOF
+          )
+
+          PR_NUMBER=$(gh pr list --head "$PR_BRANCH" --base main --json number --jq '.[0].number // empty')
+
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr edit "$PR_NUMBER" --title "$PR_TITLE" --body "$PR_BODY"
+          else
+            if ! CREATE_OUTPUT=$(gh pr create --base main --head "$PR_BRANCH" --title "$PR_TITLE" --body "$PR_BODY" 2>&1); then
+              if echo "$CREATE_OUTPUT" | grep -q "not permitted to create or approve pull requests"; then
+                echo "::error::GITHUB_TOKEN cannot create PRs in this repository."
+                echo "::error::Enable 'Allow GitHub Actions to create and approve pull requests' in the repository/organization Actions settings."
+              fi
+
+              echo "$CREATE_OUTPUT" >&2
+              exit 1
+            fi
+
+            echo "$CREATE_OUTPUT"
+          fi
