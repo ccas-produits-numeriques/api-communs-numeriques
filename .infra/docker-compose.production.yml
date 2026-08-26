@@ -31,7 +31,7 @@ services:
       replicas: 3
     stop_grace_period: 60s
     environment:
-      NODE_OPTIONS: "--max_old_space_size=768"
+      NODE_OPTIONS: "--max_old_space_size=768 --use-openssl-ca"
     volumes:
       - /opt/app/data/server:/data
       - /opt/app/.env_server:/app/server/.env
@@ -63,7 +63,7 @@ services:
       - /opt/app/data/server:/data
       - /opt/app/.env_server:/app/server/.env
     environment:
-      NODE_OPTIONS: "--max_old_space_size=1536"
+      NODE_OPTIONS: "--max_old_space_size=1536 --use-openssl-ca"
     logging:
       driver: "fluentd"
       options:
@@ -122,12 +122,18 @@ services:
 
   metabase:
     <<: *default
-    image: metabase/metabase:v0.57.13
+    # use custom image with certificates pre-imported
+    image: ghcr.io/ccas-produits-numeriques/ccas_{{product_name}}_metabase:{{metabase_version}}
     deploy:
       <<: *deploy-default
       resources:
         limits:
           memory: 2g
+      restart_policy:
+        condition: on-failure
+        window: 7200s
+        delay: 10m
+        max_attempts: 10
     environment:
       JAVA_TIMEZONE: Europe/Paris
       MB_SITE_LOCALE: fr
@@ -147,7 +153,7 @@ services:
     depends_on:
       - postgres
     healthcheck:
-      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      test: ["CMD", "curl", "--fail", "-I", "http://localhost:3000/api/health"]
       interval: 15s
       timeout: 5s
       retries: 5

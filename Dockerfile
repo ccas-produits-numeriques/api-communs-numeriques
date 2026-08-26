@@ -45,6 +45,10 @@ RUN apt-get update \
   && apt-get purge -y --auto-remove debsecan \
   && apt-get clean
 
+COPY --from=ghcr.io/ccas-produits-numeriques/sij_ca-certificates /usr/local/share/ca-certificates /usr/local/share/ca-certificates
+
+RUN update-ca-certificates
+
 ENV NODE_ENV=production
 
 ARG PUBLIC_PRODUCT_NAME
@@ -107,6 +111,10 @@ RUN apt-get update \
   && apt-get install $(debsecan --suite $codename --format packages --only-fixed) \
   && apt-get purge -y --auto-remove debsecan \
   && apt-get clean
+
+COPY --from=ghcr.io/ccas-produits-numeriques/sij_ca-certificates /usr/local/share/ca-certificates /usr/local/share/ca-certificates
+
+RUN update-ca-certificates
 
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.
