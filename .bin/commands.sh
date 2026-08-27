@@ -30,11 +30,10 @@ _local_env_init__help="Update local env files using values from SOPS files"
 _register "env:init" "_local_env_init"
 function _local_env_init() { "${SCRIPTS_DIR}/env-init.sh" "$@"; }
 
-<<<<<<< HEAD
 _local_release_metabase__help="Build and push metabase Docker image"
 _register "release:metabase" "_local_release_metabase"
 function _local_release_metabase() { "${SCRIPTS_DIR}/release-metabase.sh" "$@"; }
-=======
+
 _local_build_image__help="Build Docker images via buildx bake"
 _register "build:image" "_local_build_image"
 
@@ -72,7 +71,6 @@ function _local_app_deploy() {
 
   _shared_app_deploy "$ENV_FILTER" --extra-vars "app_version=$APP_VERSION" "$@"
 }
->>>>>>> be752bb (feat: adapt ci)
 
 _local_sdk_release__help="Release SDK version"
 _register "sdk:release" "_local_sdk_release"
