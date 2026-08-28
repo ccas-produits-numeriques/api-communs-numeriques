@@ -5,6 +5,7 @@ import { deployRelease, deployReleaseFromLocal, postDeployRelease, preDeployRele
 import { initOctokitClient } from "./utils/client.mjs";
 import { onPublish } from "./workflow/on_publish.mjs";
 import { postRollback, preRollback, rollbackFromLocal } from "./workflow/rollback.mjs";
+import { hotfixOnOpen, hotfixOnCommit, hotfixOnTitleChange } from "./workflow/on_hotfix_pr.mjs";
 
 program.hook("preAction", async () => {
   await initOctokitClient();
@@ -174,6 +175,39 @@ program
     }
 
     await rollbackFromLocal(env, options.force);
+  });
+
+program
+  .command("hotfix:on-open <pr_id> <sha>")
+  .description("Handle hotfix PR open/reopen: create tag and draft release")
+  .action(async (pr_id: string, sha: string) => {
+    if (!process.env.CI) {
+      throw new Error("This command is meant to be run in a CI environment.");
+    }
+
+    await hotfixOnOpen(parseInt(pr_id, 10), sha);
+  });
+
+program
+  .command("hotfix:on-commit <pr_id> <sha>")
+  .description("Handle hotfix PR commit: force-update tag and release target")
+  .action(async (pr_id: string, sha: string) => {
+    if (!process.env.CI) {
+      throw new Error("This command is meant to be run in a CI environment.");
+    }
+
+    await hotfixOnCommit(parseInt(pr_id, 10), sha);
+  });
+
+program
+  .command("hotfix:on-title-change <pr_id>")
+  .description("Handle hotfix PR title change: update draft release name and body")
+  .action(async (pr_id: string) => {
+    if (!process.env.CI) {
+      throw new Error("This command is meant to be run in a CI environment.");
+    }
+
+    await hotfixOnTitleChange(parseInt(pr_id, 10));
   });
 
 await program.parseAsync(process.argv);

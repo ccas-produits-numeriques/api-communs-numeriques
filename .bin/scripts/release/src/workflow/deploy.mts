@@ -6,7 +6,7 @@ import { spawnAsync } from "../utils/spawnAsync.mjs";
 import { getOctokitClient } from "../utils/client.mjs";
 import { owner, repo } from "../utils/context.mjs";
 import { sendTchapNotification } from "../utils/tchap.mjs";
-import { getCurrentVersion, getShaVersion } from "../utils/version.mjs";
+import { getCurrentVersion, getHotfixTag, getShaVersion } from "../utils/version.mjs";
 import { ensureImageTagExists, getProductImages } from "../utils/docker.mjs";
 
 async function preDeployReleaseRecette(sha: string) {
@@ -59,15 +59,37 @@ async function preDeployReleaseRecette(sha: string) {
 }
 
 async function preDeployReleasePreproduction(sha: string) {
-  const preRelease = await getPrerelease(sha);
+  const hotfixTag = getHotfixTag();
 
-  if (!preRelease) {
-    throw new Error(
-      `No prerelease found for commit ${sha}. Please publish the "latest-build" release on GitHub to create a release candidate first.`
+  let version: string;
+  let changelog: string;
+
+  if (hotfixTag) {
+    version = getShaVersion(sha);
+    const prId = parseInt(hotfixTag.replace("hotfix-", ""), 10);
+    const pr = await getOctokitClient().rest.pulls.get({ owner, repo, pull_number: prId });
+    if (pr.data.merged || pr.data.state === "closed") {
+      throw new Error(
+        `PR #${prId} is merged or closed: this hotfix is finished. Any further deployment must go through the normal release cycle.`
+      );
+    }
+    changelog = `Validation du hotfix PR #${prId} — ${pr.data.title}`;
+    await sendTchapNotification(
+      `**Déploiement préproduction du hotfix PR #${prId} lancé.** Une fois le hotfix validé, merger la PR pour réintégrer le correctif dans main — sans merge, il disparaîtra à la prochaine release.`
     );
+  } else {
+    const preRelease = await getPrerelease(sha);
+
+    if (!preRelease) {
+      throw new Error(
+        `No prerelease found for commit ${sha}. Please publish the "latest-build" release on GitHub to create a release candidate first.`
+      );
+    }
+
+    version = preRelease.tag_name;
+    changelog = preRelease.body ?? "";
   }
 
-  const version = preRelease.tag_name;
   const recettePackages = getProductImages("recette", version);
   const preproductionPackages = getProductImages("preproduction", version);
 
@@ -85,7 +107,7 @@ async function preDeployReleasePreproduction(sha: string) {
       `**Début du déploiement** : ${version} sur **préproduction**`,
       `Dernière release stable : ${latestStable ? latestStable.tag_name : "Aucune release stable n'existe encore."}`,
       "Changements inclus dans ce déploiement :",
-      preRelease.body ?? "",
+      changelog,
     ].join("\n\n")
   );
 

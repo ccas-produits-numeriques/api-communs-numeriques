@@ -26,7 +26,7 @@ workflow:
     on_new_commit: conservative
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.pipeline_action ]]" == "rollback" && "$[[ inputs.rollback_env_type ]]" =~ /^(recette|preproduction)$/'
-    - if: '$CI_COMMIT_TAG =~ /^(rc-\d+|latest-build)$/'
+    - if: '$CI_COMMIT_TAG =~ /^(rc-\d+|latest-build|hotfix-\d+)$/'
     - if: $CI_COMMIT_BRANCH == "main"
 
 variables:
@@ -74,6 +74,18 @@ deploy_recette_gate:
     strategy: depend
   rules:
     - if: '$CI_COMMIT_TAG == "latest-build"'
+
+deploy_hotfix_preproduction_gate:
+  stage: deploy
+  interruptible: true
+  allow_failure: false
+  when: manual
+  resource_group: preproduction
+  trigger:
+    include: .gitlab/deploy-preproduction.yml
+    strategy: depend
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^hotfix-\d+$/'
 
 rollback_preproduction_gate:
   extends: .manual_deploy_template

@@ -194,6 +194,27 @@ function _local_release_post_publish () {
   node "${SCRIPTS_DIR}/release/dist/index.mjs" post-publish "$@"
 }
 
+_local_release_hotfix_on_open__help="Run hotfix PR open/reopen steps (CI)"
+_register "release:hotfix:on-open" "_local_release_hotfix_on_open"
+function _local_release_hotfix_on_open() {
+  _local_release_setup
+  node "${SCRIPTS_DIR}/release/dist/index.mjs" hotfix:on-open "$@"
+}
+
+_local_release_hotfix_on_commit__help="Run hotfix PR commit steps (CI)"
+_register "release:hotfix:on-commit" "_local_release_hotfix_on_commit"
+function _local_release_hotfix_on_commit() {
+  _local_release_setup
+  node "${SCRIPTS_DIR}/release/dist/index.mjs" hotfix:on-commit "$@"
+}
+
+_local_release_hotfix_on_title_change__help="Run hotfix PR title change steps (CI)"
+_register "release:hotfix:on-title-change" "_local_release_hotfix_on_title_change"
+function _local_release_hotfix_on_title_change() {
+  _local_release_setup
+  node "${SCRIPTS_DIR}/release/dist/index.mjs" hotfix:on-title-change "$@"
+}
+
 _local_release_rollback_before__help="Run pre-rollback release steps"
 _register "release:rollback:before" "_local_release_rollback_before"
 
