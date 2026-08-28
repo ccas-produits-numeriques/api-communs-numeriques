@@ -1,0 +1,53 @@
+workflow:
+  name: "Déploiement API Communs Numériques - Recette"
+  auto_cancel:
+    on_new_commit: conservative
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "parent_pipeline" && $RELEASE_ACTION == "rollback"'
+    - if: "$CI_COMMIT_TAG == 'latest-build'"
+
+include:
+  - .gitlab/deploy-template.yml
+
+variables:
+  GIT_LFS_SKIP_SMUDGE: "1"
+
+stages:
+  - pre_deploy
+  - deploy
+  - post_deploy
+
+pre_deploy_checks:
+  extends: .deploy_pre_template
+  variables:
+    DEPLOY_ENV_TYPE: "recette"
+
+deploy_recette:
+  extends: .deploy_template_new
+  needs:
+    - pre_deploy_checks
+  variables:
+    ANSIBLE_BECOME_PASS: "$BECOME_PASS_API_RECETTE"
+    DEPLOY_ENV: "recette"
+  environment:
+    name: recette
+    url: https://api.rec.sij.cour-de-cassation.justice.fr
+    deployment_tier: staging
+
+post_deploy_checks_success_recette:
+  extends: .deploy_post_template
+  needs:
+    - deploy_recette
+  when: on_success
+  variables:
+    DEPLOY_ENV_TYPE: "recette"
+    DEPLOY_STATUS: "success"
+
+post_deploy_checks_failure_recette:
+  extends: .deploy_post_template
+  needs:
+    - deploy_recette
+  when: on_failure
+  variables:
+    DEPLOY_ENV_TYPE: "recette"
+    DEPLOY_STATUS: "failure"

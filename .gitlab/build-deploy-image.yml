@@ -1,0 +1,20 @@
+build_deploy_image:
+  stage: build
+  image: docker:29
+  script:
+    - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - |
+      docker build \
+        --build-arg http_proxy=$http_proxy \
+        --build-arg https_proxy=$http_proxy \
+        --build-arg no_proxy=$no_proxy \
+        -f .gitlab/Dockerfile.deploy \
+        -t $CI_REGISTRY_IMAGE/deploy:latest \
+        .
+    - docker push $CI_REGISTRY_IMAGE/deploy:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - .gitlab/Dockerfile.deploy
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual

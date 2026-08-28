@@ -1,0 +1,145 @@
+variables:
+  API_COMMUNS_DEPLOY_IMAGE: "${CI_REGISTRY_IMAGE}/deploy:latest"
+
+.update_cache_template:
+  stage: build
+  image: $API_COMMUNS_DEPLOY_IMAGE
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+    policy: pull-push
+  script:
+    - |
+      pnpm config set store-dir .pnpm-store
+      pnpm install --frozen-lockfile
+
+.deploy_template_new:
+  image: $API_COMMUNS_DEPLOY_IMAGE
+  stage: deploy
+  interruptible: false
+  allow_failure: false
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+    policy: pull
+  script:
+    - |
+      pnpm config set store-dir .pnpm-store
+      pnpm install --frozen-lockfile
+
+      mkdir -p ~/.ssh
+      echo "$DEPLOY_SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/gitlab-runner
+      chmod 600 ~/.ssh/gitlab-runner
+      echo "$SSH_KNOWN_HOSTS" | base64 -d > ~/.ssh/known_hosts
+
+      cat >> ~/.ssh/config <<EOF
+      Host *
+        IdentityFile ~/.ssh/gitlab-runner
+        StrictHostKeyChecking yes
+      EOF
+
+      echo "$OPENPGP_PRIVATE_SUBKEY" | base64 -d | gpg --import
+
+      TARGET_REF="${TARGET_COMMIT_REF:-${TARGET_COMMIT_SHA:-}}"
+      if [[ -n "${TARGET_REF}" ]]; then
+        if ! git cat-file -e "${TARGET_REF}^{commit}" 2>/dev/null; then
+          git fetch --unshallow origin || true
+          git fetch origin "${TARGET_REF}" || git fetch origin
+        fi
+
+        RESOLVED_TARGET_SHA="$(git rev-parse --verify "${TARGET_REF}^{commit}")"
+        git checkout --detach "${RESOLVED_TARGET_SHA}"
+      fi
+
+      if [[ "${RELEASE_ACTION:-deploy}" == "rollback" ]]; then
+        .bin/product release:rollback "${DEPLOY_ENV}" --force
+      else
+        .bin/product release:deploy "${DEPLOY_ENV}"
+      fi
+  variables:
+    NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    ANSIBLE_REMOTE_USER: "deploy"
+
+.deploy_pre_template:
+  image: $API_COMMUNS_DEPLOY_IMAGE
+  stage: pre_deploy
+  interruptible: true
+  allow_failure: false
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+    policy: pull
+  script:
+    - |
+      pnpm config set store-dir .pnpm-store
+      pnpm install --frozen-lockfile
+
+      echo "$OPENPGP_PRIVATE_SUBKEY" | base64 -d | gpg --import
+
+      TARGET_REF="${TARGET_COMMIT_REF:-${TARGET_COMMIT_SHA:-}}"
+      if [[ -n "${TARGET_REF}" ]]; then
+        if ! git cat-file -e "${TARGET_REF}^{commit}" 2>/dev/null; then
+          git fetch --unshallow origin || true
+          git fetch origin "${TARGET_REF}" || git fetch origin
+        fi
+
+        RESOLVED_TARGET_SHA="$(git rev-parse --verify "${TARGET_REF}^{commit}")"
+        git checkout --detach "${RESOLVED_TARGET_SHA}"
+      fi
+
+      if [[ "${RELEASE_ACTION:-deploy}" == "rollback" ]]; then
+        .bin/product release:rollback:before "${DEPLOY_ENV_TYPE}" --force
+      else
+        .bin/product release:deploy:before "${DEPLOY_ENV_TYPE}"
+      fi
+  variables:
+    NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    ANSIBLE_REMOTE_USER: "deploy"
+
+.deploy_post_template:
+  image: $API_COMMUNS_DEPLOY_IMAGE
+  stage: post_deploy
+  interruptible: false
+  allow_failure: false
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+    policy: pull
+  script:
+    - |
+      pnpm config set store-dir .pnpm-store
+      pnpm install --frozen-lockfile
+
+      echo "$OPENPGP_PRIVATE_SUBKEY" | base64 -d | gpg --import
+
+      TARGET_REF="${TARGET_COMMIT_REF:-${TARGET_COMMIT_SHA:-}}"
+      if [[ -n "${TARGET_REF}" ]]; then
+        if ! git cat-file -e "${TARGET_REF}^{commit}" 2>/dev/null; then
+          git fetch --unshallow origin || true
+          git fetch origin "${TARGET_REF}" || git fetch origin
+        fi
+
+        RESOLVED_TARGET_SHA="$(git rev-parse --verify "${TARGET_REF}^{commit}")"
+        git checkout --detach "${RESOLVED_TARGET_SHA}"
+      fi
+
+      if [[ "${RELEASE_ACTION:-deploy}" == "rollback" ]]; then
+        .bin/product release:rollback:after "${DEPLOY_ENV_TYPE}" "${DEPLOY_STATUS}"
+      else
+        .bin/product release:deploy:after "${DEPLOY_ENV_TYPE}" "${DEPLOY_STATUS}"
+      fi
+  variables:
+    NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    ANSIBLE_REMOTE_USER: "deploy"

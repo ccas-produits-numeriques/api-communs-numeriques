@@ -5,7 +5,7 @@ export interface PublicConfig {
   host: string;
   baseUrl: string;
   apiEndpoint: string;
-  env: "local" | "preview" | "recette" | "production";
+  env: "local" | "preview" | "recette" | "preproduction" | "production";
   version: string;
   contactEmail: string;
   repositoryUrl: string;
@@ -27,6 +27,25 @@ function getProductionPublicConfig(): PublicConfig {
     host,
     baseUrl: `https://${host}`,
     env: "production",
+    apiEndpoint: `https://${host}/api`,
+    version: getVersion(),
+    contactEmail: getContactEmail(),
+    repositoryUrl: getRepositoryUrl(),
+    statusUrl: getStatusUrl(),
+    productMeta: getProductMeta(),
+  };
+}
+
+function getPreproductionPublicConfig(): PublicConfig {
+  const host = "api.preprod.sij.cour-de-cassation.justice.fr";
+
+  return {
+    sentry: {
+      dsn: "https://2aef281c33b8e491993d55b0b5a8a669@sentry.courdecassation.beta.gouv.fr/10",
+    },
+    host,
+    baseUrl: `https://${host}`,
+    env: "preproduction",
     apiEndpoint: `https://${host}/api`,
     version: getVersion(),
     contactEmail: getContactEmail(),
@@ -143,6 +162,7 @@ function getEnv(): PublicConfig["env"] {
   const env = process.env.NEXT_PUBLIC_ENV;
   switch (env) {
     case "production":
+    case "preproduction":
     case "recette":
     case "preview":
     case "local":
@@ -156,6 +176,8 @@ function getPublicConfig(): PublicConfig {
   switch (getEnv()) {
     case "production":
       return getProductionPublicConfig();
+    case "preproduction":
+      return getPreproductionPublicConfig();
     case "recette":
       return getRecettePublicConfig();
     case "preview":

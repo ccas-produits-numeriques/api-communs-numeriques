@@ -1,9 +1,33 @@
+spec:
+  inputs:
+    pipeline_action:
+      description: "Action to run from GitLab UI"
+      options:
+        - deploy
+        - rollback
+      default: deploy
+    rollback_env_type:
+      description: "Rollback target environment type"
+      options:
+        - recette
+        - preproduction
+      default: recette
+    rollback_ref:
+      description: "Optional git ref (branch/tag/sha) to rollback. Empty = pipeline selected ref."
+      default: ""
+---
+include:
+  - .gitlab/deploy-template.yml
+  - .gitlab/build-deploy-image.yml
+
 workflow:
   name: "Déploiement API Communs Numériques"
   auto_cancel:
     on_new_commit: conservative
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.pipeline_action ]]" == "rollback" && "$[[ inputs.rollback_env_type ]]" =~ /^(recette|preproduction)$/'
+    - if: '$CI_COMMIT_TAG =~ /^(rc-\d+|latest-build|hotfix-\d+)$/'
+    - if: $CI_COMMIT_BRANCH == "main"
 
 variables:
   ANSIBLE_REMOTE_USER: "deploy"
@@ -12,42 +36,79 @@ variables:
   GIT_SSL_NO_VERIFY: "true"
 
 stages:
+  - build
+  - pre_deploy
   - deploy
+  - post_deploy
 
-default:
-  image: alpine/ansible:2.18.6
-  before_script:
-    - |
-      export http_proxy="$http_proxy"
-      export https_proxy="$http_proxy"
-      export HTTP_PROXY="$http_proxy"
-      export HTTPS_PROXY="$http_proxy"
-      export no_proxy="$no_proxy"
-      export NO_PROXY="$no_proxy"
-      apk update && apk add corkscrew curl gpg gpg-agent sops
-
-      mkdir -p ~/.ssh
-      echo "$DEPLOY_SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/gitlab-runner
-      chmod 600 ~/.ssh/gitlab-runner
-      echo "$SSH_KNOWN_HOSTS" | base64 -d > ~/.ssh/known_hosts
-
-      cat >> ~/.ssh/config <<EOF
-      Host *
-        IdentityFile ~/.ssh/gitlab-runner
-        StrictHostKeyChecking yes
-      EOF
-
-      echo "$OPENPGP_PRIVATE_SUBKEY" | base64 -d | gpg --import
-
-  interruptible: false
-
-deploy_recette:
+.manual_deploy_template:
   stage: deploy
+  interruptible: true # we can interrupt waiting
+  allow_failure: false
+  when: manual
+
+update_cache:
+  extends: .update_cache_template
+  needs:
+    - job: build_deploy_image
+      optional: true
+
+deploy_preproduction_gate:
+  stage: deploy
+  interruptible: true
+  allow_failure: false
+  resource_group: preproduction
+  trigger:
+    include: .gitlab/deploy-preproduction.yml
+    strategy: depend
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^rc-\d+$/'
+
+deploy_recette_gate:
+  stage: deploy
+  interruptible: true
+  allow_failure: false
   resource_group: recette
+  trigger:
+    include: .gitlab/deploy-recette.yml
+    strategy: depend
+  rules:
+    - if: '$CI_COMMIT_TAG == "latest-build"'
+
+deploy_hotfix_preproduction_gate:
+  stage: deploy
+  interruptible: true
+  allow_failure: false
+  when: manual
+  resource_group: preproduction
+  trigger:
+    include: .gitlab/deploy-preproduction.yml
+    strategy: depend
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^hotfix-\d+$/'
+
+rollback_preproduction_gate:
+  extends: .manual_deploy_template
+  resource_group: preproduction
+  trigger:
+    include: .gitlab/deploy-preproduction.yml
+    strategy: depend
   variables:
-    ANSIBLE_BECOME_PASS: "$BECOME_PASS_API_RECETTE"
-  script:
-    - .bin/product app:deploy recette
-  environment:
-    name: recette
-    deployment_tier: staging
+    RELEASE_ACTION: "rollback"
+    TARGET_COMMIT_REF: "$[[ inputs.rollback_ref ]]"
+    TARGET_COMMIT_SHA: "$CI_COMMIT_SHA"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.pipeline_action ]]" == "rollback" && "$[[ inputs.rollback_env_type ]]" == "preproduction"'
+
+rollback_recette_gate:
+  extends: .manual_deploy_template
+  resource_group: recette
+  trigger:
+    include: .gitlab/deploy-recette.yml
+    strategy: depend
+  variables:
+    RELEASE_ACTION: "rollback"
+    TARGET_COMMIT_REF: "$[[ inputs.rollback_ref ]]"
+    TARGET_COMMIT_SHA: "$CI_COMMIT_SHA"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web" && "$[[ inputs.pipeline_action ]]" == "rollback" && "$[[ inputs.rollback_env_type ]]" == "recette"'

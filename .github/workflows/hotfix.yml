@@ -1,0 +1,107 @@
+name: Hotfix PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches: [main]
+
+concurrency:
+  group: hotfix-release-${{ github.head_ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: |
+      startsWith(github.head_ref, 'hotfix/') &&
+      (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize')
+    uses: ./.github/workflows/build.yml
+    with:
+      sha: ${{ github.event.pull_request.head.sha }}
+      flow: hotfix
+    secrets: inherit
+    permissions:
+      contents: write
+      packages: write
+
+  manage_hotfix_release:
+    needs: [build]
+    if: |
+      startsWith(github.head_ref, 'hotfix/') &&
+      (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.SHARED_BIN_TOKEN }}
+
+      - uses: pnpm/action-setup@v6.0.8
+        with:
+          version: 10.15.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        name: Install Node.js
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create hotfix release (opened/reopened)
+        if: github.event.action == 'opened' || github.event.action == 'reopened'
+        run: .bin/product release:hotfix:on-open "${{ github.event.pull_request.number }}" "${{ github.event.pull_request.head.sha }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_RELEASE_APP_PRIVATE_KEY_B64: ${{ secrets.GH_RELEASE_APP_PRIVATE_KEY_B64 }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+
+      - name: Update hotfix tag (synchronize)
+        if: github.event.action == 'synchronize'
+        run: .bin/product release:hotfix:on-commit "${{ github.event.pull_request.number }}" "${{ github.event.pull_request.head.sha }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_RELEASE_APP_PRIVATE_KEY_B64: ${{ secrets.GH_RELEASE_APP_PRIVATE_KEY_B64 }}
+
+  update_hotfix_title:
+    if: |
+      startsWith(github.head_ref, 'hotfix/') &&
+      github.event.action == 'edited' &&
+      github.event.changes.title != null
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.SHARED_BIN_TOKEN }}
+
+      - uses: pnpm/action-setup@v6.0.8
+        with:
+          version: 10.15.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        name: Install Node.js
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Update hotfix release title
+        run: .bin/product release:hotfix:on-title-change "${{ github.event.pull_request.number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_RELEASE_APP_PRIVATE_KEY_B64: ${{ secrets.GH_RELEASE_APP_PRIVATE_KEY_B64 }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}

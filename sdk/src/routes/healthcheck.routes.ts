@@ -10,7 +10,7 @@ export const zCoreRoutes = {
         "200": z.object({
           name: z.string(),
           version: z.string(),
-          env: z.enum(["local", "recette", "production", "preview", "test"]),
+          env: z.enum(["local", "recette", "preproduction", "production", "preview", "test"]),
         }),
       },
       securityScheme: null,

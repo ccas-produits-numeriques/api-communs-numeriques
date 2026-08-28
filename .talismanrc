@@ -56,7 +56,7 @@ fileignoreconfig:
 - filename: server/.env.test
   checksum: 5f26836bc8a6f20400e5ff16fdaa4502baa3179a4fa9293dfc6c6e7a78f89bab
 - filename: server/src/config.ts
-  checksum: 4d43ea50fe7d511a1e2a7f6c0187ae2fb81afa414ddceb90449117fa70199192
+  checksum: 1576650e982f31f172883c593b30e757fd579822ebdfe9b26d73b2608d920134
 - filename: server/src/jobs/importer/catalogue/fixtures/sample.ts
   checksum: b1335a1859f5c91edfb6ccabe0b91d61dea53130f6270a5172e20450bb36e119
 - filename: server/src/jobs/importer/commune/__snapshots__/commune.importer.test.ts.snap
@@ -82,13 +82,13 @@ fileignoreconfig:
 - filename: shared/src/models/fixtures/commune.model.fixture.ts
   checksum: 84d4cc1767cbdd9add0b2fec8c9509a08815deed3ae5d143e162c1b8dba88243
 - filename: shared/src/openapi/__snapshots__/generateOpenapi.test.ts.snap
-  checksum: a70b729f5e7e140765c7ae27147692566a80a955d574c13a3f06bd95ed61ce6a
+  checksum: b5e848b812b9d0ca56e38689ea271e28df218ac6724846ee80713598fb069e40
 - filename: ui/app/[lang]/explorer/certifications/page.tsx
   checksum: 79162968dc111206592c35c9bdbfc1babae88ad1390a190d6c7b5108ebb82b9d
 - filename: ui/app/[lang]/explorer/depot-offre/page.tsx
   checksum: 764fcfac0c4242d1b22a812798db3a661392d72688d80f7898b6e82714efe457
 - filename: ui/config.public.ts
-  checksum: eb295d5d7a427bc19ae5fe9b22f324c493ba61b12400e361736d78cb9f910a21
+  checksum: 9b54f6291b3055a4ad4d69a09662a590b0b8e83cba098b9a422169f293929aff
 scopeconfig:
 - scope: node
 custom_patterns:

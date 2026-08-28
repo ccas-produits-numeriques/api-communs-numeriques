@@ -1,0 +1,53 @@
+workflow:
+  name: "Déploiement API Communs Numériques - Préproduction"
+  auto_cancel:
+    on_new_commit: conservative
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "parent_pipeline" && $RELEASE_ACTION == "rollback"'
+    - if: '$CI_COMMIT_TAG =~ /^rc-\d+$/'
+
+include:
+  - .gitlab/deploy-template.yml
+
+variables:
+  GIT_LFS_SKIP_SMUDGE: "1"
+
+stages:
+  - pre_deploy
+  - deploy
+  - post_deploy
+
+pre_deploy_checks:
+  extends: .deploy_pre_template
+  variables:
+    DEPLOY_ENV_TYPE: "preproduction"
+
+deploy_preproduction:
+  extends: .deploy_template_new
+  needs:
+    - pre_deploy_checks
+  variables:
+    ANSIBLE_BECOME_PASS: "$BECOME_PASS_API_PREPROD"
+    DEPLOY_ENV: "preproduction"
+  environment:
+    name: preproduction
+    url: https://api.preprod.sij.cour-de-cassation.justice.fr
+    deployment_tier: staging
+
+post_deploy_checks_success_preproduction:
+  extends: .deploy_post_template
+  needs:
+    - deploy_preproduction
+  when: on_success
+  variables:
+    DEPLOY_ENV_TYPE: "preproduction"
+    DEPLOY_STATUS: "success"
+
+post_deploy_checks_failure_preproduction:
+  extends: .deploy_post_template
+  needs:
+    - deploy_preproduction
+  when: on_failure
+  variables:
+    DEPLOY_ENV_TYPE: "preproduction"
+    DEPLOY_STATUS: "failure"

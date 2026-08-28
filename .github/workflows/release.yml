@@ -1,13 +1,18 @@
+name: SDK Release
+
 on:
   release:
     types: [published]
 
 jobs:
   tests:
+    # Les prereleases (rc) sont gérées par on_publish.yml ; seule une release
+    # stable publie le SDK sur npm.
+    if: github.event.release.prerelease == false
     uses: "./.github/workflows/ci.yml"
 
   release:
-    if: ${{ success() }}
+    if: ${{ success() && github.event.release.prerelease == false }}
     needs: ["tests"]
     permissions: write-all
     runs-on: ubuntu-latest

@@ -12,6 +12,7 @@ const getRules = () => {
     case "local":
     case "preview":
     case "recette":
+    case "preproduction":
     default:
       return {
         userAgent: "*",
