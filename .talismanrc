@@ -1,4 +1,6 @@
 fileignoreconfig:
+- filename: .bin/shared
+  checksum: 5fcf6baff765f07b3f667452eb9ad1214ed61e8aa3e4453f181ca2572717eb69
 - filename: .infra/env.global.yml
   ignore_detectors:
   - filecontent
@@ -99,6 +101,6 @@ allowed_patterns:
 - '@mail.fr'
 - '@courdecassation.beta.gouv.fr'
 - '@courdecassation.fr'
-- 'patches/[a-zA-Z0-9@._/-]+\.patch'
+- patches/[a-zA-Z0-9@._/-]+\.patch
 threshold: medium
 version: "1.0"
